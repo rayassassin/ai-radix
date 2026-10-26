@@ -1,0 +1,1749 @@
+{
+ "generated_at": "2026-10-27 02:18:26",
+ "size": 64,
+ "total": 218,
+ "ok": 217,
+ "items": {
+  "chatgpt": {
+   "id": "chatgpt",
+   "file": "4f642e388f.png",
+   "src": "ddg-mirror",
+   "fmt": "webp",
+   "tone": "normal",
+   "note": "ddg 镜像兜底"
+  },
+  "claude": {
+   "id": "claude",
+   "file": "8bb75b3015.png",
+   "src": "https://claude.ai/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "gemini": {
+   "id": "gemini",
+   "file": "48bafc503c.png",
+   "src": "https://www.gstatic.com/lamda/images/gemini_sparkle_4g_512_lt_f94943af3be039176192d.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "deepseek-chat": {
+   "id": "deepseek-chat",
+   "file": "7fdc5efd02.png",
+   "src": "https://fe-static.deepseek.com/chat/icon-180.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "kimi": {
+   "id": "kimi",
+   "file": "aacfa66c7a.png",
+   "src": "https://www.kimi.com/pwa-192.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "doubao": {
+   "id": "doubao",
+   "file": "89fb3bf272.png",
+   "src": "https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/favicon/new-doubao/192x192.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "tongyi": {
+   "id": "tongyi",
+   "file": "b3352547b1.png",
+   "src": "https://img.alicdn.com/imgextra/i2/O1CN01taBbMS1CfyJoOt0lB_!!6000000000109-2-tps-80-80.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "grok": {
+   "id": "grok",
+   "file": "220ac0149c.png",
+   "src": "https://grok.com/images/android-chrome-512x512.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "metaso": {
+   "id": "metaso",
+   "file": "678c64ef47.png",
+   "src": "https://metaso.cn/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "tiangong": {
+   "id": "tiangong",
+   "file": "4b9264464c.png",
+   "src": "https://static.tiangong.cn/prod-pc-main-site-www-home/favicon.ico",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "coze": {
+   "id": "coze",
+   "file": "ade68db897.png",
+   "src": "https://lf-coze-web-cdn.coze.cn/obj/coze-web-cn/coze-space/static/favicon2.ico",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "dify": {
+   "id": "dify",
+   "file": "a45f345b0c.svg",
+   "src": "https://dify.ai/favicon.svg",
+   "fmt": "svg",
+   "tone": "normal",
+   "note": "第 1 路 svg"
+  },
+  "notion-ai": {
+   "id": "notion-ai",
+   "file": "235ba05844.png",
+   "src": "https://www.notion.com/front-static/logo-ios.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "grammarly": {
+   "id": "grammarly",
+   "file": "58d7bd80c3.png",
+   "src": "https://static-web.grammarly.com/cms/master/public/favicon-32x32.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "jasper": {
+   "id": "jasper",
+   "file": "02b0732024.png",
+   "src": "https://cdn.prod.website-files.com/6807ee8d73c233fb82842313/681e121f9445a06741087852_Webclip.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "copy-ai": {
+   "id": "copy-ai",
+   "file": "173dd27525.png",
+   "src": "https://cdn.prod.website-files.com/628288c5cd3e8411b90a36a4/6793eea6a090d6d2f4fa5570_favicon_256x256%20(2).png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "xiezuocat": {
+   "id": "xiezuocat",
+   "file": "8d6f21a053.png",
+   "src": "https://xiezuocat.com/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "ibiling": {
+   "id": "ibiling",
+   "file": "142b678f8c.png",
+   "src": "https://ibiling.cn/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "quillbot": {
+   "id": "quillbot",
+   "file": "60caf36bc6.png",
+   "src": "ddg-mirror",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "ddg 镜像兜底"
+  },
+  "writesonic": {
+   "id": "writesonic",
+   "file": "97f146fb57.png",
+   "src": "https://writesonic.com/apple-icon.png?apple-icon.0.210mtbpi.lj.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "midjourney": {
+   "id": "midjourney",
+   "file": "f2f5f1ac19.png",
+   "src": "ddg-mirror",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "ddg 镜像兜底"
+  },
+  "stability": {
+   "id": "stability",
+   "file": "6f422f52fa.png",
+   "src": "https://images.squarespace-cdn.com/content/v1/6213c340453c3f502425776e/804f0e8b-0028-4262-a8b0-b9f1c5de72c0/favicon.ico?format=100w",
+   "fmt": "webp",
+   "tone": "normal",
+   "note": "第 1 路 webp"
+  },
+  "firefly": {
+   "id": "firefly",
+   "file": "53f018f2ee.png",
+   "src": "https://firefly.adobe.com/releases/5b205a52870d3812fafe0cc41652fd4c1a9e2896/assets/fi_android_192-DXlUnW6D.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "liblib": {
+   "id": "liblib",
+   "file": "cb708273ac.png",
+   "src": "https://www.liblib.art/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "jimeng": {
+   "id": "jimeng",
+   "file": "a69ddc47e9.png",
+   "src": "https://lf3-lv-buz.vlabstatic.com/obj/image-lvweb-buz/common/images/dreamina-v1.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "meitu-design": {
+   "id": "meitu-design",
+   "file": "b0658cb3dc.png",
+   "src": "https://www.designkit.cn/favicon.ico",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "canva": {
+   "id": "canva",
+   "file": "0d40d32696.png",
+   "src": "https://www.canva.com/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "clipdrop": {
+   "id": "clipdrop",
+   "file": "ccb4c57a0f.png",
+   "src": "https://clipdrop.co/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "comfyui": {
+   "id": "comfyui",
+   "file": "7e609894d4.png",
+   "src": "https://comfy.org/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "kling": {
+   "id": "kling",
+   "file": "c9964ca7d2.png",
+   "src": "https://klingai.com/logo-180x180.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "runway": {
+   "id": "runway",
+   "file": "3d19aafd04.png",
+   "src": "https://runway.com/icon.png?icon.35ps9bmugbe1e.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "pika": {
+   "id": "pika",
+   "file": "28720b9799.png",
+   "src": "https://pika.art/apple-icon.png?apple-icon.1pc-f1mhs57mu.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "sora": {
+   "id": "sora",
+   "file": "b78bb58252.png",
+   "src": "ddg-mirror",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "ddg 镜像兜底"
+  },
+  "vidu": {
+   "id": "vidu",
+   "file": "514dc91b3c.png",
+   "src": "google-mirror",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "复用"
+  },
+  "hailuo": {
+   "id": "hailuo",
+   "file": "fa839d4231.png",
+   "src": "https://cdn.hailuoai.video/open-hailuo-video-web/public_assets/favicon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "luma": {
+   "id": "luma",
+   "file": "7123372f52.png",
+   "src": "https://lumalabs.ai/favicons/favicon-black.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "heygen": {
+   "id": "heygen",
+   "file": "e4c82382d8.png",
+   "src": "https://www.heygen.com/favicon.ico?favicon.2m321y0geyyfh.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "suno": {
+   "id": "suno",
+   "file": "7c48c2729c.png",
+   "src": "https://cdn-o.suno.com/favicon-512x512.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "elevenlabs": {
+   "id": "elevenlabs",
+   "file": "5664905910.png",
+   "src": "https://elevenlabs.io/apple-icon.png?6592732ab34b1d42",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "udio": {
+   "id": "udio",
+   "file": "f70753e9ad.png",
+   "src": "https://www.udio.com/favicon.ico?favicon.0wbc3vz33genq.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "xunfei-zhizuo": {
+   "id": "xunfei-zhizuo",
+   "file": "6e6d290f31.png",
+   "src": "https://openstorage.xfyousheng.com/asset/asset/20250105/0d0db524-243e-4f97-bf15-2eef4b58e1e3.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "adobe-podcast": {
+   "id": "adobe-podcast",
+   "file": "dcb1979544.svg",
+   "src": "https://podcast.adobe.com/adobe-podcast-favicon.svg",
+   "fmt": "svg",
+   "tone": "normal",
+   "note": "第 1 路 svg"
+  },
+  "rask": {
+   "id": "rask",
+   "file": "3c95104f96.png",
+   "src": "https://cdn.prod.website-files.com/63ab2ba4785d7f058efab318/6473939fc2cbcbab683d65be_rask-webclip.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "aippt": {
+   "id": "aippt",
+   "file": "a1d9d7330f.png",
+   "src": "https://www.aippt.cn/favicon.ico",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "islide": {
+   "id": "islide",
+   "file": "885a3d1ddf.png",
+   "src": "https://www.islide.cc/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "gamma": {
+   "id": "gamma",
+   "file": "05b048d724.png",
+   "src": "ddg-mirror",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "ddg 镜像兜底"
+  },
+  "wps-ai": {
+   "id": "wps-ai",
+   "file": "d8b064cdad.png",
+   "src": "https://personal-act.wpscdn.cn/operations-fe/wps-ai/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "tingwu": {
+   "id": "tingwu",
+   "file": "fd489ab1a3.png",
+   "src": "https://g.alicdn.com/idst-fe/mind-meeting-assistant2/0.0.189/favicon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "iflyrec": {
+   "id": "iflyrec",
+   "file": "fac00c6201.png",
+   "src": "https://www.iflyrec.com/static/imgs/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "feishu": {
+   "id": "feishu",
+   "file": "0e141a1f73.png",
+   "src": "https://www.feishu.cn/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "processon": {
+   "id": "processon",
+   "file": "7dea109b5d.png",
+   "src": "https://www.processon.com/public_login/favicon.983368c6.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "cursor": {
+   "id": "cursor",
+   "file": "1791a97a84.png",
+   "src": "https://cursor.com/marketing-static/icon-192x192-light.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "copilot": {
+   "id": "copilot",
+   "file": "ba4aa223e1.png",
+   "src": "https://github.com/fluidicon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "claude-code": {
+   "id": "claude-code",
+   "file": "8ebfa1129a.png",
+   "src": "https://assets.claude.com/95a868946ac8a31e5ff832e2899f294aa368b836.png?w=32&amp;h=32",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "trae": {
+   "id": "trae",
+   "file": "8acf75cf73.png",
+   "src": "https://lf-static.traecdn.us/obj/trae-ai-tx/trae_website/favicon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "lingma": {
+   "id": "lingma",
+   "file": "6184d11957.png",
+   "src": "https://img.alicdn.com/imgextra/i1/O1CN01BN6Jtc1lCfJNviV7H_!!6000000004783-2-tps-134-133.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "复用"
+  },
+  "windsurf": {
+   "id": "windsurf",
+   "file": "4f0ba3272a.png",
+   "src": "https://devin.ai/icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "comate": {
+   "id": "comate",
+   "file": "361888745f.png",
+   "src": "https://comate.baidu.com/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "replit": {
+   "id": "replit",
+   "file": "8d045246f2.png",
+   "src": "https://replit.com/public/icons/favicon-prompt-192-rebrand.png",
+   "fmt": "webp",
+   "tone": "normal",
+   "note": "第 1 路 webp"
+  },
+  "lovart": {
+   "id": "lovart",
+   "file": "0fe1cb5d03.png",
+   "src": "https://www.lovart.ai/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "figma-ai": {
+   "id": "figma-ai",
+   "file": "d60371704a.png",
+   "src": "https://static.figma.com/app/icon/2/icon-256.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "modao": {
+   "id": "modao",
+   "file": "f081c41ff0.png",
+   "src": "https://images.modao.cc/images/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "jsdesign": {
+   "id": "jsdesign",
+   "file": "fcd3b63f2f.png",
+   "src": "https://js.design/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 2 路 ico"
+  },
+  "looka": {
+   "id": "looka",
+   "file": "a380498362.png",
+   "src": "https://looka.com/favicon.ico",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "gaoding": {
+   "id": "gaoding",
+   "file": "791ec894d7.png",
+   "src": "https://www.gaoding.com/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "huggingface": {
+   "id": "huggingface",
+   "file": "432f9f50a7.png",
+   "src": "https://huggingface.co/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "openrouter": {
+   "id": "openrouter",
+   "file": "d8b3be131b.png",
+   "src": "https://openrouter.ai/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "modelscope": {
+   "id": "modelscope",
+   "file": "b8de2ffe6b.png",
+   "src": "https://g.alicdn.com/sail-web/maas/2.13.170/favicon/128.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "ollama": {
+   "id": "ollama",
+   "file": "39975b9a95.png",
+   "src": "https://ollama.com/public/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 3 路 png"
+  },
+  "langchain": {
+   "id": "langchain",
+   "file": "334496741e.png",
+   "src": "https://cdn.prod.website-files.com/65b8cd72835ceeacd4449a53/69a17e4f0c916c644f4de1cd_webclip%20lg.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "deeplearning": {
+   "id": "deeplearning",
+   "file": "dfc77721cb.png",
+   "src": "https://www.deeplearning.ai/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "lmstudio": {
+   "id": "lmstudio",
+   "file": "fbefa78612.png",
+   "src": "https://lmstudio.ai/assets/marketing/logo-192x192.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "vllm": {
+   "id": "vllm",
+   "file": "ff5c3338a5.png",
+   "src": "https://docs.vllm.ai/en/latest/assets/logos/vllm-logo-only-light.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "wondercv": {
+   "id": "wondercv",
+   "file": "a9b5fc7616.png",
+   "src": "https://logo.wondercv.com/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "52cv": {
+   "id": "52cv",
+   "file": "56112ed80c.png",
+   "src": "https://www.52cv.com/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "xiaoduo": {
+   "id": "xiaoduo",
+   "file": "3d51434d8f.png",
+   "src": "https://www.xiaoduoai.com/assets/addons/ldcms/ldcms2024/images/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "yanxi": {
+   "id": "yanxi",
+   "file": "b7d3d3d97c.png",
+   "src": "https://yanxi.jd.com/resource/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "qianfan": {
+   "id": "qianfan",
+   "file": "fc47f83f0f.png",
+   "src": "https://bce.bdstatic.com/img/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "volcengine": {
+   "id": "volcengine",
+   "file": "8ec49a59fe.png",
+   "src": "https://portal.volccdn.com/obj/volcfe/misc/favicon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "gptzero": {
+   "id": "gptzero",
+   "file": "57d18fe44c.png",
+   "src": "https://gptzero.me/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "originality": {
+   "id": "originality",
+   "file": "84eaacae3b.png",
+   "src": "https://cdn.prod.website-files.com/63ee996e404f6475c7b177b3/640832f3532983383c607051_256-A.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "copyleaks": {
+   "id": "copyleaks",
+   "file": "7cc2571dbc.png",
+   "src": "https://copyleaks.com/favicon.ico?favicon.2buxfhgxzyu3i.ico?dpl=c327cf4a23cd75c9b0650b33f75f5b1f946c07a7",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "zerogpt": {
+   "id": "zerogpt",
+   "file": "00c474ac98.png",
+   "src": "https://www.zerogpt.com/favicon180.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "turnitin": {
+   "id": "turnitin",
+   "file": "27aa151e38.png",
+   "src": "https://www.turnitin.com/system/favicon/favicon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "腾讯元宝": {
+   "id": "腾讯元宝",
+   "file": "999c13effa.png",
+   "src": "https://static.yuanbao.tencent.com/m/yuanbao-web/favicon_new@32.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "智谱清言": {
+   "id": "智谱清言",
+   "file": "1db4d1b84b.png",
+   "src": "https://chatglm.cn/favicon.ico",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "文心一言": {
+   "id": "文心一言",
+   "file": "c11c3f755a.png",
+   "src": "https://www.baidu.com/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "讯飞星火": {
+   "id": "讯飞星火",
+   "file": "cd48919259.png",
+   "src": "https://xinghuo.xfyun.cn/spark-icon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "le-chat": {
+   "id": "le-chat",
+   "file": "f667ecdae0.png",
+   "src": "ddg-mirror",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "ddg 镜像兜底"
+  },
+  "poe": {
+   "id": "poe",
+   "file": "f63072e39a.png",
+   "src": "https://poe.com/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "character-ai": {
+   "id": "character-ai",
+   "file": "6dcd894723.png",
+   "src": "https://character.ai/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "manus": {
+   "id": "manus",
+   "file": "c323b4e526.png",
+   "src": "https://manus.im/icon.png?icon.1k-e-nyr3k65n.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "monica": {
+   "id": "monica",
+   "file": "ff0d813dd5.png",
+   "src": "https://monica.im/logo.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "chatbox": {
+   "id": "chatbox",
+   "file": "b5a55841b7.png",
+   "src": "https://chatboxai.app/favicon.ico",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "lobechat": {
+   "id": "lobechat",
+   "file": "d8ee7a5dd9.png",
+   "src": "https://lobehub.com/apple-touch-icon.png",
+   "fmt": "webp",
+   "tone": "normal",
+   "note": "第 1 路 webp"
+  },
+  "百川智能": {
+   "id": "百川智能",
+   "file": "005966d91c.png",
+   "src": "https://www.baichuan-ai.com/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "海螺ai": {
+   "id": "海螺ai",
+   "file": "8e1f15495b.png",
+   "src": "https://cdn.hailuoai.com/hailuo-video-web/public_assets/favicon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "qwen-chat": {
+   "id": "qwen-chat",
+   "file": "fa397e8a04.png",
+   "src": "ddg-mirror",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "ddg 镜像兜底"
+  },
+  "stepfun": {
+   "id": "stepfun",
+   "file": "15a81f8a39.svg",
+   "src": "https://www.stepfun.com/step_favicon.svg",
+   "fmt": "svg",
+   "tone": "light",
+   "note": "第 1 路 svg"
+  },
+  "perplexity": {
+   "id": "perplexity",
+   "file": "06eaeb413e.png",
+   "src": "https://www.perplexity.ai/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "notebooklm": {
+   "id": "notebooklm",
+   "file": "6f59a289f0.png",
+   "src": "https://www.gstatic.com/tailwind/_/static/branding/v6/light_mode/favicon/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "genspark": {
+   "id": "genspark",
+   "file": "74c413d472.png",
+   "src": "https://www.genspark.ai/apple-touch-icon.png",
+   "fmt": "webp",
+   "tone": "normal",
+   "note": "第 1 路 webp"
+  },
+  "consensus": {
+   "id": "consensus",
+   "file": "078eb6dc4e.png",
+   "src": "https://consensus.app/images/icon-384.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "elicit": {
+   "id": "elicit",
+   "file": "0a1722473d.png",
+   "src": "https://framerusercontent.com/images/nTulAU73crVvwMnbFVIXh8QTIfo.png",
+   "fmt": "png",
+   "tone": "light",
+   "note": "第 3 路 png"
+  },
+  "scispace": {
+   "id": "scispace",
+   "file": "6f0d9d511c.svg",
+   "src": "https://typeset.io/favicon.ico",
+   "fmt": "svg",
+   "tone": "normal",
+   "note": "第 1 路 svg"
+  },
+  "semantic-scholar": {
+   "id": "semantic-scholar",
+   "file": "212cf95bb9.png",
+   "src": "https://cdn.semanticscholar.org/96374d262d7c8584/img/favicon-196x196.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "connected-papers": {
+   "id": "connected-papers",
+   "file": "f873d456f4.png",
+   "src": "https://www.connectedpapers.com/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "devv": {
+   "id": "devv",
+   "file": "f224d973a2.png",
+   "src": "https://devv.ai/favicon-light.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "phind": {
+   "id": "phind",
+   "file": "2daa7a06b5.png",
+   "src": "google-mirror",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "复用"
+  },
+  "kagi": {
+   "id": "kagi",
+   "file": "521379c3ee.png",
+   "src": "https://kagi.com/favicon-32x32.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "exa": {
+   "id": "exa",
+   "file": "5de51d3aeb.png",
+   "src": "https://exa.ai/images/favicon-32x32.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "纳米ai搜索": {
+   "id": "纳米ai搜索",
+   "file": "3431b2c040.png",
+   "src": "https://p1.ssl.qhimg.com/t110b9a9301862eed9fa4f0efd9.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "deepl-write": {
+   "id": "deepl-write",
+   "file": "9eafa998b0.png",
+   "src": "https://www.deepl.com/favicon.ico?favicon.2q65ixsfts1dv.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "wordtune": {
+   "id": "wordtune",
+   "file": "f588231f45.png",
+   "src": "https://cdn.prod.website-files.com/5f7e0f9d75fee6f6f546df46/6672cdfc1b7a70cf85686651_256x256.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "rytr": {
+   "id": "rytr",
+   "file": "a50f0e45e8.png",
+   "src": "https://rytr.me/favicon.ico?favicon.1rqy3u3pdrfn3.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 2 路 ico"
+  },
+  "sudowrite": {
+   "id": "sudowrite",
+   "file": "462b04c911.png",
+   "src": "ddg-mirror",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "ddg 镜像兜底"
+  },
+  "novelai": {
+   "id": "novelai",
+   "file": "f327eefe96.png",
+   "src": "https://novelai.net/icons/novelai-square.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "prowritingaid": {
+   "id": "prowritingaid",
+   "file": "f601fed798.png",
+   "src": "https://prowritingaid.com/android-icon-192x192.png?v=2",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "hemingway-editor": {
+   "id": "hemingway-editor",
+   "file": "a24f28d2f3.png",
+   "src": "https://hemingwayapp.com/favicon.ico?favicon.2_1wcjm29iw-0.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "火龙果写作": {
+   "id": "火龙果写作",
+   "file": "c39c659a6c.png",
+   "src": "https://www.mypitaya.com/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "ideogram": {
+   "id": "ideogram",
+   "file": "3a50eae749.png",
+   "src": "https://ideogram.ai/favicon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 4 路 png"
+  },
+  "flux": {
+   "id": "flux",
+   "file": "ab18b3e58a.png",
+   "src": "https://bfl.ai/apple-icon.png?f3e2842f59013de0",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "leonardo-ai": {
+   "id": "leonardo-ai",
+   "file": "7090a96863.png",
+   "src": "ddg-mirror",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "ddg 镜像兜底"
+  },
+  "recraft": {
+   "id": "recraft",
+   "file": "386f648b8e.png",
+   "src": "https://framerusercontent.com/images/id5ZjKRfENkLEfAMrnKLKJfqfE.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 2 路 png"
+  },
+  "krea": {
+   "id": "krea",
+   "file": "908d8ac1e0.png",
+   "src": "https://www.krea.ai/favicon/favicon-192.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "civitai": {
+   "id": "civitai",
+   "file": "42931f1d41.png",
+   "src": "ddg-mirror",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "ddg 镜像兜底"
+  },
+  "photoroom": {
+   "id": "photoroom",
+   "file": "add29bace2.png",
+   "src": "https://www.photoroom.com/favicons/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "remove-bg": {
+   "id": "remove-bg",
+   "file": "fc0bfce6e1.png",
+   "src": "https://www.remove.bg/apple-touch-icon.png?v=fc0bfce6e1310f1539afec9729716721",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "通义万相": {
+   "id": "通义万相",
+   "file": "edd0b77a7a.png",
+   "src": "https://g.alicdn.com/sail-web/wan-static-resources/0.0.30/images/favicon.ico",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "文心一格": {
+   "id": "文心一格",
+   "file": "6b0aff669b.png",
+   "src": "https://www.baidu.com/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "无界ai": {
+   "id": "无界ai",
+   "file": "25cfd2c0fd.png",
+   "src": "https://www.wujieai.com/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "佐糖": {
+   "id": "佐糖",
+   "file": "dcb14b8ca3.png",
+   "src": "https://qncdn.aoscdn.com/astro/picwish/_astro/favicon@48w.1f86f507.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "upscayl": {
+   "id": "upscayl",
+   "file": "7ce120f9ef.png",
+   "src": "https://upscayl.org/logo/64x64.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "playground": {
+   "id": "playground",
+   "file": "96c70b1dc0.png",
+   "src": "https://playground.com/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "pixverse": {
+   "id": "pixverse",
+   "file": "e84f8295b0.png",
+   "src": "https://cdn.pixverse.ai/media/pixverse/favicon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "智谱清影": {
+   "id": "智谱清影",
+   "file": "df9d00f6c3.png",
+   "src": "https://chatglm.cn/favicon.ico",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "jianying": {
+   "id": "jianying",
+   "file": "2e87b5550c.png",
+   "src": "https://lf3-s.vlabstatic.com/obj/vilab-static/ies/ulike/web/resource/fe_official/assets/imgs/lv/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "一帧秒创": {
+   "id": "一帧秒创",
+   "file": null,
+   "note": "官网 4 路 + 双镜像均无可用图标"
+  },
+  "synthesia": {
+   "id": "synthesia",
+   "file": "2352e30fbf.png",
+   "src": "https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6618fd69d436784c0bba5e9e_webclip.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "d-id": {
+   "id": "d-id",
+   "file": "de29e84033.png",
+   "src": "https://www.d-id.com/wp-content/uploads/2024/10/D-ID-logo-350x350-1-300x300.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "captions": {
+   "id": "captions",
+   "file": "6b4aeece71.png",
+   "src": "https://captions.ai/mrkt-static/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "descript": {
+   "id": "descript",
+   "file": "51aee83c85.png",
+   "src": "https://static-cdn.descript.com/web/icons/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "opusclip": {
+   "id": "opusclip",
+   "file": "964b1feefe.png",
+   "src": "https://cdn.prod.website-files.com/6388604483b03a9ecb34d695/6435197bfb1d6e486e04c37b_webclip.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "capcut": {
+   "id": "capcut",
+   "file": "8775f299aa.png",
+   "src": "https://sf16-web-tos-buz.capcutcdn-us.com/obj/capcut-web-buz-tx2/common/images/lv_web-2.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "invideo": {
+   "id": "invideo",
+   "file": "968990c9d4.png",
+   "src": "https://invideo.io/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "veed": {
+   "id": "veed",
+   "file": "42bba7b437.png",
+   "src": "https://www.veed.io/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "veo": {
+   "id": "veo",
+   "file": "77c3ccd511.png",
+   "src": "https://deepmind.google/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "fish-audio": {
+   "id": "fish-audio",
+   "file": "a9f57aa537.png",
+   "src": "https://fish.audio/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "ttsmaker": {
+   "id": "ttsmaker",
+   "file": "7175fb1192.png",
+   "src": "https://ttsmaker.cn/static/v3_theme_01_asset/logo/apple-touch-icon.png?version=2",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "魔音工坊": {
+   "id": "魔音工坊",
+   "file": "7c592933c6.png",
+   "src": "https://tc-nj-backend-ms-pub-cdn.mobvoi.com/moyingongfang-prd/assets/manifest/img/icons/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "lalal-ai": {
+   "id": "lalal-ai",
+   "file": "e6bd579e5f.png",
+   "src": "https://www.lalal.ai/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "moises": {
+   "id": "moises",
+   "file": "2000b7287e.svg",
+   "src": "https://storage.googleapis.com/moises-cms-site/favicon_03fefcef56/favicon_03fefcef56.svg",
+   "fmt": "svg",
+   "tone": "normal",
+   "note": "第 1 路 svg"
+  },
+  "aiva": {
+   "id": "aiva",
+   "file": "cfc75a57b2.png",
+   "src": "https://www.aiva.ai/assets/img/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "mubert": {
+   "id": "mubert",
+   "file": "3ae2366863.png",
+   "src": "https://mubert.com/android-icon-192x192.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "网易天音": {
+   "id": "网易天音",
+   "file": "d84a0a340b.png",
+   "src": "https://s7.music.126.net/6369f9ec78c25c1818ccfc08/img/favicon_021f7155.ico",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "speechify": {
+   "id": "speechify",
+   "file": "4f99d8af1c.png",
+   "src": "https://speechify.com/apple-icon.png?apple-icon.0ek7crgmoxfjk.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "krisp": {
+   "id": "krisp",
+   "file": "2d074ef5c0.png",
+   "src": "https://krisp.ai/wp-content/uploads/2023/12/cropped-favicon-1-192x192.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "microsoft-365-copilot": {
+   "id": "microsoft-365-copilot",
+   "file": "d171dfef67.png",
+   "src": "https://www.microsoft.com/favicon.ico?v2",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "讯飞智文": {
+   "id": "讯飞智文",
+   "file": "e06e975987.png",
+   "src": "https://zhiwen.xfyun.cn/favicon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "boardmix-博思白板": {
+   "id": "boardmix-博思白板",
+   "file": "b61073e3e4.png",
+   "src": "https://cms.boardmix.cn/images/board.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "napkin-ai": {
+   "id": "napkin-ai",
+   "file": "529c3fdd8e.png",
+   "src": "https://www.napkin.ai/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "chatpdf": {
+   "id": "chatpdf",
+   "file": "010cc1ec58.png",
+   "src": "https://www.chatpdf.com/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "humata": {
+   "id": "humata",
+   "file": "0de7434a4c.png",
+   "src": "https://www.humata.ai/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "otter-ai": {
+   "id": "otter-ai",
+   "file": "775da189ba.png",
+   "src": "https://cdn.prod.website-files.com/618e9316785b3582a5178502/618e943a80919a98b5e9bf69_apple-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "fireflies": {
+   "id": "fireflies",
+   "file": "23c0ca14ef.png",
+   "src": "https://fireflies.ai/icon.png?8ca41d3ade63e552",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "beautiful-ai": {
+   "id": "beautiful-ai",
+   "file": "415a8b1132.png",
+   "src": "https://cdn.prod.website-files.com/59deb588800ae30001ec19c9/691b4ae4a724e6c686bfb035_BAI%20symbol%3Dfull%20color%20black.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "钉钉-ai": {
+   "id": "钉钉-ai",
+   "file": "af49cc3e45.png",
+   "src": "https://gw.alicdn.com/imgextra/i3/O1CN014ZbI6ZTEhdC0ttN2_!!6000000003783-2-tps-444-444.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "腾讯文档": {
+   "id": "腾讯文档",
+   "file": "c93117fd5f.png",
+   "src": "ddg-mirror",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "ddg 镜像兜底"
+  },
+  "tabnine": {
+   "id": "tabnine",
+   "file": "bcdb2e83be.png",
+   "src": "https://www.tricentis.com/favicon.ico?v=2",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "amazon-q-developer": {
+   "id": "amazon-q-developer",
+   "file": "0e048fb00a.png",
+   "src": "https://a0.awsstatic.com/libra-css/images/site/touch-icon-iphone-114-smile.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "continue": {
+   "id": "continue",
+   "file": "7aa28ed115.png",
+   "src": "https://continue.dev/favicon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "cline": {
+   "id": "cline",
+   "file": "7c406a39d9.png",
+   "src": "https://cline.bot/assets/branding/favicons/favicon-256x256.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "aider": {
+   "id": "aider",
+   "file": "ee692d2243.png",
+   "src": "google-mirror",
+   "fmt": "jpg",
+   "tone": "normal",
+   "note": "复用"
+  },
+  "bolt-new": {
+   "id": "bolt-new",
+   "file": "12b29f04a5.png",
+   "src": "https://bolt.new/static/favicon-192x192.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "v0": {
+   "id": "v0",
+   "file": "9abcde3c58.png",
+   "src": "https://v0.app/assets/apple-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "lovable": {
+   "id": "lovable",
+   "file": "dd3ec7ac1f.png",
+   "src": "https://lovable.dev/favicon.ico",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "zed": {
+   "id": "zed",
+   "file": "89e3eb6649.png",
+   "src": "https://zed.dev/favicon_black_64.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "jetbrains-ai": {
+   "id": "jetbrains-ai",
+   "file": "b6568381fa.png",
+   "src": "https://www.jetbrains.com/icon-512.png?r=1234",
+   "fmt": "webp",
+   "tone": "normal",
+   "note": "第 1 路 webp"
+  },
+  "codegeex": {
+   "id": "codegeex",
+   "file": "1dd813a42f.png",
+   "src": "https://codegeex.cn/assets/images/only_logo_dark.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "aixcoder": {
+   "id": "aixcoder",
+   "file": "17de07a166.png",
+   "src": "https://www.aixcoder.com/favicon.ico?favicon.15cp9zsld1d81.ico",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "cody": {
+   "id": "cody",
+   "file": "203d0c1a27.svg",
+   "src": "https://sourcegraph.com/docs/icon.svg?icon.24pqlc06a_6hx.svg",
+   "fmt": "svg",
+   "tone": "normal",
+   "note": "第 1 路 svg"
+  },
+  "warp": {
+   "id": "warp",
+   "file": "a6caec68da.png",
+   "src": "https://www.warp.dev/favicon-196x196.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "framer": {
+   "id": "framer",
+   "file": "1febfac03e.png",
+   "src": "https://framerusercontent.com/images/Io89FonxEaWg4nxvQQllVLwPUUI.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 2 路 png"
+  },
+  "uizard": {
+   "id": "uizard",
+   "file": "4f17432682.png",
+   "src": "https://uizard.io/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "visily": {
+   "id": "visily",
+   "file": "dd74514752.png",
+   "src": "https://www.visily.ai/wp-content/uploads/2025/08/cropped-favicon-icon-1-1-192x192.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "relume": {
+   "id": "relume",
+   "file": "858ddd0cba.png",
+   "src": "https://cdn.prod.website-files.com/6177739448baa66404ce1d9c/6a86639a2057ae9902ce244d_Favicon-Relume%20(512px).png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "khroma": {
+   "id": "khroma",
+   "file": "724e98d773.png",
+   "src": "https://www.khroma.co/assets/icons/fav.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "coolors": {
+   "id": "coolors",
+   "file": "eaa84b9bf4.png",
+   "src": "https://coolors.co/assets/img/favicon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "pacdora": {
+   "id": "pacdora",
+   "file": "3b12a7cf32.png",
+   "src": "https://www.pacdora.com/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "durable": {
+   "id": "durable",
+   "file": "1759f1882f.png",
+   "src": "https://durable.com/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "webflow": {
+   "id": "webflow",
+   "file": "dee64dc0a2.png",
+   "src": "https://cdn.prod.website-files.com/686294e263eb7e215bd232f7/686d53d0446d4237b2f38c5f_webclip.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "artificial-analysis": {
+   "id": "artificial-analysis",
+   "file": "9c858b849a.png",
+   "src": "https://artificialanalysis.ai/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "lmarena": {
+   "id": "lmarena",
+   "file": "77cc83c2bf.png",
+   "src": "https://arena.ai/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "google-ai-studio": {
+   "id": "google-ai-studio",
+   "file": "5404579760.png",
+   "src": "https://www.gstatic.com/images/branding/productlogos/ai_studio/v1/web-512dp/logo_ai_studio_color_1x_web_512dp.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "groq": {
+   "id": "groq",
+   "file": "eecfcf933b.png",
+   "src": "https://groq.com/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "together-ai": {
+   "id": "together-ai",
+   "file": "c09a979e43.png",
+   "src": "https://cdn.prod.website-files.com/69654e88dce9154b5f1206dd/69a59cff65ed0f267dd2fbe8_touchicon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "fireworks-ai": {
+   "id": "fireworks-ai",
+   "file": "fc4b1d7d35.png",
+   "src": "https://fireworks.ai/apple-icon.png?7a21affc7a2d4744",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "replicate": {
+   "id": "replicate",
+   "file": "1775b3392e.png",
+   "src": "https://static.replicateassets.com/fe/44974001ab91965fb9ed929edd36e0055fd18d07/favicon-CKiqAkf2.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "硅基流动": {
+   "id": "硅基流动",
+   "file": "5c1bd36f60.png",
+   "src": "https://siliconflow.cn/favicon.ico",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "阿里云百炼": {
+   "id": "阿里云百炼",
+   "file": "44d3eef159.png",
+   "src": "https://img.alicdn.com/tfs/TB1_ZXuNcfpK1RjSZFOXXa6nFXa-32-32.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "arxiv": {
+   "id": "arxiv",
+   "file": "07c242867b.png",
+   "src": "https://arxiv.org/static/browse/0.3.4/images/icons/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "papers-with-code": {
+   "id": "papers-with-code",
+   "file": "3f7124dc0f.png",
+   "src": "ddg-mirror",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "ddg 镜像兜底"
+  },
+  "kaggle": {
+   "id": "kaggle",
+   "file": "b94fe3dc13.png",
+   "src": "ddg-mirror",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "ddg 镜像兜底"
+  },
+  "llamaindex": {
+   "id": "llamaindex",
+   "file": "3379118860.png",
+   "src": "https://www.llamaindex.ai/apple-touch-icon.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "n8n": {
+   "id": "n8n",
+   "file": "5877e26c07.png",
+   "src": "https://n8n.io/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "影刀-rpa": {
+   "id": "影刀-rpa",
+   "file": "28c9b9e113.svg",
+   "src": "https://winrobot-pub-a-dev-1302949341.cos.ap-shanghai.myqcloud.com/image/20260901134651/5401fcb49f712bdcf1784a2c0da52685.svg",
+   "fmt": "svg",
+   "tone": "normal",
+   "note": "第 1 路 svg"
+  },
+  "hunyuan": {
+   "id": "hunyuan",
+   "file": "9828211821.png",
+   "src": "https://cloud.tencent.com/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "网易七鱼": {
+   "id": "网易七鱼",
+   "file": "6502d90464.png",
+   "src": "https://res.qiyukf.net/storage/aa090347-b6ba-46f1-aaef-b0790043da6c.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "讯飞开放平台": {
+   "id": "讯飞开放平台",
+   "file": "9b4a10d5ac.png",
+   "src": "https://www.xfyun.cn/static/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "探迹": {
+   "id": "探迹",
+   "file": "f2bb0ed58b.png",
+   "src": "https://www.tungee.com/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "sapling": {
+   "id": "sapling",
+   "file": "c340f879e8.png",
+   "src": "https://sapling.ai/static/img/sapling-128x128.png?v=1708125784477986060",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "winston-ai": {
+   "id": "winston-ai",
+   "file": "df236ba1d3.png",
+   "src": "https://cdn.gowinston.ai/wp-content/uploads/2023/01/cropped-favicon-2-192x192.png",
+   "fmt": "png",
+   "tone": "normal",
+   "note": "第 1 路 png"
+  },
+  "网易易盾": {
+   "id": "网易易盾",
+   "file": "fee648b2a0.png",
+   "src": "https://dun.163.com/public/res/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "数美科技": {
+   "id": "数美科技",
+   "file": "599e0158e5.png",
+   "src": "https://www.ishumei.com/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "阿里云内容安全": {
+   "id": "阿里云内容安全",
+   "file": "50e7081b3a.png",
+   "src": "https://img.alicdn.com/tfs/TB1_ZXuNcfpK1RjSZFOXXa6nFXa-32-32.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "腾讯云天御": {
+   "id": "腾讯云天御",
+   "file": "4dcd0f27e9.png",
+   "src": "https://cloud.tencent.com/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "瑞莱智慧": {
+   "id": "瑞莱智慧",
+   "file": "407efc0981.png",
+   "src": "https://www.realai.ai/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  },
+  "hive-moderation": {
+   "id": "hive-moderation",
+   "file": "dc473cc2e2.png",
+   "src": "https://hivemoderation.com/favicon.ico",
+   "fmt": "ico",
+   "tone": "normal",
+   "note": "第 1 路 ico"
+  }
+ }
+}

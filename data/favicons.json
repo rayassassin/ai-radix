@@ -1,0 +1,870 @@
+{
+ "chatgpt": {
+  "f": "4f642e388f.png",
+  "t": "normal"
+ },
+ "claude": {
+  "f": "8bb75b3015.png",
+  "t": "normal"
+ },
+ "gemini": {
+  "f": "48bafc503c.png",
+  "t": "normal"
+ },
+ "deepseek-chat": {
+  "f": "7fdc5efd02.png",
+  "t": "normal"
+ },
+ "kimi": {
+  "f": "aacfa66c7a.png",
+  "t": "normal"
+ },
+ "doubao": {
+  "f": "89fb3bf272.png",
+  "t": "normal"
+ },
+ "tongyi": {
+  "f": "b3352547b1.png",
+  "t": "normal"
+ },
+ "grok": {
+  "f": "220ac0149c.png",
+  "t": "normal"
+ },
+ "metaso": {
+  "f": "678c64ef47.png",
+  "t": "normal"
+ },
+ "tiangong": {
+  "f": "4b9264464c.png",
+  "t": "normal"
+ },
+ "coze": {
+  "f": "ade68db897.png",
+  "t": "normal"
+ },
+ "dify": {
+  "f": "a45f345b0c.svg",
+  "t": "normal"
+ },
+ "notion-ai": {
+  "f": "235ba05844.png",
+  "t": "normal"
+ },
+ "grammarly": {
+  "f": "58d7bd80c3.png",
+  "t": "normal"
+ },
+ "jasper": {
+  "f": "02b0732024.png",
+  "t": "normal"
+ },
+ "copy-ai": {
+  "f": "173dd27525.png",
+  "t": "normal"
+ },
+ "xiezuocat": {
+  "f": "8d6f21a053.png",
+  "t": "normal"
+ },
+ "ibiling": {
+  "f": "142b678f8c.png",
+  "t": "normal"
+ },
+ "quillbot": {
+  "f": "60caf36bc6.png",
+  "t": "normal"
+ },
+ "writesonic": {
+  "f": "97f146fb57.png",
+  "t": "normal"
+ },
+ "midjourney": {
+  "f": "f2f5f1ac19.png",
+  "t": "normal"
+ },
+ "stability": {
+  "f": "6f422f52fa.png",
+  "t": "normal"
+ },
+ "firefly": {
+  "f": "53f018f2ee.png",
+  "t": "normal"
+ },
+ "liblib": {
+  "f": "cb708273ac.png",
+  "t": "normal"
+ },
+ "jimeng": {
+  "f": "a69ddc47e9.png",
+  "t": "normal"
+ },
+ "meitu-design": {
+  "f": "b0658cb3dc.png",
+  "t": "normal"
+ },
+ "canva": {
+  "f": "0d40d32696.png",
+  "t": "normal"
+ },
+ "clipdrop": {
+  "f": "ccb4c57a0f.png",
+  "t": "normal"
+ },
+ "comfyui": {
+  "f": "7e609894d4.png",
+  "t": "normal"
+ },
+ "kling": {
+  "f": "c9964ca7d2.png",
+  "t": "normal"
+ },
+ "runway": {
+  "f": "3d19aafd04.png",
+  "t": "normal"
+ },
+ "pika": {
+  "f": "28720b9799.png",
+  "t": "normal"
+ },
+ "sora": {
+  "f": "b78bb58252.png",
+  "t": "normal"
+ },
+ "vidu": {
+  "f": "514dc91b3c.png",
+  "t": "normal"
+ },
+ "hailuo": {
+  "f": "fa839d4231.png",
+  "t": "normal"
+ },
+ "luma": {
+  "f": "7123372f52.png",
+  "t": "normal"
+ },
+ "heygen": {
+  "f": "e4c82382d8.png",
+  "t": "normal"
+ },
+ "suno": {
+  "f": "7c48c2729c.png",
+  "t": "normal"
+ },
+ "elevenlabs": {
+  "f": "5664905910.png",
+  "t": "normal"
+ },
+ "udio": {
+  "f": "f70753e9ad.png",
+  "t": "normal"
+ },
+ "xunfei-zhizuo": {
+  "f": "6e6d290f31.png",
+  "t": "normal"
+ },
+ "adobe-podcast": {
+  "f": "dcb1979544.svg",
+  "t": "normal"
+ },
+ "rask": {
+  "f": "3c95104f96.png",
+  "t": "normal"
+ },
+ "aippt": {
+  "f": "a1d9d7330f.png",
+  "t": "normal"
+ },
+ "islide": {
+  "f": "885a3d1ddf.png",
+  "t": "normal"
+ },
+ "gamma": {
+  "f": "05b048d724.png",
+  "t": "normal"
+ },
+ "wps-ai": {
+  "f": "d8b064cdad.png",
+  "t": "normal"
+ },
+ "tingwu": {
+  "f": "fd489ab1a3.png",
+  "t": "normal"
+ },
+ "iflyrec": {
+  "f": "fac00c6201.png",
+  "t": "normal"
+ },
+ "feishu": {
+  "f": "0e141a1f73.png",
+  "t": "normal"
+ },
+ "processon": {
+  "f": "7dea109b5d.png",
+  "t": "normal"
+ },
+ "cursor": {
+  "f": "1791a97a84.png",
+  "t": "normal"
+ },
+ "copilot": {
+  "f": "ba4aa223e1.png",
+  "t": "normal"
+ },
+ "claude-code": {
+  "f": "8ebfa1129a.png",
+  "t": "normal"
+ },
+ "trae": {
+  "f": "8acf75cf73.png",
+  "t": "normal"
+ },
+ "lingma": {
+  "f": "6184d11957.png",
+  "t": "normal"
+ },
+ "windsurf": {
+  "f": "4f0ba3272a.png",
+  "t": "normal"
+ },
+ "comate": {
+  "f": "361888745f.png",
+  "t": "normal"
+ },
+ "replit": {
+  "f": "8d045246f2.png",
+  "t": "normal"
+ },
+ "lovart": {
+  "f": "0fe1cb5d03.png",
+  "t": "normal"
+ },
+ "figma-ai": {
+  "f": "d60371704a.png",
+  "t": "normal"
+ },
+ "modao": {
+  "f": "f081c41ff0.png",
+  "t": "normal"
+ },
+ "jsdesign": {
+  "f": "fcd3b63f2f.png",
+  "t": "normal"
+ },
+ "looka": {
+  "f": "a380498362.png",
+  "t": "normal"
+ },
+ "gaoding": {
+  "f": "791ec894d7.png",
+  "t": "normal"
+ },
+ "huggingface": {
+  "f": "432f9f50a7.png",
+  "t": "normal"
+ },
+ "openrouter": {
+  "f": "d8b3be131b.png",
+  "t": "normal"
+ },
+ "modelscope": {
+  "f": "b8de2ffe6b.png",
+  "t": "normal"
+ },
+ "ollama": {
+  "f": "39975b9a95.png",
+  "t": "normal"
+ },
+ "langchain": {
+  "f": "334496741e.png",
+  "t": "normal"
+ },
+ "deeplearning": {
+  "f": "dfc77721cb.png",
+  "t": "normal"
+ },
+ "lmstudio": {
+  "f": "fbefa78612.png",
+  "t": "normal"
+ },
+ "vllm": {
+  "f": "ff5c3338a5.png",
+  "t": "normal"
+ },
+ "wondercv": {
+  "f": "a9b5fc7616.png",
+  "t": "normal"
+ },
+ "52cv": {
+  "f": "56112ed80c.png",
+  "t": "normal"
+ },
+ "xiaoduo": {
+  "f": "3d51434d8f.png",
+  "t": "normal"
+ },
+ "yanxi": {
+  "f": "b7d3d3d97c.png",
+  "t": "normal"
+ },
+ "qianfan": {
+  "f": "fc47f83f0f.png",
+  "t": "normal"
+ },
+ "volcengine": {
+  "f": "8ec49a59fe.png",
+  "t": "normal"
+ },
+ "gptzero": {
+  "f": "57d18fe44c.png",
+  "t": "normal"
+ },
+ "originality": {
+  "f": "84eaacae3b.png",
+  "t": "normal"
+ },
+ "copyleaks": {
+  "f": "7cc2571dbc.png",
+  "t": "normal"
+ },
+ "zerogpt": {
+  "f": "00c474ac98.png",
+  "t": "normal"
+ },
+ "turnitin": {
+  "f": "27aa151e38.png",
+  "t": "normal"
+ },
+ "腾讯元宝": {
+  "f": "999c13effa.png",
+  "t": "normal"
+ },
+ "智谱清言": {
+  "f": "1db4d1b84b.png",
+  "t": "normal"
+ },
+ "文心一言": {
+  "f": "c11c3f755a.png",
+  "t": "normal"
+ },
+ "讯飞星火": {
+  "f": "cd48919259.png",
+  "t": "normal"
+ },
+ "le-chat": {
+  "f": "f667ecdae0.png",
+  "t": "normal"
+ },
+ "poe": {
+  "f": "f63072e39a.png",
+  "t": "normal"
+ },
+ "character-ai": {
+  "f": "6dcd894723.png",
+  "t": "normal"
+ },
+ "manus": {
+  "f": "c323b4e526.png",
+  "t": "normal"
+ },
+ "monica": {
+  "f": "ff0d813dd5.png",
+  "t": "normal"
+ },
+ "chatbox": {
+  "f": "b5a55841b7.png",
+  "t": "normal"
+ },
+ "lobechat": {
+  "f": "d8ee7a5dd9.png",
+  "t": "normal"
+ },
+ "百川智能": {
+  "f": "005966d91c.png",
+  "t": "normal"
+ },
+ "海螺ai": {
+  "f": "8e1f15495b.png",
+  "t": "normal"
+ },
+ "qwen-chat": {
+  "f": "fa397e8a04.png",
+  "t": "normal"
+ },
+ "stepfun": {
+  "f": "15a81f8a39.svg",
+  "t": "light"
+ },
+ "perplexity": {
+  "f": "06eaeb413e.png",
+  "t": "normal"
+ },
+ "notebooklm": {
+  "f": "6f59a289f0.png",
+  "t": "normal"
+ },
+ "genspark": {
+  "f": "74c413d472.png",
+  "t": "normal"
+ },
+ "consensus": {
+  "f": "078eb6dc4e.png",
+  "t": "normal"
+ },
+ "elicit": {
+  "f": "0a1722473d.png",
+  "t": "light"
+ },
+ "scispace": {
+  "f": "6f0d9d511c.svg",
+  "t": "normal"
+ },
+ "semantic-scholar": {
+  "f": "212cf95bb9.png",
+  "t": "normal"
+ },
+ "connected-papers": {
+  "f": "f873d456f4.png",
+  "t": "normal"
+ },
+ "devv": {
+  "f": "f224d973a2.png",
+  "t": "normal"
+ },
+ "phind": {
+  "f": "2daa7a06b5.png",
+  "t": "normal"
+ },
+ "kagi": {
+  "f": "521379c3ee.png",
+  "t": "normal"
+ },
+ "exa": {
+  "f": "5de51d3aeb.png",
+  "t": "normal"
+ },
+ "纳米ai搜索": {
+  "f": "3431b2c040.png",
+  "t": "normal"
+ },
+ "deepl-write": {
+  "f": "9eafa998b0.png",
+  "t": "normal"
+ },
+ "wordtune": {
+  "f": "f588231f45.png",
+  "t": "normal"
+ },
+ "rytr": {
+  "f": "a50f0e45e8.png",
+  "t": "normal"
+ },
+ "sudowrite": {
+  "f": "462b04c911.png",
+  "t": "normal"
+ },
+ "novelai": {
+  "f": "f327eefe96.png",
+  "t": "normal"
+ },
+ "prowritingaid": {
+  "f": "f601fed798.png",
+  "t": "normal"
+ },
+ "hemingway-editor": {
+  "f": "a24f28d2f3.png",
+  "t": "normal"
+ },
+ "火龙果写作": {
+  "f": "c39c659a6c.png",
+  "t": "normal"
+ },
+ "ideogram": {
+  "f": "3a50eae749.png",
+  "t": "normal"
+ },
+ "flux": {
+  "f": "ab18b3e58a.png",
+  "t": "normal"
+ },
+ "leonardo-ai": {
+  "f": "7090a96863.png",
+  "t": "normal"
+ },
+ "recraft": {
+  "f": "386f648b8e.png",
+  "t": "normal"
+ },
+ "krea": {
+  "f": "908d8ac1e0.png",
+  "t": "normal"
+ },
+ "civitai": {
+  "f": "42931f1d41.png",
+  "t": "normal"
+ },
+ "photoroom": {
+  "f": "add29bace2.png",
+  "t": "normal"
+ },
+ "remove-bg": {
+  "f": "fc0bfce6e1.png",
+  "t": "normal"
+ },
+ "通义万相": {
+  "f": "edd0b77a7a.png",
+  "t": "normal"
+ },
+ "文心一格": {
+  "f": "6b0aff669b.png",
+  "t": "normal"
+ },
+ "无界ai": {
+  "f": "25cfd2c0fd.png",
+  "t": "normal"
+ },
+ "佐糖": {
+  "f": "dcb14b8ca3.png",
+  "t": "normal"
+ },
+ "upscayl": {
+  "f": "7ce120f9ef.png",
+  "t": "normal"
+ },
+ "playground": {
+  "f": "96c70b1dc0.png",
+  "t": "normal"
+ },
+ "pixverse": {
+  "f": "e84f8295b0.png",
+  "t": "normal"
+ },
+ "智谱清影": {
+  "f": "df9d00f6c3.png",
+  "t": "normal"
+ },
+ "jianying": {
+  "f": "2e87b5550c.png",
+  "t": "normal"
+ },
+ "synthesia": {
+  "f": "2352e30fbf.png",
+  "t": "normal"
+ },
+ "d-id": {
+  "f": "de29e84033.png",
+  "t": "normal"
+ },
+ "captions": {
+  "f": "6b4aeece71.png",
+  "t": "normal"
+ },
+ "descript": {
+  "f": "51aee83c85.png",
+  "t": "normal"
+ },
+ "opusclip": {
+  "f": "964b1feefe.png",
+  "t": "normal"
+ },
+ "capcut": {
+  "f": "8775f299aa.png",
+  "t": "normal"
+ },
+ "invideo": {
+  "f": "968990c9d4.png",
+  "t": "normal"
+ },
+ "veed": {
+  "f": "42bba7b437.png",
+  "t": "normal"
+ },
+ "veo": {
+  "f": "77c3ccd511.png",
+  "t": "normal"
+ },
+ "fish-audio": {
+  "f": "a9f57aa537.png",
+  "t": "normal"
+ },
+ "ttsmaker": {
+  "f": "7175fb1192.png",
+  "t": "normal"
+ },
+ "魔音工坊": {
+  "f": "7c592933c6.png",
+  "t": "normal"
+ },
+ "lalal-ai": {
+  "f": "e6bd579e5f.png",
+  "t": "normal"
+ },
+ "moises": {
+  "f": "2000b7287e.svg",
+  "t": "normal"
+ },
+ "aiva": {
+  "f": "cfc75a57b2.png",
+  "t": "normal"
+ },
+ "mubert": {
+  "f": "3ae2366863.png",
+  "t": "normal"
+ },
+ "网易天音": {
+  "f": "d84a0a340b.png",
+  "t": "normal"
+ },
+ "speechify": {
+  "f": "4f99d8af1c.png",
+  "t": "normal"
+ },
+ "krisp": {
+  "f": "2d074ef5c0.png",
+  "t": "normal"
+ },
+ "microsoft-365-copilot": {
+  "f": "d171dfef67.png",
+  "t": "normal"
+ },
+ "讯飞智文": {
+  "f": "e06e975987.png",
+  "t": "normal"
+ },
+ "boardmix-博思白板": {
+  "f": "b61073e3e4.png",
+  "t": "normal"
+ },
+ "napkin-ai": {
+  "f": "529c3fdd8e.png",
+  "t": "normal"
+ },
+ "chatpdf": {
+  "f": "010cc1ec58.png",
+  "t": "normal"
+ },
+ "humata": {
+  "f": "0de7434a4c.png",
+  "t": "normal"
+ },
+ "otter-ai": {
+  "f": "775da189ba.png",
+  "t": "normal"
+ },
+ "fireflies": {
+  "f": "23c0ca14ef.png",
+  "t": "normal"
+ },
+ "beautiful-ai": {
+  "f": "415a8b1132.png",
+  "t": "normal"
+ },
+ "钉钉-ai": {
+  "f": "af49cc3e45.png",
+  "t": "normal"
+ },
+ "腾讯文档": {
+  "f": "c93117fd5f.png",
+  "t": "normal"
+ },
+ "tabnine": {
+  "f": "bcdb2e83be.png",
+  "t": "normal"
+ },
+ "amazon-q-developer": {
+  "f": "0e048fb00a.png",
+  "t": "normal"
+ },
+ "continue": {
+  "f": "7aa28ed115.png",
+  "t": "normal"
+ },
+ "cline": {
+  "f": "7c406a39d9.png",
+  "t": "normal"
+ },
+ "aider": {
+  "f": "ee692d2243.png",
+  "t": "normal"
+ },
+ "bolt-new": {
+  "f": "12b29f04a5.png",
+  "t": "normal"
+ },
+ "v0": {
+  "f": "9abcde3c58.png",
+  "t": "normal"
+ },
+ "lovable": {
+  "f": "dd3ec7ac1f.png",
+  "t": "normal"
+ },
+ "zed": {
+  "f": "89e3eb6649.png",
+  "t": "normal"
+ },
+ "jetbrains-ai": {
+  "f": "b6568381fa.png",
+  "t": "normal"
+ },
+ "codegeex": {
+  "f": "1dd813a42f.png",
+  "t": "normal"
+ },
+ "aixcoder": {
+  "f": "17de07a166.png",
+  "t": "normal"
+ },
+ "cody": {
+  "f": "203d0c1a27.svg",
+  "t": "normal"
+ },
+ "warp": {
+  "f": "a6caec68da.png",
+  "t": "normal"
+ },
+ "framer": {
+  "f": "1febfac03e.png",
+  "t": "normal"
+ },
+ "uizard": {
+  "f": "4f17432682.png",
+  "t": "normal"
+ },
+ "visily": {
+  "f": "dd74514752.png",
+  "t": "normal"
+ },
+ "relume": {
+  "f": "858ddd0cba.png",
+  "t": "normal"
+ },
+ "khroma": {
+  "f": "724e98d773.png",
+  "t": "normal"
+ },
+ "coolors": {
+  "f": "eaa84b9bf4.png",
+  "t": "normal"
+ },
+ "pacdora": {
+  "f": "3b12a7cf32.png",
+  "t": "normal"
+ },
+ "durable": {
+  "f": "1759f1882f.png",
+  "t": "normal"
+ },
+ "webflow": {
+  "f": "dee64dc0a2.png",
+  "t": "normal"
+ },
+ "artificial-analysis": {
+  "f": "9c858b849a.png",
+  "t": "normal"
+ },
+ "lmarena": {
+  "f": "77cc83c2bf.png",
+  "t": "normal"
+ },
+ "google-ai-studio": {
+  "f": "5404579760.png",
+  "t": "normal"
+ },
+ "groq": {
+  "f": "eecfcf933b.png",
+  "t": "normal"
+ },
+ "together-ai": {
+  "f": "c09a979e43.png",
+  "t": "normal"
+ },
+ "fireworks-ai": {
+  "f": "fc4b1d7d35.png",
+  "t": "normal"
+ },
+ "replicate": {
+  "f": "1775b3392e.png",
+  "t": "normal"
+ },
+ "硅基流动": {
+  "f": "5c1bd36f60.png",
+  "t": "normal"
+ },
+ "阿里云百炼": {
+  "f": "44d3eef159.png",
+  "t": "normal"
+ },
+ "arxiv": {
+  "f": "07c242867b.png",
+  "t": "normal"
+ },
+ "papers-with-code": {
+  "f": "3f7124dc0f.png",
+  "t": "normal"
+ },
+ "kaggle": {
+  "f": "b94fe3dc13.png",
+  "t": "normal"
+ },
+ "llamaindex": {
+  "f": "3379118860.png",
+  "t": "normal"
+ },
+ "n8n": {
+  "f": "5877e26c07.png",
+  "t": "normal"
+ },
+ "影刀-rpa": {
+  "f": "28c9b9e113.svg",
+  "t": "normal"
+ },
+ "hunyuan": {
+  "f": "9828211821.png",
+  "t": "normal"
+ },
+ "网易七鱼": {
+  "f": "6502d90464.png",
+  "t": "normal"
+ },
+ "讯飞开放平台": {
+  "f": "9b4a10d5ac.png",
+  "t": "normal"
+ },
+ "探迹": {
+  "f": "f2bb0ed58b.png",
+  "t": "normal"
+ },
+ "sapling": {
+  "f": "c340f879e8.png",
+  "t": "normal"
+ },
+ "winston-ai": {
+  "f": "df236ba1d3.png",
+  "t": "normal"
+ },
+ "网易易盾": {
+  "f": "fee648b2a0.png",
+  "t": "normal"
+ },
+ "数美科技": {
+  "f": "599e0158e5.png",
+  "t": "normal"
+ },
+ "阿里云内容安全": {
+  "f": "50e7081b3a.png",
+  "t": "normal"
+ },
+ "腾讯云天御": {
+  "f": "4dcd0f27e9.png",
+  "t": "normal"
+ },
+ "瑞莱智慧": {
+  "f": "407efc0981.png",
+  "t": "normal"
+ },
+ "hive-moderation": {
+  "f": "dc473cc2e2.png",
+  "t": "normal"
+ }
+}

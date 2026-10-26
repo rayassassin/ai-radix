@@ -6,11 +6,14 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 rm -rf dist
-mkdir -p dist/data
+mkdir -p dist/data dist/assets
 
 cp index.html app.js style.css dist/
 cp tools.html tools.js dist/
 cp data/models.json data/meta.json data/providers.json data/tools.json dist/data/ 2>/dev/null || true
+# 工具图标：官网 favicon 的本地副本（脚本 scripts/fetch_favicons.py 生成）
+cp data/favicons.json dist/data/ 2>/dev/null || true
+[ -d assets/icons ] && cp -R assets/icons dist/assets/
 
 # 数据缓存里的站点地址改写成线上地址（若有配置）
 python3 - <<'PY'

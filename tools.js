@@ -19,6 +19,7 @@
     tools: [],
     cats: [],
     catMap: {},
+    favicons: {},
     search: '',
     cat: 'all',
     tags: new Set(),
@@ -96,6 +97,24 @@
     return n ? n[0].toUpperCase() : '?';
   }
 
+  // 官网图标：抓取时落地成 64×64 PNG/svg（scripts/fetch_favicons.py），
+  // 拿不到就回落分类色底 + 首字母，两条路都靠 .has-img 这一个类切换。
+  // tone=light 表示白笔画图标，浅色卡片上会隐形，换深色背板。
+  function iconHTML(t, color) {
+    const fav = state.favicons[t.id];
+    const letter = `<span class="ico-letter">${esc(iconLetter(t))}</span>`;
+    if (!fav) {
+      return `<span class="tool-icon" style="--c:${esc(color)}">${letter}</span>`;
+    }
+    const dark = fav.t === 'light' ? ' on-dark' : '';
+    return `<span class="tool-icon has-img${dark}" style="--c:${esc(color)}">`
+      + `<img src="assets/icons/${esc(fav.f)}" alt="" width="24" height="24"`
+      + ` loading="lazy" decoding="async" referrerpolicy="no-referrer"`
+      // 文件缺失或加载失败时静默退回首字母，不留破图
+      + ` onerror="this.parentNode.classList.remove('has-img')">`
+      + `${letter}</span>`;
+  }
+
   // 评分分五档，红 → 橙 → 黄 → 绿 → 灰（越高越热）
   function popClass(v) {
     if (v >= 90) return 'pop-r5';
@@ -137,7 +156,7 @@
       <a class="tool-card${hot ? ' is-hot' : ''}" href="${esc(t.url)}"
          target="_blank" rel="noopener" title="${esc(t.name)}：${esc(t.desc)}">
         <div class="tool-top">
-          <span class="tool-icon" style="--c:${esc(color)}">${esc(iconLetter(t))}</span>
+          ${iconHTML(t, color)}
           <div class="tool-id">
             <div class="tool-name">
               ${esc(t.name)}
@@ -358,7 +377,14 @@
 
   async function boot() {
     try {
-      const res = await fetch('data/tools.json', { cache: 'no-store' });
+      // 图标映射是锦上添花：单独 catch，挂了也不影响工具清单渲染
+      const [res] = await Promise.all([
+        fetch('data/tools.json', { cache: 'no-store' }),
+        fetch('data/favicons.json', { cache: 'no-store' })
+          .then((r) => (r.ok ? r.json() : {}))
+          .then((j) => { state.favicons = j && typeof j === 'object' ? j : {}; })
+          .catch(() => { state.favicons = {}; }),
+      ]);
       if (!res.ok) throw new Error(`tools.json HTTP ${res.status}`);
       const data = await res.json();
 
