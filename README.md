@@ -59,12 +59,18 @@ llm-radar/
 ├── scripts/
 │   ├── fetch_models.py      # 抓取 OpenRouter → 标准化 → diff 新模型
 │   ├── push_wecom.py        # 推送（支持三种通道，见下）
+│   ├── fetch_favicons.py    # 抓各工具官网 favicon → assets/icons/
+│   ├── score_tools.py       # 工具流行度指数
+│   ├── expand_tools.py      # 工具批量补录
 │   └── push_to_github.py    # 走 Data API 推仓库（git 传输受阻时用）
+├── assets/icons/            # 工具官网图标（64×64 PNG/SVG，217 个）
 ├── data/
 │   ├── models.json          # 标准化缓存（前端兜底用）
 │   ├── meta.json            # 统计快照
 │   ├── new_models.json      # 本次 diff 出的新模型 + 价格变动
 │   ├── tools.json           # AI 工具清单（人工维护）
+│   ├── favicons.json        # 工具 id → 图标文件名 + 明暗档
+│   ├── favicons_meta.json   # 图标逐个来源与失败原因（排查用）
 │   ├── raw_api.json         # API 原始响应（--offline 重算用，不入库）
 │   └── providers.json       # 厂商中文名 / 品牌色
 ├── config.example.json      # 配置模板
@@ -373,7 +379,8 @@ python3 scripts/score_tools.py
 1. 在 `data/tools.json` 的 `tools` 数组里加一条，`cat` 用已有分类 id
 2. 改 `updated_at` 为当天日期（顶栏会显示）
 3. 跑 `python3 scripts/score_tools.py` 给它算流行度指数（不加进去就会显示为空）
-4. 刷新页面即可，无构建步骤
+4. 跑 `python3 scripts/fetch_favicons.py` 补抓官网图标（不跑就显示分类色首字母，页面不会报错）
+5. 刷新页面即可，无构建步骤
 
 分类下没有工具时，该分类按钮**自动隐藏**，不会点出空列表。
 
@@ -411,6 +418,42 @@ python3 scripts/score_tools.py
 
 验证时揪出并换掉了 3 条真死链：腾讯智影（`zenvideo.qq.com` 已停）、跃问（`yuewen.cn` 无解析）、
 腾讯云 AI（原路径 404），分别替换为剪映、阶跃星辰、腾讯混元。
+
+### 卡片图标
+
+卡片左上角显示工具官网的 favicon，抓不到就回落成「分类色淡底 + 首字母」。
+图标由 `scripts/fetch_favicons.py` 预先落地到 `assets/icons/`（64×64，平均 3.6 KB），
+页面只引用本地文件 —— 不在运行时挂外链，避免官网防盗链、慢响应、防盗链 404 造成的空洞。
+
+抓取按优先级降级，任一级通过校验即停：
+
+| 级别 | 来源 | 说明 |
+| --- | --- | --- |
+| 1 | 官网首页 `<link rel="...icon...">` | 最准，含 apple-touch-icon，按声明尺寸从大到小试 |
+| 2 | `/favicon.ico` | 兜底常规路径 |
+| 3 | `/apple-touch-icon.png` 等 | 高清但常被漏声明 |
+| 4 | DDG / Google 图标镜像 | 官网 403、反爬脚本、证书异常时兜底，缓存源仍是官网 |
+
+三个坑：
+
+- **返回 200 不等于拿到图标。** 大量 SPA 对 `/favicon.ico` 返回的是 `index.html`（豆包 192 KB、
+  grok 89 KB）。脚本按文件头 magic bytes 判定真实格式，认不出就丢弃，否则 `<img>` 里就是个碎图标。
+- **白色图标会隐形。** grok 这类纯白笔画放浅色卡片上等于没有。脚本按「亮像素占比 + 不透明面积」
+  判出这一档，前端给它换深色背板（`data/favicons.json` 里的 `t` 字段）。
+  注意只认白笔画透明底，白底黑图案的（ChatGPT 白圆底）不换 —— 换成深色反而多出一个白圆。
+- **图标自带底色。** 很多是 app icon 样式的不透明方块，容器再染分类色会露出「方块套方块」的脏边，
+  所以有图标时容器背景透明。
+
+当前命中 **217/218**，唯一失败的「一帧秒创」站点已失效（证书异常 + 全路径 404），按设计回落首字母。
+
+```bash
+python3 scripts/fetch_favicons.py              # 全量（已有文件默认复用）
+python3 scripts/fetch_favicons.py --force      # 强制重抓
+python3 scripts/fetch_favicons.py --only kimi  # 只补某个
+python3 scripts/fetch_favicons.py --limit 20   # 先跑一批看效果
+```
+
+图标不需要天天刷新（官网 logo 很少改），换 logo 或新增工具时手动跑一次即可。
 
 ---
 
