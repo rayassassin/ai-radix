@@ -9,7 +9,8 @@ rm -rf dist
 mkdir -p dist/data
 
 cp index.html app.js style.css dist/
-cp data/models.json data/meta.json data/providers.json dist/data/ 2>/dev/null || true
+cp tools.html tools.js dist/
+cp data/models.json data/meta.json data/providers.json data/tools.json dist/data/ 2>/dev/null || true
 
 # 数据缓存里的站点地址改写成线上地址（若有配置）
 python3 - <<'PY'

@@ -1,0 +1,948 @@
+{
+  "updated_at": "2026-10-27",
+  "note": "AI 工具目录，人工维护。url 为官网，desc 为一句话定位，tags 用于筛选，hot 表示首页推荐。",
+  "categories": [
+    {
+      "id": "chat",
+      "name": "对话与智能体",
+      "color": "#5b5bd6"
+    },
+    {
+      "id": "writing",
+      "name": "写作与内容",
+      "color": "#0f9d76"
+    },
+    {
+      "id": "image",
+      "name": "图像与视觉",
+      "color": "#d94f8a"
+    },
+    {
+      "id": "video",
+      "name": "视频与动画",
+      "color": "#e07b39"
+    },
+    {
+      "id": "audio",
+      "name": "音频与语音",
+      "color": "#7c5cd6"
+    },
+    {
+      "id": "office",
+      "name": "办公与效率",
+      "color": "#2f80ed"
+    },
+    {
+      "id": "coding",
+      "name": "编程与开发",
+      "color": "#1f8a70"
+    },
+    {
+      "id": "design",
+      "name": "设计与创意",
+      "color": "#c2549b"
+    },
+    {
+      "id": "model",
+      "name": "模型与学习资源",
+      "color": "#4b6cb7"
+    },
+    {
+      "id": "business",
+      "name": "行业与商业场景",
+      "color": "#8a6d3b"
+    },
+    {
+      "id": "safety",
+      "name": "内容检测与安全",
+      "color": "#c0392b"
+    }
+  ],
+  "tools": [
+    {
+      "id": "chatgpt",
+      "name": "ChatGPT",
+      "cat": "chat",
+      "desc": "OpenAI 的通用对话助手，覆盖写作、编程、分析与多模态任务",
+      "url": "https://chatgpt.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": true
+    },
+    {
+      "id": "claude",
+      "name": "Claude",
+      "cat": "chat",
+      "desc": "Anthropic 的对话助手，长文本与代码能力突出",
+      "url": "https://claude.ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": true
+    },
+    {
+      "id": "gemini",
+      "name": "Gemini",
+      "cat": "chat",
+      "desc": "Google 的多模态助手，与搜索、办公套件深度整合",
+      "url": "https://gemini.google.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ]
+    },
+    {
+      "id": "deepseek-chat",
+      "name": "DeepSeek",
+      "cat": "chat",
+      "desc": "幻方量化的智能助手与开源大模型，推理能力强",
+      "url": "https://chat.deepseek.com/",
+      "tags": [
+        "免费",
+        "开源"
+      ],
+      "hot": true
+    },
+    {
+      "id": "kimi",
+      "name": "Kimi",
+      "cat": "chat",
+      "desc": "月之暗面出品，长上下文与文件解析见长",
+      "url": "https://www.kimi.com/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "doubao",
+      "name": "豆包",
+      "cat": "chat",
+      "desc": "字节跳动的大众 AI 助手，语音与多模态体验完整",
+      "url": "https://www.doubao.com/",
+      "tags": [
+        "免费"
+      ]
+    },
+    {
+      "id": "tongyi",
+      "name": "通义千问",
+      "cat": "chat",
+      "desc": "阿里的 AI 助手，背靠通义大模型家族",
+      "url": "https://www.tongyi.com/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "grok",
+      "name": "Grok",
+      "cat": "chat",
+      "desc": "xAI 的实时信息对话助手，与 X 平台打通",
+      "url": "https://grok.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ]
+    },
+    {
+      "id": "metaso",
+      "name": "秘塔AI搜索",
+      "cat": "chat",
+      "desc": "无广告的 AI 搜索，回答附带可溯源引用",
+      "url": "https://metaso.cn/",
+      "tags": [
+        "免费"
+      ]
+    },
+    {
+      "id": "tiangong",
+      "name": "天工AI",
+      "cat": "chat",
+      "desc": "昆仑万维的 AI 搜索与智能体平台",
+      "url": "https://www.tiangong.cn/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "coze",
+      "name": "扣子 Coze",
+      "cat": "chat",
+      "desc": "字节的一站式智能体搭建平台，支持插件与工作流",
+      "url": "https://www.coze.cn/",
+      "tags": [
+        "免费试用"
+      ],
+      "hot": true
+    },
+    {
+      "id": "dify",
+      "name": "Dify",
+      "cat": "chat",
+      "desc": "开源的 LLM 应用开发平台，可视化编排 RAG 与 Agent",
+      "url": "https://dify.ai/",
+      "tags": [
+        "开源",
+        "免费试用"
+      ],
+      "hot": true
+    },
+    {
+      "id": "notion-ai",
+      "name": "Notion AI",
+      "cat": "writing",
+      "desc": "嵌入 Notion 工作区的写作与知识整理助手",
+      "url": "https://www.notion.so/product/ai",
+      "tags": [
+        "付费"
+      ]
+    },
+    {
+      "id": "grammarly",
+      "name": "Grammarly",
+      "cat": "writing",
+      "desc": "英文写作纠错与润色，浏览器与文档插件齐全",
+      "url": "https://www.grammarly.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ]
+    },
+    {
+      "id": "jasper",
+      "name": "Jasper",
+      "cat": "writing",
+      "desc": "面向营销团队的文案与品牌内容生成平台",
+      "url": "https://www.jasper.ai/",
+      "tags": [
+        "付费"
+      ]
+    },
+    {
+      "id": "copy-ai",
+      "name": "Copy.ai",
+      "cat": "writing",
+      "desc": "营销文案与销售内容工作流自动化",
+      "url": "https://www.copy.ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ]
+    },
+    {
+      "id": "xiezuocat",
+      "name": "秘塔写作猫",
+      "cat": "writing",
+      "desc": "中文写作纠错、改写与智能配图",
+      "url": "https://xiezuocat.com/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "ibiling",
+      "name": "笔灵AI写作",
+      "cat": "writing",
+      "desc": "中文多场景写作助手，覆盖公文、论文与新媒体",
+      "url": "https://ibiling.cn/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "quillbot",
+      "name": "QuillBot",
+      "cat": "writing",
+      "desc": "英文改写与摘要工具，学术写作常用",
+      "url": "https://quillbot.com/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "writesonic",
+      "name": "Writesonic",
+      "cat": "writing",
+      "desc": "面向 SEO 的文章生成与内容优化",
+      "url": "https://writesonic.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ]
+    },
+    {
+      "id": "midjourney",
+      "name": "Midjourney",
+      "cat": "image",
+      "desc": "以美学表现见长的图像与插画生成工具",
+      "url": "https://www.midjourney.com/",
+      "tags": [
+        "付费"
+      ],
+      "hot": true
+    },
+    {
+      "id": "stability",
+      "name": "Stable Diffusion",
+      "cat": "image",
+      "desc": "开源图像生成模型家族，可本地部署与二次开发",
+      "url": "https://stability.ai/",
+      "tags": [
+        "开源"
+      ]
+    },
+    {
+      "id": "firefly",
+      "name": "Adobe Firefly",
+      "cat": "image",
+      "desc": "Adobe 的生成式图像工具，强调商用版权合规",
+      "url": "https://firefly.adobe.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ]
+    },
+    {
+      "id": "liblib",
+      "name": "liblib 哩布哩布",
+      "cat": "image",
+      "desc": "国内模型分享与在线出图社区，LoRA 资源丰富",
+      "url": "https://www.liblib.art/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "jimeng",
+      "name": "即梦AI",
+      "cat": "image",
+      "desc": "剪映旗下一站式图片、视频与数字人创作",
+      "url": "https://jimeng.jianying.com/",
+      "tags": [
+        "免费试用"
+      ],
+      "hot": true
+    },
+    {
+      "id": "meitu-design",
+      "name": "美图设计室",
+      "cat": "image",
+      "desc": "面向电商与营销的海报、商品图生成",
+      "url": "https://design.meitu.com/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "canva",
+      "name": "Canva 可画",
+      "cat": "image",
+      "desc": "在线设计平台，集成 AI 生图与排版",
+      "url": "https://www.canva.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ]
+    },
+    {
+      "id": "clipdrop",
+      "name": "Clipdrop",
+      "cat": "image",
+      "desc": "图片抠图、去背景与修复工具集",
+      "url": "https://clipdrop.co/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "comfyui",
+      "name": "ComfyUI",
+      "cat": "image",
+      "desc": "节点式扩散模型工作流，本地跑图与视频，插件生态最全",
+      "url": "https://www.comfy.org/",
+      "tags": [
+        "免费",
+        "开源"
+      ],
+      "hot": false
+    },
+    {
+      "id": "kling",
+      "name": "可灵AI",
+      "cat": "video",
+      "desc": "快手的视频生成模型，长镜头与运动表现稳定",
+      "url": "https://klingai.kuaishou.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": true
+    },
+    {
+      "id": "runway",
+      "name": "Runway",
+      "cat": "video",
+      "desc": "面向专业创作者的视频生成与后期工具",
+      "url": "https://runwayml.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ]
+    },
+    {
+      "id": "pika",
+      "name": "Pika",
+      "cat": "video",
+      "desc": "轻量视频生成与特效编辑",
+      "url": "https://pika.art/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "sora",
+      "name": "Sora",
+      "cat": "video",
+      "desc": "OpenAI 的视频生成模型与创作工具",
+      "url": "https://openai.com/sora",
+      "tags": [
+        "付费"
+      ],
+      "hot": true
+    },
+    {
+      "id": "vidu",
+      "name": "Vidu",
+      "cat": "video",
+      "desc": "生数科技的视频生成工具，支持参考生视频",
+      "url": "https://www.vidu.cn/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "hailuo",
+      "name": "海螺AI视频",
+      "cat": "video",
+      "desc": "MiniMax 的视频生成工具，人物动作自然",
+      "url": "https://hailuoai.video/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "luma",
+      "name": "Luma Dream Machine",
+      "cat": "video",
+      "desc": "Luma 的视频生成产品，镜头语言表现好",
+      "url": "https://lumalabs.ai/dream-machine",
+      "tags": [
+        "免费试用",
+        "付费"
+      ]
+    },
+    {
+      "id": "heygen",
+      "name": "HeyGen",
+      "cat": "video",
+      "desc": "数字人口播视频生成，支持多语言配音",
+      "url": "https://www.heygen.com/",
+      "tags": [
+        "付费"
+      ]
+    },
+    {
+      "id": "suno",
+      "name": "Suno",
+      "cat": "audio",
+      "desc": "文本生成完整歌曲，旋律与人声一体产出",
+      "url": "https://suno.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": true
+    },
+    {
+      "id": "elevenlabs",
+      "name": "ElevenLabs",
+      "cat": "audio",
+      "desc": "高质量语音合成与声音克隆，多语种支持",
+      "url": "https://elevenlabs.io/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ]
+    },
+    {
+      "id": "udio",
+      "name": "Udio",
+      "cat": "audio",
+      "desc": "AI 音乐生成，风格控制细腻",
+      "url": "https://www.udio.com/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "xunfei-zhizuo",
+      "name": "讯飞智作",
+      "cat": "audio",
+      "desc": "文字转语音与配音制作，中文音色丰富",
+      "url": "https://peiyin.xunfei.cn/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ]
+    },
+    {
+      "id": "adobe-podcast",
+      "name": "Adobe Podcast",
+      "cat": "audio",
+      "desc": "播客录音降噪与语音增强，在线即可用",
+      "url": "https://podcast.adobe.com/",
+      "tags": [
+        "免费"
+      ]
+    },
+    {
+      "id": "rask",
+      "name": "Rask AI",
+      "cat": "audio",
+      "desc": "视频翻译与自动配音，面向出海内容",
+      "url": "https://www.rask.ai/",
+      "tags": [
+        "付费"
+      ]
+    },
+    {
+      "id": "aippt",
+      "name": "AiPPT",
+      "cat": "office",
+      "desc": "输入主题即可生成完整演示文稿，支持模板美化",
+      "url": "https://www.aippt.cn/",
+      "tags": [
+        "免费试用"
+      ],
+      "hot": true
+    },
+    {
+      "id": "islide",
+      "name": "iSlide",
+      "cat": "office",
+      "desc": "PPT 插件与模板库，内置 AI 排版",
+      "url": "https://www.islide.cc/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ]
+    },
+    {
+      "id": "gamma",
+      "name": "Gamma",
+      "cat": "office",
+      "desc": "卡片式演示与文档生成，适合快速出稿",
+      "url": "https://gamma.app/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ]
+    },
+    {
+      "id": "wps-ai",
+      "name": "WPS AI",
+      "cat": "office",
+      "desc": "WPS 内置的文档、表格与演示智能助手",
+      "url": "https://ai.wps.cn/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "tingwu",
+      "name": "通义听悟",
+      "cat": "office",
+      "desc": "会议录音转写、摘要与待办提取",
+      "url": "https://tingwu.aliyun.com/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "iflyrec",
+      "name": "讯飞听见",
+      "cat": "office",
+      "desc": "中文语音识别转写与会议纪要",
+      "url": "https://www.iflyrec.com/",
+      "tags": [
+        "付费"
+      ]
+    },
+    {
+      "id": "feishu",
+      "name": "飞书智能伙伴",
+      "cat": "office",
+      "desc": "飞书内的知识问答与协作自动化",
+      "url": "https://www.feishu.cn/",
+      "tags": [
+        "付费"
+      ]
+    },
+    {
+      "id": "processon",
+      "name": "ProcessOn",
+      "cat": "office",
+      "desc": "在线流程图与思维导图，支持 AI 生成",
+      "url": "https://www.processon.com/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "cat": "coding",
+      "desc": "AI 原生代码编辑器，代码库级理解与改写",
+      "url": "https://www.cursor.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": true
+    },
+    {
+      "id": "copilot",
+      "name": "GitHub Copilot",
+      "cat": "coding",
+      "desc": "GitHub 的代码补全与编程助手",
+      "url": "https://github.com/features/copilot",
+      "tags": [
+        "免费试用",
+        "付费"
+      ]
+    },
+    {
+      "id": "claude-code",
+      "name": "Claude Code",
+      "cat": "coding",
+      "desc": "终端里的 Agent 编程工具，可直接操作仓库",
+      "url": "https://www.claude.com/product/claude-code",
+      "tags": [
+        "付费"
+      ]
+    },
+    {
+      "id": "trae",
+      "name": "Trae",
+      "cat": "coding",
+      "desc": "字节的 AI IDE，支持项目级上下文",
+      "url": "https://www.trae.ai/",
+      "tags": [
+        "免费"
+      ]
+    },
+    {
+      "id": "lingma",
+      "name": "通义灵码",
+      "cat": "coding",
+      "desc": "阿里的智能编码助手，企业私有化支持好",
+      "url": "https://tongyi.aliyun.com/lingma",
+      "tags": [
+        "免费"
+      ]
+    },
+    {
+      "id": "windsurf",
+      "name": "Windsurf",
+      "cat": "coding",
+      "desc": "以 Flow 编排为特色的 AI IDE",
+      "url": "https://windsurf.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ]
+    },
+    {
+      "id": "comate",
+      "name": "文心快码 Comate",
+      "cat": "coding",
+      "desc": "百度的智能代码助手，中文场景适配",
+      "url": "https://comate.baidu.com/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "replit",
+      "name": "Replit",
+      "cat": "coding",
+      "desc": "云端开发环境，内置 Agent 可直接生成应用",
+      "url": "https://replit.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ]
+    },
+    {
+      "id": "lovart",
+      "name": "Lovart",
+      "cat": "design",
+      "desc": "面向设计流程的 AI 智能体，从需求到出图一体",
+      "url": "https://www.lovart.ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": true
+    },
+    {
+      "id": "figma-ai",
+      "name": "Figma AI",
+      "cat": "design",
+      "desc": "Figma 内置的界面生成与设计辅助",
+      "url": "https://www.figma.com/ai/",
+      "tags": [
+        "付费"
+      ]
+    },
+    {
+      "id": "modao",
+      "name": "墨刀AI",
+      "cat": "design",
+      "desc": "原型设计工具，支持 AI 生成页面与交互",
+      "url": "https://modao.cc/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "jsdesign",
+      "name": "即时设计",
+      "cat": "design",
+      "desc": "国产在线 UI 设计协作平台，集成 AI 能力",
+      "url": "https://js.design/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "looka",
+      "name": "Looka",
+      "cat": "design",
+      "desc": "品牌 Logo 与 VI 物料生成",
+      "url": "https://looka.com/",
+      "tags": [
+        "付费"
+      ]
+    },
+    {
+      "id": "gaoding",
+      "name": "稿定设计",
+      "cat": "design",
+      "desc": "营销物料在线设计，模板与 AI 出图结合",
+      "url": "https://www.gaoding.com/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "huggingface",
+      "name": "Hugging Face",
+      "cat": "model",
+      "desc": "模型与数据集社区，Transformers 生态核心",
+      "url": "https://huggingface.co/",
+      "tags": [
+        "免费",
+        "开源"
+      ],
+      "hot": true
+    },
+    {
+      "id": "openrouter",
+      "name": "OpenRouter",
+      "cat": "model",
+      "desc": "统一接口调用数百个模型，支持按价格路由",
+      "url": "https://openrouter.ai/",
+      "tags": [
+        "付费"
+      ],
+      "hot": true
+    },
+    {
+      "id": "modelscope",
+      "name": "魔搭 ModelScope",
+      "cat": "model",
+      "desc": "阿里的大模型社区，中文模型与数据集丰富",
+      "url": "https://modelscope.cn/",
+      "tags": [
+        "免费"
+      ]
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama",
+      "cat": "model",
+      "desc": "一条命令在本地跑开源模型，适合离线验证",
+      "url": "https://ollama.com/",
+      "tags": [
+        "免费",
+        "开源"
+      ]
+    },
+    {
+      "id": "langchain",
+      "name": "LangChain",
+      "cat": "model",
+      "desc": "LLM 应用开发框架，链式编排与工具调用",
+      "url": "https://www.langchain.com/",
+      "tags": [
+        "开源"
+      ]
+    },
+    {
+      "id": "deeplearning",
+      "name": "DeepLearning.AI",
+      "cat": "model",
+      "desc": "吴恩达团队的 AI 课程与短训营",
+      "url": "https://www.deeplearning.ai/",
+      "tags": [
+        "免费",
+        "付费"
+      ]
+    },
+    {
+      "id": "lmstudio",
+      "name": "LM Studio",
+      "cat": "model",
+      "desc": "桌面端本地模型运行与调试工具",
+      "url": "https://lmstudio.ai/",
+      "tags": [
+        "免费"
+      ]
+    },
+    {
+      "id": "vllm",
+      "name": "vLLM",
+      "cat": "model",
+      "desc": "高吞吐推理框架，生产部署常用",
+      "url": "https://docs.vllm.ai/",
+      "tags": [
+        "开源"
+      ]
+    },
+    {
+      "id": "wondercv",
+      "name": "超级简历 WonderCV",
+      "cat": "business",
+      "desc": "智能简历制作与优化，面向求职场景",
+      "url": "https://www.wondercv.com/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "52cv",
+      "name": "职徒简历",
+      "cat": "business",
+      "desc": "简历模板与 AI 内容建议",
+      "url": "https://www.52cv.com/",
+      "tags": [
+        "免费试用"
+      ]
+    },
+    {
+      "id": "xiaoduo",
+      "name": "晓多客服机器人",
+      "cat": "business",
+      "desc": "电商智能客服与售后自动化",
+      "url": "https://www.xiaoduoai.com/",
+      "tags": [
+        "付费"
+      ]
+    },
+    {
+      "id": "yanxi",
+      "name": "京东言犀",
+      "cat": "business",
+      "desc": "京东的零售 AI 能力，覆盖客服与营销文案",
+      "url": "https://yanxi.jd.com/",
+      "tags": [
+        "付费"
+      ]
+    },
+    {
+      "id": "qianfan",
+      "name": "百度千帆",
+      "cat": "business",
+      "desc": "企业级大模型平台，支持精调与私有化",
+      "url": "https://cloud.baidu.com/product/wenxinworkshop",
+      "tags": [
+        "付费"
+      ]
+    },
+    {
+      "id": "volcengine",
+      "name": "火山引擎",
+      "cat": "business",
+      "desc": "字节的企业级云与 AI 服务平台",
+      "url": "https://www.volcengine.com/",
+      "tags": [
+        "付费"
+      ]
+    },
+    {
+      "id": "gptzero",
+      "name": "GPTZero",
+      "cat": "safety",
+      "desc": "AI 生成文本检测，教育场景常用",
+      "url": "https://gptzero.me/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ]
+    },
+    {
+      "id": "originality",
+      "name": "Originality.ai",
+      "cat": "safety",
+      "desc": "AI 内容检测与原创度分析，面向内容团队",
+      "url": "https://originality.ai/",
+      "tags": [
+        "付费"
+      ]
+    },
+    {
+      "id": "copyleaks",
+      "name": "Copyleaks",
+      "cat": "safety",
+      "desc": "抄袭与 AI 内容检测，支持批量与 API",
+      "url": "https://copyleaks.com/",
+      "tags": [
+        "付费"
+      ]
+    },
+    {
+      "id": "zerogpt",
+      "name": "ZeroGPT",
+      "cat": "safety",
+      "desc": "在线 AI 文本检测，开箱即用",
+      "url": "https://www.zerogpt.com/",
+      "tags": [
+        "免费"
+      ]
+    },
+    {
+      "id": "turnitin",
+      "name": "Turnitin",
+      "cat": "safety",
+      "desc": "学术不端检测系统，含 AI 写作识别",
+      "url": "https://www.turnitin.com/",
+      "tags": [
+        "付费"
+      ]
+    }
+  ]
+}

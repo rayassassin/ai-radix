@@ -1,7 +1,13 @@
 # LLM Radar · 大模型全景看板
 
-仿 [hvoyai.com/models](https://www.hvoyai.com/models/) 做的大模型目录站，支持多维筛选、排序、横向对比，
-并在**新模型上线时自动推送企业微信**。
+两个页面，共用一套视觉与导航：
+
+| 页面 | 仿照 | 内容 |
+| --- | --- | --- |
+| **模型目录** `index.html` | [hvoyai.com/models](https://www.hvoyai.com/models/) | 466+ 模型的实时价格、上下文、能力，多维筛选 / 排序 / 横向对比 |
+| **AI 工具导航** `tools.html` | [ai-bot.cn](https://ai-bot.cn/) · [hvoyai.com/ai-tools](https://www.hvoyai.com/ai-tools/) | 84 个按场景归类的 AI 工具，人工精选 |
+
+模型页在**新模型上线时自动推送企业微信**（每天 8/12/16/20 点检测）。
 
 **线上地址**：https://rayassassin.github.io/llm-radar/
 **仓库**：https://github.com/rayassassin/llm-radar
@@ -44,7 +50,8 @@
 
 ```
 llm-radar/
-├── index.html / app.js / style.css   # 前端（原生 JS，无构建、无 CDN）
+├── index.html / app.js / style.css   # 模型目录（原生 JS，无构建、无 CDN）
+├── tools.html / tools.js             # AI 工具导航（共用 style.css）
 ├── build.sh                 # 生成纯静态发布目录 dist/
 ├── run.sh                   # 本地：抓数据 + 起服务
 ├── update.sh                # 定时入口：抓数据 + 推企微（cron 调这个）
@@ -57,6 +64,7 @@ llm-radar/
 │   ├── models.json          # 标准化缓存（前端兜底用）
 │   ├── meta.json            # 统计快照
 │   ├── new_models.json      # 本次 diff 出的新模型 + 价格变动
+│   ├── tools.json           # AI 工具清单（人工维护）
 │   ├── raw_api.json         # API 原始响应（--offline 重算用，不入库）
 │   └── providers.json       # 厂商中文名 / 品牌色
 ├── config.example.json      # 配置模板
@@ -248,6 +256,75 @@ cd /opt/llm-radar && python3 scripts/push_wecom.py --test
 > 数据源 OpenRouter ｜ 每天 08/12/16/20 点同步
 > [打开全景看板](https://rayassassin.github.io/llm-radar/)
 ```
+
+---
+
+## AI 工具导航（`tools.html`）
+
+仿 [ai-bot.cn](https://ai-bot.cn/) 与 [hvoyai.com/ai-tools](https://www.hvoyai.com/ai-tools/) 做的工具清单页，
+和模型目录共用同一套视觉与顶栏导航，两个页面顶部可直接互跳。
+
+### 为什么这份数据是人工维护
+
+工具没有公开的聚合 API，抓别人的导航站既不稳定也不合适（版权 + 随时改版）。
+所以走**人工精选 + 版本化维护**：`data/tools.json` 就是唯一数据源，改完提交即可。
+这与模型页的「浏览器实时拉取」是两种不同的取舍，各取所长。
+
+### 字段
+
+`data/tools.json` 结构：
+
+```json
+{
+  "updated_at": "2026-10-27",
+  "categories": [
+    { "id": "image", "name": "图像与视觉", "color": "#d94f8a" }
+  ],
+  "tools": [
+    {
+      "id": "comfyui",
+      "name": "ComfyUI",
+      "cat": "image",
+      "desc": "节点式扩散模型工作流，本地跑图与视频，插件生态最全",
+      "url": "https://www.comfy.org/",
+      "tags": ["免费", "开源"],
+      "hot": false
+    }
+  ]
+}
+```
+
+| 字段 | 说明 |
+| --- | --- |
+| `id` | 唯一标识，小写无空格 |
+| `cat` | 必须对上 `categories[].id`，否则页面显示原始 id |
+| `desc` | 一句话说清「适合干什么」，卡片里最多显示 2 行 |
+| `tags` | 取值只有 `免费` / `开源` / `免费试用` / `付费` 四种，决定标签底色 |
+| `hot` | 为 true 时进「热门推荐」区，并带「推荐」角标 |
+
+### 加一个工具
+
+1. 在 `data/tools.json` 的 `tools` 数组里加一条，`cat` 用已有分类 id
+2. 改 `updated_at` 为当天日期（顶栏会显示）
+3. 刷新页面即可，无构建步骤
+
+分类下没有工具时，该分类按钮**自动隐藏**，不会点出空列表。
+
+### 交互
+
+| 操作 | 效果 |
+| --- | --- |
+| 搜索 | 匹配名称 / 简介 / 分类名 / 标签 |
+| 分类按钮 | 单选，写进 URL hash（`#cat=image` 可直接分享） |
+| 标签按钮 | 多选，取「或」（选免费+开源 = 两者都看） |
+| 排序 | 推荐优先 / 名称（中文按拼音）/ 按分类 |
+| 有筛选时 | 自动隐藏「热门推荐」区，避免和结果重复占屏 |
+
+### 链接校验
+
+清单里的 84 个 URL 做过一次并发可达性验证：**0 个 404、0 个无法解析**。
+9 个返回 403 的都是 Cloudflare 反爬（ChatGPT / Claude / Midjourney / Canva 等），
+链接本身有效 —— 浏览器正常打开没问题，只是脚本抓不了。
 
 ---
 
