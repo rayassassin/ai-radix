@@ -196,22 +196,45 @@ def pct_change(old, new) -> float | None:
     return (new_f - old_f) / old_f * 100
 
 
-def build_price_blocks(changes: list[dict], rate: float, threshold_pct: float,
-                       max_items: int = 12) -> tuple[list[str], int]:
+def judge_change(c: dict, rate: float) -> tuple[float | None, float]:
     """
-    价格变动块。只保留幅度达阈值的条目 —— 价格每小时都在微调，
-    全量推送会变成噪音，只报显著调整。
+    判断一条价格变动该不该报，返回 (百分比, 绝对金额 CNY/1M tokens)。
 
-    返回 (消息块列表, 实际列出的调价条数)。
+    OpenRouter 的 models 接口给的是**几十个路由里的最低价**，最低价由最便宜的
+    中转站决定 —— 谁在做促销、谁上下线，这个数就跳。$0.20 → $0.17 看着跌 15%，
+    实际每百万 tokens 只差 ¥0.21。所以必须同时看百分比和绝对金额，
+    只看百分比会被低价模型的小抖动刷屏。
+    """
+    old, new = c.get("old") or {}, c.get("new") or {}
+    # 以输入价为主判断幅度；输入缺失时退到输出价
+    for key in ("in", "out"):
+        p = pct_change(old.get(key), new.get(key))
+        if p is None:
+            continue
+        try:
+            abs_cny = abs(float(new[key]) - float(old[key])) * rate
+        except (KeyError, TypeError, ValueError):
+            abs_cny = 0.0
+        return p, abs_cny
+    return None, 0.0
+
+
+def build_price_blocks(changes: list[dict], rate: float, threshold_pct: float,
+                       min_abs_cny: float = 0.0,
+                       max_items: int = 12,
+                       section: str = "价格调整") -> tuple[list[str], int]:
+    """
+    价格变动块。双重门槛：百分比达标 **且** 绝对金额达标。
+
+    只报绝对金额够大的 —— 低价模型的百分比跳动对用户没有决策价值
+    （¥0.21/百万 tokens 的差异不值得一条推送）。
     """
     picked = []
     for c in changes:
-        old, new = c.get("old") or {}, c.get("new") or {}
-        # 以输入价为主判断幅度；输入缺失时退到输出价
-        p = pct_change(old.get("in"), new.get("in"))
-        if p is None:
-            p = pct_change(old.get("out"), new.get("out"))
+        p, abs_cny = judge_change(c, rate)
         if p is None or abs(p) < threshold_pct:
+            continue
+        if abs_cny < min_abs_cny:
             continue
         picked.append((abs(p), p, c))
 
@@ -239,7 +262,7 @@ def build_price_blocks(changes: list[dict], rate: float, threshold_pct: float,
         detail.append(line + "（每百万 tokens）")
         text = "\n".join(q(detail))
         if i == 1:
-            text = "**价格调整**\n\n" + text
+            text = f"**{section}**\n\n" + text
         blocks.append(text)
 
     if truncated:
@@ -247,11 +270,16 @@ def build_price_blocks(changes: list[dict], rate: float, threshold_pct: float,
     return blocks, total_picked
 
 
-def build_header(meta: dict, new_count: int, price_count: int) -> str:
+def build_header(meta: dict, new_count: int, price_count: int, digest: bool = False) -> str:
     """消息头。结构对齐「GitHub 订阅 · 通道自检」：加粗标题 + 若干 `标签：值` 行。"""
     total = meta.get("total", "?")
     vendors = meta.get("vendors", "?")
-    title = "大模型全景 · 上新速报" if new_count else "大模型全景 · 价格调整"
+    if new_count:
+        title = "大模型全景 · 上新速报"
+    elif digest:
+        title = "大模型全景 · 价格汇总"
+    else:
+        title = "大模型全景 · 价格调整"
     bits = []
     if new_count:
         bits.append(f"新增：{new_count} 个")
@@ -265,13 +293,87 @@ def build_header(meta: dict, new_count: int, price_count: int) -> str:
     ])
 
 
-def build_footer(meta: dict, site_url: str, omitted: int = 0) -> str:
+def build_footer(meta: dict, site_url: str, omitted: int = 0, since: str = "") -> str:
     lines = []
+    if since:
+        lines.append(f"> 统计区间：{since} 起（同期内来回波动已按净变化合并）")
     if omitted > 0:
         lines.append(f"> 另有 {omitted} 个模型未展开，完整列表见看板。")
-    lines.append("> 数据源 OpenRouter ｜ 每小时自动同步")
+    lines.append("> 数据源 OpenRouter ｜ 每小时同步，调价每日汇总")
     lines.append(f"> [打开全景看板]({site_url})")
     return "\n".join(lines)
+
+
+# ---------------- 调价台账 ----------------
+# 调价不逐小时推，而是先记账、到点汇总。原因见 judge_change 的注释：
+# 最低价路由的抖动本身没有决策价值，按净变化看才是真相。
+LEDGER_PATH = ROOT / "logs" / ".price_ledger.json"
+
+
+def load_ledger() -> dict:
+    d = load_json(LEDGER_PATH, {}) or {}
+    if not isinstance(d, dict) or not isinstance(d.get("items"), dict):
+        d = {"since": None, "items": {}}
+    return d
+
+
+def save_ledger(ledger: dict) -> None:
+    """原子写：先写临时文件再替换，避免 cron 并发时写出半个 JSON。"""
+    try:
+        LEDGER_PATH.parent.mkdir(parents=True, exist_ok=True)
+        tmp = LEDGER_PATH.with_name(LEDGER_PATH.name + ".tmp")
+        tmp.write_text(json.dumps(ledger, ensure_ascii=False, indent=1), encoding="utf-8")
+        tmp.replace(LEDGER_PATH)
+    except OSError as e:
+        log(f"台账写入失败：{e}")
+
+
+def merge_into_ledger(ledger: dict, changes: list[dict], rate: float,
+                      threshold_pct: float, min_abs_cny: float) -> int:
+    """
+    把本轮合格的变动并入台账。同一模型只保留**最早起点 + 最新终点**，
+    所以涨了又跌回去的模型，净变化自然归零、不会出现在汇总里。
+    """
+    stamp = f"{now_cn():%Y-%m-%d %H:%M}"
+    merged = 0
+    for c in changes:
+        p, abs_cny = judge_change(c, rate)
+        if p is None or abs(p) < threshold_pct or abs_cny < min_abs_cny:
+            continue
+        mid = c.get("id")
+        if not mid:
+            continue
+        old, new = c.get("old") or {}, c.get("new") or {}
+        item = ledger["items"].get(mid)
+        if item is None:
+            ledger["items"][mid] = {
+                "id": mid,
+                "name": c.get("name", ""),
+                "vendor": c.get("vendor", ""),
+                "vendor_cn": c.get("vendor_cn", ""),
+                "old": old,
+                "new": new,
+                "times": 1,
+                "first_seen": stamp,
+                "last_seen": stamp,
+            }
+            if not ledger.get("since"):
+                ledger["since"] = stamp
+        else:
+            item["new"] = new          # 起点留最早，终点用最新 → 得到净变化
+            item["times"] = int(item.get("times", 1)) + 1
+            item["last_seen"] = stamp
+        merged += 1
+    return merged
+
+
+def ledger_as_changes(ledger: dict) -> list[dict]:
+    return [v for v in ledger["items"].values() if isinstance(v, dict)]
+
+
+def clear_ledger(ledger: dict) -> None:
+    ledger["items"] = {}
+    ledger["since"] = None
 
 
 def pack_messages(header: str, blocks: list[str], footer: str, max_bytes: int) -> list[str]:
@@ -599,6 +701,8 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true", help="只打印消息内容，不实际发送")
     ap.add_argument("--test", action="store_true", help="发送一条测试消息验证连通性")
     ap.add_argument("--force", action="store_true", help="忽略「仅推新模型」限制")
+    ap.add_argument("--digest", action="store_true",
+                    help="强制出一份调价汇总（不等 price_digest_hour），用于手动验证")
     ap.add_argument(
         "--alert",
         metavar="原因",
@@ -688,7 +792,9 @@ def main() -> int:
         return 0
 
     price_changes = payload.get("price_changes") or []
-    threshold = float(wcfg.get("price_change_threshold", 10))  # 百分比，低于此值不报
+    threshold = float(wcfg.get("price_change_threshold", 10))       # 百分比门槛
+    min_abs = float(wcfg.get("price_change_min_abs_cny", 1.0))      # 绝对金额门槛（¥/百万 tokens）
+    digest_hour = int(wcfg.get("price_digest_hour", 12))            # 几点出调价汇总
 
     # 别名路由不是独立模型，价格跟着目标模型走，报出来就是同一条变动的复读
     alias_new = [m for m in new_models if is_alias(m.get("id"))]
@@ -698,11 +804,29 @@ def main() -> int:
     new_models = [m for m in new_models if not is_alias(m.get("id"))]
     price_changes = [c for c in price_changes if not is_alias(c.get("id"))]
 
-    price_blocks, price_count = build_price_blocks(price_changes, rate, threshold)
+    # ---------- 调价先记账 ----------
+    # 逐小时推调价等于把「最低价路由的抖动」当新闻播。改成记账 + 每日汇总：
+    # 只有净变化够大的模型才会出现在汇总里，来回摆动自动抵消。
+    ledger = load_ledger()
+    merged = merge_into_ledger(ledger, price_changes, rate, threshold, min_abs)
+    if merged and not args.dry_run:
+        save_ledger(ledger)
+    if merged:
+        log(f"调价已记账 {merged} 条（台账累计 {len(ledger['items'])} 个模型）")
+
+    is_digest = bool(args.digest) or now_cn().hour == digest_hour
+    if is_digest:
+        price_blocks, price_count = build_price_blocks(
+            ledger_as_changes(ledger), rate, threshold, min_abs,
+            section="价格变动汇总（净变化）")
+    else:
+        price_blocks, price_count = [], 0
 
     if not new_models and not price_blocks:
         if price_changes:
-            log(f"本次无新增；{len(price_changes)} 条价格变动均未达 {threshold:g}% 阈值，不推送")
+            log(f"本次无新增；{len(price_changes)} 条变动未达门槛"
+                f"（{threshold:g}% 且 ¥{min_abs:g}/百万 tokens），"
+                f"台账累计 {len(ledger['items'])} 个模型，{digest_hour}:00 汇总")
         else:
             log("本次无新增模型、无价格变动，不推送")
         return 0
@@ -712,12 +836,13 @@ def main() -> int:
     listed = new_models[:MAX_LIST]
     omitted = max(0, len(new_models) - MAX_LIST)
 
-    header = build_header(meta, len(new_models), price_count)
+    header = build_header(meta, len(new_models), price_count, digest=is_digest)
     blocks = build_blocks(listed, meta, rate, site_url) + price_blocks
-    footer = build_footer(meta, site_url, omitted)
+    footer = build_footer(meta, site_url, omitted,
+                          since=ledger.get("since") if (is_digest and price_count) else "")
     messages = pack_messages(header, blocks, footer, max_bytes)
 
-    log(f"准备推送：新增 {len(new_models)} 个、显著调价 {price_count} 个，共 {len(messages)} 条消息")
+    log(f"准备推送：新增 {len(new_models)} 个、汇总调价 {price_count} 个，共 {len(messages)} 条消息")
 
     if args.dry_run:
         for i, msg in enumerate(messages, 1):
@@ -755,6 +880,12 @@ def main() -> int:
     if failed:
         log(f"推送完成但有 {failed} 条失败 —— 请检查 webhook 是否有效、是否触发频率限制")
         return 1
+
+    # 汇总已成功送达才清台账；发送失败就留着，下次汇总继续带上，不丢信息
+    if is_digest and price_count:
+        clear_ledger(ledger)
+        save_ledger(ledger)
+        log("调价台账已清空（下一轮重新记账）")
 
     log("全部推送成功")
     return 0

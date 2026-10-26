@@ -129,17 +129,35 @@ markdown 上限 20480 字节，基本不用分批；不支持 @所有人。
 
 ### 其它配置项
 
-| 字段 | 说明 |
-| --- | --- |
-| `enabled` | 总开关 |
-| `push_on_first_run` | 首次建基线是否也推。默认 false，否则开局刷 467 条 |
-| `only_push_new` | 只推新模型，不推价格变动 |
+| 字段 | 默认 | 说明 |
+| --- | --- | --- |
+| `enabled` | true | 总开关 |
+| `push_on_first_run` | false | 首次建基线是否也推，否则开局刷 467 条 |
+| `price_change_threshold` | 10 | 调价的**百分比**门槛（%） |
+| `price_change_min_abs_cny` | 1.0 | 调价的**绝对金额**门槛（¥/百万 tokens）。百分比和金额要同时达标 |
+| `price_digest_hour` | 12 | 调价汇总在几点出（小时，24 制） |
+| `max_bytes_per_message` | 1800 | 单条正文上限，按通道自动适配 |
+
+### 为什么调价要双门槛 + 每日汇总
+
+OpenRouter 的 `models` 接口返回的价格是**几十个路由里的最低价**。实测 `moonshotai/kimi-k3`
+背后有 29 个中转站，报价从 $0.20 到 $4.50（相差 22.5 倍），接口给的就是最低那个。
+
+最低价是所有数字里最不稳定的：哪家做促销、哪家下架，这个数就跳。$0.20 → $0.17 看着跌 15%，
+实际每百万 tokens 只差 ¥0.21。所以：
+
+- **百分比 + 绝对金额双门槛**：低价模型的微小抖动过滤掉，高价模型的真实调价照报
+- **每日汇总而非逐小时推**：中间过程记进台账（`logs/.price_ledger.json`），
+  只保留每个模型的**最早起点 + 最新终点**，来回摆动自然抵消，只报净变化
+
+新增模型仍然每小时实时推 —— 那是真事件，不需要汇总。
 
 ### 验证
 
 ```bash
-python3 scripts/push_wecom.py --test       # 发一条连通性测试
-python3 scripts/push_wecom.py --dry-run    # 只打印消息，不发
+python3 scripts/push_wecom.py --test         # 发一条连通性自检
+python3 scripts/push_wecom.py --dry-run      # 只打印消息，不发（不写台账）
+python3 scripts/push_wecom.py --dry-run --digest   # 提前预演调价汇总
 ```
 
 ---
