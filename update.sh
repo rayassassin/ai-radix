@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # LLM Radar · 定时任务入口
 # 抓取最新模型数据 → diff 出新上线/调价模型 → 推送企微
-# 适合挂 cron：0 * * * * /path/to/update.sh >> /path/to/logs/cron.log 2>&1
+# 适合挂 cron：0 8,12,16,20 * * * /path/to/update.sh >> /path/to/logs/cron.log 2>&1
 #
 # 失败必须告警：任何异常都会回调 push_wecom.py --alert，
 # 绝不静默失败（宇神红线）。

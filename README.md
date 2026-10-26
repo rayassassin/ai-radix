@@ -14,7 +14,7 @@
 | --- | --- | --- |
 | 展示 | GitHub Pages（静态） | 页面本身，无需构建 |
 | 数据 | 浏览器直连 OpenRouter | 每次打开实时拉取，站点永不过期 |
-| 定时检测 | 自建服务器 + cron | 每小时抓取并 diff 新模型，有变化才推送订阅成员 |
+| 定时检测 | 自建服务器 + cron | 每天 8/12/16/20 点抓取并 diff，有变化才推送订阅成员 |
 | 推送 | 企微自建应用消息 | 以应用身份发消息给成员 |
 
 **为什么数据在浏览器拉而不是定时写入仓库**：OpenRouter 接口的 CORS 全开
@@ -135,10 +135,10 @@ markdown 上限 20480 字节，基本不用分批；不支持 @所有人。
 | `push_on_first_run` | false | 首次建基线是否也推，否则开局刷 467 条 |
 | `price_change_threshold` | 10 | 调价的**百分比**门槛（%） |
 | `price_change_min_abs_cny` | 1.0 | 调价的**绝对金额**门槛（¥/百万 tokens）。百分比和金额要同时达标 |
-| `price_digest_hour` | 12 | 调价汇总在几点出（小时，24 制） |
+| `price_digest_hours` | `[8,12,16,20]` | 每天哪几个整点推送（数组，24 制）。新增模型与调价汇总都按这个时刻走 |
 | `max_bytes_per_message` | 1800 | 单条正文上限，按通道自动适配 |
 
-### 为什么调价要双门槛 + 每日汇总
+### 为什么调价要双门槛 + 按批次汇总
 
 OpenRouter 的 `models` 接口返回的价格是**几十个路由里的最低价**。实测 `moonshotai/kimi-k3`
 背后有 29 个中转站，报价从 $0.20 到 $4.50（相差 22.5 倍），接口给的就是最低那个。
@@ -147,10 +147,10 @@ OpenRouter 的 `models` 接口返回的价格是**几十个路由里的最低价
 实际每百万 tokens 只差 ¥0.21。所以：
 
 - **百分比 + 绝对金额双门槛**：低价模型的微小抖动过滤掉，高价模型的真实调价照报
-- **每日汇总而非逐小时推**：中间过程记进台账（`logs/.price_ledger.json`），
+- **按批次汇总而非逐小时推**：中间过程记进台账（`logs/.price_ledger.json`），
   只保留每个模型的**最早起点 + 最新终点**，来回摆动自然抵消，只报净变化
 
-新增模型仍然每小时实时推 —— 那是真事件，不需要汇总。
+新增模型也走同一批次的时刻 —— 每天 4 次，够及时，又不会把群里刷成流水账。
 
 ### 验证
 
@@ -197,7 +197,7 @@ chmod 600 ~/.llm-radar/config.json
 cd /opt/llm-radar && python3 scripts/push_wecom.py --test
 
 # 定时（服务器时区为 Asia/Shanghai，直接写北京时间）
-0 * * * * cd /opt/llm-radar && ./update.sh >> /opt/llm-radar/logs/cron.log 2>&1
+0 8,12,16,20 * * * cd /opt/llm-radar && ./update.sh >> /opt/llm-radar/logs/cron.log 2>&1
 ```
 
 `update.sh` 退出码约定：`0` 成功或无新增，`1` 抓取失败，`2` 通道未配置（视为未启用），
@@ -245,7 +245,7 @@ cd /opt/llm-radar && python3 scripts/push_wecom.py --test
 > 模态：文字 / 图片 / 视频 → 文字
 > 能力：推理 · 工具 · JSON
 
-> 数据源 OpenRouter ｜ 每小时自动同步
+> 数据源 OpenRouter ｜ 每天 08/12/16/20 点同步
 > [打开全景看板](https://rayassassin.github.io/llm-radar/)
 ```
 

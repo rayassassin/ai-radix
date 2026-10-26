@@ -293,13 +293,45 @@ def build_header(meta: dict, new_count: int, price_count: int, digest: bool = Fa
     ])
 
 
-def build_footer(meta: dict, site_url: str, omitted: int = 0, since: str = "") -> str:
+def parse_push_hours(wcfg: dict) -> list[int]:
+    """
+    推送/汇总时刻（本地时区的小时，24 制）。
+
+    优先读 `price_digest_hours`（数组，如 [8,12,16,20]）；
+    兼容旧的单值写法 `price_digest_hour`；都没有则回退 12 点。
+    非法值静默丢弃，宁可少推一次也不要因为配置写错整天不推。
+    """
+    raw = wcfg.get("price_digest_hours")
+    if raw is None:
+        raw = wcfg.get("price_digest_hour", 12)
+    if isinstance(raw, (int, str)):
+        raw = [raw]
+    if not isinstance(raw, (list, tuple)):
+        return [12]
+
+    hours = set()
+    for item in raw:
+        try:
+            h = int(item)
+        except (TypeError, ValueError):
+            continue
+        if 0 <= h <= 23:
+            hours.add(h)
+    return sorted(hours) or [12]
+
+
+def fmt_hours(hours: list[int]) -> str:
+    return " / ".join(f"{h:02d}:00" for h in hours)
+
+
+def build_footer(meta: dict, site_url: str, omitted: int = 0, since: str = "",
+                 sync_note: str = "") -> str:
     lines = []
     if since:
         lines.append(f"> 统计区间：{since} 起（同期内来回波动已按净变化合并）")
     if omitted > 0:
         lines.append(f"> 另有 {omitted} 个模型未展开，完整列表见看板。")
-    lines.append("> 数据源 OpenRouter ｜ 每小时同步，调价每日汇总")
+    lines.append(f"> 数据源 OpenRouter ｜ {sync_note or '定时同步，调价按批次汇总'}")
     lines.append(f"> [打开全景看板]({site_url})")
     return "\n".join(lines)
 
@@ -702,7 +734,7 @@ def main() -> int:
     ap.add_argument("--test", action="store_true", help="发送一条测试消息验证连通性")
     ap.add_argument("--force", action="store_true", help="忽略「仅推新模型」限制")
     ap.add_argument("--digest", action="store_true",
-                    help="强制出一份调价汇总（不等 price_digest_hour），用于手动验证")
+                    help="强制出一份调价汇总（不等 price_digest_hours 的整点），用于手动验证")
     ap.add_argument(
         "--alert",
         metavar="原因",
@@ -794,7 +826,7 @@ def main() -> int:
     price_changes = payload.get("price_changes") or []
     threshold = float(wcfg.get("price_change_threshold", 10))       # 百分比门槛
     min_abs = float(wcfg.get("price_change_min_abs_cny", 1.0))      # 绝对金额门槛（¥/百万 tokens）
-    digest_hour = int(wcfg.get("price_digest_hour", 12))            # 几点出调价汇总
+    push_hours = parse_push_hours(wcfg)                             # 每天哪几个整点推送
 
     # 别名路由不是独立模型，价格跟着目标模型走，报出来就是同一条变动的复读
     alias_new = [m for m in new_models if is_alias(m.get("id"))]
@@ -814,7 +846,7 @@ def main() -> int:
     if merged:
         log(f"调价已记账 {merged} 条（台账累计 {len(ledger['items'])} 个模型）")
 
-    is_digest = bool(args.digest) or now_cn().hour == digest_hour
+    is_digest = bool(args.digest) or now_cn().hour in push_hours
     if is_digest:
         price_blocks, price_count = build_price_blocks(
             ledger_as_changes(ledger), rate, threshold, min_abs,
@@ -823,12 +855,17 @@ def main() -> int:
         price_blocks, price_count = [], 0
 
     if not new_models and not price_blocks:
+        # 下一个推送点：找不到更大的小时就落到明天的第一个
+        now_h = now_cn().hour
+        nxt = next((h for h in push_hours if h > now_h), push_hours[0])
+        day = "" if any(h > now_h for h in push_hours) else "明日 "
         if price_changes:
             log(f"本次无新增；{len(price_changes)} 条变动未达门槛"
                 f"（{threshold:g}% 且 ¥{min_abs:g}/百万 tokens），"
-                f"台账累计 {len(ledger['items'])} 个模型，{digest_hour}:00 汇总")
+                f"台账累计 {len(ledger['items'])} 个模型，{day}{nxt:02d}:00 汇总")
         else:
-            log("本次无新增模型、无价格变动，不推送")
+            log(f"本次无新增模型、无价格变动，不推送"
+                f"（台账 {len(ledger['items'])} 个模型，{day}{nxt:02d}:00 汇总）")
         return 0
 
     # 单条消息最多列 20 个，避免刷屏
@@ -839,7 +876,8 @@ def main() -> int:
     header = build_header(meta, len(new_models), price_count, digest=is_digest)
     blocks = build_blocks(listed, meta, rate, site_url) + price_blocks
     footer = build_footer(meta, site_url, omitted,
-                          since=ledger.get("since") if (is_digest and price_count) else "")
+                          since=ledger.get("since") if (is_digest and price_count) else "",
+                          sync_note="每天 " + "/".join(f"{h:02d}" for h in push_hours) + " 点同步")
     messages = pack_messages(header, blocks, footer, max_bytes)
 
     log(f"准备推送：新增 {len(new_models)} 个、汇总调价 {price_count} 个，共 {len(messages)} 条消息")
