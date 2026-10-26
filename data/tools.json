@@ -56,6 +56,11 @@
       "id": "safety",
       "name": "内容检测与安全",
       "color": "#c0392b"
+    },
+    {
+      "id": "search",
+      "name": "搜索与研究",
+      "color": "#0d7ea8"
     }
   ],
   "tools": [
@@ -92,7 +97,8 @@
       "tags": [
         "免费试用",
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "deepseek-chat",
@@ -114,7 +120,8 @@
       "url": "https://www.kimi.com/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "doubao",
@@ -124,7 +131,8 @@
       "url": "https://www.doubao.com/",
       "tags": [
         "免费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "tongyi",
@@ -134,7 +142,8 @@
       "url": "https://www.tongyi.com/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "grok",
@@ -145,7 +154,8 @@
       "tags": [
         "免费试用",
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "metaso",
@@ -155,7 +165,8 @@
       "url": "https://metaso.cn/",
       "tags": [
         "免费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "tiangong",
@@ -165,7 +176,8 @@
       "url": "https://www.tiangong.cn/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "coze",
@@ -198,7 +210,8 @@
       "url": "https://www.notion.so/product/ai",
       "tags": [
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "grammarly",
@@ -209,7 +222,8 @@
       "tags": [
         "免费试用",
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "jasper",
@@ -219,7 +233,8 @@
       "url": "https://www.jasper.ai/",
       "tags": [
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "copy-ai",
@@ -230,7 +245,8 @@
       "tags": [
         "免费试用",
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "xiezuocat",
@@ -240,7 +256,8 @@
       "url": "https://xiezuocat.com/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "ibiling",
@@ -250,7 +267,8 @@
       "url": "https://ibiling.cn/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "quillbot",
@@ -260,7 +278,8 @@
       "url": "https://quillbot.com/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "writesonic",
@@ -271,7 +290,8 @@
       "tags": [
         "免费试用",
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "midjourney",
@@ -292,7 +312,8 @@
       "url": "https://stability.ai/",
       "tags": [
         "开源"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "firefly",
@@ -303,7 +324,8 @@
       "tags": [
         "免费试用",
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "liblib",
@@ -313,7 +335,8 @@
       "url": "https://www.liblib.art/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "jimeng",
@@ -334,7 +357,8 @@
       "url": "https://design.meitu.com/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "canva",
@@ -345,7 +369,8 @@
       "tags": [
         "免费试用",
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "clipdrop",
@@ -355,7 +380,8 @@
       "url": "https://clipdrop.co/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "comfyui",
@@ -390,7 +416,8 @@
       "tags": [
         "免费试用",
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "pika",
@@ -400,7 +427,8 @@
       "url": "https://pika.art/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "sora",
@@ -421,7 +449,8 @@
       "url": "https://www.vidu.cn/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "hailuo",
@@ -431,7 +460,8 @@
       "url": "https://hailuoai.video/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "luma",
@@ -442,7 +472,8 @@
       "tags": [
         "免费试用",
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "heygen",
@@ -452,7 +483,8 @@
       "url": "https://www.heygen.com/",
       "tags": [
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "suno",
@@ -475,7 +507,8 @@
       "tags": [
         "免费试用",
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "udio",
@@ -485,7 +518,8 @@
       "url": "https://www.udio.com/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "xunfei-zhizuo",
@@ -496,7 +530,8 @@
       "tags": [
         "免费试用",
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "adobe-podcast",
@@ -506,7 +541,8 @@
       "url": "https://podcast.adobe.com/",
       "tags": [
         "免费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "rask",
@@ -516,7 +552,8 @@
       "url": "https://www.rask.ai/",
       "tags": [
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "aippt",
@@ -538,7 +575,8 @@
       "tags": [
         "免费试用",
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "gamma",
@@ -549,7 +587,8 @@
       "tags": [
         "免费试用",
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "wps-ai",
@@ -559,7 +598,8 @@
       "url": "https://ai.wps.cn/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "tingwu",
@@ -569,7 +609,8 @@
       "url": "https://tingwu.aliyun.com/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "iflyrec",
@@ -579,7 +620,8 @@
       "url": "https://www.iflyrec.com/",
       "tags": [
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "feishu",
@@ -589,7 +631,8 @@
       "url": "https://www.feishu.cn/",
       "tags": [
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "processon",
@@ -599,7 +642,8 @@
       "url": "https://www.processon.com/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "cursor",
@@ -622,7 +666,8 @@
       "tags": [
         "免费试用",
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "claude-code",
@@ -632,7 +677,8 @@
       "url": "https://www.claude.com/product/claude-code",
       "tags": [
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "trae",
@@ -642,7 +688,8 @@
       "url": "https://www.trae.ai/",
       "tags": [
         "免费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "lingma",
@@ -652,7 +699,8 @@
       "url": "https://tongyi.aliyun.com/lingma",
       "tags": [
         "免费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "windsurf",
@@ -663,7 +711,8 @@
       "tags": [
         "免费试用",
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "comate",
@@ -673,7 +722,8 @@
       "url": "https://comate.baidu.com/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "replit",
@@ -684,7 +734,8 @@
       "tags": [
         "免费试用",
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "lovart",
@@ -706,7 +757,8 @@
       "url": "https://www.figma.com/ai/",
       "tags": [
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "modao",
@@ -716,7 +768,8 @@
       "url": "https://modao.cc/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "jsdesign",
@@ -726,7 +779,8 @@
       "url": "https://js.design/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "looka",
@@ -736,7 +790,8 @@
       "url": "https://looka.com/",
       "tags": [
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "gaoding",
@@ -746,7 +801,8 @@
       "url": "https://www.gaoding.com/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "huggingface",
@@ -779,7 +835,8 @@
       "url": "https://modelscope.cn/",
       "tags": [
         "免费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "ollama",
@@ -790,7 +847,8 @@
       "tags": [
         "免费",
         "开源"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "langchain",
@@ -800,7 +858,8 @@
       "url": "https://www.langchain.com/",
       "tags": [
         "开源"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "deeplearning",
@@ -811,7 +870,8 @@
       "tags": [
         "免费",
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "lmstudio",
@@ -821,7 +881,8 @@
       "url": "https://lmstudio.ai/",
       "tags": [
         "免费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "vllm",
@@ -831,7 +892,8 @@
       "url": "https://docs.vllm.ai/",
       "tags": [
         "开源"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "wondercv",
@@ -841,7 +903,8 @@
       "url": "https://www.wondercv.com/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "52cv",
@@ -851,7 +914,8 @@
       "url": "https://www.52cv.com/",
       "tags": [
         "免费试用"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "xiaoduo",
@@ -861,7 +925,8 @@
       "url": "https://www.xiaoduoai.com/",
       "tags": [
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "yanxi",
@@ -871,7 +936,8 @@
       "url": "https://yanxi.jd.com/",
       "tags": [
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "qianfan",
@@ -881,7 +947,8 @@
       "url": "https://cloud.baidu.com/product/wenxinworkshop",
       "tags": [
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "volcengine",
@@ -891,7 +958,8 @@
       "url": "https://www.volcengine.com/",
       "tags": [
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "gptzero",
@@ -902,7 +970,8 @@
       "tags": [
         "免费试用",
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "originality",
@@ -912,7 +981,8 @@
       "url": "https://originality.ai/",
       "tags": [
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "copyleaks",
@@ -922,7 +992,8 @@
       "url": "https://copyleaks.com/",
       "tags": [
         "付费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "zerogpt",
@@ -932,7 +1003,8 @@
       "url": "https://www.zerogpt.com/",
       "tags": [
         "免费"
-      ]
+      ],
+      "hot": false
     },
     {
       "id": "turnitin",
@@ -942,7 +1014,1578 @@
       "url": "https://www.turnitin.com/",
       "tags": [
         "付费"
-      ]
+      ],
+      "hot": false
+    },
+    {
+      "id": "腾讯元宝",
+      "name": "腾讯元宝",
+      "cat": "chat",
+      "desc": "混元与 DeepSeek 双模型，深度接入微信生态",
+      "url": "https://yuanbao.tencent.com/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "智谱清言",
+      "name": "智谱清言",
+      "cat": "chat",
+      "desc": "GLM 系列对话入口，支持智能体与长文档解读",
+      "url": "https://chatglm.cn/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "文心一言",
+      "name": "文心一言",
+      "cat": "chat",
+      "desc": "百度文心大模型的对话入口，中文问答与创作",
+      "url": "https://yiyan.baidu.com/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "讯飞星火",
+      "name": "讯飞星火",
+      "cat": "chat",
+      "desc": "科大讯飞对话助手，语音与多语种见长",
+      "url": "https://xinghuo.xfyun.cn/",
+      "tags": [
+        "免费试用"
+      ],
+      "hot": false
+    },
+    {
+      "id": "le-chat",
+      "name": "Le Chat",
+      "cat": "chat",
+      "desc": "Mistral 官方助手，响应快、代码能力强",
+      "url": "https://chat.mistral.ai/",
+      "tags": [
+        "免费试用"
+      ],
+      "hot": false
+    },
+    {
+      "id": "poe",
+      "name": "Poe",
+      "cat": "chat",
+      "desc": "一个入口聚合多家模型与自定义 Bot",
+      "url": "https://poe.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "character-ai",
+      "name": "Character.AI",
+      "cat": "chat",
+      "desc": "角色扮演式对话，虚拟角色社区",
+      "url": "https://character.ai/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "manus",
+      "name": "Manus",
+      "cat": "chat",
+      "desc": "通用 Agent，自己拆解任务并交付结果",
+      "url": "https://manus.im/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": true
+    },
+    {
+      "id": "monica",
+      "name": "Monica",
+      "cat": "chat",
+      "desc": "浏览器侧边栏助手，划词问答与网页摘要",
+      "url": "https://monica.im/",
+      "tags": [
+        "免费",
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "chatbox",
+      "name": "Chatbox",
+      "cat": "chat",
+      "desc": "本地桌面客户端，填自己的 Key 用任意模型",
+      "url": "https://chatboxai.app/",
+      "tags": [
+        "免费",
+        "开源"
+      ],
+      "hot": false
+    },
+    {
+      "id": "lobechat",
+      "name": "LobeChat",
+      "cat": "chat",
+      "desc": "开源多模型聊天框架，插件与知识库齐全",
+      "url": "https://lobehub.com/",
+      "tags": [
+        "免费",
+        "开源"
+      ],
+      "hot": false
+    },
+    {
+      "id": "百川智能",
+      "name": "百川智能",
+      "cat": "chat",
+      "desc": "百川大模型对话与医疗垂类应用",
+      "url": "https://www.baichuan-ai.com/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "海螺ai",
+      "name": "海螺AI",
+      "cat": "chat",
+      "desc": "MiniMax 的对话与语音助手",
+      "url": "https://hailuoai.com/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "qwen-chat",
+      "name": "Qwen Chat",
+      "cat": "chat",
+      "desc": "通义千问国际版，支持图像与视频理解",
+      "url": "https://chat.qwen.ai/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "stepfun",
+      "name": "阶跃星辰",
+      "cat": "chat",
+      "desc": "阶跃星辰多模态模型与跃问助手",
+      "url": "https://stepfun.com/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "perplexity",
+      "name": "Perplexity",
+      "cat": "search",
+      "desc": "带引用的 AI 搜索引擎，回答附来源",
+      "url": "https://www.perplexity.ai/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": true
+    },
+    {
+      "id": "notebooklm",
+      "name": "NotebookLM",
+      "cat": "search",
+      "desc": "喂资料做问答与播客式摘要，来源可溯源",
+      "url": "https://notebooklm.google.com/",
+      "tags": [
+        "免费"
+      ],
+      "hot": true
+    },
+    {
+      "id": "genspark",
+      "name": "Genspark",
+      "cat": "search",
+      "desc": "生成式搜索，直接产出结构化报告",
+      "url": "https://www.genspark.ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "consensus",
+      "name": "Consensus",
+      "cat": "search",
+      "desc": "从论文里找结论，适合循证类问题",
+      "url": "https://consensus.app/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "elicit",
+      "name": "Elicit",
+      "cat": "search",
+      "desc": "文献综述助手，批量提取论文要点",
+      "url": "https://elicit.com/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "scispace",
+      "name": "SciSpace",
+      "cat": "search",
+      "desc": "论文阅读助手，逐段解释公式与术语",
+      "url": "https://typeset.io/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "semantic-scholar",
+      "name": "Semantic Scholar",
+      "cat": "search",
+      "desc": "AI 驱动的学术搜索，引用关系清晰",
+      "url": "https://www.semanticscholar.org/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "connected-papers",
+      "name": "Connected Papers",
+      "cat": "search",
+      "desc": "按引用关系画论文图谱，看领域脉络",
+      "url": "https://www.connectedpapers.com/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "devv",
+      "name": "Devv",
+      "cat": "search",
+      "desc": "面向开发者的技术搜索，答案带代码",
+      "url": "https://devv.ai/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "phind",
+      "name": "Phind",
+      "cat": "search",
+      "desc": "技术问题搜索，长答案附来源",
+      "url": "https://www.phind.com/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "kagi",
+      "name": "Kagi",
+      "cat": "search",
+      "desc": "付费无广告搜索，可调结果权重",
+      "url": "https://kagi.com/",
+      "tags": [
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "exa",
+      "name": "Exa",
+      "cat": "search",
+      "desc": "面向 AI 的语义搜索 API，按意思找网页",
+      "url": "https://exa.ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "纳米ai搜索",
+      "name": "纳米AI搜索",
+      "cat": "search",
+      "desc": "360 的 AI 搜索，聚合多模型回答",
+      "url": "https://www.n.cn/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "deepl-write",
+      "name": "DeepL Write",
+      "cat": "writing",
+      "desc": "英文润色与改写，语气可选",
+      "url": "https://www.deepl.com/write",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "wordtune",
+      "name": "Wordtune",
+      "cat": "writing",
+      "desc": "句子级改写与语气调整",
+      "url": "https://www.wordtune.com/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "rytr",
+      "name": "Rytr",
+      "cat": "writing",
+      "desc": "低成本批量文案生成，模板多",
+      "url": "https://rytr.me/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "sudowrite",
+      "name": "Sudowrite",
+      "cat": "writing",
+      "desc": "小说创作助手，续写与情节头脑风暴",
+      "url": "https://www.sudowrite.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "novelai",
+      "name": "NovelAI",
+      "cat": "writing",
+      "desc": "AI 小说与配图创作，注重隐私",
+      "url": "https://novelai.net/",
+      "tags": [
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "prowritingaid",
+      "name": "ProWritingAid",
+      "cat": "writing",
+      "desc": "长文语法与风格检查，报告细",
+      "url": "https://prowritingaid.com/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "hemingway-editor",
+      "name": "Hemingway Editor",
+      "cat": "writing",
+      "desc": "标出冗长句与被动语态，逼你写短句",
+      "url": "https://hemingwayapp.com/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "火龙果写作",
+      "name": "火龙果写作",
+      "cat": "writing",
+      "desc": "中文学术与公文写作，纠错改写",
+      "url": "https://www.mypitaya.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "ideogram",
+      "name": "Ideogram",
+      "cat": "image",
+      "desc": "擅长在图里排文字，海报与 Logo 首选",
+      "url": "https://ideogram.ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": true
+    },
+    {
+      "id": "flux",
+      "name": "FLUX",
+      "cat": "image",
+      "desc": "开源图像模型天花板，细节与手部稳定",
+      "url": "https://blackforestlabs.ai/",
+      "tags": [
+        "免费",
+        "开源"
+      ],
+      "hot": false
+    },
+    {
+      "id": "leonardo-ai",
+      "name": "Leonardo.Ai",
+      "cat": "image",
+      "desc": "游戏美术与概念设计，风格模型多",
+      "url": "https://leonardo.ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "recraft",
+      "name": "Recraft",
+      "cat": "image",
+      "desc": "矢量图与品牌套件生成，可导出 SVG",
+      "url": "https://www.recraft.ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "krea",
+      "name": "Krea",
+      "cat": "image",
+      "desc": "实时画板，边画边出图",
+      "url": "https://www.krea.ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "civitai",
+      "name": "Civitai",
+      "cat": "image",
+      "desc": "开源模型与 LoRA 最大集散地",
+      "url": "https://civitai.com/",
+      "tags": [
+        "免费",
+        "开源"
+      ],
+      "hot": false
+    },
+    {
+      "id": "photoroom",
+      "name": "Photoroom",
+      "cat": "image",
+      "desc": "商品图去背与场景合成，电商常用",
+      "url": "https://www.photoroom.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "remove-bg",
+      "name": "remove.bg",
+      "cat": "image",
+      "desc": "一键去背景，API 也常用",
+      "url": "https://www.remove.bg/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "通义万相",
+      "name": "通义万相",
+      "cat": "image",
+      "desc": "阿里图像与视频生成，中文提示理解好",
+      "url": "https://tongyi.aliyun.com/wanxiang/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "文心一格",
+      "name": "文心一格",
+      "cat": "image",
+      "desc": "百度 AI 作画，国风与插画风格多",
+      "url": "https://yige.baidu.com/",
+      "tags": [
+        "免费试用"
+      ],
+      "hot": false
+    },
+    {
+      "id": "无界ai",
+      "name": "无界AI",
+      "cat": "image",
+      "desc": "国内 AI 绘画社区，模型与工作流齐全",
+      "url": "https://www.wujieai.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "佐糖",
+      "name": "佐糖",
+      "cat": "image",
+      "desc": "抠图、去水印、画质修复工具箱",
+      "url": "https://picwish.cn/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "upscayl",
+      "name": "Upscayl",
+      "cat": "image",
+      "desc": "开源本地图片放大，可批量处理",
+      "url": "https://upscayl.org/",
+      "tags": [
+        "免费",
+        "开源"
+      ],
+      "hot": false
+    },
+    {
+      "id": "playground",
+      "name": "Playground",
+      "cat": "image",
+      "desc": "画布式图像创作，改局部很方便",
+      "url": "https://playground.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "pixverse",
+      "name": "PixVerse",
+      "cat": "video",
+      "desc": "免费额度大的视频生成，模板丰富",
+      "url": "https://app.pixverse.ai/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "智谱清影",
+      "name": "智谱清影",
+      "cat": "video",
+      "desc": "智谱视频生成，中文提示友好",
+      "url": "https://chatglm.cn/video",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "jianying",
+      "name": "剪映",
+      "cat": "video",
+      "desc": "国内最通用的剪辑工具，AI 字幕、成片与数字人齐全",
+      "url": "https://www.capcut.cn/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "一帧秒创",
+      "name": "一帧秒创",
+      "cat": "video",
+      "desc": "图文一键转视频，适合口播号",
+      "url": "https://aigc.yizhentv.com/",
+      "tags": [
+        "免费试用"
+      ],
+      "hot": false
+    },
+    {
+      "id": "synthesia",
+      "name": "Synthesia",
+      "cat": "video",
+      "desc": "企业级数字人视频，多语种口型准",
+      "url": "https://www.synthesia.io/",
+      "tags": [
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "d-id",
+      "name": "D-ID",
+      "cat": "video",
+      "desc": "照片驱动数字人，API 集成方便",
+      "url": "https://www.d-id.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "captions",
+      "name": "Captions",
+      "cat": "video",
+      "desc": "AI 剪辑与自动字幕，短视频常用",
+      "url": "https://www.captions.ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "descript",
+      "name": "Descript",
+      "cat": "video",
+      "desc": "像编辑文档一样剪音视频",
+      "url": "https://www.descript.com/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "opusclip",
+      "name": "OpusClip",
+      "cat": "video",
+      "desc": "长视频自动切成短视频片段",
+      "url": "https://www.opus.pro/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "capcut",
+      "name": "CapCut",
+      "cat": "video",
+      "desc": "剪映国际版，AI 字幕与特效齐全",
+      "url": "https://www.capcut.com/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "invideo",
+      "name": "InVideo",
+      "cat": "video",
+      "desc": "模板化视频生成，脚本到成片一条龙",
+      "url": "https://invideo.io/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "veed",
+      "name": "VEED",
+      "cat": "video",
+      "desc": "在线剪辑 + 自动字幕 + 翻译",
+      "url": "https://www.veed.io/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "veo",
+      "name": "Veo",
+      "cat": "video",
+      "desc": "Google 视频生成模型，物理与运镜自然",
+      "url": "https://deepmind.google/models/veo/",
+      "tags": [
+        "免费试用"
+      ],
+      "hot": false
+    },
+    {
+      "id": "fish-audio",
+      "name": "Fish Audio",
+      "cat": "audio",
+      "desc": "开源 TTS，音色克隆门槛低",
+      "url": "https://fish.audio/",
+      "tags": [
+        "免费",
+        "开源"
+      ],
+      "hot": false
+    },
+    {
+      "id": "ttsmaker",
+      "name": "TTSMaker",
+      "cat": "audio",
+      "desc": "免费在线配音，多语种多音色",
+      "url": "https://ttsmaker.cn/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "魔音工坊",
+      "name": "魔音工坊",
+      "cat": "audio",
+      "desc": "中文配音与声音克隆，短视频常用",
+      "url": "https://www.moyin.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "lalal-ai",
+      "name": "LALAL.AI",
+      "cat": "audio",
+      "desc": "人声与伴奏分离，音质干净",
+      "url": "https://www.lalal.ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "moises",
+      "name": "Moises",
+      "cat": "audio",
+      "desc": "分轨与节拍检测，练琴与混音用",
+      "url": "https://moises.ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "aiva",
+      "name": "AIVA",
+      "cat": "audio",
+      "desc": "AI 作曲，可指定情绪与风格",
+      "url": "https://www.aiva.ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "mubert",
+      "name": "Mubert",
+      "cat": "audio",
+      "desc": "按场景生成免版税背景音乐",
+      "url": "https://mubert.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "网易天音",
+      "name": "网易天音",
+      "cat": "audio",
+      "desc": "网易 AI 音乐创作，中文歌友好",
+      "url": "https://tianyin.163.com/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "speechify",
+      "name": "Speechify",
+      "cat": "audio",
+      "desc": "网页与文档朗读，听书场景",
+      "url": "https://speechify.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "krisp",
+      "name": "Krisp",
+      "cat": "audio",
+      "desc": "实时降噪，会议与录音去背景音",
+      "url": "https://krisp.ai/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "microsoft-365-copilot",
+      "name": "Microsoft 365 Copilot",
+      "cat": "office",
+      "desc": "Word / Excel / PPT 里的 AI 助手",
+      "url": "https://www.microsoft.com/microsoft-365/copilot",
+      "tags": [
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "讯飞智文",
+      "name": "讯飞智文",
+      "cat": "office",
+      "desc": "一句话生成 PPT 与文档",
+      "url": "https://zhiwen.xfyun.cn/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "boardmix-博思白板",
+      "name": "boardmix 博思白板",
+      "cat": "office",
+      "desc": "AI 生成思维导图与白板协作",
+      "url": "https://boardmix.cn/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "napkin-ai",
+      "name": "Napkin AI",
+      "cat": "office",
+      "desc": "把文字自动变成信息图",
+      "url": "https://www.napkin.ai/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "chatpdf",
+      "name": "ChatPDF",
+      "cat": "office",
+      "desc": "上传 PDF 直接问答",
+      "url": "https://www.chatpdf.com/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "humata",
+      "name": "Humata",
+      "cat": "office",
+      "desc": "长文档问答与摘要，适合合同与论文",
+      "url": "https://www.humata.ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "otter-ai",
+      "name": "Otter.ai",
+      "cat": "office",
+      "desc": "会议录音转写与摘要，英文最佳",
+      "url": "https://otter.ai/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "fireflies",
+      "name": "Fireflies",
+      "cat": "office",
+      "desc": "会议记录机器人，自动出纪要与待办",
+      "url": "https://fireflies.ai/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "beautiful-ai",
+      "name": "Beautiful.ai",
+      "cat": "office",
+      "desc": "排版自动对齐的 PPT 工具",
+      "url": "https://www.beautiful.ai/",
+      "tags": [
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "钉钉-ai",
+      "name": "钉钉 AI",
+      "cat": "office",
+      "desc": "钉钉内的 AI 助理与流程自动化",
+      "url": "https://www.dingtalk.com/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "腾讯文档",
+      "name": "腾讯文档",
+      "cat": "office",
+      "desc": "在线协作文档，内置 AI 写作与总结",
+      "url": "https://docs.qq.com/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "tabnine",
+      "name": "Tabnine",
+      "cat": "coding",
+      "desc": "企业级代码补全，可私有部署",
+      "url": "https://www.tabnine.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "amazon-q-developer",
+      "name": "Amazon Q Developer",
+      "cat": "coding",
+      "desc": "AWS 官方 AI 编程助手",
+      "url": "https://aws.amazon.com/q/developer/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "continue",
+      "name": "Continue",
+      "cat": "coding",
+      "desc": "开源 IDE 插件，可接任意模型",
+      "url": "https://www.continue.dev/",
+      "tags": [
+        "免费",
+        "开源"
+      ],
+      "hot": false
+    },
+    {
+      "id": "cline",
+      "name": "Cline",
+      "cat": "coding",
+      "desc": "VS Code 里的自主编码 Agent",
+      "url": "https://cline.bot/",
+      "tags": [
+        "免费",
+        "开源"
+      ],
+      "hot": false
+    },
+    {
+      "id": "aider",
+      "name": "Aider",
+      "cat": "coding",
+      "desc": "命令行配对编程，自动改仓库并提交",
+      "url": "https://aider.chat/",
+      "tags": [
+        "免费",
+        "开源"
+      ],
+      "hot": false
+    },
+    {
+      "id": "bolt-new",
+      "name": "Bolt.new",
+      "cat": "coding",
+      "desc": "一句话生成可运行的全栈应用",
+      "url": "https://bolt.new/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "v0",
+      "name": "v0",
+      "cat": "coding",
+      "desc": "Vercel 的 UI 生成器，直接出 React 代码",
+      "url": "https://v0.dev/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "lovable",
+      "name": "Lovable",
+      "cat": "coding",
+      "desc": "自然语言出全栈应用，可接数据库",
+      "url": "https://lovable.dev/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "zed",
+      "name": "Zed",
+      "cat": "coding",
+      "desc": "高性能编辑器，内置 AI 补全",
+      "url": "https://zed.dev/",
+      "tags": [
+        "免费",
+        "开源"
+      ],
+      "hot": false
+    },
+    {
+      "id": "jetbrains-ai",
+      "name": "JetBrains AI",
+      "cat": "coding",
+      "desc": "JetBrains 全家桶的 AI 助手",
+      "url": "https://www.jetbrains.com/ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "codegeex",
+      "name": "CodeGeeX",
+      "cat": "coding",
+      "desc": "智谱开源代码模型，国产 IDE 适配广",
+      "url": "https://codegeex.cn/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "aixcoder",
+      "name": "aiXcoder",
+      "cat": "coding",
+      "desc": "国产代码补全，支持私有化",
+      "url": "https://www.aixcoder.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "cody",
+      "name": "Cody",
+      "cat": "coding",
+      "desc": "基于代码库检索的问答与补全",
+      "url": "https://sourcegraph.com/cody",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "warp",
+      "name": "Warp",
+      "cat": "coding",
+      "desc": "AI 终端，自然语言转命令",
+      "url": "https://www.warp.dev/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "framer",
+      "name": "Framer",
+      "cat": "design",
+      "desc": "AI 生成站点并一键发布",
+      "url": "https://www.framer.com/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "uizard",
+      "name": "Uizard",
+      "cat": "design",
+      "desc": "草图转可编辑 UI 原型",
+      "url": "https://uizard.io/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "visily",
+      "name": "Visily",
+      "cat": "design",
+      "desc": "截图或文字转线框图",
+      "url": "https://www.visily.ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "relume",
+      "name": "Relume",
+      "cat": "design",
+      "desc": "AI 生成网站结构图与线框",
+      "url": "https://www.relume.io/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "khroma",
+      "name": "Khroma",
+      "cat": "design",
+      "desc": "按偏好生成配色方案",
+      "url": "https://www.khroma.co/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "coolors",
+      "name": "Coolors",
+      "cat": "design",
+      "desc": "快速配色与调色板管理",
+      "url": "https://coolors.co/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "pacdora",
+      "name": "Pacdora",
+      "cat": "design",
+      "desc": "包装与刀版图 3D 预览",
+      "url": "https://www.pacdora.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "durable",
+      "name": "Durable",
+      "cat": "design",
+      "desc": "几十秒生成小企业官网",
+      "url": "https://durable.co/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "webflow",
+      "name": "Webflow",
+      "cat": "design",
+      "desc": "可视化建站，AI 生成布局",
+      "url": "https://webflow.com/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "artificial-analysis",
+      "name": "Artificial Analysis",
+      "cat": "model",
+      "desc": "模型质量、速度、价格的权威横向榜单",
+      "url": "https://artificialanalysis.ai/",
+      "tags": [
+        "免费"
+      ],
+      "hot": true
+    },
+    {
+      "id": "lmarena",
+      "name": "LMArena",
+      "cat": "model",
+      "desc": "盲测投票的模型竞技场，看真实偏好",
+      "url": "https://lmarena.ai/",
+      "tags": [
+        "免费"
+      ],
+      "hot": true
+    },
+    {
+      "id": "google-ai-studio",
+      "name": "Google AI Studio",
+      "cat": "model",
+      "desc": "Gemini 官方调试台，免费额度大",
+      "url": "https://aistudio.google.com/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "groq",
+      "name": "Groq",
+      "cat": "model",
+      "desc": "LPU 推理，速度极快",
+      "url": "https://groq.com/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "together-ai",
+      "name": "Together AI",
+      "cat": "model",
+      "desc": "开源模型托管与微调",
+      "url": "https://www.together.ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "fireworks-ai",
+      "name": "Fireworks AI",
+      "cat": "model",
+      "desc": "高吞吐推理与模型部署",
+      "url": "https://fireworks.ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "replicate",
+      "name": "Replicate",
+      "cat": "model",
+      "desc": "一个 API 跑上千个开源模型",
+      "url": "https://replicate.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "硅基流动",
+      "name": "硅基流动",
+      "cat": "model",
+      "desc": "国内开源模型 API，价格低",
+      "url": "https://siliconflow.cn/",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "阿里云百炼",
+      "name": "阿里云百炼",
+      "cat": "model",
+      "desc": "通义系列模型的一站式平台",
+      "url": "https://bailian.console.aliyun.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "arxiv",
+      "name": "arXiv",
+      "cat": "model",
+      "desc": "论文预印本原始出处",
+      "url": "https://arxiv.org/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "papers-with-code",
+      "name": "Papers with Code",
+      "cat": "model",
+      "desc": "论文配代码与榜单",
+      "url": "https://paperswithcode.com/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "kaggle",
+      "name": "Kaggle",
+      "cat": "model",
+      "desc": "数据集、竞赛与免费 GPU",
+      "url": "https://www.kaggle.com/",
+      "tags": [
+        "免费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "llamaindex",
+      "name": "LlamaIndex",
+      "cat": "model",
+      "desc": "RAG 与 Agent 的数据框架",
+      "url": "https://www.llamaindex.ai/",
+      "tags": [
+        "免费",
+        "开源"
+      ],
+      "hot": false
+    },
+    {
+      "id": "n8n",
+      "name": "n8n",
+      "cat": "model",
+      "desc": "开源自动化工作流，可接大模型",
+      "url": "https://n8n.io/",
+      "tags": [
+        "免费",
+        "开源"
+      ],
+      "hot": false
+    },
+    {
+      "id": "影刀-rpa",
+      "name": "影刀 RPA",
+      "cat": "business",
+      "desc": "国产 RPA，拼装式流程自动化",
+      "url": "https://www.yingdao.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "hunyuan",
+      "name": "腾讯混元",
+      "cat": "business",
+      "desc": "腾讯云上的混元大模型平台与 API",
+      "url": "https://cloud.tencent.com/product/hunyuan",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "网易七鱼",
+      "name": "网易七鱼",
+      "cat": "business",
+      "desc": "智能客服与工单，电商常用",
+      "url": "https://qiyukf.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "讯飞开放平台",
+      "name": "讯飞开放平台",
+      "cat": "business",
+      "desc": "语音识别与合成的能力市场",
+      "url": "https://www.xfyun.cn/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "探迹",
+      "name": "探迹",
+      "cat": "business",
+      "desc": "AI 销售线索挖掘与客户触达",
+      "url": "https://www.tungee.com/",
+      "tags": [
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "sapling",
+      "name": "Sapling",
+      "cat": "safety",
+      "desc": "AI 文本检测，面向企业场景",
+      "url": "https://sapling.ai/ai-content-detector",
+      "tags": [
+        "免费",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "winston-ai",
+      "name": "Winston AI",
+      "cat": "safety",
+      "desc": "AI 内容检测，主打高准确率",
+      "url": "https://gowinston.ai/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "网易易盾",
+      "name": "网易易盾",
+      "cat": "safety",
+      "desc": "内容安全检测，覆盖文本图片音频",
+      "url": "https://dun.163.com/",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "数美科技",
+      "name": "数美科技",
+      "cat": "safety",
+      "desc": "风控与内容审核 SaaS",
+      "url": "https://www.ishumei.com/",
+      "tags": [
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "阿里云内容安全",
+      "name": "阿里云内容安全",
+      "cat": "safety",
+      "desc": "文本图像审核 API",
+      "url": "https://www.aliyun.com/product/lvwang",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "腾讯云天御",
+      "name": "腾讯云天御",
+      "cat": "safety",
+      "desc": "内容安全与文本审核",
+      "url": "https://cloud.tencent.com/product/tms",
+      "tags": [
+        "免费试用",
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "瑞莱智慧",
+      "name": "瑞莱智慧",
+      "cat": "safety",
+      "desc": "AI 安全与深度伪造检测",
+      "url": "https://www.realai.ai/",
+      "tags": [
+        "付费"
+      ],
+      "hot": false
+    },
+    {
+      "id": "hive-moderation",
+      "name": "Hive Moderation",
+      "cat": "safety",
+      "desc": "多模态内容审核 API",
+      "url": "https://hivemoderation.com/",
+      "tags": [
+        "付费"
+      ],
+      "hot": false
     }
   ]
 }

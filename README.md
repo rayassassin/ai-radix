@@ -4,8 +4,8 @@
 
 | 页面 | 仿照 | 内容 |
 | --- | --- | --- |
-| **模型目录** `index.html` | [hvoyai.com/models](https://www.hvoyai.com/models/) | 466+ 模型的实时价格、上下文、能力，多维筛选 / 排序 / 横向对比 |
-| **AI 工具导航** `tools.html` | [ai-bot.cn](https://ai-bot.cn/) · [hvoyai.com/ai-tools](https://www.hvoyai.com/ai-tools/) | 84 个按场景归类的 AI 工具，人工精选 |
+| **AI 大模型** `index.html` | [hvoyai.com/models](https://www.hvoyai.com/models/) | 466+ 模型的实时价格、上下文、能力，多维筛选 / 排序 / 分页 / 横向对比 |
+| **AI 工具集** `tools.html` | [ai-bot.cn](https://ai-bot.cn/) · [hvoyai.com/ai-tools](https://www.hvoyai.com/ai-tools/) | 218 款按 12 个场景归类的 AI 工具，人工精选 |
 
 模型页在**新模型上线时自动推送企业微信**（每天 8/12/16/20 点检测）。
 
@@ -50,8 +50,8 @@
 
 ```
 llm-radar/
-├── index.html / app.js / style.css   # 模型目录（原生 JS，无构建、无 CDN）
-├── tools.html / tools.js             # AI 工具导航（共用 style.css）
+├── index.html / app.js / style.css   # AI 大模型（原生 JS，无构建、无 CDN）
+├── tools.html / tools.js             # AI 工具集（共用 style.css）
 ├── build.sh                 # 生成纯静态发布目录 dist/
 ├── run.sh                   # 本地：抓数据 + 起服务
 ├── update.sh                # 定时入口：抓数据 + 推企微（cron 调这个）
@@ -259,10 +259,10 @@ cd /opt/llm-radar && python3 scripts/push_wecom.py --test
 
 ---
 
-## AI 工具导航（`tools.html`）
+## AI 工具集（`tools.html`）
 
 仿 [ai-bot.cn](https://ai-bot.cn/) 与 [hvoyai.com/ai-tools](https://www.hvoyai.com/ai-tools/) 做的工具清单页，
-和模型目录共用同一套视觉与顶栏导航，两个页面顶部可直接互跳。
+和 AI 大模型页共用同一套视觉与顶栏导航（`AI 大模型` / `AI 工具集`），两个页面顶部可直接互跳。
 
 ### 为什么这份数据是人工维护
 
@@ -310,6 +310,21 @@ cd /opt/llm-radar && python3 scripts/push_wecom.py --test
 
 分类下没有工具时，该分类按钮**自动隐藏**，不会点出空列表。
 
+批量补录可以用 `scripts/expand_tools.py`：它按 `分类|名称|地址|简介|标签|是否推荐`
+一行一条的格式合并进 JSON，已存在的同名或同址工具自动跳过。**新增后务必跑一遍
+链接验证**（见下节），人工写的地址里总有失效的。
+
+### 分类
+
+| 分类 | 数量 | 分类 | 数量 |
+| --- | --- | --- | --- |
+| 对话与智能体 | 27 | 编程与开发 | 22 |
+| 图像与视觉 | 23 | 模型与学习资源 | 22 |
+| 视频与动画 | 21 | 办公与效率 | 19 |
+| 写作与内容 | 16 | 音频与语音 | 16 |
+| 设计与创意 | 15 | 搜索与研究 | 13 |
+| 内容检测与安全 | 13 | 行业与商业场景 | 11 |
+
 ### 交互
 
 | 操作 | 效果 |
@@ -318,13 +333,17 @@ cd /opt/llm-radar && python3 scripts/push_wecom.py --test
 | 分类按钮 | 单选，写进 URL hash（`#cat=image` 可直接分享） |
 | 标签按钮 | 多选，取「或」（选免费+开源 = 两者都看） |
 | 排序 | 推荐优先 / 名称（中文按拼音）/ 按分类 |
+| 分页 | 默认 48 个/页，可切 24 / 96；改筛选或排序自动回第 1 页 |
 | 有筛选时 | 自动隐藏「热门推荐」区，避免和结果重复占屏 |
 
 ### 链接校验
 
-清单里的 84 个 URL 做过一次并发可达性验证：**0 个 404、0 个无法解析**。
-9 个返回 403 的都是 Cloudflare 反爬（ChatGPT / Claude / Midjourney / Canva 等），
-链接本身有效 —— 浏览器正常打开没问题，只是脚本抓不了。
+清单里的 218 个 URL 做过并发可达性验证：**202 个直连可达，16 个返回 403**。
+403 全部来自 Cloudflare / Vercel 反爬（ChatGPT、Claude、Perplexity、Midjourney、Ideogram 等），
+链接本身有效 —— 浏览器打开正常，只是脚本抓不了。
+
+验证时揪出并换掉了 3 条真死链：腾讯智影（`zenvideo.qq.com` 已停）、跃问（`yuewen.cn` 无解析）、
+腾讯云 AI（原路径 404），分别替换为剪映、阶跃星辰、腾讯混元。
 
 ---
 

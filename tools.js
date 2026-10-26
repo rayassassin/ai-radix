@@ -1,10 +1,10 @@
-/* LLM Radar · AI 工具导航
+/* LLM Radar · AI 工具集
  *
  * 数据源：data/tools.json（人工维护）。
- * 与模型目录页的差异：工具没有公开聚合 API，抓别人导航站也不合适，
+ * 与 AI 大模型页的差异：工具没有公开聚合 API，抓别人导航站也不合适，
  * 所以这份清单走人工精选 + 版本化维护，页面只做展示与筛选。
  *
- * 交互：搜索 / 分类 / 标签 / 排序，全部在前端完成，无后端依赖。
+ * 交互：搜索 / 分类 / 标签 / 排序 / 分页，全部在前端完成，无后端依赖。
  */
 (function () {
   'use strict';
@@ -23,6 +23,8 @@
     cat: 'all',
     tags: new Set(),
     sort: 'hot',
+    page: 1,
+    pageSize: 48,
   };
 
   const el = {
@@ -35,6 +37,7 @@
     hotSection: $('#hotSection'),
     hotGrid: $('#hotGrid'),
     toolGrid: $('#toolGrid'),
+    pager: $('#pager'),
     emptyState: $('#emptyState'),
     allHead: $('#allHead'),
     allHeadNote: $('#allHeadNote'),
@@ -152,9 +155,57 @@
       : '';
   }
 
+  function renderPager(total, totalPages) {
+    if (totalPages <= 1) { el.pager.innerHTML = ''; return; }
+    const p = state.page;
+    const from = (p - 1) * state.pageSize + 1;
+    const to = Math.min(p * state.pageSize, total);
+
+    // 页码序列：首尾固定 + 当前页左右各一页，中间省略
+    const wanted = new Set([1, totalPages]);
+    for (let i = p - 1; i <= p + 1; i++) {
+      if (i > 1 && i < totalPages) wanted.add(i);
+    }
+    let nav = '';
+    let prev = 0;
+    for (const n of [...wanted].sort((a, b) => a - b)) {
+      if (prev && n - prev > 1) nav += '<span class="pager-gap">…</span>';
+      nav += `<button class="pager-btn ${n === p ? 'on' : ''}" data-page="${n}">${n}</button>`;
+      prev = n;
+    }
+
+    el.pager.innerHTML = `
+      <span class="pager-info">第 <strong>${from}</strong>–<strong>${to}</strong> 个，共 <strong>${total}</strong> 个</span>
+      <button class="pager-btn" data-page="${p - 1}" ${p === 1 ? 'disabled' : ''} title="上一页" aria-label="上一页">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      ${nav}
+      <button class="pager-btn" data-page="${p + 1}" ${p === totalPages ? 'disabled' : ''} title="下一页" aria-label="下一页">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      <select class="pager-size" id="pageSizeSel" aria-label="每页个数">
+        ${[24, 48, 96].map((n) => `<option value="${n}" ${n === state.pageSize ? 'selected' : ''}>${n} 个/页</option>`).join('')}
+      </select>`;
+  }
+
+  function goPage(n) {
+    const totalPages = Math.max(1, Math.ceil(filtered().length / state.pageSize));
+    const target = Math.min(Math.max(1, n), totalPages);
+    if (target === state.page) return;
+    state.page = target;
+    render();
+    // 翻页后回到列表顶部，避开吸顶的顶栏与工具条
+    const anchor = el.toolGrid.getBoundingClientRect().top + window.scrollY - 118;
+    window.scrollTo({ top: Math.max(0, anchor), behavior: 'smooth' });
+  }
+
   function render() {
     const list = filtered();
     const hasFilter = state.cat !== 'all' || state.tags.size > 0 || !!state.search;
+
+    // 筛掉或改每页条数后页码可能越界，先夹回来
+    const totalPages = Math.max(1, Math.ceil(list.length / state.pageSize));
+    if (state.page > totalPages) state.page = totalPages;
 
     el.resultCount.innerHTML = hasFilter
       ? `筛选出 <strong>${list.length}</strong> / ${state.tools.length} 个工具`
@@ -168,7 +219,12 @@
     }
     el.allHead.style.display = hasFilter ? 'none' : '';
 
-    el.toolGrid.innerHTML = list.map((t) => cardHTML(t)).join('');
+    const start = (state.page - 1) * state.pageSize;
+    el.toolGrid.innerHTML = list.slice(start, start + state.pageSize)
+      .map((t) => cardHTML(t)).join('');
+
+    renderPager(list.length, totalPages);
+
     el.emptyState.innerHTML = list.length ? '' : `
       <div class="empty">
         <h3>没有匹配的工具</h3>
@@ -184,6 +240,7 @@
     state.cat = 'all';
     state.tags.clear();
     state.search = '';
+    state.page = 1;
     el.search.value = '';
     renderChips();
     render();
@@ -202,12 +259,14 @@
       clearTimeout(timer);
       timer = setTimeout(() => {
         state.search = el.search.value.trim();
+        state.page = 1;
         render();
       }, 120);
     });
 
     el.sort.addEventListener('change', () => {
       state.sort = el.sort.value;
+      state.page = 1;
       render();
     });
 
@@ -215,6 +274,7 @@
       const btn = e.target.closest('[data-cat]');
       if (!btn) return;
       state.cat = btn.dataset.cat;
+      state.page = 1;
       renderChips();
       render();
       syncHash();
@@ -225,7 +285,23 @@
       if (!btn) return;
       const t = btn.dataset.tag;
       if (state.tags.has(t)) state.tags.delete(t); else state.tags.add(t);
+      state.page = 1;
       renderChips();
+      render();
+    });
+
+    // 分页：页码按钮走事件委托（内容每次重绘）
+    el.pager.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-page]');
+      if (!btn || btn.disabled) return;
+      goPage(Number(btn.dataset.page));
+    });
+    el.pager.addEventListener('change', (e) => {
+      if (e.target.id !== 'pageSizeSel') return;
+      const size = Number(e.target.value);
+      if (![24, 48, 96].includes(size)) return;
+      state.pageSize = size;
+      state.page = 1;
       render();
     });
 
