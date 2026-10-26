@@ -107,7 +107,7 @@
     const d = t.pop_dims || {};
     const e = (k) => (d[k] == null ? '—' : d[k]);
     return [
-      `${t.name} 流行度 ${t.pop ?? '—'}（${t.pop_tier || '—'} 级）`,
+      `${t.name} 评分 ${t.pop ?? '—'}（${t.pop_tier || '—'} 级）· 流行度指数`,
       `用户规模 ${e('users')} ｜ 热度趋势 ${e('trend')}`,
       `商业表现 ${e('commercial')} ｜ 技术生态 ${e('eco')}`,
     ].join('\n');
@@ -121,7 +121,7 @@
     const pop = t.pop;
     const popHTML = pop == null ? '' : `
           <span class="pop-badge ${popClass(pop)}" title="${esc(popTip(t))}">
-            <span class="pop-label">流行</span>${pop}
+            <span class="pop-label">评分</span>${pop}
           </span>`;
     return `
       <a class="tool-card${hot ? ' is-hot' : ''}" href="${esc(t.url)}"
@@ -136,11 +136,12 @@
             </div>
             <div class="tool-cat" style="--c:${esc(color)}">${esc(cat.name || t.cat)}</div>
           </div>
-          <div class="tool-flags">${hot ? '<span class="hot-flag">推荐</span>' : ''}${popHTML}
-          </div>
+          ${hot ? '<span class="hot-flag">推荐</span>' : ''}
         </div>
         <p class="tool-desc">${esc(t.desc)}</p>
-        <div class="tool-tags">${tags}</div>
+        <div class="tool-foot">
+          <div class="tool-tags">${tags}</div>${popHTML}
+        </div>
       </a>`;
   }
 
