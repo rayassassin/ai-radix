@@ -14,7 +14,7 @@
 | --- | --- | --- |
 | 展示 | GitHub Pages（静态） | 页面本身，无需构建 |
 | 数据 | 浏览器直连 OpenRouter | 每次打开实时拉取，站点永不过期 |
-| 定时检测 | 自建服务器 + cron | 每日 12:00 抓取并 diff 新模型，推送订阅成员 |
+| 定时检测 | 自建服务器 + cron | 每小时抓取并 diff 新模型，有变化才推送订阅成员 |
 | 推送 | 企微自建应用消息 | 以应用身份发消息给成员 |
 
 **为什么数据在浏览器拉而不是定时写入仓库**：OpenRouter 接口的 CORS 全开
@@ -179,7 +179,7 @@ chmod 600 ~/.llm-radar/config.json
 cd /opt/llm-radar && python3 scripts/push_wecom.py --test
 
 # 定时（服务器时区为 Asia/Shanghai，直接写北京时间）
-0 12 * * * cd /opt/llm-radar && ./update.sh >> /opt/llm-radar/logs/cron.log 2>&1
+0 * * * * cd /opt/llm-radar && ./update.sh >> /opt/llm-radar/logs/cron.log 2>&1
 ```
 
 `update.sh` 退出码约定：`0` 成功或无新增，`1` 抓取失败，`2` 通道未配置（视为未启用），
@@ -227,7 +227,7 @@ cd /opt/llm-radar && python3 scripts/push_wecom.py --test
 > 模态：文字 / 图片 / 视频 → 文字
 > 能力：推理 · 工具 · JSON
 
-> 数据源 OpenRouter ｜ 每日 12:00 自动同步
+> 数据源 OpenRouter ｜ 每小时自动同步
 > [打开全景看板](https://rayassassin.github.io/llm-radar/)
 ```
 

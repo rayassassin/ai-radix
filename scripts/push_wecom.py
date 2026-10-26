@@ -269,7 +269,7 @@ def build_footer(meta: dict, site_url: str, omitted: int = 0) -> str:
     lines = []
     if omitted > 0:
         lines.append(f"> 另有 {omitted} 个模型未展开，完整列表见看板。")
-    lines.append(f"> 数据源 OpenRouter ｜ 每日 12:00 自动同步")
+    lines.append("> 数据源 OpenRouter ｜ 每小时自动同步")
     lines.append(f"> [打开全景看板]({site_url})")
     return "\n".join(lines)
 
