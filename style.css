@@ -1334,9 +1334,9 @@ input[type="checkbox"]:checked::after {
   .site-foot { flex-direction: column; gap: 4px; }
 }
 
-/* ---------------- 流行度指数 ---------------- */
+/* ---------------- 流行度评分（火焰图标 + 分数） ---------------- */
 
-/* 卡片底部：左标签、右评分 */
+/* 卡片底部：左价格标签、右评分 */
 .tool-foot {
   display: flex;
   align-items: center;
@@ -1349,49 +1349,68 @@ input[type="checkbox"]:checked::after {
   min-width: 0;
 }
 
-.pop-badge {
+.pop-score {
   flex-shrink: 0;
   margin-left: auto;
   display: inline-flex;
-  align-items: baseline;
-  gap: 2px;
-  padding: 1px 6px;
-  border-radius: 5px;
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 1.55;
+  align-items: center;
+  gap: 3px;
   font-variant-numeric: tabular-nums;
-  white-space: nowrap;
   cursor: help;
-  border: 1px solid transparent;
+  line-height: 1;
 }
-.pop-badge .pop-label {
-  font-size: 9px;
-  font-weight: 500;
-  opacity: .72;
-  letter-spacing: .02em;
+.pop-score .flame {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  /* 火焰本身用亮色，数字用同色系的深色，保证白底可读 */
+  color: var(--fl);
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .06));
 }
-
-/* 三档配色：主流 / 常用 / 小众 */
-.pop-badge.pop-hi {
-  background: #eeecfd;
-  color: #4a45c9;
-  border-color: #ddd9f8;
-}
-.pop-badge.pop-mid {
-  background: #eef1f5;
-  color: #4d5a69;
-  border-color: #e2e7ee;
-}
-.pop-badge.pop-lo {
-  background: var(--panel-2);
-  color: var(--text-3);
-  border-color: var(--line);
+.pop-score b {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--tx);
 }
 
-.tool-card:hover .pop-badge.pop-hi { background: #e4e0fc; }
+/* 五档：红 → 橙 → 黄 → 绿 → 灰 */
+.pop-score.pop-r5 { --fl: #e5484d; --tx: #c2222b; }
+.pop-score.pop-r4 { --fl: #f97316; --tx: #b8500a; }
+.pop-score.pop-r3 { --fl: #f2b200; --tx: #8a6400; }
+.pop-score.pop-r2 { --fl: #2f9e5f; --tx: #1f7444; }
+.pop-score.pop-r1 { --fl: #a5a5b4; --tx: #6e6e7e; }
+
+.tool-card:hover .pop-score .flame {
+  filter: drop-shadow(0 1px 3px color-mix(in srgb, var(--fl) 55%, transparent));
+}
+
+/* 图例 */
+.pop-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.pop-legend .pop-score {
+  margin-left: 0;
+  gap: 2px;
+}
+.pop-legend .flame { width: 11px; height: 11px; }
+.pop-legend b {
+  font-size: 10.5px;
+  font-weight: 600;
+}
 
 @media (max-width: 640px) {
-  .pop-badge { font-size: 10.5px; padding: 0 5px; }
-  .pop-badge .pop-label { font-size: 8.5px; }
+  .pop-score .flame { width: 12px; height: 12px; }
+  .pop-score b { font-size: 12px; }
+
+  /* 小屏下图例单独占一行右对齐，避免和结果数挤在一行 */
+  .result-bar { flex-wrap: wrap; row-gap: 6px; }
+  .pop-legend {
+    flex-basis: 100%;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  .pop-legend b { font-size: 10px; }
 }

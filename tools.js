@@ -38,6 +38,7 @@
     hotGrid: $('#hotGrid'),
     toolGrid: $('#toolGrid'),
     pager: $('#pager'),
+    popLegend: $('#popLegend'),
     emptyState: $('#emptyState'),
     allHead: $('#allHead'),
     allHeadNote: $('#allHeadNote'),
@@ -95,11 +96,22 @@
     return n ? n[0].toUpperCase() : '?';
   }
 
-  // 流行度分档：≥85 主流、70–84 常用、<70 小众
+  // 评分分五档，红 → 橙 → 黄 → 绿 → 灰（越高越热）
   function popClass(v) {
-    if (v >= 85) return 'pop-hi';
-    if (v >= 70) return 'pop-mid';
-    return 'pop-lo';
+    if (v >= 90) return 'pop-r5';
+    if (v >= 80) return 'pop-r4';
+    if (v >= 70) return 'pop-r3';
+    if (v >= 60) return 'pop-r2';
+    return 'pop-r1';
+  }
+
+  // 火苗轮廓：左侧带缺口的标准火焰剪影，缩小到 13px 仍能认出
+  const FLAME_PATH = 'M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 '
+    + '.5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z';
+
+  function flameSVG() {
+    return `<svg class="flame" viewBox="0 0 24 24" aria-hidden="true">`
+      + `<path d="${FLAME_PATH}" fill="currentColor"/></svg>`;
   }
 
   // 四维明细写进原生 tooltip，不占卡片版面
@@ -120,9 +132,7 @@
       `<span class="tool-tag ${TAG_CLASS[x] || ''}">${esc(x)}</span>`).join('');
     const pop = t.pop;
     const popHTML = pop == null ? '' : `
-          <span class="pop-badge ${popClass(pop)}" title="${esc(popTip(t))}">
-            <span class="pop-label">评分</span>${pop}
-          </span>`;
+          <span class="pop-score ${popClass(pop)}" title="${esc(popTip(t))}">${flameSVG()}<b>${pop}</b></span>`;
     return `
       <a class="tool-card${hot ? ' is-hot' : ''}" href="${esc(t.url)}"
          target="_blank" rel="noopener" title="${esc(t.name)}：${esc(t.desc)}">
@@ -143,6 +153,16 @@
           <div class="tool-tags">${tags}</div>${popHTML}
         </div>
       </a>`;
+  }
+
+  function renderLegend() {
+    const bands = [
+      ['pop-r5', '≥90'], ['pop-r4', '80–89'], ['pop-r3', '70–79'],
+      ['pop-r2', '60–69'], ['pop-r1', '<60'],
+    ];
+    el.popLegend.innerHTML = bands
+      .map(([c, label]) => `<span class="pop-score ${c}">${flameSVG()}<b>${esc(label)}</b></span>`)
+      .join('');
   }
 
   function renderStats() {
@@ -352,6 +372,7 @@
 
       el.updatedAt.innerHTML = `<span class="dot-live"></span>人工精选 · 更新于 ${esc(data.updated_at || '—')}`;
 
+      renderLegend();
       renderStats();
       renderChips();
       render();
