@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LLM Radar · 大模型全景看板</title>
+<meta name="description" content="全网大模型价格、能力、上下文与上线时间全景，支持筛选、排序与横向对比。">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%235b5bd6'/><circle cx='16' cy='16' r='3' fill='white'/><circle cx='16' cy='16' r='8' fill='none' stroke='white' stroke-opacity='.55' stroke-width='1.6'/><circle cx='16' cy='16' r='13' fill='none' stroke='white' stroke-opacity='.28' stroke-width='1.4'/></svg>">
+</head>
+<body>
+
+<!-- ============ 顶栏 ============ -->
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
+        <circle cx="12" cy="12" r="2.6" fill="#fff" stroke="none"/>
+        <circle cx="12" cy="12" r="6.4" opacity=".7"/>
+        <circle cx="12" cy="12" r="10.2" opacity=".38"/>
+      </svg>
+    </div>
+    <div class="brand-text">
+      <span class="brand-title">LLM Radar</span>
+      <span class="brand-sub">大模型全景看板</span>
+    </div>
+  </div>
+
+  <div class="topbar-spacer"></div>
+
+  <div class="topbar-meta">
+    <span id="updatedAt"><span class="dot-live"></span>加载中…</span>
+    <a class="btn-ghost" id="sourceLink" href="https://openrouter.ai/models" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+      数据源
+    </a>
+    <button class="btn-ghost" id="reloadBtn" title="重新拉取本地数据（需先跑抓取脚本）">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 3v6h-6"/></svg>
+      刷新
+    </button>
+  </div>
+</header>
+
+<div class="shell">
+
+  <!-- ============ Hero ============ -->
+  <section class="hero">
+    <div class="hero-eyebrow">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
+      Model Directory
+    </div>
+    <h1>大模型全景看板</h1>
+    <p>覆盖全网主流厂商的模型价格、上下文窗口、模态能力与上线时间。支持多维筛选、排序与横向对比，数据每日自动同步。</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-label">收录模型</div>
+        <div class="stat-value" id="statTotal">—</div>
+        <div class="stat-foot" id="statTotalFoot">共 <span data-live="vendors">—</span> 家厂商</div>
+      </div>
+      <div class="stat accent-green">
+        <div class="stat-label">开放权重</div>
+        <div class="stat-value" id="statOpen">—</div>
+        <div class="stat-foot" id="statOpenFoot">可本地部署</div>
+      </div>
+      <div class="stat accent-amber">
+        <div class="stat-label">近 30 天新增</div>
+        <div class="stat-value" id="statNew">—</div>
+        <div class="stat-foot">已上线可调用</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">最强智力指数</div>
+        <div class="stat-value" id="statIq">—</div>
+        <div class="stat-foot" id="statIqFoot">Artificial Analysis</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 工具条 ============ -->
+  <div class="toolbar">
+    <div class="toolbar-row">
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="search" type="search" placeholder="搜索模型名、厂商、ID 或描述…" autocomplete="off" spellcheck="false">
+        <span class="kbd-hint">/</span>
+      </div>
+
+      <div class="chips" id="typeChips"></div>
+
+      <div class="spacer"></div>
+
+      <select class="select" id="sortSelect" title="排序方式">
+        <option value="newest">最新发布</option>
+        <option value="iq">智力指数从高到低</option>
+        <option value="price-asc">价格从低到高</option>
+        <option value="price-desc">价格从高到低</option>
+        <option value="context">上下文从大到小</option>
+        <option value="name">名称 A→Z</option>
+      </select>
+
+      <div class="seg" id="viewSeg">
+        <button data-view="table" class="on" title="表格视图">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 10v10"/></svg>
+          表格
+        </button>
+        <button data-view="card" title="卡片视图">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          卡片
+        </button>
+      </div>
+    </div>
+
+    <div class="toolbar-row">
+      <select class="select" id="vendorSelect" title="按厂商筛选"></select>
+      <select class="select" id="ctxSelect" title="按上下文窗口筛选">
+        <option value="">全部上下文</option>
+        <option value="32768">≥ 32K</option>
+        <option value="131072">≥ 128K</option>
+        <option value="262144">≥ 256K</option>
+        <option value="1048576">≥ 1M</option>
+      </select>
+      <select class="select" id="priceSelect" title="按输入价格筛选">
+        <option value="">全部价格</option>
+        <option value="free">免费</option>
+        <option value="0-1">输入 &lt; ¥1</option>
+        <option value="1-5">¥1 – ¥5</option>
+        <option value="5-20">¥5 – ¥20</option>
+        <option value="20-">¥20 以上</option>
+      </select>
+
+      <div class="chip-sep"></div>
+
+      <div class="chips" id="capChips"></div>
+
+      <div class="spacer"></div>
+
+      <select class="select" id="currencySelect" title="价格币种">
+        <option value="CNY">人民币 ¥</option>
+        <option value="USD">美元 $</option>
+      </select>
+    </div>
+
+    <div class="active-filters" id="activeFilters"></div>
+  </div>
+
+  <!-- ============ 结果栏 ============ -->
+  <div class="result-bar">
+    <span class="result-count" id="resultCount">加载中…</span>
+    <span class="spacer"></span>
+    <span id="compareHint" style="font-size:11.5px;color:var(--text-3)">勾选左侧方框可加入对比</span>
+  </div>
+
+  <!-- ============ 内容 ============ -->
+  <div class="table-wrap" id="tableWrap">
+    <div class="table-scroll">
+      <table class="models">
+        <thead>
+          <tr>
+            <th class="col-check"><input type="checkbox" id="checkAll" title="全选当前结果"></th>
+            <th class="col-model sortable" data-sort="name">模型</th>
+            <th class="sortable" data-sort="vendor">厂商</th>
+            <th class="hide-xs">类型</th>
+            <th class="sortable hide-sm" data-sort="context">上下文</th>
+            <th class="hide-md">最大输出</th>
+            <th class="hide-sm">输入</th>
+            <th class="hide-md">输出</th>
+            <th class="hide-sm">能力</th>
+            <th class="sortable" data-sort="iq">智力</th>
+            <th class="sortable" data-sort="price-asc">价格 / 1M</th>
+            <th class="sortable hide-xs" data-sort="newest">发布</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+          <tr><td colspan="12" style="padding:0"><div class="skeleton-row"><div class="sk" style="width:30%"></div><div class="sk" style="width:12%"></div><div class="sk" style="width:8%"></div><div class="sk" style="width:14%"></div><div class="sk" style="width:10%"></div></div></div></td></tr>
+          <tr><td colspan="12" style="padding:0"><div class="skeleton-row"><div class="sk" style="width:26%"></div><div class="sk" style="width:14%"></div><div class="sk" style="width:10%"></div><div class="sk" style="width:16%"></div><div class="sk" style="width:8%"></div></div></div></td></tr>
+          <tr><td colspan="12" style="padding:0"><div class="skeleton-row"><div class="sk" style="width:34%"></div><div class="sk" style="width:10%"></div><div class="sk" style="width:12%"></div><div class="sk" style="width:12%"></div><div class="sk" style="width:10%"></div></div></div></td></tr>
+          <tr><td colspan="12" style="padding:0"><div class="skeleton-row"><div class="sk" style="width:28%"></div><div class="sk" style="width:13%"></div><div class="sk" style="width:9%"></div><div class="sk" style="width:15%"></div><div class="sk" style="width:11%"></div></div></div></td></tr>
+          <tr><td colspan="12" style="padding:0"><div class="skeleton-row"><div class="sk" style="width:31%"></div><div class="sk" style="width:11%"></div><div class="sk" style="width:11%"></div><div class="sk" style="width:13%"></div><div class="sk" style="width:9%"></div></div></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="cards" id="cardView" style="display:none"></div>
+
+  <div class="pager" id="pager"></div>
+
+  <div id="emptyState"></div>
+</div>
+
+<!-- ============ 详情抽屉 ============ -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-head" id="drawerHead"></div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-foot" id="drawerFoot"></div>
+</aside>
+
+<!-- ============ 对比栏 ============ -->
+<div class="compare-bar" id="compareBar">
+  <div class="compare-info">
+    <span id="compareText">已选 0 个</span>
+    <div class="compare-thumbs" id="compareThumbs"></div>
+  </div>
+  <div class="compare-actions">
+    <button class="btn-text-light" id="clearCompare">清空</button>
+    <button class="btn-primary" id="openCompare">开始对比</button>
+  </div>
+</div>
+
+<!-- ============ 对比弹窗 ============ -->
+<div class="modal" id="compareModal">
+  <div class="modal-panel">
+    <div class="modal-head">
+      <h2>模型对比</h2>
+      <span class="spacer" style="flex:1"></span>
+      <button class="drawer-close" style="position:static" id="closeCompare">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="compareBody"></div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

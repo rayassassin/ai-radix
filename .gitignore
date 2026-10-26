@@ -1,0 +1,14 @@
+# 构建产物
+dist/
+
+# 运行时数据：原始 API 备份体积大且可重新抓取
+data/raw_api.json
+
+# 日志与缓存
+logs/
+__pycache__/
+*.pyc
+.DS_Store
+
+# 本地配置：绝不入库（含 webhook 密钥）
+config.json

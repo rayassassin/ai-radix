@@ -1,0 +1,31 @@
+{
+  "site": {
+    "title": "LLM Radar",
+    "subtitle": "全网大模型价格 · 能力 · 上线全景",
+    "accent": "#5b5bd6",
+    "url": "https://rayassassin.github.io/llm-radar/"
+  },
+  "data": {
+    "source": "https://openrouter.ai/api/v1/models",
+    "usd_to_cny": 7.15,
+    "new_model_days": 30,
+    "timeout": 30
+  },
+  "wecom": {
+    "enabled": true,
+    "transport": "wxapp",
+    "wxapp": {
+      "env_file": "~/.llm-radar/wecom.env",
+      "touser": ""
+    },
+    "aibot": {
+      "chat_name": ""
+    },
+    "webhook": "",
+    "mention_all": false,
+    "only_push_new": true,
+    "push_on_first_run": false,
+    "max_bytes_per_message": 1800,
+    "price_change_threshold": 10
+  }
+}
