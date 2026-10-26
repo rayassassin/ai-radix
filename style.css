@@ -1333,3 +1333,59 @@ input[type="checkbox"]:checked::after {
   .tool-card { min-height: 0; }
   .site-foot { flex-direction: column; gap: 4px; }
 }
+
+/* ---------------- 流行度指数 ---------------- */
+
+.tool-flags {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+  margin-left: 4px;
+}
+
+.pop-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  padding: 1px 6px;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.55;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  cursor: help;
+  border: 1px solid transparent;
+}
+.pop-badge .pop-label {
+  font-size: 9px;
+  font-weight: 500;
+  opacity: .72;
+  letter-spacing: .02em;
+}
+
+/* 三档配色：主流 / 常用 / 小众 */
+.pop-badge.pop-hi {
+  background: #eeecfd;
+  color: #4a45c9;
+  border-color: #ddd9f8;
+}
+.pop-badge.pop-mid {
+  background: #eef1f5;
+  color: #4d5a69;
+  border-color: #e2e7ee;
+}
+.pop-badge.pop-lo {
+  background: var(--panel-2);
+  color: var(--text-3);
+  border-color: var(--line);
+}
+
+.tool-card:hover .pop-badge.pop-hi { background: #e4e0fc; }
+
+@media (max-width: 640px) {
+  .pop-badge { font-size: 10.5px; padding: 0 5px; }
+  .pop-badge .pop-label { font-size: 8.5px; }
+}

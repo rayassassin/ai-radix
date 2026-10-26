@@ -75,6 +75,9 @@
     const catOrder = (t) => state.cats.findIndex((c) => c.id === t.cat);
     list.sort((a, b) => {
       if (state.sort === 'name') return a.name.localeCompare(b.name, 'zh-Hans-CN');
+      if (state.sort === 'pop') {
+        return (b.pop ?? 0) - (a.pop ?? 0) || a.name.localeCompare(b.name);
+      }
       if (state.sort === 'cat') {
         return catOrder(a) - catOrder(b)
           || Number(!!b.hot) - Number(!!a.hot)
@@ -92,11 +95,34 @@
     return n ? n[0].toUpperCase() : '?';
   }
 
+  // 流行度分档：≥85 主流、70–84 常用、<70 小众
+  function popClass(v) {
+    if (v >= 85) return 'pop-hi';
+    if (v >= 70) return 'pop-mid';
+    return 'pop-lo';
+  }
+
+  // 四维明细写进原生 tooltip，不占卡片版面
+  function popTip(t) {
+    const d = t.pop_dims || {};
+    const e = (k) => (d[k] == null ? '—' : d[k]);
+    return [
+      `${t.name} 流行度 ${t.pop ?? '—'}（${t.pop_tier || '—'} 级）`,
+      `用户规模 ${e('users')} ｜ 热度趋势 ${e('trend')}`,
+      `商业表现 ${e('commercial')} ｜ 技术生态 ${e('eco')}`,
+    ].join('\n');
+  }
+
   function cardHTML(t, hot = false) {
     const cat = state.catMap[t.cat] || {};
     const color = cat.color || '#5b5bd6';
     const tags = (t.tags || []).map((x) =>
       `<span class="tool-tag ${TAG_CLASS[x] || ''}">${esc(x)}</span>`).join('');
+    const pop = t.pop;
+    const popHTML = pop == null ? '' : `
+          <span class="pop-badge ${popClass(pop)}" title="${esc(popTip(t))}">
+            <span class="pop-label">流行</span>${pop}
+          </span>`;
     return `
       <a class="tool-card${hot ? ' is-hot' : ''}" href="${esc(t.url)}"
          target="_blank" rel="noopener" title="${esc(t.name)}：${esc(t.desc)}">
@@ -110,7 +136,8 @@
             </div>
             <div class="tool-cat" style="--c:${esc(color)}">${esc(cat.name || t.cat)}</div>
           </div>
-          ${hot ? '<span class="hot-flag">推荐</span>' : ''}
+          <div class="tool-flags">${hot ? '<span class="hot-flag">推荐</span>' : ''}${popHTML}
+          </div>
         </div>
         <p class="tool-desc">${esc(t.desc)}</p>
         <div class="tool-tags">${tags}</div>

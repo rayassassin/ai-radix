@@ -74,7 +74,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 95,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 96,
+        "trend": 98,
+        "commercial": 93,
+        "eco": 90
+      }
     },
     {
       "id": "claude",
@@ -86,7 +94,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 95,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 96,
+        "trend": 98,
+        "commercial": 93,
+        "eco": 90
+      }
     },
     {
       "id": "gemini",
@@ -98,7 +114,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 94,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 96,
+        "trend": 95,
+        "commercial": 93,
+        "eco": 90
+      }
     },
     {
       "id": "deepseek-chat",
@@ -110,7 +134,15 @@
         "免费",
         "开源"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 95,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 96,
+        "trend": 98,
+        "commercial": 93,
+        "eco": 90
+      }
     },
     {
       "id": "kimi",
@@ -121,7 +153,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 84,
+        "trend": 84,
+        "commercial": 82,
+        "eco": 80
+      }
     },
     {
       "id": "doubao",
@@ -132,7 +172,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 84,
+        "trend": 84,
+        "commercial": 82,
+        "eco": 80
+      }
     },
     {
       "id": "tongyi",
@@ -143,7 +191,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 84,
+        "trend": 84,
+        "commercial": 82,
+        "eco": 80
+      }
     },
     {
       "id": "grok",
@@ -155,7 +211,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 84,
+        "trend": 84,
+        "commercial": 82,
+        "eco": 80
+      }
     },
     {
       "id": "metaso",
@@ -166,7 +230,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 72,
+        "trend": 71,
+        "commercial": 70,
+        "eco": 68
+      }
     },
     {
       "id": "tiangong",
@@ -177,7 +249,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 72,
+        "trend": 71,
+        "commercial": 70,
+        "eco": 68
+      }
     },
     {
       "id": "coze",
@@ -188,7 +268,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 84,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 84,
+        "trend": 87,
+        "commercial": 82,
+        "eco": 80
+      }
     },
     {
       "id": "dify",
@@ -200,7 +288,15 @@
         "开源",
         "免费试用"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 72,
+        "trend": 73,
+        "commercial": 70,
+        "eco": 68
+      }
     },
     {
       "id": "notion-ai",
@@ -211,7 +307,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 78,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 80,
+        "trend": 77,
+        "commercial": 79,
+        "eco": 75
+      }
     },
     {
       "id": "grammarly",
@@ -223,7 +327,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 89,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 91,
+        "trend": 87,
+        "commercial": 89,
+        "eco": 86
+      }
     },
     {
       "id": "jasper",
@@ -234,7 +346,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 69,
+        "trend": 66,
+        "commercial": 67,
+        "eco": 64
+      }
     },
     {
       "id": "copy-ai",
@@ -246,7 +366,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 69,
+        "trend": 66,
+        "commercial": 67,
+        "eco": 64
+      }
     },
     {
       "id": "xiezuocat",
@@ -257,7 +385,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 78,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 80,
+        "trend": 77,
+        "commercial": 79,
+        "eco": 75
+      }
     },
     {
       "id": "ibiling",
@@ -268,7 +404,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 69,
+        "trend": 66,
+        "commercial": 67,
+        "eco": 64
+      }
     },
     {
       "id": "quillbot",
@@ -279,7 +423,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 78,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 80,
+        "trend": 77,
+        "commercial": 79,
+        "eco": 75
+      }
     },
     {
       "id": "writesonic",
@@ -291,7 +443,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 69,
+        "trend": 66,
+        "commercial": 67,
+        "eco": 64
+      }
     },
     {
       "id": "midjourney",
@@ -302,7 +462,15 @@
       "tags": [
         "付费"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 96,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 94,
+        "trend": 96,
+        "commercial": 95,
+        "eco": 99
+      }
     },
     {
       "id": "stability",
@@ -313,7 +481,15 @@
       "tags": [
         "开源"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 84,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 83,
+        "trend": 82,
+        "commercial": 84,
+        "eco": 87
+      }
     },
     {
       "id": "firefly",
@@ -325,7 +501,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 84,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 83,
+        "trend": 82,
+        "commercial": 84,
+        "eco": 87
+      }
     },
     {
       "id": "liblib",
@@ -336,7 +520,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 84,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 83,
+        "trend": 82,
+        "commercial": 84,
+        "eco": 87
+      }
     },
     {
       "id": "jimeng",
@@ -347,7 +539,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 84,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 83,
+        "trend": 84,
+        "commercial": 84,
+        "eco": 87
+      }
     },
     {
       "id": "meitu-design",
@@ -358,7 +558,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 71,
+        "eco": 74
+      }
     },
     {
       "id": "canva",
@@ -370,7 +578,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 95,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 94,
+        "trend": 93,
+        "commercial": 95,
+        "eco": 99
+      }
     },
     {
       "id": "clipdrop",
@@ -381,7 +597,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 71,
+        "eco": 74
+      }
     },
     {
       "id": "comfyui",
@@ -393,7 +617,15 @@
         "免费",
         "开源"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 84,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 83,
+        "trend": 82,
+        "commercial": 84,
+        "eco": 87
+      }
     },
     {
       "id": "kling",
@@ -405,7 +637,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 94,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 93,
+        "trend": 99,
+        "commercial": 91,
+        "eco": 90
+      }
     },
     {
       "id": "runway",
@@ -417,7 +657,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 93,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 93,
+        "trend": 98,
+        "commercial": 91,
+        "eco": 90
+      }
     },
     {
       "id": "pika",
@@ -428,7 +676,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 82,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 82,
+        "trend": 86,
+        "commercial": 80,
+        "eco": 80
+      }
     },
     {
       "id": "sora",
@@ -439,7 +695,15 @@
       "tags": [
         "付费"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 94,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 93,
+        "trend": 99,
+        "commercial": 91,
+        "eco": 90
+      }
     },
     {
       "id": "vidu",
@@ -450,7 +714,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 82,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 82,
+        "trend": 86,
+        "commercial": 80,
+        "eco": 80
+      }
     },
     {
       "id": "hailuo",
@@ -461,7 +733,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 82,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 82,
+        "trend": 86,
+        "commercial": 80,
+        "eco": 80
+      }
     },
     {
       "id": "luma",
@@ -473,7 +753,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 82,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 82,
+        "trend": 86,
+        "commercial": 80,
+        "eco": 80
+      }
     },
     {
       "id": "heygen",
@@ -484,7 +772,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 82,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 82,
+        "trend": 86,
+        "commercial": 80,
+        "eco": 80
+      }
     },
     {
       "id": "suno",
@@ -496,7 +792,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 92,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 89,
+        "trend": 95,
+        "commercial": 88,
+        "eco": 95
+      }
     },
     {
       "id": "elevenlabs",
@@ -508,7 +812,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 91,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 89,
+        "trend": 92,
+        "commercial": 88,
+        "eco": 95
+      }
     },
     {
       "id": "udio",
@@ -519,7 +831,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 80,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 79,
+        "trend": 81,
+        "commercial": 78,
+        "eco": 84
+      }
     },
     {
       "id": "xunfei-zhizuo",
@@ -531,7 +851,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 80,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 79,
+        "trend": 81,
+        "commercial": 78,
+        "eco": 84
+      }
     },
     {
       "id": "adobe-podcast",
@@ -542,7 +870,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 68,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 67,
+        "trend": 69,
+        "commercial": 66,
+        "eco": 71
+      }
     },
     {
       "id": "rask",
@@ -553,7 +889,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 68,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 67,
+        "trend": 69,
+        "commercial": 66,
+        "eco": 71
+      }
     },
     {
       "id": "aippt",
@@ -564,7 +908,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 84,
+        "trend": 84,
+        "commercial": 89,
+        "eco": 76
+      }
     },
     {
       "id": "islide",
@@ -576,7 +928,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 76,
+        "eco": 65
+      }
     },
     {
       "id": "gamma",
@@ -588,7 +948,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 84,
+        "trend": 82,
+        "commercial": 89,
+        "eco": 76
+      }
     },
     {
       "id": "wps-ai",
@@ -599,7 +967,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 84,
+        "trend": 82,
+        "commercial": 89,
+        "eco": 76
+      }
     },
     {
       "id": "tingwu",
@@ -610,7 +986,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 76,
+        "eco": 65
+      }
     },
     {
       "id": "iflyrec",
@@ -621,7 +1005,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 76,
+        "eco": 65
+      }
     },
     {
       "id": "feishu",
@@ -632,7 +1024,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 94,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 95,
+        "trend": 93,
+        "commercial": 99,
+        "eco": 86
+      }
     },
     {
       "id": "processon",
@@ -643,7 +1043,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 84,
+        "trend": 82,
+        "commercial": 89,
+        "eco": 76
+      }
     },
     {
       "id": "cursor",
@@ -655,7 +1063,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 96,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 90,
+        "trend": 99,
+        "commercial": 98,
+        "eco": 99
+      }
     },
     {
       "id": "copilot",
@@ -667,7 +1083,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 95,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 90,
+        "trend": 96,
+        "commercial": 98,
+        "eco": 99
+      }
     },
     {
       "id": "claude-code",
@@ -678,7 +1102,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 95,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 90,
+        "trend": 96,
+        "commercial": 98,
+        "eco": 99
+      }
     },
     {
       "id": "trae",
@@ -689,7 +1121,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 85,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 80,
+        "trend": 84,
+        "commercial": 86,
+        "eco": 92
+      }
     },
     {
       "id": "lingma",
@@ -700,7 +1140,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 85,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 80,
+        "trend": 84,
+        "commercial": 86,
+        "eco": 92
+      }
     },
     {
       "id": "windsurf",
@@ -712,7 +1160,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 85,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 80,
+        "trend": 84,
+        "commercial": 86,
+        "eco": 92
+      }
     },
     {
       "id": "comate",
@@ -723,7 +1179,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 72,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 68,
+        "trend": 72,
+        "commercial": 74,
+        "eco": 78
+      }
     },
     {
       "id": "replit",
@@ -735,7 +1199,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 85,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 80,
+        "trend": 84,
+        "commercial": 86,
+        "eco": 92
+      }
     },
     {
       "id": "lovart",
@@ -747,7 +1219,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 79,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 77,
+        "trend": 82,
+        "commercial": 80,
+        "eco": 78
+      }
     },
     {
       "id": "figma-ai",
@@ -758,7 +1238,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 89,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 87,
+        "trend": 91,
+        "commercial": 90,
+        "eco": 88
+      }
     },
     {
       "id": "modao",
@@ -769,7 +1257,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 66,
+        "trend": 69,
+        "commercial": 68,
+        "eco": 66
+      }
     },
     {
       "id": "jsdesign",
@@ -780,7 +1276,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 79,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 77,
+        "trend": 80,
+        "commercial": 80,
+        "eco": 78
+      }
     },
     {
       "id": "looka",
@@ -791,7 +1295,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 66,
+        "trend": 69,
+        "commercial": 68,
+        "eco": 66
+      }
     },
     {
       "id": "gaoding",
@@ -802,7 +1314,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 79,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 77,
+        "trend": 80,
+        "commercial": 80,
+        "eco": 78
+      }
     },
     {
       "id": "huggingface",
@@ -814,7 +1334,15 @@
         "免费",
         "开源"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 91,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 85,
+        "trend": 97,
+        "commercial": 86,
+        "eco": 99
+      }
     },
     {
       "id": "openrouter",
@@ -825,7 +1353,15 @@
       "tags": [
         "付费"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 82,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 75,
+        "trend": 85,
+        "commercial": 75,
+        "eco": 95
+      }
     },
     {
       "id": "modelscope",
@@ -836,7 +1372,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 81,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 75,
+        "trend": 83,
+        "commercial": 75,
+        "eco": 95
+      }
     },
     {
       "id": "ollama",
@@ -848,7 +1392,15 @@
         "免费",
         "开源"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 81,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 75,
+        "trend": 83,
+        "commercial": 75,
+        "eco": 95
+      }
     },
     {
       "id": "langchain",
@@ -859,7 +1411,15 @@
       "tags": [
         "开源"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 81,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 75,
+        "trend": 83,
+        "commercial": 75,
+        "eco": 95
+      }
     },
     {
       "id": "deeplearning",
@@ -871,7 +1431,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 54,
+      "pop_tier": "C",
+      "pop_dims": {
+        "users": 50,
+        "trend": 56,
+        "commercial": 51,
+        "eco": 64
+      }
     },
     {
       "id": "lmstudio",
@@ -882,7 +1450,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 69,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 64,
+        "trend": 71,
+        "commercial": 64,
+        "eco": 81
+      }
     },
     {
       "id": "vllm",
@@ -893,7 +1469,15 @@
       "tags": [
         "开源"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 69,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 64,
+        "trend": 71,
+        "commercial": 64,
+        "eco": 81
+      }
     },
     {
       "id": "wondercv",
@@ -904,7 +1488,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 69,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 66,
+        "trend": 66,
+        "commercial": 77,
+        "eco": 69
+      }
     },
     {
       "id": "52cv",
@@ -915,7 +1507,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 37,
+      "pop_tier": "D",
+      "pop_dims": {
+        "users": 36,
+        "trend": 36,
+        "commercial": 42,
+        "eco": 37
+      }
     },
     {
       "id": "xiaoduo",
@@ -926,7 +1526,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 81,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 78,
+        "trend": 77,
+        "commercial": 90,
+        "eco": 80
+      }
     },
     {
       "id": "yanxi",
@@ -937,7 +1545,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 69,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 66,
+        "trend": 66,
+        "commercial": 77,
+        "eco": 69
+      }
     },
     {
       "id": "qianfan",
@@ -948,7 +1564,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 81,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 78,
+        "trend": 77,
+        "commercial": 90,
+        "eco": 80
+      }
     },
     {
       "id": "volcengine",
@@ -959,7 +1583,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 81,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 78,
+        "trend": 77,
+        "commercial": 90,
+        "eco": 80
+      }
     },
     {
       "id": "gptzero",
@@ -971,7 +1603,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 79,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 75,
+        "trend": 79,
+        "commercial": 85,
+        "eco": 79
+      }
     },
     {
       "id": "originality",
@@ -982,7 +1622,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 79,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 75,
+        "trend": 79,
+        "commercial": 85,
+        "eco": 79
+      }
     },
     {
       "id": "copyleaks",
@@ -993,7 +1641,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 64,
+        "trend": 67,
+        "commercial": 73,
+        "eco": 67
+      }
     },
     {
       "id": "zerogpt",
@@ -1004,7 +1660,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 64,
+        "trend": 67,
+        "commercial": 73,
+        "eco": 67
+      }
     },
     {
       "id": "turnitin",
@@ -1015,7 +1679,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 90,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 86,
+        "trend": 89,
+        "commercial": 97,
+        "eco": 89
+      }
     },
     {
       "id": "腾讯元宝",
@@ -1026,7 +1698,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 84,
+        "trend": 84,
+        "commercial": 82,
+        "eco": 80
+      }
     },
     {
       "id": "智谱清言",
@@ -1038,7 +1718,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 84,
+        "trend": 84,
+        "commercial": 82,
+        "eco": 80
+      }
     },
     {
       "id": "文心一言",
@@ -1049,7 +1737,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 72,
+        "trend": 71,
+        "commercial": 70,
+        "eco": 68
+      }
     },
     {
       "id": "讯飞星火",
@@ -1060,7 +1756,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 72,
+        "trend": 71,
+        "commercial": 70,
+        "eco": 68
+      }
     },
     {
       "id": "le-chat",
@@ -1071,7 +1775,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 72,
+        "trend": 71,
+        "commercial": 70,
+        "eco": 68
+      }
     },
     {
       "id": "poe",
@@ -1083,7 +1795,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 72,
+        "trend": 71,
+        "commercial": 70,
+        "eco": 68
+      }
     },
     {
       "id": "character-ai",
@@ -1095,7 +1815,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 72,
+        "trend": 71,
+        "commercial": 70,
+        "eco": 68
+      }
     },
     {
       "id": "manus",
@@ -1107,7 +1835,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 84,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 84,
+        "trend": 87,
+        "commercial": 82,
+        "eco": 80
+      }
     },
     {
       "id": "monica",
@@ -1120,7 +1856,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 72,
+        "trend": 71,
+        "commercial": 70,
+        "eco": 68
+      }
     },
     {
       "id": "chatbox",
@@ -1132,7 +1876,15 @@
         "免费",
         "开源"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 72,
+        "trend": 71,
+        "commercial": 70,
+        "eco": 68
+      }
     },
     {
       "id": "lobechat",
@@ -1144,7 +1896,15 @@
         "免费",
         "开源"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 72,
+        "trend": 71,
+        "commercial": 70,
+        "eco": 68
+      }
     },
     {
       "id": "百川智能",
@@ -1155,7 +1915,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 72,
+        "trend": 71,
+        "commercial": 70,
+        "eco": 68
+      }
     },
     {
       "id": "海螺ai",
@@ -1166,7 +1934,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 72,
+        "trend": 71,
+        "commercial": 70,
+        "eco": 68
+      }
     },
     {
       "id": "qwen-chat",
@@ -1177,7 +1953,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 72,
+        "trend": 71,
+        "commercial": 70,
+        "eco": 68
+      }
     },
     {
       "id": "stepfun",
@@ -1188,7 +1972,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 56,
+      "pop_tier": "C",
+      "pop_dims": {
+        "users": 57,
+        "trend": 56,
+        "commercial": 55,
+        "eco": 53
+      }
     },
     {
       "id": "perplexity",
@@ -1200,7 +1992,15 @@
         "免费",
         "付费"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 94,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 93,
+        "trend": 99,
+        "commercial": 89,
+        "eco": 93
+      }
     },
     {
       "id": "notebooklm",
@@ -1211,7 +2011,15 @@
       "tags": [
         "免费"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 84,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 82,
+        "trend": 91,
+        "commercial": 79,
+        "eco": 82
+      }
     },
     {
       "id": "genspark",
@@ -1223,7 +2031,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 82,
+        "trend": 88,
+        "commercial": 79,
+        "eco": 82
+      }
     },
     {
       "id": "consensus",
@@ -1235,7 +2051,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 82,
+        "trend": 88,
+        "commercial": 79,
+        "eco": 82
+      }
     },
     {
       "id": "elicit",
@@ -1247,7 +2071,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 82,
+        "trend": 88,
+        "commercial": 79,
+        "eco": 82
+      }
     },
     {
       "id": "scispace",
@@ -1259,7 +2091,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 70,
+        "trend": 75,
+        "commercial": 67,
+        "eco": 70
+      }
     },
     {
       "id": "semantic-scholar",
@@ -1270,7 +2110,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 70,
+        "trend": 75,
+        "commercial": 67,
+        "eco": 70
+      }
     },
     {
       "id": "connected-papers",
@@ -1282,7 +2130,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 70,
+        "trend": 75,
+        "commercial": 67,
+        "eco": 70
+      }
     },
     {
       "id": "devv",
@@ -1293,7 +2149,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 70,
+        "trend": 75,
+        "commercial": 67,
+        "eco": 70
+      }
     },
     {
       "id": "phind",
@@ -1305,7 +2169,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 70,
+        "trend": 75,
+        "commercial": 67,
+        "eco": 70
+      }
     },
     {
       "id": "kagi",
@@ -1316,7 +2188,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 56,
+      "pop_tier": "C",
+      "pop_dims": {
+        "users": 55,
+        "trend": 59,
+        "commercial": 53,
+        "eco": 55
+      }
     },
     {
       "id": "exa",
@@ -1328,7 +2208,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 70,
+        "trend": 75,
+        "commercial": 67,
+        "eco": 70
+      }
     },
     {
       "id": "纳米ai搜索",
@@ -1339,7 +2227,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 82,
+        "trend": 88,
+        "commercial": 79,
+        "eco": 82
+      }
     },
     {
       "id": "deepl-write",
@@ -1351,7 +2247,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 78,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 80,
+        "trend": 77,
+        "commercial": 79,
+        "eco": 75
+      }
     },
     {
       "id": "wordtune",
@@ -1363,7 +2267,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 69,
+        "trend": 66,
+        "commercial": 67,
+        "eco": 64
+      }
     },
     {
       "id": "rytr",
@@ -1375,7 +2287,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 53,
+      "pop_tier": "C",
+      "pop_dims": {
+        "users": 54,
+        "trend": 52,
+        "commercial": 53,
+        "eco": 51
+      }
     },
     {
       "id": "sudowrite",
@@ -1387,7 +2307,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 69,
+        "trend": 66,
+        "commercial": 67,
+        "eco": 64
+      }
     },
     {
       "id": "novelai",
@@ -1398,7 +2326,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 53,
+      "pop_tier": "C",
+      "pop_dims": {
+        "users": 54,
+        "trend": 52,
+        "commercial": 53,
+        "eco": 51
+      }
     },
     {
       "id": "prowritingaid",
@@ -1410,7 +2346,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 69,
+        "trend": 66,
+        "commercial": 67,
+        "eco": 64
+      }
     },
     {
       "id": "hemingway-editor",
@@ -1421,7 +2365,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 53,
+      "pop_tier": "C",
+      "pop_dims": {
+        "users": 54,
+        "trend": 52,
+        "commercial": 53,
+        "eco": 51
+      }
     },
     {
       "id": "火龙果写作",
@@ -1433,7 +2385,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 69,
+        "trend": 66,
+        "commercial": 67,
+        "eco": 64
+      }
     },
     {
       "id": "ideogram",
@@ -1445,7 +2405,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 84,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 83,
+        "trend": 84,
+        "commercial": 84,
+        "eco": 87
+      }
     },
     {
       "id": "flux",
@@ -1457,7 +2425,15 @@
         "免费",
         "开源"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 84,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 83,
+        "trend": 82,
+        "commercial": 84,
+        "eco": 87
+      }
     },
     {
       "id": "leonardo-ai",
@@ -1469,7 +2445,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 71,
+        "eco": 74
+      }
     },
     {
       "id": "recraft",
@@ -1481,7 +2465,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 71,
+        "eco": 74
+      }
     },
     {
       "id": "krea",
@@ -1493,7 +2485,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 71,
+        "eco": 74
+      }
     },
     {
       "id": "civitai",
@@ -1505,7 +2505,15 @@
         "免费",
         "开源"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 71,
+        "eco": 74
+      }
     },
     {
       "id": "photoroom",
@@ -1517,7 +2525,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 71,
+        "eco": 74
+      }
     },
     {
       "id": "remove-bg",
@@ -1529,7 +2545,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 71,
+        "eco": 74
+      }
     },
     {
       "id": "通义万相",
@@ -1540,7 +2564,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 71,
+        "eco": 74
+      }
     },
     {
       "id": "文心一格",
@@ -1551,7 +2583,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 71,
+        "eco": 74
+      }
     },
     {
       "id": "无界ai",
@@ -1563,7 +2603,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 71,
+        "eco": 74
+      }
     },
     {
       "id": "佐糖",
@@ -1575,7 +2623,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 56,
+      "pop_tier": "C",
+      "pop_dims": {
+        "users": 56,
+        "trend": 55,
+        "commercial": 56,
+        "eco": 58
+      }
     },
     {
       "id": "upscayl",
@@ -1587,7 +2643,15 @@
         "免费",
         "开源"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 56,
+      "pop_tier": "C",
+      "pop_dims": {
+        "users": 56,
+        "trend": 55,
+        "commercial": 56,
+        "eco": 58
+      }
     },
     {
       "id": "playground",
@@ -1599,7 +2663,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 71,
+        "eco": 74
+      }
     },
     {
       "id": "pixverse",
@@ -1611,7 +2683,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 82,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 82,
+        "trend": 86,
+        "commercial": 80,
+        "eco": 80
+      }
     },
     {
       "id": "智谱清影",
@@ -1622,7 +2702,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 70,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 70,
+        "trend": 74,
+        "commercial": 69,
+        "eco": 68
+      }
     },
     {
       "id": "jianying",
@@ -1634,7 +2722,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 93,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 93,
+        "trend": 98,
+        "commercial": 91,
+        "eco": 90
+      }
     },
     {
       "id": "一帧秒创",
@@ -1645,7 +2741,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 70,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 70,
+        "trend": 74,
+        "commercial": 69,
+        "eco": 68
+      }
     },
     {
       "id": "synthesia",
@@ -1656,7 +2760,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 70,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 70,
+        "trend": 74,
+        "commercial": 69,
+        "eco": 68
+      }
     },
     {
       "id": "d-id",
@@ -1668,7 +2780,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 70,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 70,
+        "trend": 74,
+        "commercial": 69,
+        "eco": 68
+      }
     },
     {
       "id": "captions",
@@ -1680,7 +2800,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 70,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 70,
+        "trend": 74,
+        "commercial": 69,
+        "eco": 68
+      }
     },
     {
       "id": "descript",
@@ -1692,7 +2820,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 82,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 82,
+        "trend": 86,
+        "commercial": 80,
+        "eco": 80
+      }
     },
     {
       "id": "opusclip",
@@ -1704,7 +2840,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 82,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 82,
+        "trend": 86,
+        "commercial": 80,
+        "eco": 80
+      }
     },
     {
       "id": "capcut",
@@ -1716,7 +2860,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 82,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 82,
+        "trend": 86,
+        "commercial": 80,
+        "eco": 80
+      }
     },
     {
       "id": "invideo",
@@ -1728,7 +2880,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 70,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 70,
+        "trend": 74,
+        "commercial": 69,
+        "eco": 68
+      }
     },
     {
       "id": "veed",
@@ -1740,7 +2900,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 82,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 82,
+        "trend": 86,
+        "commercial": 80,
+        "eco": 80
+      }
     },
     {
       "id": "veo",
@@ -1751,7 +2919,15 @@
       "tags": [
         "免费试用"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 82,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 82,
+        "trend": 86,
+        "commercial": 80,
+        "eco": 80
+      }
     },
     {
       "id": "fish-audio",
@@ -1763,7 +2939,15 @@
         "免费",
         "开源"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 80,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 79,
+        "trend": 81,
+        "commercial": 78,
+        "eco": 84
+      }
     },
     {
       "id": "ttsmaker",
@@ -1774,7 +2958,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 68,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 67,
+        "trend": 69,
+        "commercial": 66,
+        "eco": 71
+      }
     },
     {
       "id": "魔音工坊",
@@ -1786,7 +2978,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 68,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 67,
+        "trend": 69,
+        "commercial": 66,
+        "eco": 71
+      }
     },
     {
       "id": "lalal-ai",
@@ -1798,7 +2998,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 68,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 67,
+        "trend": 69,
+        "commercial": 66,
+        "eco": 71
+      }
     },
     {
       "id": "moises",
@@ -1810,7 +3018,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 68,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 67,
+        "trend": 69,
+        "commercial": 66,
+        "eco": 71
+      }
     },
     {
       "id": "aiva",
@@ -1822,7 +3038,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 68,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 67,
+        "trend": 69,
+        "commercial": 66,
+        "eco": 71
+      }
     },
     {
       "id": "mubert",
@@ -1834,7 +3058,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 68,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 67,
+        "trend": 69,
+        "commercial": 66,
+        "eco": 71
+      }
     },
     {
       "id": "网易天音",
@@ -1845,7 +3077,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 68,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 67,
+        "trend": 69,
+        "commercial": 66,
+        "eco": 71
+      }
     },
     {
       "id": "speechify",
@@ -1857,7 +3097,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 68,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 67,
+        "trend": 69,
+        "commercial": 66,
+        "eco": 71
+      }
     },
     {
       "id": "krisp",
@@ -1869,7 +3117,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 68,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 67,
+        "trend": 69,
+        "commercial": 66,
+        "eco": 71
+      }
     },
     {
       "id": "microsoft-365-copilot",
@@ -1880,7 +3136,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 94,
+      "pop_tier": "S",
+      "pop_dims": {
+        "users": 95,
+        "trend": 93,
+        "commercial": 99,
+        "eco": 86
+      }
     },
     {
       "id": "讯飞智文",
@@ -1892,7 +3156,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 84,
+        "trend": 82,
+        "commercial": 89,
+        "eco": 76
+      }
     },
     {
       "id": "boardmix-博思白板",
@@ -1904,7 +3176,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 84,
+        "trend": 82,
+        "commercial": 89,
+        "eco": 76
+      }
     },
     {
       "id": "napkin-ai",
@@ -1916,7 +3196,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 76,
+        "eco": 65
+      }
     },
     {
       "id": "chatpdf",
@@ -1928,7 +3216,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 76,
+        "eco": 65
+      }
     },
     {
       "id": "humata",
@@ -1940,7 +3236,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 76,
+        "eco": 65
+      }
     },
     {
       "id": "otter-ai",
@@ -1952,7 +3256,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 84,
+        "trend": 82,
+        "commercial": 89,
+        "eco": 76
+      }
     },
     {
       "id": "fireflies",
@@ -1964,7 +3276,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 76,
+        "eco": 65
+      }
     },
     {
       "id": "beautiful-ai",
@@ -1975,7 +3295,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 71,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 71,
+        "trend": 70,
+        "commercial": 76,
+        "eco": 65
+      }
     },
     {
       "id": "钉钉-ai",
@@ -1986,7 +3314,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 84,
+        "trend": 82,
+        "commercial": 89,
+        "eco": 76
+      }
     },
     {
       "id": "腾讯文档",
@@ -1997,7 +3333,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 83,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 84,
+        "trend": 82,
+        "commercial": 89,
+        "eco": 76
+      }
     },
     {
       "id": "tabnine",
@@ -2009,7 +3353,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 72,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 68,
+        "trend": 72,
+        "commercial": 74,
+        "eco": 78
+      }
     },
     {
       "id": "amazon-q-developer",
@@ -2021,7 +3373,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 72,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 68,
+        "trend": 72,
+        "commercial": 74,
+        "eco": 78
+      }
     },
     {
       "id": "continue",
@@ -2033,7 +3393,15 @@
         "免费",
         "开源"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 72,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 68,
+        "trend": 72,
+        "commercial": 74,
+        "eco": 78
+      }
     },
     {
       "id": "cline",
@@ -2045,7 +3413,15 @@
         "免费",
         "开源"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 85,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 80,
+        "trend": 84,
+        "commercial": 86,
+        "eco": 92
+      }
     },
     {
       "id": "aider",
@@ -2057,7 +3433,15 @@
         "免费",
         "开源"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 85,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 80,
+        "trend": 84,
+        "commercial": 86,
+        "eco": 92
+      }
     },
     {
       "id": "bolt-new",
@@ -2069,7 +3453,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 85,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 80,
+        "trend": 84,
+        "commercial": 86,
+        "eco": 92
+      }
     },
     {
       "id": "v0",
@@ -2081,7 +3473,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 85,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 80,
+        "trend": 84,
+        "commercial": 86,
+        "eco": 92
+      }
     },
     {
       "id": "lovable",
@@ -2093,7 +3493,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 85,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 80,
+        "trend": 84,
+        "commercial": 86,
+        "eco": 92
+      }
     },
     {
       "id": "zed",
@@ -2105,7 +3513,15 @@
         "免费",
         "开源"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 72,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 68,
+        "trend": 72,
+        "commercial": 74,
+        "eco": 78
+      }
     },
     {
       "id": "jetbrains-ai",
@@ -2117,7 +3533,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 72,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 68,
+        "trend": 72,
+        "commercial": 74,
+        "eco": 78
+      }
     },
     {
       "id": "codegeex",
@@ -2128,7 +3552,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 72,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 68,
+        "trend": 72,
+        "commercial": 74,
+        "eco": 78
+      }
     },
     {
       "id": "aixcoder",
@@ -2140,7 +3572,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 39,
+      "pop_tier": "D",
+      "pop_dims": {
+        "users": 37,
+        "trend": 39,
+        "commercial": 40,
+        "eco": 43
+      }
     },
     {
       "id": "cody",
@@ -2152,7 +3592,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 72,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 68,
+        "trend": 72,
+        "commercial": 74,
+        "eco": 78
+      }
     },
     {
       "id": "warp",
@@ -2164,7 +3612,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 72,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 68,
+        "trend": 72,
+        "commercial": 74,
+        "eco": 78
+      }
     },
     {
       "id": "framer",
@@ -2176,7 +3632,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 79,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 77,
+        "trend": 80,
+        "commercial": 80,
+        "eco": 78
+      }
     },
     {
       "id": "uizard",
@@ -2188,7 +3652,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 66,
+        "trend": 69,
+        "commercial": 68,
+        "eco": 66
+      }
     },
     {
       "id": "visily",
@@ -2200,7 +3672,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 66,
+        "trend": 69,
+        "commercial": 68,
+        "eco": 66
+      }
     },
     {
       "id": "relume",
@@ -2212,7 +3692,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 66,
+        "trend": 69,
+        "commercial": 68,
+        "eco": 66
+      }
     },
     {
       "id": "khroma",
@@ -2223,7 +3711,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 36,
+      "pop_tier": "D",
+      "pop_dims": {
+        "users": 36,
+        "trend": 37,
+        "commercial": 37,
+        "eco": 36
+      }
     },
     {
       "id": "coolors",
@@ -2235,7 +3731,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 66,
+        "trend": 69,
+        "commercial": 68,
+        "eco": 66
+      }
     },
     {
       "id": "pacdora",
@@ -2247,7 +3751,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 36,
+      "pop_tier": "D",
+      "pop_dims": {
+        "users": 36,
+        "trend": 37,
+        "commercial": 37,
+        "eco": 36
+      }
     },
     {
       "id": "durable",
@@ -2259,7 +3771,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 66,
+        "trend": 69,
+        "commercial": 68,
+        "eco": 66
+      }
     },
     {
       "id": "webflow",
@@ -2271,7 +3791,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 66,
+        "trend": 69,
+        "commercial": 68,
+        "eco": 66
+      }
     },
     {
       "id": "artificial-analysis",
@@ -2282,7 +3810,15 @@
       "tags": [
         "免费"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 82,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 75,
+        "trend": 85,
+        "commercial": 75,
+        "eco": 95
+      }
     },
     {
       "id": "lmarena",
@@ -2293,7 +3829,15 @@
       "tags": [
         "免费"
       ],
-      "hot": true
+      "hot": true,
+      "pop": 82,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 75,
+        "trend": 85,
+        "commercial": 75,
+        "eco": 95
+      }
     },
     {
       "id": "google-ai-studio",
@@ -2304,7 +3848,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 69,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 64,
+        "trend": 71,
+        "commercial": 64,
+        "eco": 81
+      }
     },
     {
       "id": "groq",
@@ -2316,7 +3868,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 81,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 75,
+        "trend": 83,
+        "commercial": 75,
+        "eco": 95
+      }
     },
     {
       "id": "together-ai",
@@ -2328,7 +3888,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 69,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 64,
+        "trend": 71,
+        "commercial": 64,
+        "eco": 81
+      }
     },
     {
       "id": "fireworks-ai",
@@ -2340,7 +3908,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 69,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 64,
+        "trend": 71,
+        "commercial": 64,
+        "eco": 81
+      }
     },
     {
       "id": "replicate",
@@ -2352,7 +3928,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 81,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 75,
+        "trend": 83,
+        "commercial": 75,
+        "eco": 95
+      }
     },
     {
       "id": "硅基流动",
@@ -2364,7 +3948,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 69,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 64,
+        "trend": 71,
+        "commercial": 64,
+        "eco": 81
+      }
     },
     {
       "id": "阿里云百炼",
@@ -2376,7 +3968,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 69,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 64,
+        "trend": 71,
+        "commercial": 64,
+        "eco": 81
+      }
     },
     {
       "id": "arxiv",
@@ -2387,7 +3987,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 81,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 75,
+        "trend": 83,
+        "commercial": 75,
+        "eco": 95
+      }
     },
     {
       "id": "papers-with-code",
@@ -2398,7 +4006,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 69,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 64,
+        "trend": 71,
+        "commercial": 64,
+        "eco": 81
+      }
     },
     {
       "id": "kaggle",
@@ -2409,7 +4025,15 @@
       "tags": [
         "免费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 81,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 75,
+        "trend": 83,
+        "commercial": 75,
+        "eco": 95
+      }
     },
     {
       "id": "llamaindex",
@@ -2421,7 +4045,15 @@
         "免费",
         "开源"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 69,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 64,
+        "trend": 71,
+        "commercial": 64,
+        "eco": 81
+      }
     },
     {
       "id": "n8n",
@@ -2433,7 +4065,15 @@
         "免费",
         "开源"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 69,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 64,
+        "trend": 71,
+        "commercial": 64,
+        "eco": 81
+      }
     },
     {
       "id": "影刀-rpa",
@@ -2445,7 +4085,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 81,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 78,
+        "trend": 77,
+        "commercial": 90,
+        "eco": 80
+      }
     },
     {
       "id": "hunyuan",
@@ -2457,7 +4105,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 81,
+      "pop_tier": "A",
+      "pop_dims": {
+        "users": 78,
+        "trend": 77,
+        "commercial": 90,
+        "eco": 80
+      }
     },
     {
       "id": "网易七鱼",
@@ -2469,7 +4125,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 69,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 66,
+        "trend": 66,
+        "commercial": 77,
+        "eco": 69
+      }
     },
     {
       "id": "讯飞开放平台",
@@ -2481,7 +4145,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 69,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 66,
+        "trend": 66,
+        "commercial": 77,
+        "eco": 69
+      }
     },
     {
       "id": "探迹",
@@ -2492,7 +4164,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 69,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 66,
+        "trend": 66,
+        "commercial": 77,
+        "eco": 69
+      }
     },
     {
       "id": "sapling",
@@ -2504,7 +4184,15 @@
         "免费",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 64,
+        "trend": 67,
+        "commercial": 73,
+        "eco": 67
+      }
     },
     {
       "id": "winston-ai",
@@ -2516,7 +4204,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 64,
+        "trend": 67,
+        "commercial": 73,
+        "eco": 67
+      }
     },
     {
       "id": "网易易盾",
@@ -2528,7 +4224,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 64,
+        "trend": 67,
+        "commercial": 73,
+        "eco": 67
+      }
     },
     {
       "id": "数美科技",
@@ -2539,7 +4243,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 64,
+        "trend": 67,
+        "commercial": 73,
+        "eco": 67
+      }
     },
     {
       "id": "阿里云内容安全",
@@ -2551,7 +4263,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 64,
+        "trend": 67,
+        "commercial": 73,
+        "eco": 67
+      }
     },
     {
       "id": "腾讯云天御",
@@ -2563,7 +4283,15 @@
         "免费试用",
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 67,
+      "pop_tier": "B",
+      "pop_dims": {
+        "users": 64,
+        "trend": 67,
+        "commercial": 73,
+        "eco": 67
+      }
     },
     {
       "id": "瑞莱智慧",
@@ -2574,7 +4302,15 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 53,
+      "pop_tier": "C",
+      "pop_dims": {
+        "users": 51,
+        "trend": 53,
+        "commercial": 57,
+        "eco": 53
+      }
     },
     {
       "id": "hive-moderation",
@@ -2585,7 +4321,30 @@
       "tags": [
         "付费"
       ],
-      "hot": false
+      "hot": false,
+      "pop": 36,
+      "pop_tier": "D",
+      "pop_dims": {
+        "users": 35,
+        "trend": 36,
+        "commercial": 40,
+        "eco": 36
+      }
     }
-  ]
+  ],
+  "pop_rubric": {
+    "weights": {
+      "users": 0.35,
+      "trend": 0.25,
+      "commercial": 0.2,
+      "eco": 0.2
+    },
+    "note": "编辑部判断，非测量值；四维加权后归一化到 0-100",
+    "dims": {
+      "users": "用户规模",
+      "trend": "热度趋势",
+      "commercial": "商业表现",
+      "eco": "技术生态"
+    }
+  }
 }
