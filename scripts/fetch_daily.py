@@ -25,13 +25,14 @@ AI 大事记 · 抓取脚本
 from __future__ import annotations
 
 import argparse
+import gzip
 import json
 import sys
 import time
+import urllib.error
+import urllib.request
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
-
-import requests
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -39,7 +40,11 @@ OUT = DATA / "daily.json"
 
 BASE = "https://aihot.news"
 # 官方要求：程序化同步走 JSON 接口并带这个 UA
-HEADERS = {"User-Agent": "aihot-api/2.0.0", "Accept": "application/json"}
+HEADERS = {
+    "User-Agent": "aihot-api/2.0.0",
+    "Accept": "application/json",
+    "Accept-Encoding": "gzip",       # 日报详情 10KB 级，压缩后传输更快
+}
 TIMEOUT = 25
 MAX_RETRY = 3
 MIN_GAP = 1.2          # 秒；官方限流 60 次/分钟，留足余量
@@ -53,7 +58,10 @@ def log(msg: str) -> None:
 
 
 def api(path: str) -> dict | None:
-    """带节流与重试的 GET。429 按 Retry-After 等待，5xx 退避重试。"""
+    """
+    带节流与重试的 GET（仅标准库，避免服务器装包）。
+    429 按 Retry-After 等待，5xx 退避重试。
+    """
     global _last_call
     url = BASE + path
     for attempt in range(1, MAX_RETRY + 1):
@@ -61,34 +69,31 @@ def api(path: str) -> dict | None:
         if gap < MIN_GAP:
             time.sleep(MIN_GAP - gap)
         try:
-            r = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
+            req = urllib.request.Request(url, headers=HEADERS)
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
+                raw = r.read()
+                _last_call = time.time()
+                if r.headers.get("Content-Encoding") == "gzip":
+                    raw = gzip.decompress(raw)
+                return json.loads(raw.decode("utf-8"))
+        except urllib.error.HTTPError as e:
             _last_call = time.time()
+            if e.code == 429:
+                wait = int(e.headers.get("Retry-After") or 10)
+                log(f"  触发限流，等待 {wait}s")
+                time.sleep(wait)
+                continue
+            if 500 <= e.code < 600 and attempt < MAX_RETRY:
+                time.sleep(3 * attempt)
+                continue
+            log(f"  HTTP {e.code}：{path}")
+            return None
         except Exception as e:
+            _last_call = time.time()
             if attempt == MAX_RETRY:
                 log(f"  请求异常 {type(e).__name__}: {path}")
                 return None
             time.sleep(2 * attempt)
-            continue
-
-        if r.status_code == 200:
-            try:
-                return r.json()
-            except Exception:
-                log(f"  返回非 JSON：{path}")
-                return None
-        if r.status_code == 429:
-            wait = int(r.headers.get("Retry-After") or 10)
-            log(f"  触发限流，等待 {wait}s")
-            time.sleep(wait)
-            continue
-        if 500 <= r.status_code < 600:
-            if attempt == MAX_RETRY:
-                log(f"  服务端错误 {r.status_code}：{path}")
-                return None
-            time.sleep(3 * attempt)
-            continue
-        log(f"  HTTP {r.status_code}：{path}")
-        return None
     return None
 
 
