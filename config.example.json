@@ -28,6 +28,8 @@
     "price_change_threshold": 10,
     "price_change_min_abs_cny": 1.0,
     "price_digest_hours": [8, 12, 16, 20],
-    "price_summary_hour": 20
+    "price_summary_hour": 20,
+    "price_model_cooldown_days": 7,
+    "price_cooldown_breakout": 2.0
   }
 }

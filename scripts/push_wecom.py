@@ -375,6 +375,8 @@ def build_footer(meta: dict, site_url: str, omitted: int = 0, since: str = "",
 # 调价不逐小时推，而是先记账、到点汇总。原因见 judge_change 的注释：
 # 最低价路由的抖动本身没有决策价值，按净变化看才是真相。
 LEDGER_PATH = ROOT / "logs" / ".price_ledger.json"
+# 已播报档案：记录「哪个模型在什么价位、以多大幅度播报过」，用于同模型冷却
+NOTIFIED_PATH = ROOT / "logs" / ".price_notified.json"
 
 
 def load_ledger() -> dict:
@@ -436,6 +438,60 @@ def merge_into_ledger(ledger: dict, changes: list[dict], rate: float,
 
 def ledger_as_changes(ledger: dict) -> list[dict]:
     return [v for v in ledger["items"].values() if isinstance(v, dict)]
+
+
+def load_notified() -> dict:
+    d = load_json(NOTIFIED_PATH, {}) or {}
+    return d if isinstance(d, dict) else {}
+
+
+def save_notified(d: dict) -> None:
+    try:
+        NOTIFIED_PATH.parent.mkdir(parents=True, exist_ok=True)
+        tmp = NOTIFIED_PATH.with_name(NOTIFIED_PATH.name + ".tmp")
+        tmp.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
+        tmp.replace(NOTIFIED_PATH)
+    except OSError as e:
+        log(f"播报档案写入失败：{e}")
+
+
+def filter_cooldown(changes: list[dict], notified: dict, rate: float,
+                    cooldown_days: int, breakout: float) -> tuple[list[dict], list[dict]]:
+    """
+    同模型冷却：同一个模型在 cooldown_days 天内播报过就不再重复播报，
+    除非这次的幅度达到上次播报幅度的 breakout 倍（说明是又一次真实调价，不是原地摆动）。
+
+    为什么需要这层兜底：OpenRouter 给的是几十个路由里的最低价，而部分厂商
+    （DeepSeek 是典型）有**错峰折扣**——每天 16:30–00:30 半价。抓取点一旦跨过折扣边界，
+    同一批模型就会周期性地「降 50% → 涨 100% → 降 50%」。净变化机制在 24 小时台账里
+    本可以抵消掉它，但只要窗口被截断（首次部署、汇总失败重试、临时改点）就会漏出来。
+    冷却期保证：即便机制失效，同一个模型也不会天天在群里刷同一条。
+    """
+    if cooldown_days <= 0:
+        return changes, []
+    today = now_cn().date()
+    keep, cooled = [], []
+    for c in changes:
+        rec = notified.get(c.get("id") or "")
+        if not isinstance(rec, dict) or not rec.get("date"):
+            keep.append(c)
+            continue
+        try:
+            days = (today - datetime.strptime(rec["date"], "%Y-%m-%d").date()).days
+        except (ValueError, TypeError):
+            keep.append(c)
+            continue
+        if days > cooldown_days:
+            keep.append(c)
+            continue
+        p_now, _ = judge_change(c, rate)
+        p_last = rec.get("pct")
+        # 幅度显著放大 → 视为新一轮真实调价，放行
+        if p_now is None or p_last is None or abs(p_now) >= abs(float(p_last)) * breakout:
+            keep.append(c)
+        else:
+            cooled.append(c)
+    return keep, cooled
 
 
 def drop_notified(ledger: dict, changes: list[dict]) -> None:
@@ -912,9 +968,19 @@ def main() -> int:
     due = (last_summary != today) and (now_cn().hour >= summary_hour or last_summary is None)
     is_digest = bool(args.digest) or due
 
+    cooldown_days = int(wcfg.get("price_model_cooldown_days", 7))
+    breakout = float(wcfg.get("price_cooldown_breakout", 2.0))
+    notified = load_notified()
+
     if is_digest:
+        pool = ledger_as_changes(ledger)
+        pool, cooled = filter_cooldown(pool, notified, rate, cooldown_days, breakout)
+        if cooled:
+            log(f"{len(cooled)} 个模型处于 {cooldown_days} 天播报冷却期内，本次跳过"
+                f"（{'、'.join(c.get('name', c.get('id', '')) for c in cooled[:3])}"
+                f"{' 等' if len(cooled) > 3 else ''}）")
         price_blocks, price_count, price_listed = build_price_blocks(
-            ledger_as_changes(ledger), rate, threshold, min_abs,
+            pool, rate, threshold, min_abs,
             section="价格变动汇总（净变化）")
     else:
         price_blocks, price_count, price_listed = [], 0, []
@@ -989,6 +1055,16 @@ def main() -> int:
     if is_digest and price_count:
         drop_notified(ledger, price_listed)
         save_ledger(ledger)
+        # 记进播报档案，冷却期以此为据（同一模型短期内不再重复播报）
+        for c in price_listed:
+            p, _ = judge_change(c, rate)
+            notified[c.get("id")] = {
+                "name": c.get("name", ""),
+                "pct": round(p, 2) if p is not None else None,
+                "price": (c.get("new") or {}).get("in"),
+                "date": f"{now_cn():%Y-%m-%d}",
+            }
+        save_notified(notified)
         left = len(ledger["items"])
         log(f"已播报 {len(price_listed)} 条并移出台账"
             + (f"，{left} 条未列出/未达标，继续累积" if left else "，台账已空"))
