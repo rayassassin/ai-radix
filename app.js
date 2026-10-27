@@ -47,6 +47,7 @@
     vendor: '',
     ctx: '',
     price: '',
+    offPeak: false,       // 只看有错峰折扣的模型
     sort: 'newest',
     view: 'table',
     currency: 'CNY',
@@ -73,6 +74,7 @@
     search: $('#search'),
     typeChips: $('#typeChips'),
     capChips: $('#capChips'),
+    offPeakChips: $('#offPeakChips'),
     vendorSelect: $('#vendorSelect'),
     ctxSelect: $('#ctxSelect'),
     priceSelect: $('#priceSelect'),
@@ -391,6 +393,17 @@
         state.live = false;
       }
 
+      // 错峰折扣是我方采样识别的结果，实时接口里没有 → 用本地缓存按 id 回填，
+      // 否则直连模式下徽章会整片消失（价格是实时的，折扣规律沿用最近一次识别）
+      if (state.live) {
+        const cache = await fetchJSON('data/models.json').catch(() => null);
+        if (Array.isArray(cache)) {
+          const opMap = new Map();
+          cache.forEach((m) => { if (m && m.off_peak) opMap.set(m.id, m.off_peak); });
+          if (opMap.size) models.forEach((m) => { if (opMap.has(m.id)) m.off_peak = opMap.get(m.id); });
+        }
+      }
+
       state.models = models;
       state.meta = meta;
       state.rate = Number(meta?.usd_to_cny) || rate;
@@ -450,6 +463,14 @@
       return `<button class="chip" data-cap="${c.key}" title="${esc(c.hint)}">${esc(c.label)}<span class="cnt">${n}</span></button>`;
     }).join('');
 
+    // 错峰折扣 chip：只有真的识别出模型时才出现，避免空筛选项污染工具栏
+    const offPeakCount = state.models.filter((m) => m.off_peak).length;
+    el.offPeakChips.innerHTML = offPeakCount
+      ? `<button class="chip chip-offpeak${state.offPeak ? ' on' : ''}" id="offPeakChip"
+           title="厂商按固定时段打折（如 DeepSeek 夜间半价）。按每日多次抓取的价格比对识别，需跨天样本确认">
+           错峰折扣<span class="cnt">${offPeakCount}</span></button>`
+      : '';
+
     // 厂商下拉（按数量降序）
     const vendorCount = {};
     state.models.forEach((m) => {
@@ -486,6 +507,8 @@
       if (state.vendor && (m.vendor_cn || m.vendor) !== state.vendor) return false;
       // 上下文
       if (state.ctx && (m.context || 0) < Number(state.ctx)) return false;
+      // 错峰折扣
+      if (state.offPeak && !m.off_peak) return false;
       // 价格（统一按人民币阈值比较）
       if (state.price) {
         const pin = toCny(m.price?.in);
@@ -514,6 +537,10 @@
           return numOr(b.price?.in, -1) - numOr(a.price?.in, -1);
         case 'context':
           return numOr(b.context, 0) - numOr(a.context, 0);
+        case 'offpeak':
+          // 折扣力度大的排前面（discount 越小越便宜），无折扣的沉底
+          return numOr(a.off_peak?.discount, 9) - numOr(b.off_peak?.discount, 9)
+              || numOr(a.price?.in, Infinity) - numOr(b.price?.in, Infinity);
         case 'name':
           return a.name.localeCompare(b.name, 'en');
         case 'vendor':
@@ -538,7 +565,7 @@
       state.q,
       [...state.types].sort().join(','),
       [...state.caps].sort().join(','),
-      state.vendor, state.ctx, state.price, state.sort,
+      state.vendor, state.ctx, state.price, state.offPeak, state.sort,
     ]);
     if (sig !== state._sig) {
       state._sig = sig;
@@ -638,6 +665,7 @@
       const meta = CAPS.find((x) => x.key === c);
       tags.push({ k: 'cap', v: c, label: `能力：${meta?.label || c}` });
     });
+    if (state.offPeak) tags.push({ k: 'offpeak', label: '错峰折扣模型' });
     if (state.vendor) tags.push({ k: 'vendor', label: `厂商：${state.vendor}` });
     if (state.ctx) tags.push({ k: 'ctx', label: `上下文 ≥ ${fmtCtx(Number(state.ctx)).v}${fmtCtx(Number(state.ctx)).u}` });
     if (state.price) {
@@ -690,9 +718,10 @@
     if (pin === null && pout === null) return '<div class="price-cell"><span class="num muted">暂无定价</span></div>';
     const a = priceStr(pin);
     const b = priceStr(pout);
+    const off = offPeakPriceNote(m);
     return `<div class="price-cell">
-      <span class="price-main">${a || '—'} <span class="price-io">/ ${b || '—'}</span></span>
-      <span class="price-sub">输入 / 输出 每 1M tokens</span>
+      <span class="price-main">${a || '—'} ${off} <span class="price-io">/ ${b || '—'}</span></span>
+      <span class="price-sub">输入 / 输出 每 1M tokens${m.off_peak ? ' · 含错峰折扣' : ''}</span>
     </div>`;
   }
 
@@ -709,6 +738,47 @@
     return (m.price?.in === 0 && m.price?.out === 0) ? '<span class="badge-free">FREE</span>' : '';
   }
 
+  // ---------------- 错峰折扣 ----------------
+  // 数据来自 scripts/fetch_models.py 的采样识别：同一小时跨天价位一致、
+  // 不同小时有稳定落差、并且价格会回到原价 —— 才是错峰折扣（区别于一次性调价）。
+
+  function discountLabel(d) {
+    // 0.5 -> "5 折"，0.85 -> "8.5 折"
+    if (typeof d !== 'number' || d <= 0 || d >= 1) return '';
+    const zhe = (d * 10).toFixed(1).replace(/\.0$/, '');
+    return `${zhe} 折`;
+  }
+
+  function hoursLabel(hours) {
+    if (!hours?.length) return '';
+    const sorted = [...hours].sort((a, b) => a - b);
+    // 连续小时合并成区间：8,12,16 -> "08:00 / 12:00 / 16:00"
+    return sorted.map((h) => `${String(h).padStart(2, '0')}:00`).join(' / ');
+  }
+
+  function offPeakBadge(m) {
+    const op = m.off_peak;
+    if (!op) return '';
+    const label = discountLabel(op.discount);
+    const tip = `${label || '折扣'}：原价 ${priceStr(op.high) || '—'} → 低谷 ${priceStr(op.low) || '—'}` +
+      (op.off_hours?.length ? `（低谷时段 ${hoursLabel(op.off_hours)}）` : '') +
+      `｜基于 ${op.samples ?? '?'} 次采样${op.confidence === 'low' ? '，样本偏少待确认' : ''}`;
+    return `<span class="badge-offpeak" title="${esc(tip)}">错峰${label ? ' ' + label : ''}</span>`;
+  }
+
+  function offPeakPriceNote(m) {
+    const op = m.off_peak;
+    if (!op) return '';
+    const cur = m.price?.in;
+    // 当前价就是低谷价 → 展示划掉的原价；当前是原价 → 提示低谷价多钱
+    const onLow = typeof cur === 'number' && typeof op.low === 'number' && Math.abs(cur - op.low) < 1e-9;
+    const origin = priceStr(op.high) || '—';
+    const low = priceStr(op.low) || '—';
+    return onLow
+      ? `<span class="price-strike">${origin}</span>`
+      : `<span class="price-peak-note">低谷 ${low}</span>`;
+  }
+
   function renderTable(rows) {
     const frag = [];
     for (const m of rows) {
@@ -719,7 +789,7 @@
         <td class="col-check"><input type="checkbox" data-check="${esc(m.id)}" ${sel ? 'checked' : ''}></td>
         <td class="col-model">
           <div class="model-cell">
-            <span class="model-name">${esc(m.name)}${isNewBadge(m)}${aliasBadge(m)}${freeBadge(m)}</span>
+            <span class="model-name">${esc(m.name)}${isNewBadge(m)}${aliasBadge(m)}${freeBadge(m)}${offPeakBadge(m)}</span>
             <span class="model-id" title="${esc(m.id)}">${esc(m.id)}</span>
           </div>
         </td>
@@ -762,7 +832,7 @@
             <div class="card-title">${esc(m.name)}</div>
             <div class="card-id">${esc(m.id)}</div>
           </div>
-          ${isNewBadge(m)}${freeBadge(m)}
+          ${isNewBadge(m)}${freeBadge(m)}${offPeakBadge(m)}
         </div>
         <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
           <span class="vendor-cell"><span class="vendor-dot" style="background:${esc(m.vendor_color || '#999')}"></span><span class="vendor-name">${esc(m.vendor_cn || m.vendor)}</span></span>
@@ -783,7 +853,7 @@
             <span class="card-metric-label">输入 / 输出</span>
             <span class="card-metric-value" style="font-size:11.5px">${
               m.price?.in === 0 && m.price?.out === 0 ? '免费'
-                : `${priceStr(m.price?.in) || '—'}<span style="color:var(--text-3);font-weight:400"> / </span>${priceStr(m.price?.out) || '—'}`
+                : `${priceStr(m.price?.in) || '—'}${offPeakPriceNote(m)}<span style="color:var(--text-3);font-weight:400"> / </span>${priceStr(m.price?.out) || '—'}`
             }</span>
           </div>
         </div>
@@ -796,7 +866,7 @@
   }
 
   function renderEmpty() {
-    const hasFilter = state.q || state.types.size || state.caps.size || state.vendor || state.ctx || state.price;
+    const hasFilter = state.q || state.types.size || state.caps.size || state.vendor || state.ctx || state.price || state.offPeak;
     el.emptyState.innerHTML = `<div class="table-wrap"><div class="empty">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
       <h3>没有匹配的模型</h3>
@@ -838,12 +908,14 @@
     state.vendor = '';
     state.ctx = '';
     state.price = '';
+    state.offPeak = false;
     el.search.value = '';
     el.vendorSelect.value = '';
     el.ctxSelect.value = '';
     el.priceSelect.value = '';
     $$('#typeChips .chip').forEach((c) => c.classList.remove('on'));
     $$('#capChips .chip').forEach((c) => c.classList.remove('on'));
+    $$('#offPeakChips .chip').forEach((c) => c.classList.remove('on'));
     syncFilterSelectState();
     render();
   }
@@ -936,6 +1008,22 @@
         </table>
         <div style="font-size:10.5px;color:var(--text-3);margin-top:6px">
           汇率 ${state.rate} ${state.currency === 'CNY' ? '（美元 → 人民币）' : ''}，仅供参考，以厂商账单为准
+        </div>
+      </div>` : ''}
+
+      ${m.off_peak ? `<div class="section">
+        <div class="section-title">错峰折扣</div>
+        <div class="offpeak-panel">
+          <div class="offpeak-main">
+            <span class="offpeak-zhe">${discountLabel(m.off_peak.discount) || '有折扣'}</span>
+            <span class="offpeak-arrow">原价 ${priceStr(m.off_peak.high) || '—'} → 低谷 ${priceStr(m.off_peak.low) || '—'}</span>
+          </div>
+          <div class="offpeak-meta">
+            ${m.off_peak.off_hours?.length ? `低谷时段：${hoursLabel(m.off_peak.off_hours)}（按每日采样推断）<br>` : ''}
+            ${m.off_peak.on_hours?.length ? `原价时段：${hoursLabel(m.off_peak.on_hours)}<br>` : ''}
+            依据：${m.off_peak.samples ?? '?'} 次价格采样 / ${m.off_peak.days ?? '?'} 天
+            ${m.off_peak.confidence === 'low' ? '<br><span style="color:var(--warn,#b45309)">样本不足 2 天，规律待进一步确认</span>' : ''}
+          </div>
         </div>
       </div>` : ''}
 
@@ -1124,6 +1212,15 @@
       render();
     });
 
+    // 错峰折扣 chip（容器是空格时点击不会触发，故用委托到父级 toolbar）
+    el.offPeakChips.addEventListener('click', (e) => {
+      const btn = e.target.closest('#offPeakChip');
+      if (!btn) return;
+      state.offPeak = !state.offPeak;
+      btn.classList.toggle('on', state.offPeak);
+      render();
+    });
+
     // 下拉筛选
     el.vendorSelect.addEventListener('change', () => {
       state.vendor = el.vendorSelect.value;
@@ -1230,6 +1327,10 @@
       if (k === 'vendor') { state.vendor = ''; el.vendorSelect.value = ''; }
       if (k === 'ctx') { state.ctx = ''; el.ctxSelect.value = ''; }
       if (k === 'price') { state.price = ''; el.priceSelect.value = ''; }
+      if (k === 'offpeak') {
+        state.offPeak = false;
+        $$('#offPeakChips .chip').forEach((c) => c.classList.remove('on'));
+      }
       syncFilterSelectState();
       render();
     });

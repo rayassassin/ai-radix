@@ -50,6 +50,7 @@ RAW_PATH = DATA_DIR / "raw_api.json"
 MODELS_PATH = DATA_DIR / "models.json"
 META_PATH = DATA_DIR / "meta.json"
 NEW_PATH = DATA_DIR / "new_models.json"
+SAMPLES_PATH = DATA_DIR / "price_samples.json"
 
 TZ_CN = timezone(timedelta(hours=8))
 
@@ -355,6 +356,133 @@ def build_meta(models: list[dict], prev_meta: dict, new_ids: list[str], cfg: dic
     }
 
 
+# ---------------- 错峰折扣识别 ----------------
+# OpenRouter 给的是「几十个路由里的最低价」，而部分厂商有明确的错峰折扣
+# （DeepSeek 是典型：16:30–00:30 半价）。这会让同一模型在一天内不同时刻报价差一倍，
+# 既污染调价推送，本身也是选型时值得知道的信息 —— 干脆识别出来摆到看板上。
+#
+# 判据不是「价格变过」，而是「价格按**时刻**稳定地分档」：同一个小时在不同日期
+# 采到的价位一致，而不同小时之间有稳定落差。真实调价不会每天同一时刻反复横跳。
+SAMPLE_KEEP_DAYS = 3      # 采样保留天数，够跨天比对即可，再长只是占体积
+OFF_PEAK_MIN_DROP = 0.2   # 低谷至少比高峰便宜 20% 才算折扣（排除噪声抖动）
+
+
+def load_samples() -> dict:
+    d = load_json(SAMPLES_PATH, {}) or {}
+    if not isinstance(d, dict) or not isinstance(d.get("days"), dict):
+        return {"days": {}}
+    return d
+
+
+def record_samples(samples: dict, models: list[dict], day: str, hour: int) -> None:
+    """按 天 → 小时 → 模型 记一份输入/输出价。"""
+    slot = samples["days"].setdefault(day, {}).setdefault(str(hour), {})
+    for m in models:
+        p = m.get("price") or {}
+        pin, pout = p.get("in"), p.get("out")
+        if pin is None and pout is None:
+            continue
+        slot[m["id"]] = [pin, pout]
+
+
+def prune_samples(samples: dict, keep_days: int = SAMPLE_KEEP_DAYS) -> None:
+    """只留最近 keep_days 天，采样表不然会长成几百 KB 的垃圾。"""
+    days = sorted(samples.get("days", {}))
+    for day in days[:-keep_days]:
+        samples["days"].pop(day, None)
+
+
+def _median(xs) -> float | None:
+    vals = sorted(x for x in xs if isinstance(x, (int, float)))
+    if not vals:
+        return None
+    n = len(vals)
+    return vals[n // 2] if n % 2 else (vals[n // 2 - 1] + vals[n // 2]) / 2
+
+
+def detect_off_peak(samples: dict, min_drop: float = OFF_PEAK_MIN_DROP) -> dict:
+    """
+    从采样表里找出「按时刻稳定分档、并且会回到原价」的模型。
+
+    关键是区分**错峰折扣**和**真实调价**，两者都会让价格出现高低两档：
+
+    - 错峰折扣：每天都在切换。序列里必然出现 high→low **又回到** high（反之亦然），
+      切换次数 >= 2；且同一个小时在不同日期采到的价位一致。
+    - 真实调价：只切换一次，之后一直停在新价，不会回到旧价。
+
+    所以判据是三条同时成立：落差 >= min_drop、切换 >= 2 次、同一小时跨天稳定。
+    单日数据最多只能观察到一次切换，天然不会被误判 —— 想识别错峰，至少要跨天。
+
+    返回 {模型id: {low, high, discount, off_hours, on_hours, samples, days, confidence}}
+    """
+    days = samples.get("days") or {}
+    if not days:
+        return {}
+
+    # 按时间顺序铺开：一天的 8/12/16/20 点，接着第二天的 8/12/16/20 点……
+    timeline = []
+    for day in sorted(days):
+        hours = days[day] or {}
+        for hour in sorted(hours, key=lambda x: int(x)):
+            timeline.append((day, int(hour), hours[hour]))
+    if len(timeline) < 3:
+        return {}
+
+    mids: set[str] = set()
+    for _, _, slot in timeline:
+        mids.update(slot or {})
+
+    out = {}
+    for mid in mids:
+        seq = []      # [(hour, 价格)]，保持时间顺序
+        for day, hour, slot in timeline:
+            vals = (slot or {}).get(mid)
+            if isinstance(vals, list) and isinstance(vals[0], (int, float)):
+                seq.append((hour, vals[0]))
+        if len(seq) < 3:
+            continue
+
+        prices = [p for _, p in seq]
+        high, low = max(prices), min(prices)
+        if high <= 0 or low / high > (1 - min_drop):
+            continue
+
+        # 二值化成 H/L，数「切换」次数：真实调价只切一次，错峰来回切
+        marks = []
+        for _, p in seq:
+            if p <= low * 1.05:
+                marks.append("L")
+            elif p >= high * 0.95:
+                marks.append("H")
+        switches = sum(1 for i in range(1, len(marks)) if marks[i] != marks[i - 1])
+        if switches < 2:
+            continue      # 没有回归 -> 一次性调价，不是错峰
+
+        # 同一小时跨天必须稳定，否则是随机抖动不是「时段规律」
+        by_hour: dict[int, list] = {}
+        for hour, p in seq:
+            by_hour.setdefault(hour, []).append(p)
+        stable = all(
+            max(v) <= min(v) * 1.1
+            for v in by_hour.values() if len(v) >= 2
+        )
+        if not stable:
+            continue
+
+        hour_price = {h: _median(v) for h, v in by_hour.items()}
+        out[mid] = {
+            "low": low,
+            "high": high,
+            "discount": round(low / high, 3),   # 0.5 = 半价
+            "off_hours": sorted(h for h, p in hour_price.items() if p and p <= low * 1.05),
+            "on_hours": sorted(h for h, p in hour_price.items() if p and p >= high * 0.95),
+            "samples": len(seq),
+            "days": len(days),
+            "confidence": "high" if len(days) >= 2 else "low",
+        }
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--offline", action="store_true", help="不联网，用本地 raw_api.json 重算")
@@ -425,7 +553,23 @@ def main() -> int:
                 })
     log(f"新增 {len(new_ids)} 个｜涨价/降价 {len(changed_price)} 个｜基线：{'有' if has_baseline else '无（首次）'}")
 
-    # ---------- 4. 落盘 ----------
+    # ---------- 4. 价格采样 + 错峰折扣识别 ----------
+    # 采样必须在写入 models.json 之前做：models.json 是下次 diff 的基线，
+    # 而采样表是独立累积的时序数据，两者不能互相干扰。
+    samples = load_samples()
+    record_samples(samples, models, f"{now_cn():%Y-%m-%d}", now_cn().hour)
+    prune_samples(samples)
+    save_json(SAMPLES_PATH, samples)
+    off_peak = detect_off_peak(samples)
+    for m in models:
+        op = off_peak.get(m["id"])
+        if op:
+            m["off_peak"] = op
+    if off_peak:
+        log(f"错峰折扣：识别到 {len(off_peak)} 个模型（采样覆盖 "
+            f"{len(samples.get('days', {}))} 天）")
+
+    # ---------- 5. 落盘 ----------
     prev_meta = load_json(META_PATH) or {}
     meta = build_meta(models, prev_meta, new_ids, cfg)
     meta["has_baseline"] = has_baseline

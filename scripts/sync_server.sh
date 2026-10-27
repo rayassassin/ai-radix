@@ -6,6 +6,8 @@
 #   diff 就是拿它跟下次抓取比。一旦被本地旧文件覆盖（基线倒退），
 #   同一条调价会在之后每一轮被反复 diff 出来、反复推送 —— 表现为「重复推送」。
 #   new_models.json / meta.json / raw_api.json / daily.json 同理。
+#   price_samples.json 是服务器的价格时序采样（错峰折扣识别依据），
+#   本地覆盖会直接把攒了几天的采样冲掉，一样得排除。
 #
 # 用法：./scripts/sync_server.sh [服务器目录]
 #   默认 59.110.138.163 的 /opt/ai-radix
@@ -38,6 +40,7 @@ tar -czf - \
   --exclude='./data/meta.json' \
   --exclude='./data/raw_api.json' \
   --exclude='./data/daily.json' \
+  --exclude='./data/price_samples.json' \
   . | ssh -p "$REMOTE_PORT" -i "$KEY" -o StrictHostKeyChecking=no "root@$REMOTE_HOST" \
       "tar -xzf - -C '$REMOTE_DIR'" 2>/dev/null
 
