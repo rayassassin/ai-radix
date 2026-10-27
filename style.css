@@ -168,9 +168,15 @@ button { font-family: inherit; cursor: pointer; }
 
 .stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
   margin-top: 20px;
+}
+
+/* 大事记页多一格日历，需要更宽（7 列点阵排得开）。只作用于本页，
+   模型页的 .stats 仍是四等分 */
+.page-daily .stats {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(318px, 1.6fr);
 }
 
 .stat {
@@ -181,6 +187,10 @@ button { font-family: inherit; cursor: pointer; }
   box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
+  /* 日历格比数字格高，整行会被拉齐；数字格内容居中才不显空 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .stat::after {
   content: "";
@@ -1763,4 +1773,225 @@ input[type="checkbox"]:checked::after {
   .tl-lead h3 { font-size: 13.5px; }
   .tl-events { padding: 2px 12px 12px; }
   .tl-links { opacity: 1; margin-left: 0; }
+}
+
+/* ---------------- 日历（大事记页，统计卡最右侧） ----------------
+   左半：当前聚焦日（期号 / 大日期 / 年月 / 星期）
+   右半：当月点阵，有数据的天是可点实心圆，安静日是浅圆，
+         数据未覆盖的日子只留淡数字。选中日套一圈品牌色圆环。 */
+
+.stat-cal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 14px;
+}
+
+.cal-focus {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+  text-align: center;
+}
+
+.cal-issue {
+  font-size: 10.5px;
+  color: var(--text-3);
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+
+.cal-big {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.cal-ym {
+  font-size: 10.5px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.cal-week {
+  margin-top: 1px;
+  font-size: 10.5px;
+  color: var(--text-3);
+}
+
+.cal-board {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 244px;
+  margin-left: auto;
+}
+
+.cal-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.cal-month {
+  font-size: 12.5px;
+  font-weight: 650;
+  letter-spacing: -.01em;
+}
+
+.cal-count {
+  font-size: 10.5px;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+
+.cal-nav {
+  display: inline-flex;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.cal-navbtn {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel-2);
+  color: var(--text-3);
+  cursor: pointer;
+  transition: background .14s ease, color .14s ease, border-color .14s ease;
+}
+.cal-navbtn svg { width: 12px; height: 12px; }
+.cal-navbtn:hover:not(:disabled) {
+  color: var(--text);
+  border-color: var(--line-strong);
+  background: #fff;
+}
+.cal-navbtn:disabled { opacity: .32; cursor: default; }
+
+.cal-dow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  margin-bottom: 3px;
+}
+.cal-dow span {
+  font-size: 10px;
+  color: var(--text-3);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  justify-items: center;
+}
+
+.cal-d {
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: 50%;
+  font-family: inherit;
+  font-size: 10px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-3);
+  cursor: default;
+  user-select: none;
+  transition: background .13s ease, color .13s ease, transform .13s ease, box-shadow .13s ease;
+}
+
+/* 有事件：深色实心，和参考日历的墨点观感一致 */
+.cal-d.is-has {
+  background: var(--text);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.cal-d.is-has:hover { transform: scale(1.12); }
+
+/* 当日无大事（「今日安静」）：浅圆，仍可点开看当期主线 */
+.cal-d.is-quiet {
+  background: var(--panel-2);
+  color: var(--text-3);
+  cursor: pointer;
+}
+.cal-d.is-quiet:hover { background: var(--line); color: var(--text-2); }
+
+/* 数据未覆盖：只留淡数字，不可点 */
+.cal-d.is-out {
+  background: transparent;
+  color: color-mix(in srgb, var(--text-3) 45%, transparent);
+}
+
+/* 当前聚焦日 */
+.cal-d.is-sel,
+.cal-d.is-sel:hover {
+  background: var(--brand);
+  color: #fff;
+  font-weight: 700;
+  transform: none;
+  box-shadow: 0 0 0 2px var(--panel),
+              0 0 0 3.5px color-mix(in srgb, var(--brand) 40%, #fff);
+}
+
+.cal-d:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* 结果栏里的日期筛选标记 */
+.date-focus {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 8px;
+  padding: 3px 9px 3px 10px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--brand);
+  background: var(--brand-soft);
+  border: 1px solid color-mix(in srgb, var(--brand) 26%, var(--line));
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .14s ease, border-color .14s ease;
+}
+.date-focus svg { width: 11px; height: 11px; opacity: .65; }
+.date-focus:hover {
+  background: color-mix(in srgb, var(--brand) 15%, #fff);
+  border-color: color-mix(in srgb, var(--brand) 45%, var(--line));
+}
+.date-focus:hover svg { opacity: 1; }
+
+@media (max-width: 1080px) {
+  /* 选择器优先级高于通用 .stats 的两列规则，必须同时覆盖，否则窄屏仍是 5 列被挤扁 */
+  .page-daily .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* 统计卡变两列后，日历单独占一整行，左右两块居中 */
+  .stat-cal { grid-column: span 2; justify-content: center; gap: 30px; }
+  .cal-board { max-width: 262px; }
+}
+
+@media (max-width: 640px) {
+  .stat-cal { gap: 14px; padding: 12px; }
+  .cal-big { font-size: 30px; letter-spacing: -1.5px; }
+  /* 上限沿用 1080 的 262px：再宽列距会被拉散，点阵看着稀 */
+  .cal-board { max-width: 262px; }
+  .date-focus { margin-left: 0; }
 }

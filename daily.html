@@ -73,6 +73,33 @@
         <div class="stat-value" id="statSrc">—</div>
         <div class="stat-foot">AIHOT 公开日报</div>
       </div>
+
+      <!-- 日历：左半是当前聚焦日（未筛选时显示最新一期），右半是当月点阵，
+           点某天即筛选并滚动定位到当天，再点一次取消 -->
+      <div class="stat stat-cal">
+        <div class="cal-focus">
+          <div class="cal-issue" id="calIssue">第 — 期</div>
+          <div class="cal-big" id="calBig">—</div>
+          <div class="cal-ym" id="calYm">—</div>
+          <div class="cal-week" id="calWeek">—</div>
+        </div>
+        <div class="cal-board">
+          <div class="cal-head">
+            <span class="cal-month" id="calMonth">—</span>
+            <span class="cal-count" id="calCount"></span>
+            <span class="cal-nav">
+              <button class="cal-navbtn" id="calPrev" type="button" aria-label="上个月">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+              </button>
+              <button class="cal-navbtn" id="calNext" type="button" aria-label="下个月">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </span>
+          </div>
+          <div class="cal-dow"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+          <div class="cal-grid" id="calGrid"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -96,6 +123,7 @@
 
   <div class="result-bar">
     <span class="result-count" id="resultCount">加载中…</span>
+    <button class="date-focus" id="dateFocus" type="button" hidden></button>
     <span class="spacer"></span>
     <button class="btn-ghost" id="toggleAll">全部展开</button>
   </div>

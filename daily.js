@@ -18,6 +18,8 @@
     search: '',
     cat: 'all',
     sort: 'date-desc',
+    date: null,          // 日历选中的日期；null = 不按日期筛选
+    calMonth: '',        // 日历当前显示的月份 'YYYY-MM'
     expanded: new Set(),
     allExpanded: false,
   };
@@ -27,6 +29,7 @@
     sort: $('#sortSelect'),
     catChips: $('#catChips'),
     resultCount: $('#resultCount'),
+    dateFocus: $('#dateFocus'),
     timeline: $('#timeline'),
     emptyState: $('#emptyState'),
     updatedAt: $('#updatedAt'),
@@ -36,6 +39,15 @@
     statEvents: $('#statEvents'),
     statAvg: $('#statAvg'),
     statSrc: $('#statSrc'),
+    calIssue: $('#calIssue'),
+    calBig: $('#calBig'),
+    calYm: $('#calYm'),
+    calWeek: $('#calWeek'),
+    calMonth: $('#calMonth'),
+    calCount: $('#calCount'),
+    calGrid: $('#calGrid'),
+    calPrev: $('#calPrev'),
+    calNext: $('#calNext'),
   };
 
   const WEEK = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
@@ -53,12 +65,12 @@
     return CAT_COLOR[label] || '#5c5c70';
   }
 
-  /** 2026-10-27 → {d:'27', week:'周二', y:2026, m:10}；用本地构造避免 UTC 偏移串日 */
+  /** 2026-10-27 → {d:'27', dn:27, week:'周二', y:2026, m:10}；用本地构造避免 UTC 偏移串日 */
   function dateParts(s) {
     const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || '');
-    if (!m) return { d: s || '—', week: '', y: 0, m: 0 };
+    if (!m) return { d: s || '—', dn: s || '—', week: '', y: 0, m: 0 };
     const dt = new Date(+m[1], +m[2] - 1, +m[3]);
-    return { d: m[3], week: WEEK[dt.getDay()], y: +m[1], m: +m[2] };
+    return { d: m[3], dn: +m[3], week: WEEK[dt.getDay()], y: +m[1], m: +m[2] };
   }
 
   function normalize(s) {
@@ -79,9 +91,11 @@
   /** 按当前筛选条件裁剪每一天；返回 {day, events} 列表 */
   function filtered() {
     const q = normalize(state.search);
-    const hasFilter = !!q || state.cat !== 'all';
+    const hasFilter = !!q || state.cat !== 'all' || !!state.date;
     const rows = [];
     state.all.forEach((day) => {
+      // 日历选中某天后只保留那一天，与搜索、分类取交集
+      if (state.date && day.date !== state.date) return;
       let events = flatEvents(day);
       if (state.cat !== 'all') {
         events = events.filter((e) => e.label === state.cat);
@@ -97,8 +111,9 @@
         }
       }
       // 无筛选时保留「今日无大事」的安静日 —— 它们是时间线的一部分，
-      // 丢掉会让日期出现断档。有筛选时才把没有命中项的日子剔掉。
-      if (hasFilter && !events.length && !leadHit) return;
+      // 丢掉会让日期出现断档。有筛选时才把没有命中项的日子剔掉；
+      // 但日历明确点了某天时不剔，否则点安静日会得到一片空白。
+      if (hasFilter && !events.length && !leadHit && !state.date) return;
       rows.push({ day, events, leadHit: !!leadHit });
     });
     return rows;
@@ -200,6 +215,17 @@
       ? `共 <b>${rows.length}</b> 天 · <b>${totalEvents}</b> 条事件`
       : '没有匹配的事件';
 
+    // 日期筛选标记：明确告诉用户当前只看某一天，点叉即可回到全部
+    if (state.date) {
+      const p = dateParts(state.date);
+      el.dateFocus.hidden = false;
+      el.dateFocus.innerHTML = `<span>${p.m} 月 ${p.dn} 日 · ${p.week}</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+             stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>`;
+    } else {
+      el.dateFocus.hidden = true;
+    }
+
     el.emptyState.innerHTML = rows.length ? '' : `
       <div class="empty">
         <h3>没有找到相关事件</h3>
@@ -211,9 +237,11 @@
       reset.addEventListener('click', () => {
         state.search = '';
         state.cat = 'all';
+        state.date = null;
         el.search.value = '';
         renderChips();
         render();
+        renderCalendar();
       });
     }
 
@@ -259,6 +287,122 @@
     el.updatedAt.innerHTML = `<span class="dot-live"></span>更新于 ${esc(data.fetched_at || '—')}`;
   }
 
+  /* ---------------- 日历 ---------------- */
+
+  const MONTH_CN = ['一月', '二月', '三月', '四月', '五月', '六月',
+    '七月', '八月', '九月', '十月', '十一月', '十二月'];
+  const pad2 = (n) => String(n).padStart(2, '0');
+
+  const cal = {
+    byDate: new Map(),   // 'YYYY-MM-DD' → 当天日报
+    issue: new Map(),    // 'YYYY-MM-DD' → 本地收录期号（最早为第 1 期）
+    min: '',
+    max: '',
+    minMonth: '',
+    maxMonth: '',
+  };
+
+  /** 建索引：日期 → 日报、期号，以及可翻月份边界（超出范围不给翻） */
+  function buildCalIndex() {
+    const dates = state.all.map((d) => d.date).filter(Boolean).sort();
+    cal.byDate.clear();
+    cal.issue.clear();
+    state.all.forEach((d) => { if (d.date) cal.byDate.set(d.date, d); });
+    dates.forEach((d, i) => cal.issue.set(d, i + 1));
+    cal.min = dates[0] || '';
+    cal.max = dates[dates.length - 1] || '';
+    cal.minMonth = cal.min.slice(0, 7);
+    cal.maxMonth = cal.max.slice(0, 7);
+    if (!state.calMonth) state.calMonth = cal.maxMonth;
+  }
+
+  function monthCount(ym) {
+    let n = 0;
+    cal.byDate.forEach((_, date) => { if (date.startsWith(ym)) n += 1; });
+    return n;
+  }
+
+  /** 该月最后一期有数据的日期；没有则返回空串 */
+  function monthLatest(ym) {
+    let d = '';
+    cal.byDate.forEach((_, date) => {
+      if (date.startsWith(ym) && date > d) d = date;
+    });
+    return d;
+  }
+
+  function renderCalendar() {
+    if (!cal.max) return;
+
+    if (state.calMonth < cal.minMonth) state.calMonth = cal.minMonth;
+    if (state.calMonth > cal.maxMonth) state.calMonth = cal.maxMonth;
+
+    const ym = state.calMonth;
+    const [y, m] = ym.split('-').map(Number);
+
+    // 左半大日期：筛选日若在当前月就用它，否则跟随翻月显示该月最后一期。
+    // 翻月不改变筛选（chip 仍在），只是左侧换成了当前视图的代表日期。
+    const inView = state.date && state.date.startsWith(ym);
+    const viewDate = (inView ? state.date : monthLatest(ym)) || cal.max;
+
+    const vp = dateParts(viewDate);
+    const issue = cal.issue.get(viewDate);
+    el.calIssue.textContent = issue ? `第 ${issue} 期` : '未收录';
+    el.calBig.textContent = vp.dn;
+    el.calYm.textContent = `${vp.y} 年 ${vp.m} 月`;
+    el.calWeek.textContent = vp.week;
+
+    el.calMonth.textContent = MONTH_CN[m - 1];
+    el.calCount.textContent = `本月 ${monthCount(ym)} 期`;
+    el.calPrev.disabled = ym <= cal.minMonth;
+    el.calNext.disabled = ym >= cal.maxMonth;
+
+    // 重建点阵会丢掉键盘焦点，先记下是不是在日历里，建完再还回去
+    const hadFocus = el.calGrid.contains(document.activeElement);
+
+    // 周一为一周之始，前导空位对齐星期头
+    const lead = (new Date(y, m - 1, 1).getDay() + 6) % 7;
+    const total = new Date(y, m, 0).getDate();
+    const cells = [];
+    for (let i = 0; i < lead; i += 1) cells.push('<span class="cal-d is-out"></span>');
+    for (let d = 1; d <= total; d += 1) {
+      const date = `${y}-${pad2(m)}-${pad2(d)}`;
+      const day = cal.byDate.get(date);
+      const sel = date === viewDate ? ' is-sel' : '';
+      if (!day) {
+        // 数据未覆盖的日子：淡点，不可点
+        cells.push(`<span class="cal-d is-out">${d}</span>`);
+        continue;
+      }
+      const n = day.event_count || 0;
+      const tip = n ? `${n} 条事件` : '今日安静';
+      cells.push(`<button type="button" class="cal-d ${n ? 'is-has' : 'is-quiet'}${sel}"`
+        + ` data-date="${date}" title="${esc(date)} · ${tip}"`
+        + ` aria-pressed="${date === state.date}">${d}</button>`);
+    }
+    el.calGrid.innerHTML = cells.join('');
+
+    if (hadFocus) {
+      const back = el.calGrid.querySelector(`.cal-d[data-date="${viewDate}"]`);
+      if (back) back.focus();
+    }
+  }
+
+  /** 筛选后把当天卡片滚到可视区顶部（让开吸顶的工具条） */
+  function scrollToDate(date) {
+    // render() 已同步写完 DOM，这里直接量位置即可；不用 rAF，
+    // 页面在后台时 rAF 会被暂停，反而漏掉滚动
+    const card = el.timeline.querySelector(`.tl-day[data-date="${date}"]`);
+    if (!card) return;
+    const bar = document.querySelector('.toolbar');
+    const offset = (bar ? bar.offsetHeight : 0) + 74;
+    const target = card.getBoundingClientRect().top + window.scrollY - offset;
+    // 已经在目标位置上方就不动，免得点一下屏幕凭空跳一段
+    if (target > window.scrollY + 8) {
+      window.scrollTo({ top: target, behavior: 'smooth' });
+    }
+  }
+
   function bindEvents() {
     el.search.addEventListener('input', (e) => {
       state.search = e.target.value.trim();
@@ -299,6 +443,37 @@
       state.allExpanded = !state.allExpanded;
       render();
     });
+
+    // 日历点某天：筛选到当天并滚动定位；再点同一天取消
+    el.calGrid.addEventListener('click', (e) => {
+      const btn = e.target.closest('button.cal-d[data-date]');
+      if (!btn) return;
+      const date = btn.dataset.date;
+      state.date = state.date === date ? null : date;
+      if (state.date) state.expanded.add(date);
+      render();
+      renderCalendar();
+      if (state.date) scrollToDate(date);
+    });
+
+    el.calPrev.addEventListener('click', () => shiftMonth(-1));
+    el.calNext.addEventListener('click', () => shiftMonth(1));
+
+    el.dateFocus.addEventListener('click', () => {
+      state.date = null;
+      render();
+      renderCalendar();
+    });
+  }
+
+  /** 翻月：只在有数据的月份区间内移动 */
+  function shiftMonth(step) {
+    const [y, m] = state.calMonth.split('-').map(Number);
+    const dt = new Date(y, m - 1 + step, 1);
+    const ym = `${dt.getFullYear()}-${pad2(dt.getMonth() + 1)}`;
+    if (ym < cal.minMonth || ym > cal.maxMonth) return;
+    state.calMonth = ym;
+    renderCalendar();
   }
 
   async function boot() {
@@ -310,7 +485,9 @@
       if (!state.all.length) throw new Error('大事记为空');
 
       renderStats(data);
+      buildCalIndex();
       renderChips();
+      renderCalendar();
       render();
       bindEvents();
     } catch (err) {
