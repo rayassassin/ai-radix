@@ -23,11 +23,11 @@
     },
     "webhook": "",
     "mention_all": false,
-    "only_push_new": true,
     "push_on_first_run": false,
     "max_bytes_per_message": 1800,
     "price_change_threshold": 10,
     "price_change_min_abs_cny": 1.0,
-    "price_digest_hours": [8, 12, 16, 20]
+    "price_digest_hours": [8, 12, 16, 20],
+    "price_summary_hour": 20
   }
 }
