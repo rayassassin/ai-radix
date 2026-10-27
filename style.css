@@ -1974,6 +1974,8 @@ input[type="checkbox"]:checked::after {
   transition: background .14s ease, border-color .14s ease;
 }
 .date-focus svg { width: 11px; height: 11px; opacity: .65; }
+/* hidden 属性会被上面的 display:inline-flex 盖掉，必须显式复位，否则未筛选时留个空胶囊 */
+.date-focus[hidden] { display: none; }
 .date-focus:hover {
   background: color-mix(in srgb, var(--brand) 15%, #fff);
   border-color: color-mix(in srgb, var(--brand) 45%, var(--line));
