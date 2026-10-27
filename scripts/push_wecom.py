@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-LLM Radar · 企业微信群机器人推送
+AI · Radix · 企业微信群机器人推送
 
 职责：读取 data/new_models.json 中本次 diff 出的新上线模型，推送到企微群。
 
@@ -273,16 +273,21 @@ def build_price_blocks(changes: list[dict], rate: float, threshold_pct: float,
     return blocks, total_picked
 
 
-def build_header(meta: dict, new_count: int, price_count: int, digest: bool = False) -> str:
-    """消息头。结构对齐「GitHub 订阅 · 通道自检」：加粗标题 + 若干 `标签：值` 行。"""
+def build_header(meta: dict, new_count: int, price_count: int, digest: bool = False,
+                 site_title: str = "") -> str:
+    """消息头。结构对齐「GitHub 订阅 · 通道自检」：加粗标题 + 若干 `标签：值` 行。
+
+    标题前缀取 config.site.title（如「AI · Radix」），缺省回落「大模型全景」。
+    """
     total = meta.get("total", "?")
     vendors = meta.get("vendors", "?")
+    brand = (site_title or "").strip() or "大模型全景"
     if new_count:
-        title = "大模型全景 · 上新速报"
+        title = f"{brand} · 上新速报"
     elif digest:
-        title = "大模型全景 · 价格汇总"
+        title = f"{brand} · 价格汇总"
     else:
-        title = "大模型全景 · 价格调整"
+        title = f"{brand} · 价格调整"
     bits = []
     if new_count:
         bits.append(f"新增：{new_count} 个")
@@ -761,6 +766,8 @@ def main() -> int:
     max_bytes = int(wcfg.get("max_bytes_per_message", 1800))
     rate = float(cfg["data"].get("usd_to_cny", 7.15))
     site_url = cfg.get("site", {}).get("url") or "https://rayassassin.github.io/ai-radix/"
+    # 消息头品牌名统一取配置，改一处就全站一致（页面侧的品牌在 HTML 的 .brand-title）
+    brand = (cfg.get("site", {}).get("title") or "").strip() or "大模型全景"
 
     meta = load_json(META_PATH) or {}
     payload = load_json(NEW_PATH) or {}
@@ -773,7 +780,7 @@ def main() -> int:
     if args.alert:
         reason = args.alert.strip()[:300]
         msg = "\n".join([
-            "**大模型全景 · 任务异常** 🌶️",
+            f"**{brand} · 任务异常** 🌶️",
             f"时间：{now_cn():%Y-%m-%d %H:%M:%S}",
             f"原因：{reason}",
             f"已收录：{meta.get('total', '?')} 个模型 ｜ 上次更新：{meta.get('updated_at') or '未知'}",
@@ -798,7 +805,7 @@ def main() -> int:
     if args.test:
         transport_cn = {"wxapp": "自建应用消息", "aibot": "智能机器人", "webhook": "群机器人"}
         msg = "\n".join([
-            "**大模型全景 · 通道自检** 🌶️",
+            f"**{brand} · 通道自检** 🌶️",
             f"时间：{now_cn():%Y-%m-%d %H:%M:%S}",
             f"通道：{target_desc or transport_cn.get(transport, transport)}",
             f"收录：{meta.get('total', '?')} 个模型 / {meta.get('vendors', '?')} 家厂商",
@@ -847,7 +854,9 @@ def main() -> int:
     if merged and not args.dry_run:
         save_ledger(ledger)
     if merged:
-        log(f"调价已记账 {merged} 条（台账累计 {len(ledger['items'])} 个模型）")
+        # 预演只改内存不落盘，日志里说清楚，免得排查时误以为台账已被消费
+        tail = "（预演，未落盘）" if args.dry_run else ""
+        log(f"调价已记账 {merged} 条（台账累计 {len(ledger['items'])} 个模型）{tail}")
 
     is_digest = bool(args.digest) or now_cn().hour in push_hours
     if is_digest:
@@ -876,7 +885,8 @@ def main() -> int:
     listed = new_models[:MAX_LIST]
     omitted = max(0, len(new_models) - MAX_LIST)
 
-    header = build_header(meta, len(new_models), price_count, digest=is_digest)
+    header = build_header(meta, len(new_models), price_count, digest=is_digest,
+                          site_title=brand)
     blocks = build_blocks(listed, meta, rate, site_url) + price_blocks
     footer = build_footer(meta, site_url, omitted,
                           since=ledger.get("since") if (is_digest and price_count) else "",

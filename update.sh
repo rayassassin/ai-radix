@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# LLM Radar · 定时任务入口
+# AI · Radix · 定时任务入口
 # 抓取最新模型数据 → diff 出新上线/调价模型 → 推送企微
 # 适合挂 cron：0 8,12,16,20 * * * /path/to/update.sh >> /path/to/logs/cron.log 2>&1
 #
@@ -13,7 +13,7 @@ PY="${PYTHON_BIN:-python3}"
 START=$(date +%s)
 
 echo "════════════════════════════════════════"
-echo "LLM Radar 更新开始  $(date '+%Y-%m-%d %H:%M:%S')"
+echo "AI · Radix 更新开始  $(date '+%Y-%m-%d %H:%M:%S')"
 echo "════════════════════════════════════════"
 
 # 告警回调：参数为失败原因。告警自身失败也不能影响主流程退出码。

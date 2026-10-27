@@ -21,6 +21,7 @@ import base64
 import json
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -28,20 +29,31 @@ DEFAULT_REPO = "rayassassin/ai-radix"
 BRANCH = "main"
 
 
-def gh_api(endpoint: str, method: str = "GET", body: dict | None = None) -> dict:
+def gh_api(endpoint: str, method: str = "GET", body: dict | None = None,
+           retries: int = 4) -> dict:
+    """调 gh api。失败重试：慢链路下 TLS 握手偶发超时，一次就放弃等于白推一遍。"""
     cmd = ["gh", "api", endpoint, "-X", method]
     if body is not None:
         cmd += ["--input", "-"]
+        payload = json.dumps(body).encode("utf-8")
+    else:
+        payload = None
+
+    last = ""
+    for attempt in range(1, retries + 1):
         proc = subprocess.run(
-            cmd, input=json.dumps(body).encode("utf-8"),
+            cmd, input=payload,
             capture_output=True, cwd=str(ROOT),
         )
-    else:
-        proc = subprocess.run(cmd, capture_output=True, cwd=str(ROOT))
-    if proc.returncode != 0:
-        raise RuntimeError(f"{method} {endpoint} 失败：{proc.stderr.decode('utf-8', 'replace').strip()}")
-    out = proc.stdout.decode("utf-8", "replace").strip()
-    return json.loads(out) if out else {}
+        if proc.returncode == 0:
+            out = proc.stdout.decode("utf-8", "replace").strip()
+            return json.loads(out) if out else {}
+        last = proc.stderr.decode("utf-8", "replace").strip()
+        if attempt < retries:
+            wait = 3 * attempt
+            print(f"  ↻ {method} {endpoint} 失败（{last[:60]}），{wait}s 后重试 {attempt}/{retries - 1}")
+            time.sleep(wait)
+    raise RuntimeError(f"{method} {endpoint} 失败：{last}")
 
 
 def tracked_files() -> list[Path]:
@@ -57,6 +69,26 @@ def tracked_files() -> list[Path]:
         if p.is_file():
             files.append(p)
     return files
+
+
+def local_blob_sha(path: Path) -> str:
+    """算 Git blob sha。同一内容的 blob sha 与 GitHub 上完全一致，可直接比对。"""
+    proc = subprocess.run(
+        ["git", "hash-object", str(path)], capture_output=True, cwd=str(ROOT), check=True,
+    )
+    return proc.stdout.decode().strip()
+
+
+def remote_blobs(repo: str, branch: str) -> dict[str, dict]:
+    """远端分支当前的 path → {sha, mode}。取不到就返回空表，退化为全量上传。"""
+    try:
+        ref = gh_api(f"repos/{repo}/git/ref/heads/{branch}")
+        commit = gh_api(f"repos/{repo}/git/commits/{ref['object']['sha']}")
+        tree = gh_api(f"repos/{repo}/git/trees/{commit['tree']['sha']}?recursive=1")
+    except Exception as e:                        # 空仓库 / 网络问题都不该阻断推送
+        print(f"  取远端 tree 失败，本次走全量：{e}")
+        return {}
+    return {e["path"]: e for e in tree.get("tree", []) if e.get("type") == "blob"}
 
 
 def main() -> int:
@@ -81,17 +113,28 @@ def main() -> int:
     if args.dry_run:
         return 0
 
-    # ---- 1. 逐个文件建 blob ----
+    # ---- 1. 逐个文件建 blob（内容没变且模式一致的复用远端 sha，不重传）----
+    remote = remote_blobs(args.repo, args.branch)
     tree = []
+    uploaded = reused = 0
     for f in files:
         rel = f.relative_to(ROOT).as_posix()
-        content = base64.b64encode(f.read_bytes()).decode("ascii")
         # 可执行位要带上，否则 Actions 里 ./update.sh 会报 Permission denied
         mode = "100755" if (f.suffix in (".sh", ".py") or rel.startswith("scripts/")) else "100644"
+        sha = local_blob_sha(f)
+        old = remote.get(rel)
+        if old and old.get("sha") == sha and old.get("mode") == mode:
+            tree.append({"path": rel, "mode": mode, "type": "blob", "sha": sha})
+            reused += 1
+            continue
+        content = base64.b64encode(f.read_bytes()).decode("ascii")
         res = gh_api(f"repos/{args.repo}/git/blobs", "POST",
                      {"content": content, "encoding": "base64"})
         tree.append({"path": rel, "mode": mode, "type": "blob", "sha": res["sha"]})
-        print(f"  ✓ blob {rel}")
+        uploaded += 1
+        print(f"  ↑ blob {rel}")
+
+    print(f"✓ blob 完成：新传 {uploaded} 个，复用 {reused} 个（内容未变）")
 
     # ---- 2. 建 tree ----
     tree_res = gh_api(f"repos/{args.repo}/git/trees", "POST", {"tree": tree})

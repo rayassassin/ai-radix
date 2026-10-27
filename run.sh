@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# LLM Radar 一键启动：先抓数据，再起本地服务
+# AI · Radix 一键启动：先抓数据，再起本地服务
 # 用法: ./run.sh            抓取 + 启动
 #       ./run.sh --no-fetch 直接用现有数据启动
 
