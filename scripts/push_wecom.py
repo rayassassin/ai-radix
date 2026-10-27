@@ -455,11 +455,27 @@ def save_notified(d: dict) -> None:
         log(f"播报档案写入失败：{e}")
 
 
+def change_fp(c: dict) -> str:
+    """
+    一条变动的指纹：`old_in>new_in|old_out>new_out`。
+
+    同一个价位组合只播报一次。指纹相同意味着「这条消息已经发过了」——
+    不管它是怎么又被 diff 出来的（基线倒退、数据回灌、脚本重跑），都不该复读。
+    """
+    o, n = c.get("old") or {}, c.get("new") or {}
+    return "|".join(f"{o.get(k)}>{n.get(k)}" for k in ("in", "out"))
+
+
 def filter_cooldown(changes: list[dict], notified: dict, rate: float,
                     cooldown_days: int, breakout: float) -> tuple[list[dict], list[dict]]:
     """
-    同模型冷却：同一个模型在 cooldown_days 天内播报过就不再重复播报，
-    除非这次的幅度达到上次播报幅度的 breakout 倍（说明是又一次真实调价，不是原地摆动）。
+    两道闸门，任一命中就跳过：
+
+    1. **指纹去重**：这次的 old→new 价位组合跟已播报过的完全一样 → 复读，跳过。
+       这是最硬的一道：基线被回灌/倒退时，同一条真实调价会被反复 diff 出来，
+       指纹相同就是同一条消息，没有第二次播报的道理。
+    2. **时间冷却**：同一个模型在 cooldown_days 天内播报过 → 跳过，
+       除非这次幅度达到上次播报幅度的 breakout 倍（视为新一轮真实调价）。
 
     为什么需要这层兜底：OpenRouter 给的是几十个路由里的最低价，而部分厂商
     （DeepSeek 是典型）有**错峰折扣**——每天 16:30–00:30 半价。抓取点一旦跨过折扣边界，
@@ -467,13 +483,18 @@ def filter_cooldown(changes: list[dict], notified: dict, rate: float,
     本可以抵消掉它，但只要窗口被截断（首次部署、汇总失败重试、临时改点）就会漏出来。
     冷却期保证：即便机制失效，同一个模型也不会天天在群里刷同一条。
     """
-    if cooldown_days <= 0:
-        return changes, []
     today = now_cn().date()
     keep, cooled = [], []
     for c in changes:
         rec = notified.get(c.get("id") or "")
         if not isinstance(rec, dict) or not rec.get("date"):
+            keep.append(c)
+            continue
+        # 闸门 1：价位组合一模一样 → 已经播报过这一条了
+        if rec.get("fp") and rec["fp"] == change_fp(c):
+            cooled.append(c)
+            continue
+        if cooldown_days <= 0:
             keep.append(c)
             continue
         try:
@@ -1062,6 +1083,7 @@ def main() -> int:
                 "name": c.get("name", ""),
                 "pct": round(p, 2) if p is not None else None,
                 "price": (c.get("new") or {}).get("in"),
+                "fp": change_fp(c),
                 "date": f"{now_cn():%Y-%m-%d}",
             }
         save_notified(notified)

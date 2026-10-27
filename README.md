@@ -193,6 +193,19 @@ OpenRouter 的 `models` 接口返回的价格是**几十个路由里的最低价
    同一个模型 `price_model_cooldown_days` 天内也不再重复播报，
    除非幅度达到上次播报幅度的 `price_cooldown_breakout` 倍。
 
+### ⚠️ 部署红线：绝不能用本地 data/ 覆盖服务器
+
+`data/models.json` 是**调价基线**——服务器每次抓取后自己写入当次抓取值，
+下一轮的 diff 就是拿它来比。本地那份是几天前的快照，一旦被同步覆盖（基线倒退），
+同一条真实调价会在之后每一轮被反复 diff 出来、反复推送。
+
+实测踩过：一次不留神的 `tar | ssh tar -x` 把本地旧基线推到服务器，
+结果 `qwen/qwen3.8-27b`（0.039→0.2）在 16 点、20 点连报两次同样的「涨 413%」。
+
+**必须走 `scripts/sync_server.sh`**，它排除 `data/` 下的运行时产物
+（`models.json` / `new_models.json` / `meta.json` / `raw_api.json` / `daily.json`），
+并在同步前自动备份一份到服务器。
+
 新增模型仍按抓取时刻走 —— 每天 4 次，够及时，又不会把群里刷成流水账。
 
 ### 验证
