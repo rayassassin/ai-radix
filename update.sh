@@ -52,8 +52,23 @@ elif [ "$PUSH_RC" -ne 0 ]; then
   alert "消息推送失败（退出码 $PUSH_RC），请检查企微通道与凭证"
 fi
 
+# ---------- 3. AI 大事记 ----------
+# 只抓 AIHOT 最新一期（历史日报不变，脚本会自动复用本地已有日期）。
+# 属于增量补充功能：失败重试 3 次仍不成就记警告，不打断主流程，
+# 但也绝不静默 —— cron.log 里会留下明确的 WARN 行。
+if DAILY_OUT=$("$PY" scripts/fetch_daily.py --days 30 2>&1); then
+  echo "$DAILY_OUT" | tail -3
+else
+  echo "⚠️  AI 大事记抓取失败（不影响模型数据），详情："
+  echo "$DAILY_OUT" | tail -5
+  DAILY_FAIL=1
+fi
+
 ELAPSED=$(( $(date +%s) - START ))
 echo "════════════════════════════════════════"
 echo "完成，耗时 ${ELAPSED}s"
+if [ "${DAILY_FAIL:-0}" = "1" ]; then
+  echo "⚠️  本次 AI 大事记未更新，页面沿用上一版数据"
+fi
 echo "════════════════════════════════════════"
 exit "$PUSH_RC"

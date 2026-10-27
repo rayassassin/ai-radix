@@ -52,6 +52,7 @@
 llm-radar/
 ├── index.html / app.js / style.css   # AI 大模型（原生 JS，无构建、无 CDN）
 ├── tools.html / tools.js             # AI 工具集（共用 style.css）
+├── daily.html / daily.js             # AI 大事记（共用 style.css）
 ├── build.sh                 # 生成纯静态发布目录 dist/
 ├── run.sh                   # 本地：抓数据 + 起服务
 ├── update.sh                # 定时入口：抓数据 + 推企微（cron 调这个）
@@ -60,6 +61,7 @@ llm-radar/
 │   ├── fetch_models.py      # 抓取 OpenRouter → 标准化 → diff 新模型
 │   ├── push_wecom.py        # 推送（支持三种通道，见下）
 │   ├── fetch_favicons.py    # 抓各工具官网 favicon → assets/icons/
+│   ├── fetch_daily.py       # 抓 AIHOT 日报 → data/daily.json
 │   ├── score_tools.py       # 工具流行度指数
 │   ├── expand_tools.py      # 工具批量补录
 │   └── push_to_github.py    # 走 Data API 推仓库（git 传输受阻时用）
@@ -71,6 +73,7 @@ llm-radar/
 │   ├── tools.json           # AI 工具清单（人工维护）
 │   ├── favicons.json        # 工具 id → 图标文件名 + 明暗档
 │   ├── favicons_meta.json   # 图标逐个来源与失败原因（排查用）
+│   ├── daily.json           # AI 大事记：AIHOT 日报索引
 │   ├── raw_api.json         # API 原始响应（--offline 重算用，不入库）
 │   └── providers.json       # 厂商中文名 / 品牌色
 ├── config.example.json      # 配置模板
@@ -454,6 +457,75 @@ python3 scripts/fetch_favicons.py --limit 20   # 先跑一批看效果
 ```
 
 图标不需要天天刷新（官网 logo 很少改），换 logo 或新增工具时手动跑一次即可。
+
+---
+
+## AI 大事记（`daily.html`）
+
+把每天的 AI 动态压成一条时间线：模型发布、产品更新、行业动态、论文研究。
+数据来自 **AIHOT**（[aihot.news](https://aihot.news/daily)）的公开 API。
+
+### 为什么走 API 而不是解析网页
+
+AIHOT 在 `https://aihot.news/api/v1/agent` 里明确给了接入方式，并且专门要求：
+
+> 要写程序做定时同步、推送或维护本地副本，不用这些地址，改用 JSON 接口：
+> `https://aihot.news/openapi-v1.json`（User-Agent 用 `aihot-api/2.0.0`）
+
+所以脚本用官方 JSON 接口 + 指定 UA，不猜 HTML 结构、不模拟浏览器：
+
+| 接口 | 用途 |
+| --- | --- |
+| `GET /api/v1/dailies?limit=N` | 日报列表（日期、当日主线标题与摘要） |
+| `GET /api/v1/dailies/{date}` | 单期详情（lead + 分类事件，含来源与原文链接） |
+
+限流约 60 次/分钟，脚本按 1.2 秒间隔节流，遇到 429 读 `Retry-After` 等待。
+
+### 合规边界（重要）
+
+AIHOT 的使用规则写明：匿名免 Key **只是技术访问方式，不代表所有用途都获许可**。
+个人非商业、公益非商业、组织内部使用免费；而**面向外部的商业产品、公开镜像、
+批量公开再分发**等须事先取得书面授权，仅标注「数据来源：AIHOT」不算授权。
+
+本站目前的做法与风险：
+
+- 只存**索引**——标题、摘要、来源、原文链接，不存全文、不重排改写
+- 每条事件都带「AIHOT」与「原文」两个出口，读者核对信息回原站
+- 页脚与详情区都标明内容来自 AIHOT，版权归原信源
+
+若本站定位转为对外公开产品，应联系 `wzglyay@virxact.com` 取得授权，
+或把 `daily.html` 限制在内网访问。规则全文见 <https://aihot.news/terms>。
+
+### 数据结构
+
+`data/daily.json` 按日期倒序，每期保留当日主线（lead）与分类事件（sections）：
+
+```json
+{
+  "date": "2026-10-27",
+  "lead": { "title": "…", "paragraph": "…" },
+  "sections": [
+    { "label": "模型发布/更新",
+      "items": [{ "title": "…", "summary": "…", "source": "X：Tibo",
+                  "url": "…/items/xxx", "original": "…" }] }
+  ],
+  "event_count": 12
+}
+```
+
+### 更新与交互
+
+```bash
+python3 scripts/fetch_daily.py              # 默认最近 30 天
+python3 scripts/fetch_daily.py --days 90    # 更深的历史
+python3 scripts/fetch_daily.py --date 2026-10-27   # 只补某一天
+```
+
+历史日报内容不会再变，脚本复用本地已有日期，每次只抓新的一期，通常 1–2 个请求。
+`update.sh` 已把它挂在每日例行任务末尾，失败不影响模型数据，但会在 cron.log 里留 WARN。
+
+页面支持搜索（标题/摘要/来源）、按五类事件筛选、按日期或事件数排序、逐日展开与「全部展开」。
+「今日无大事」的安静日会保留在时间线上（虚线圆点、无展开按钮），否则日期会出现断档。
 
 ---
 
