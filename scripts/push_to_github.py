@@ -24,7 +24,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_REPO = "rayassassin/llm-radar"
+DEFAULT_REPO = "rayassassin/ai-radix"
 BRANCH = "main"
 
 

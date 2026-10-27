@@ -9,8 +9,8 @@
 
 模型页在**新模型上线时自动推送企业微信**（每天 8/12/16/20 点检测）。
 
-**线上地址**：https://rayassassin.github.io/llm-radar/
-**仓库**：https://github.com/rayassassin/llm-radar
+**线上地址**：https://rayassassin.github.io/ai-radix/
+**仓库**：https://github.com/rayassassin/ai-radix
 
 ---
 
@@ -49,7 +49,7 @@
 ## 目录结构
 
 ```
-llm-radar/
+ai-radix/
 ├── index.html / app.js / style.css   # AI 大模型（原生 JS，无构建、无 CDN）
 ├── tools.html / tools.js             # AI 工具集（共用 style.css）
 ├── daily.html / daily.js             # AI 大事记（共用 style.css）
@@ -84,14 +84,14 @@ llm-radar/
 
 ## 配置（已外置，不在项目目录）
 
-查找顺序：`LLM_RADAR_CONFIG` 环境变量 → `~/.llm-radar/config.json` → 项目内 `config.json`。
+查找顺序：`AI_RADIX_CONFIG` 环境变量 → `~/.ai-radix/config.json` → 项目内 `config.json`。
 
 外置是为了避免密钥随站点目录被公开部署。
 
 ```bash
-mkdir -p ~/.llm-radar
-cp config.example.json ~/.llm-radar/config.json
-chmod 600 ~/.llm-radar/config.json
+mkdir -p ~/.ai-radix
+cp config.example.json ~/.ai-radix/config.json
+chmod 600 ~/.ai-radix/config.json
 ```
 
 ---
@@ -204,17 +204,17 @@ python3 scripts/push_to_github.py
 
 ```bash
 # 部署（把 <ssh-端口> <服务器> 换成自己的）
-tar czf - --exclude=logs --exclude=dist --exclude=.git --exclude='._*' -C llm-radar . \
-  | ssh -p <ssh-端口> root@<服务器> 'mkdir -p /opt/llm-radar && tar xzf - -C /opt/llm-radar'
+tar czf - --exclude=logs --exclude=dist --exclude=.git --exclude='._*' -C ai-radix . \
+  | ssh -p <ssh-端口> root@<服务器> 'mkdir -p /opt/ai-radix && tar xzf - -C /opt/ai-radix'
 
 # 配置（服务器上，放项目目录之外，避免随站点一起被公开）
-mkdir -p ~/.llm-radar && cp /opt/llm-radar/config.example.json ~/.llm-radar/config.json
-chmod 600 ~/.llm-radar/config.json
+mkdir -p ~/.ai-radix && cp /opt/ai-radix/config.example.json ~/.ai-radix/config.json
+chmod 600 ~/.ai-radix/config.json
 # 填 env_file 与 touser 后测试
-cd /opt/llm-radar && python3 scripts/push_wecom.py --test
+cd /opt/ai-radix && python3 scripts/push_wecom.py --test
 
 # 定时（服务器时区为 Asia/Shanghai，直接写北京时间）
-0 8,12,16,20 * * * cd /opt/llm-radar && ./update.sh >> /opt/llm-radar/logs/cron.log 2>&1
+0 8,12,16,20 * * * cd /opt/ai-radix && ./update.sh >> /opt/ai-radix/logs/cron.log 2>&1
 ```
 
 `update.sh` 退出码约定：`0` 成功或无新增，`1` 抓取失败，`2` 通道未配置（视为未启用），
@@ -263,7 +263,7 @@ cd /opt/llm-radar && python3 scripts/push_wecom.py --test
 > 能力：推理 · 工具 · JSON
 
 > 数据源 OpenRouter ｜ 每天 08/12/16/20 点同步
-> [打开全景看板](https://rayassassin.github.io/llm-radar/)
+> [打开全景看板](https://rayassassin.github.io/ai-radix/)
 ```
 
 ---

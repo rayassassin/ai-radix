@@ -30,17 +30,20 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
-CONFIG_EXTERNAL = Path.home() / ".llm-radar" / "config.json"
+CONFIG_EXTERNAL = Path.home() / ".ai-radix" / "config.json"
+# 迁移期兼容：改名前的 ~/.llm-radar 若还在也认，旧目录清掉后这段连同下面一起删
+CONFIG_LEGACY = Path.home() / ".llm-radar" / "config.json"
 
 
 def resolve_config_path() -> Path:
-    """配置查找顺序：环境变量 → ~/.llm-radar/config.json → 项目内 config.json。
+    """配置查找顺序：环境变量 → ~/.ai-radix/config.json → ~/.llm-radar/config.json → 项目内 config.json。
     外置是为了避免 webhook 密钥随站点目录一起被公开部署。"""
-    env = os.environ.get("LLM_RADAR_CONFIG")
+    env = os.environ.get("AI_RADIX_CONFIG") or os.environ.get("LLM_RADAR_CONFIG")
     if env:
         return Path(env).expanduser()
-    if CONFIG_EXTERNAL.exists():
-        return CONFIG_EXTERNAL
+    for p in (CONFIG_EXTERNAL, CONFIG_LEGACY):
+        if p.exists():
+            return p
     return ROOT / "config.json"
 PROVIDERS_PATH = DATA_DIR / "providers.json"
 RAW_PATH = DATA_DIR / "raw_api.json"

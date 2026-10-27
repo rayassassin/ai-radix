@@ -30,7 +30,7 @@
 
   const MOD_LABEL = { text: '文字', image: '图片', audio: '音频', video: '视频', file: '文件' };
 
-  const STORE_KEY = 'llm-radar-prefs';
+  const STORE_KEY = 'ai-radix-prefs';
   const MAX_COMPARE = 4;
 
   // ---------------- 状态 ----------------

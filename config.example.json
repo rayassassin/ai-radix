@@ -3,7 +3,7 @@
     "title": "LLM Radar",
     "subtitle": "全网大模型价格 · 能力 · 上线全景",
     "accent": "#5b5bd6",
-    "url": "https://rayassassin.github.io/llm-radar/"
+    "url": "https://rayassassin.github.io/ai-radix/"
   },
   "data": {
     "source": "https://openrouter.ai/api/v1/models",
@@ -15,7 +15,7 @@
     "enabled": true,
     "transport": "wxapp",
     "wxapp": {
-      "env_file": "~/.llm-radar/wecom.env",
+      "env_file": "~/.ai-radix/wecom.env",
       "touser": ""
     },
     "aibot": {
