@@ -1142,29 +1142,34 @@ input[type="checkbox"]:checked::after {
 
 .page-nav {
   display: inline-flex;
-  gap: 2px;
+  gap: 3px;
   margin-left: 22px;
-  padding: 3px;
+  padding: 4px;
   background: var(--panel-2);
   border: 1px solid var(--line);
-  border-radius: 9px;
+  border-radius: 11px;
 }
 .page-nav a {
-  padding: 4px 12px;
-  font-size: 12px;
+  padding: 7px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -.005em;
   color: var(--text-2);
   text-decoration: none;
-  border-radius: 6px;
-  transition: all .14s ease;
+  border-radius: 8px;
+  transition: background .15s ease, color .15s ease, box-shadow .15s ease;
   white-space: nowrap;
+  line-height: 1;
 }
 .page-nav a:hover { color: var(--text); background: #fff; }
+/* 选中项用深色实底反白：浅灰容器里白底太轻，一眼看不出当前在哪一页 */
 .page-nav a.on {
-  background: #fff;
-  color: var(--brand);
+  background: var(--text);
+  color: #fff;
   font-weight: 600;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 1px 3px rgba(20, 20, 26, .22);
 }
+.page-nav a.on:hover { background: var(--text); color: #fff; }
 
 .section-head {
   display: flex;
@@ -1358,11 +1363,35 @@ input[type="checkbox"]:checked::after {
   .page-nav { margin-left: 12px; }
 }
 @media (max-width: 640px) {
-  .page-nav { margin: 8px 0 0; order: 3; width: 100%; }
-  .page-nav a { flex: 1; text-align: center; }
   .tool-grid { grid-template-columns: 1fr; }
   .tool-card { min-height: 0; }
   .site-foot { flex-direction: column; gap: 4px; }
+}
+
+/* 窄屏塞不下「品牌 + 两个 tab」时顶栏改两行：品牌一行、导航整宽一行。
+   一行需要约 400px（品牌 120 + 间距 + 导航 240 + 内边距），所以断点取 460。
+   顶栏同时不再吸顶，否则高度变了之后 toolbar 的 sticky 偏移会对不上、上方留白 */
+@media (max-width: 460px) {
+  .topbar {
+    position: static;
+    flex-wrap: wrap;
+    height: auto;
+    padding: 10px 14px;
+    row-gap: 8px;
+  }
+  .page-nav {
+    margin: 0;
+    order: 3;
+    width: 100%;
+    padding: 3px;
+  }
+  .page-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 13.5px;
+  }
+  .toolbar { top: 0; }
 }
 
 /* ---------------- 流行度评分（火焰图标 + 分数） ---------------- */
