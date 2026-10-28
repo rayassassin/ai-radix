@@ -425,6 +425,28 @@ def _mode_price(vals, rel_tol: float = 0.01) -> tuple[float | None, int]:
     return rep, top
 
 
+def _trailing_run(rows: list) -> int:
+    """末尾连续落在同一价位档的采样点数。
+
+    hourly 抓取下约等于「这个价已经挂了几个小时」。
+    用来区分「挂了 4 小时的促销」和「挂了两天的真实调价」——
+    这正是 GLM 5.3 Flash 那次误报的分水岭。
+    """
+    if not rows:
+        return 0
+    cur = rows[-1][0]
+    if not isinstance(cur, (int, float)):
+        return 0
+    n = 1
+    for r in reversed(rows[:-1]):
+        v = r[0]
+        if isinstance(v, (int, float)) and abs(v - cur) <= max(abs(cur) * 0.01, 1e-12):
+            n += 1
+        else:
+            break
+    return n
+
+
 def compute_discount(models: list[dict], samples: dict, off_peak: dict,
                      min_ratio: float = DISCOUNT_MIN_RATIO) -> int:
     """
@@ -457,6 +479,7 @@ def compute_discount(models: list[dict], samples: dict, off_peak: dict,
     for m in models:
         # 先清掉上一轮结论：价格涨回去之后不能残留旧标签
         m.pop("discount", None)
+        m.pop("ref", None)
         rows = seq.get(m["id"]) or []
         if len(rows) < 3:            # 样本太少，众数没有统计意义
             continue
@@ -469,6 +492,15 @@ def compute_discount(models: list[dict], samples: dict, off_peak: dict,
         base_out, _ = _mode_price([r[1] for r in rows])
         if not base_in or base_in <= 0:
             continue                 # 一直免费/无价：没有「原价」可言
+
+        # 基准价无条件落盘：推送侧要拿它当比价锚点。
+        # 拿「上一次抓取值」当锚点是错的 —— 促销一进一出会被判成一降一涨两条。
+        m["ref"] = {
+            "in": base_in,
+            "out": base_out,
+            "samples": len(rows),
+            "stable": _trailing_run(rows),   # 当前价已连续挂了多少个采样点
+        }
 
         ratio = cur_in / base_in
         if ratio > min_ratio:

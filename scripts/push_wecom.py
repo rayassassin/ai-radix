@@ -283,7 +283,7 @@ def build_price_blocks(changes: list[dict], rate: float, threshold_pct: float,
 
 
 def build_header(meta: dict, new_count: int, price_count: int, digest: bool = False,
-                 site_title: str = "") -> str:
+                 site_title: str = "", promo_count: int = 0) -> str:
     """消息头。结构对齐「GitHub 订阅 · 通道自检」：加粗标题 + 若干 `标签：值` 行。
 
     标题前缀取 config.site.title（如「AIRadix · LLM Radar」），缺省回落「大模型全景」。
@@ -293,8 +293,11 @@ def build_header(meta: dict, new_count: int, price_count: int, digest: bool = Fa
     brand = (site_title or "").strip() or "大模型全景"
     if new_count:
         title = f"{brand} · 上新速报"
-    elif digest:
-        title = f"{brand} · 价格汇总"
+    elif price_count:
+        title = f"{brand} · 价格汇总" if digest else f"{brand} · 价格调整"
+    elif promo_count:
+        # 只有促销没有调价：标题必须说清是优惠，不能挂「价格调整」的头
+        title = f"{brand} · 限时优惠"
     else:
         title = f"{brand} · 价格调整"
     bits = []
@@ -302,6 +305,8 @@ def build_header(meta: dict, new_count: int, price_count: int, digest: bool = Fa
         bits.append(f"新增：{new_count} 个")
     if price_count:
         bits.append(f"调价：{price_count} 个")
+    if promo_count:
+        bits.append(f"限时优惠：{promo_count} 个")
     change = " ｜ ".join(bits) if bits else "本次无变化"
     return "\n".join([
         f"**{title}** 🌶️",
@@ -393,6 +398,156 @@ def build_footer(meta: dict, site_url: str, omitted: int = 0, since: str = "",
 LEDGER_PATH = ROOT / "logs" / ".price_ledger.json"
 # 已播报档案：记录「哪个模型在什么价位、以多大幅度播报过」，用于同模型冷却
 NOTIFIED_PATH = ROOT / "logs" / ".price_notified.json"
+# 基准价档案：记录每个模型「上一轮认定的常态价」，用于识别真实调价。
+# 与「上一次抓取值」的区别：促销进出不会改变它，所以不会一降一涨报两条。
+REF_PATH = ROOT / "logs" / ".price_ref.json"
+MODELS_PATH = DATA_DIR / "models.json"
+
+REF_TOL = 0.02          # 与基准价差异 ≤2% 视为「就是常态价」
+REF_MIN_STABLE = 3      # 基准价迁移前，新价必须先连续挂够这么多个采样点
+
+
+def load_ref_index() -> dict:
+    """
+    从 models.json 读每个模型的基准价（近 3 天采样众数，由 fetch_models 算好）。
+
+    没有 ref 的模型 = 采样不足 3 个点，无从判断常态价，走老口径。
+    """
+    models = load_json(MODELS_PATH, []) or []
+    idx: dict[str, dict] = {}
+    if not isinstance(models, list):
+        return idx
+    for m in models:
+        if not isinstance(m, dict):
+            continue
+        ref = m.get("ref")
+        if not isinstance(ref, dict) or not isinstance(ref.get("in"), (int, float)):
+            continue
+        idx[m.get("id")] = {
+            "in": ref["in"],
+            "out": ref.get("out"),
+            "stable": int(ref.get("stable") or 0),
+            "name": m.get("name", ""),
+            "vendor": m.get("vendor", ""),
+            "vendor_cn": m.get("vendor_cn", ""),
+            "off_peak": bool(m.get("off_peak")),
+        }
+    return idx
+
+
+def split_by_ref(changes: list[dict], ref_index: dict,
+                 tol: float = REF_TOL) -> tuple[list, list, list, list]:
+    """
+    以**基准价**为锚点，把本轮 diff 拆成四类。
+
+    这是修「促销结束被报成涨价」的核心。GLM 5.3 Flash 实测轨迹：
+      09–10 点 0.15 → 11–14 点 0.0453 → 15 点起 0.15
+    用「上一次抓取值」做锚点，15:00 那条就是「涨 578%」并发进了群；
+    用基准价（0.15）做锚点，0.0453→0.15 是「回到常态」，一条都不该发。
+
+    返回 (promo, above, no_ref, back)
+      promo   当前价低于基准价 → 限时优惠，按优惠播报，不叫调价
+      above   高于基准价 → 可能是真涨价，但真调价交给基准价迁移判定，这里不抢跑
+      no_ref  样本不足、没有基准价 → 走老的记账口径
+      back    回到基准价 → 静默（促销结束不播报）
+    """
+    promo, above, no_ref, back = [], [], [], []
+    for c in changes:
+        ref = ref_index.get(c.get("id") or "")
+        new_in = (c.get("new") or {}).get("in")
+        if not ref or not isinstance(new_in, (int, float)) or ref["in"] <= 0:
+            no_ref.append(c)
+            continue
+        ratio = new_in / ref["in"]
+        if abs(ratio - 1) <= tol:
+            back.append(c)
+            continue
+        if ratio < 1:
+            if ref.get("off_peak"):
+                # 已识别为周期性错峰：夜间降价是常态，天天播一遍纯噪音
+                back.append(c)
+                continue
+            p = dict(c)
+            p["old"] = {"in": ref["in"], "out": ref.get("out")}
+            p["new"] = dict(c.get("new") or {})
+            p["ratio"] = round(ratio, 3)
+            p["kind"] = "promo"
+            promo.append(p)
+        else:
+            above.append(c)
+    return promo, above, no_ref, back
+
+
+def detect_ref_shifts(ref_index: dict, state: dict, rate: float,
+                      threshold_pct: float, min_abs_cny: float,
+                      min_stable: int = REF_MIN_STABLE) -> tuple[list[dict], dict]:
+    """
+    基准价本身迁移 = 真实调价。
+
+    促销不会改变基准价（众数还压在原价那档），所以这里天然免疫短期波动。
+    代价是「真实调价」要等新价成为众数才认账，会慢半天到一天 —— 这是有意
+    用延迟换准确：宁可晚报，也不要按小时级抖动报。
+
+    min_stable 是第二道闸：新价必须先连续挂够若干采样点，才允许基准价跟过去，
+    免得众数在 50/50 拉锯时一小时翻一次。
+    """
+    stamp = f"{now_cn():%Y-%m-%d %H:%M}"
+    changes, new_state = [], {}
+    for mid, ref in ref_index.items():
+        prev = state.get(mid) or {}
+        pin, pout = prev.get("in"), prev.get("out")
+        # 默认跟进；不满足条件时退回旧值，档案不动
+        new_state[mid] = {"in": ref["in"], "out": ref.get("out"), "date": stamp}
+        if not isinstance(pin, (int, float)):
+            continue                       # 首次见这个模型：只登记，不播报
+        p, abs_cny = judge_change(
+            {"old": {"in": pin, "out": pout},
+             "new": {"in": ref["in"], "out": ref.get("out")}}, rate)
+        if p is None or abs(p) < threshold_pct or abs_cny < min_abs_cny:
+            continue                       # 小幅漂移：静默更新档案
+        if ref["stable"] < min_stable:
+            new_state[mid] = prev          # 新价还没坐稳，档案原地不动
+            continue
+        changes.append({
+            "id": mid,
+            "name": ref.get("name", ""),
+            "vendor": ref.get("vendor", ""),
+            "vendor_cn": ref.get("vendor_cn", ""),
+            "old": {"in": pin, "out": pout},
+            "new": {"in": ref["in"], "out": ref.get("out")},
+            "ref_shift": True,
+        })
+    return changes, new_state
+
+
+def build_promo_blocks(promo: list[dict], rate: float,
+                       max_items: int = 6) -> tuple[list[str], int, list[dict]]:
+    """
+    「限时优惠」区块。措辞必须和「调价」分开 —— 这正是上次引起误会的地方：
+    用户看到「涨 578%」，而厂商其实只是结束了 4 小时促销，牌价从来没动。
+    """
+    if not promo:
+        return [], 0, []
+    ordered = sorted(promo, key=lambda c: (c.get("ratio") or 1))
+    picked = ordered[:max_items]
+    blocks = []
+    for i, c in enumerate(picked, 1):
+        ref_in = (c.get("old") or {}).get("in")
+        new_in = (c.get("new") or {}).get("in")
+        zhe = (c.get("ratio") or 1) * 10
+        head = (f"**{i}. {c.get('vendor_cn') or c.get('vendor', '')} · {c.get('name', '')}**"
+                f" 现为基准价的 {zhe:.1f} 折（×{c.get('ratio')}）")
+        detail = [head, f"标识：`{c.get('id', '')}`",
+                  f"基准价 {fmt_money(ref_in, rate)} → 现价 **{fmt_money(new_in, rate)}**"
+                  f"（每百万 tokens）"]
+        text = "\n".join(q(detail))
+        if i == 1:
+            text = ("**限时优惠（非调价）**\n\n"
+                    "> 低于近 3 天常态价，属临时促销；恢复原价不再另行通知\n\n" + text)
+        blocks.append(text)
+    if len(ordered) > max_items:
+        blocks.append(f"> 另有 {len(ordered) - max_items} 个模型同步促销中")
+    return blocks, len(picked), picked
 
 
 def load_ledger() -> dict:
@@ -411,6 +566,17 @@ def save_ledger(ledger: dict) -> None:
         tmp.replace(LEDGER_PATH)
     except OSError as e:
         log(f"台账写入失败：{e}")
+
+
+def save_ref_state(state: dict) -> None:
+    """基准价档案，原子写。"""
+    try:
+        REF_PATH.parent.mkdir(parents=True, exist_ok=True)
+        tmp = REF_PATH.with_name(REF_PATH.name + ".tmp")
+        tmp.write_text(json.dumps(state, ensure_ascii=False, indent=0), encoding="utf-8")
+        tmp.replace(REF_PATH)
+    except OSError as e:
+        log(f"基准价档案写入失败：{e}")
 
 
 def merge_into_ledger(ledger: dict, changes: list[dict], rate: float,
@@ -448,6 +614,15 @@ def merge_into_ledger(ledger: dict, changes: list[dict], rate: float,
             item["new"] = new          # 起点留最早，终点用最新 → 得到净变化
             item["times"] = int(item.get("times", 1)) + 1
             item["last_seen"] = stamp
+            # 净变化回落到门槛以下（典型：涨了又跌回原处）→ 这条不该留在台账里。
+            # 不清的话它会一直挂着，把 since 拖老、把「待汇总」数字撑大，
+            # 还会让下一轮拿一个早就归零的价位去比。
+            np_, nabs = judge_change(item, rate)
+            if np_ is None or abs(np_) < threshold_pct or nabs < min_abs_cny:
+                ledger["items"].pop(mid, None)
+                if not ledger["items"]:
+                    ledger["since"] = None
+                continue
         merged += 1
     return merged
 
@@ -982,11 +1157,36 @@ def main() -> int:
     new_models = [m for m in new_models if not is_alias(m.get("id"))]
     price_changes = [c for c in price_changes if not is_alias(c.get("id"))]
 
+    # ---------- 以基准价为锚点分类 ----------
+    # 关键改动：比价的锚点从「上一次抓取值」换成「基准价（近 3 天采样众数）」。
+    # 旧口径下，一个 4 小时的促销会被 diff 成两条（进时降价、出时涨价），
+    # 而牌价其实一动没动 —— GLM 5.3 Flash 11:00 打到 0.0453、15:00 回 0.15，
+    # 就被报成了「涨 578%」。用基准价做锚点，回程那条是「回到常态」，一条不发。
+    ref_index = load_ref_index()
+    promo_changes, above_changes, no_ref_changes, back_changes = split_by_ref(
+        price_changes, ref_index)
+    ref_state = load_json(REF_PATH, {}) or {}
+    if not isinstance(ref_state, dict):
+        ref_state = {}
+    ref_changes, new_ref_state = detect_ref_shifts(
+        ref_index, ref_state, rate, threshold, min_abs)
+    if not args.dry_run:
+        save_ref_state(new_ref_state)
+
+    if price_changes:
+        log(f"价格分类：基准价迁移 {len(ref_changes)} 条（真实调价）"
+            f"、限时优惠 {len(promo_changes)} 个"
+            f"、回到基准价 {len(back_changes)} 个（促销结束，不播报）"
+            f"、高于基准价 {len(above_changes)} 个（待确认）"
+            f"、无基准价 {len(no_ref_changes)} 个（走老口径）")
+
     # ---------- 调价先记账 ----------
     # 逐小时推调价等于把「最低价路由的抖动」当新闻播。改成记账 + 每日汇总：
     # 只有净变化够大的模型才会出现在汇总里，来回摆动自动抵消。
+    # 入账的只有「基准价迁移」和「没有基准价可依」两类 —— 促销不进台账。
     ledger = load_ledger()
-    merged = merge_into_ledger(ledger, price_changes, rate, threshold, min_abs)
+    merged = merge_into_ledger(ledger, ref_changes + no_ref_changes,
+                               rate, threshold, min_abs)
     if merged and not args.dry_run:
         save_ledger(ledger)
     if merged:
@@ -1025,10 +1225,16 @@ def main() -> int:
         price_blocks, price_count, price_listed = build_price_blocks(
             pool, rate, threshold, min_abs,
             section="价格变动汇总（净变化）")
+        # 限时优惠单独成块，措辞与「调价」严格区分：
+        # 促销不等于改牌价，混在一起发就是上次引起误会的根源。
+        promo_pool, promo_cooled = filter_cooldown(
+            promo_changes, notified, rate, cooldown_days, breakout)
+        promo_blocks, promo_count, promo_listed = build_promo_blocks(promo_pool, rate)
     else:
         price_blocks, price_count, price_listed = [], 0, []
+        promo_blocks, promo_count, promo_listed = [], 0, []
 
-    if not new_models and not price_blocks:
+    if not new_models and not price_blocks and not promo_blocks:
         # 下一个汇总点：今天还没到就写今天，过了就写明天的同一时刻
         now_h = now_cn().hour
         if summary_mode == "hourly":
@@ -1037,9 +1243,17 @@ def main() -> int:
         else:
             nxt = f"{'' if now_h < summary_hour else '明日 '}{summary_hour:02d}:00 汇总"
         if price_changes:
-            log(f"本次无新增；{len(price_changes)} 条变动未达门槛"
-                f"（{threshold:g}% 且 ¥{min_abs:g}/百万 tokens），"
-                f"台账累计 {len(ledger['items'])} 个模型，{nxt}")
+            reason = []
+            if back_changes:
+                reason.append(f"{len(back_changes)} 个回到基准价")
+            if above_changes:
+                reason.append(f"{len(above_changes)} 个高于基准价待确认")
+            if promo_changes:
+                reason.append(f"{len(promo_changes)} 个促销已播报过或未达门槛")
+            log(f"本次无新增；{len(price_changes)} 条变动均不构成调价"
+                + (f"（{'、'.join(reason)}）" if reason else
+                   f"（未达 {threshold:g}% 或 ¥{min_abs:g}/百万 tokens 门槛）")
+                + f"，台账 {len(ledger['items'])} 个模型待汇总，{nxt}")
         else:
             log(f"本次无新增模型、无价格变动，不推送"
                 f"（台账 {len(ledger['items'])} 个模型，{nxt}）")
@@ -1076,8 +1290,8 @@ def main() -> int:
     omitted = max(0, len(new_models) - MAX_LIST)
 
     header = build_header(meta, len(new_models), price_count, digest=is_digest,
-                          site_title=brand)
-    blocks = build_blocks(listed, meta, rate, site_url) + price_blocks
+                          site_title=brand, promo_count=promo_count)
+    blocks = build_blocks(listed, meta, rate, site_url) + price_blocks + promo_blocks
     footer = build_footer(meta, site_url, omitted,
                           since=ledger.get("since") if (is_digest and price_count) else "",
                           sync_note=("每小时同步，价格每轮汇总" if summary_mode == "hourly"
@@ -1085,7 +1299,8 @@ def main() -> int:
                                           f"价格每天 {summary_hour:02d}:00 汇总"))
     messages = pack_messages(header, blocks, footer, max_bytes)
 
-    log(f"准备推送：新增 {len(new_models)} 个、汇总调价 {price_count} 个，共 {len(messages)} 条消息")
+    log(f"准备推送：新增 {len(new_models)} 个、汇总调价 {price_count} 个"
+        f"、限时优惠 {promo_count} 个，共 {len(messages)} 条消息")
 
     if args.dry_run:
         for i, msg in enumerate(messages, 1):
@@ -1142,6 +1357,20 @@ def main() -> int:
         left = len(ledger["items"])
         log(f"已播报 {len(price_listed)} 条并移出台账"
             + (f"，{left} 条未列出/未达标，继续累积" if left else "，台账已空"))
+
+    # 优惠不进台账（恢复原价时无需「冲销」），但同样记档案，
+    # 让它受指纹去重与冷却约束 —— 否则同一场促销每小时都会重新冒出来。
+    if promo_listed:
+        for c in promo_listed:
+            notified[c.get("id")] = {
+                "name": c.get("name", ""),
+                "pct": round((c.get("ratio") or 1) * 100 - 100, 2),
+                "price": (c.get("new") or {}).get("in"),
+                "fp": change_fp(c),
+                "date": f"{now_cn():%Y-%m-%d}",
+            }
+        save_notified(notified)
+        log(f"已播报 {len(promo_listed)} 条限时优惠（不进台账，恢复原价不播报）")
 
     log("全部推送成功")
     return 0
