@@ -64,6 +64,9 @@ ai-radix/
 │   ├── fetch_daily.py       # 抓 AIHOT 日报 → data/daily.json
 │   ├── score_tools.py       # 工具流行度指数
 │   ├── expand_tools.py      # 工具批量补录
+│   ├── publish_pages.py     # 服务器端：只发 data/*.json 到 Pages（零依赖）
+│   ├── sync_server.sh       # 本地 → 服务器：同步代码（强制排除 data/）
+│   ├── pull_data.sh         # 服务器 → 本地：拉回 data/（发版前必跑）
 │   └── push_to_github.py    # 走 Data API 推仓库（git 传输受阻时用）
 ├── assets/icons/            # 工具官网图标（64×64 PNG/SVG，217 个）
 ├── data/
@@ -810,3 +813,18 @@ python3 scripts/fetch_daily.py --date 2026-10-27   # 只补某一天
 
 **页面空白 / CORS 报错**
 用了 `file://` 打开。走 `./run.sh` 后访问 `http://127.0.0.1:8899/`。
+
+**cron 报 `UnboundLocalError: cannot access local variable 'xxx'`**
+`main()` 里变量先被读取、后被赋值，整轮推送崩掉，还会顺带发一条假的「推送失败」告警。
+2026-10-28 真踩过一次（`promo_push` 的定义被放在引用点之后，只在「本轮恰好有限时优惠」时才炸）。
+现在 `selftest_price.py` 第 ⑤ 项会用 AST 静态扫 `main()`：任何局部变量首次读取早于首次赋值、
+或全函数从未赋值，直接判失败。改完推送逻辑先跑一遍：`python3 scripts/selftest_price.py`。
+
+**发布后线上数据「倒退」了**
+本地 `data/` 落后于服务器。`push_to_github.py` 推的是本地 HEAD 全量文件，数据文件也在里面，
+一推就把线上盖回旧版。发版前先 `./scripts/pull_data.sh`（`--check` 只比对不下载）。
+
+**服务器抓完没自动发布**
+服务器缺 GitHub token。放在 `/root/.ai-radix/github.env`，内容 `GITHUB_TOKEN=<fine-grained PAT>`，
+权限 `600`，PAT 只需 `ai-radix` 仓库的 Contents: Read and write。
+服务器 `git`/`ssh` 通道未必可用，`publish_pages.py` 走 REST API 直传 blob，不依赖 git 和 gh。
