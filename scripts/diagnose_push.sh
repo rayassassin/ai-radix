@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# AI · Radix · 推送链路一键诊断
+# AIRadix · LLM Radar · 推送链路一键诊断
 #
 # 用法：./scripts/diagnose_push.sh
 #

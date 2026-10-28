@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-AI · Radix · 企业微信群机器人推送
+AIRadix · LLM Radar · 企业微信群机器人推送
 
 职责：读取 data/new_models.json 中本次 diff 出的新上线模型，推送到企微群。
 
@@ -286,7 +286,7 @@ def build_header(meta: dict, new_count: int, price_count: int, digest: bool = Fa
                  site_title: str = "") -> str:
     """消息头。结构对齐「GitHub 订阅 · 通道自检」：加粗标题 + 若干 `标签：值` 行。
 
-    标题前缀取 config.site.title（如「AI · Radix」），缺省回落「大模型全景」。
+    标题前缀取 config.site.title（如「AIRadix · LLM Radar」），缺省回落「大模型全景」。
     """
     total = meta.get("total", "?")
     vendors = meta.get("vendors", "?")

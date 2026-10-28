@@ -1,4 +1,4 @@
-/* AI · Radix · AI 大事记
+/* AIRadix · LLM Radar · AI 大事记
  *
  * 数据源：data/daily.json（scripts/fetch_daily.py 抓 AIHOT 公开 API v1）。
  * 页面只做索引与引用：标题、摘要、来源、原文链接全部保留，点击跳回 AIHOT 或原始信源。

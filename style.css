@@ -1,5 +1,5 @@
 /* ============================================================
-   AI · Radix — 大模型全景看板
+   AIRadix · LLM Radar — 大模型全景看板
    设计基调：浅色、高信息密度、克制。表格优先，拒绝花架子。
    ============================================================ */
 
@@ -96,6 +96,11 @@ button { font-family: inherit; cursor: pointer; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
 .brand-title { font-size: 15px; font-weight: 700; letter-spacing: -.2px; }
 .brand-sub { font-size: 10.5px; color: var(--text-3); letter-spacing: .2px; }
+@media (max-width: 1000px) {
+  /* 品牌名变长后，中等宽度（meta 仍显示）需要回收一点横向空间 */
+  .brand-mark { width: 28px; height: 28px; }
+  .brand-title { font-size: 14px; letter-spacing: -.35px; }
+}
 
 .topbar-spacer { flex: 1 1 auto; }
 
@@ -1472,7 +1477,7 @@ input[type="checkbox"]:checked::after {
 /* 窄屏塞不下「品牌 + 两个 tab」时顶栏改两行：品牌一行、导航整宽一行。
    一行需要约 400px（品牌 120 + 间距 + 导航 240 + 内边距），所以断点取 460。
    顶栏同时不再吸顶，否则高度变了之后 toolbar 的 sticky 偏移会对不上、上方留白 */
-@media (max-width: 460px) {
+@media (max-width: 520px) {
   .topbar {
     position: static;
     flex-wrap: wrap;

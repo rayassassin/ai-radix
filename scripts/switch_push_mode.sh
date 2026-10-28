@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# AI · Radix · 推送投放范围 / 频率一键切换
+# AIRadix · LLM Radar · 推送投放范围 / 频率一键切换
 #
 # 用法：
 #   ./scripts/switch_push_mode.sh me hourly <userid>   # 只推给我 + 每小时（灰度测试）

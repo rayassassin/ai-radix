@@ -1,4 +1,4 @@
-# AI · Radix · 大模型全景看板
+# AIRadix · LLM Radar · 大模型全景看板
 
 两个页面，共用一套视觉与导航：
 

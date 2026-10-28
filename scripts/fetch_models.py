@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-AI · Radix · 数据抓取与标准化
+AIRadix · LLM Radar · 数据抓取与标准化
 
 从 OpenRouter 公开 API 拉取全量模型清单，标准化为前端可直接消费的 JSON，
 并与上一版快照做 diff，识别「新上线模型」供推送使用。

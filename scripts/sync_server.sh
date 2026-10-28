@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# AI · Radix · 代码同步到服务器
+# AIRadix · LLM Radar · 代码同步到服务器
 #
 # ⚠️ 这个脚本存在的唯一理由：data/ 下的运行时产物绝不能被本地版本覆盖。
 #   models.json 是**调价基线**：每次抓取后由服务器自己写成当次抓取值，

@@ -1,4 +1,4 @@
-/* AI · Radix · AI 工具集
+/* AIRadix · LLM Radar · AI 工具集
  *
  * 数据源：data/tools.json（人工维护）。
  * 与 AI 大模型页的差异：工具没有公开聚合 API，抓别人导航站也不合适，

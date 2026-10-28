@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-AI · Radix · 本地预览服务
+AIRadix · LLM Radar · 本地预览服务
 
 为什么需要它：浏览器直接双击 file:// 打开会因 CORS 策略拿不到 data/*.json，
 所以必须走一个本地 HTTP 服务。零依赖，仅标准库。
@@ -99,7 +99,7 @@ def main() -> int:
     url = f"http://{args.host}:{port}/"
     with ThreadedServer((args.host, port), Handler) as httpd:
         print("─" * 52)
-        print("  AI · Radix · 大模型全景看板")
+        print("  AIRadix · LLM Radar · 大模型全景看板")
         print("─" * 52)
         print(f"  地址   {url}")
         print(f"  数据   {n} 个模型")

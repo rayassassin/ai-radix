@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# AI · Radix · 一键部署「灰度测试模式」到服务器
+# AIRadix · LLM Radar · 一键部署「灰度测试模式」到服务器
 #
 # 做四件事，幂等，可反复执行：
 #   ① 同步代码（走 sync_server.sh，排除运行时数据，先备份基线）

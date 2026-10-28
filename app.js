@@ -1,5 +1,5 @@
 /* ============================================================
-   AI · Radix · 前端逻辑
+   AIRadix · LLM Radar · 前端逻辑
    纯原生 JS，无构建、无依赖。数据由 scripts/fetch_models.py 生成。
    ============================================================ */
 
@@ -385,7 +385,7 @@
         meta = buildMeta(models, rate, newDays);
         state.live = true;
       } catch (liveErr) {
-        console.warn('[AI · Radix] 实时接口不可用，回落本地缓存：', liveErr.message);
+        console.warn('[AIRadix · LLM Radar] 实时接口不可用，回落本地缓存：', liveErr.message);
       }
 
       // ---- 路径 2：本地缓存兜底 ----
