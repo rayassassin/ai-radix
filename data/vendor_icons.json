@@ -1,10 +1,10 @@
 {
  "meta": {
-  "generated_at": "2026-10-28 13:13:42",
+  "generated_at": "2026-10-28 13:48:31",
   "vendors_total": 59,
-  "vendors_with_icon": 18,
+  "vendors_with_icon": 36,
   "models_total": 464,
-  "models_with_icon": 351
+  "models_with_icon": 408
  },
  "icons": {
   "amazon": {
@@ -27,15 +27,50 @@
    "t": "normal",
    "from": "doubao"
   },
+  "cohere": {
+   "f": "eca81f5776.png",
+   "t": "normal",
+   "from": "官网自抓"
+  },
   "deepseek": {
    "f": "7fdc5efd02.png",
    "t": "normal",
    "from": "deepseek-chat"
   },
+  "dots-studio": {
+   "f": "914d4d8077.svg",
+   "t": "normal",
+   "from": "官网自抓"
+  },
+  "fireworks": {
+   "f": "6de5630795.png",
+   "t": "normal",
+   "from": "官网自抓"
+  },
   "google": {
    "f": "48bafc503c.png",
    "t": "normal",
    "from": "gemini"
+  },
+  "inception": {
+   "f": "20f97d6f2f.png",
+   "t": "normal",
+   "from": "官网自抓"
+  },
+  "inference-net": {
+   "f": "e822a60c05.png",
+   "t": "normal",
+   "from": "官网自抓"
+  },
+  "liquid": {
+   "f": "4210ac1dcc.png",
+   "t": "normal",
+   "from": "官网自抓"
+  },
+  "meituan": {
+   "f": "0594d677ec.png",
+   "t": "normal",
+   "from": "官网自抓"
   },
   "microsoft": {
    "f": "d171dfef67.png",
@@ -52,10 +87,30 @@
    "t": "normal",
    "from": "le-chat"
   },
+  "moondream": {
+   "f": "d418ae0321.png",
+   "t": "normal",
+   "from": "官网自抓"
+  },
   "moonshotai": {
    "f": "aacfa66c7a.png",
    "t": "normal",
    "from": "kimi"
+  },
+  "morph": {
+   "f": "8de2f5bd36.png",
+   "t": "normal",
+   "from": "官网自抓"
+  },
+  "nex-agi": {
+   "f": "14e2a4b45f.png",
+   "t": "normal",
+   "from": "官网自抓"
+  },
+  "nvidia": {
+   "f": "3c747d7f5a.png",
+   "t": "normal",
+   "from": "官网自抓"
   },
   "openai": {
    "f": "4f642e388f.png",
@@ -67,15 +122,40 @@
    "t": "normal",
    "from": "openrouter"
   },
+  "perceptron": {
+   "f": "2aedf25a38.png",
+   "t": "normal",
+   "from": "官网自抓"
+  },
   "perplexity": {
    "f": "06eaeb413e.png",
    "t": "normal",
    "from": "perplexity"
   },
+  "poolside": {
+   "f": "ded7e72b67.png",
+   "t": "normal",
+   "from": "官网自抓"
+  },
   "qwen": {
    "f": "fa397e8a04.png",
    "t": "normal",
    "from": "qwen-chat"
+  },
+  "relace": {
+   "f": "0c7dd5671e.svg",
+   "t": "normal",
+   "from": "官网自抓"
+  },
+  "sakana": {
+   "f": "4670b63583.png",
+   "t": "normal",
+   "from": "官网自抓"
+  },
+  "scaledown": {
+   "f": "02d0a2ccbe.png",
+   "t": "normal",
+   "from": "官网自抓"
   },
   "stepfun": {
    "f": "15a81f8a39.svg",
@@ -87,10 +167,20 @@
    "t": "normal",
    "from": "hunyuan"
   },
+  "upstage": {
+   "f": "dab4f4b37a.png",
+   "t": "normal",
+   "from": "官网自抓"
+  },
   "x-ai": {
    "f": "220ac0149c.png",
    "t": "normal",
    "from": "grok"
+  },
+  "xiaomi": {
+   "f": "e910f4516d.png",
+   "t": "normal",
+   "from": "官网自抓"
   },
   "z-ai": {
    "f": "1db4d1b84b.png",

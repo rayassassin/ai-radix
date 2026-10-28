@@ -1,0 +1,112 @@
+{
+ "icons": {
+  "cohere": {
+   "f": "eca81f5776.png",
+   "t": "normal",
+   "src": "https://cohere.com/apple-touch-icon.png",
+   "note": "png"
+  },
+  "sakana": {
+   "f": "4670b63583.png",
+   "t": "normal",
+   "src": "https://sakana.ai/favicon.ico",
+   "note": "ico"
+  },
+  "nvidia": {
+   "f": "3c747d7f5a.png",
+   "t": "normal",
+   "src": "https://www.nvidia.com/favicon.ico",
+   "note": "ico"
+  },
+  "meituan": {
+   "f": "0594d677ec.png",
+   "t": "normal",
+   "src": "https://s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:1040877d/favicon-mt.ico",
+   "note": "ico"
+  },
+  "xiaomi": {
+   "f": "e910f4516d.png",
+   "t": "normal",
+   "src": "https://s01.mifile.cn/favicon.ico",
+   "note": "ico"
+  },
+  "liquid": {
+   "f": "4210ac1dcc.png",
+   "t": "normal",
+   "src": "https://www.liquid.ai/icon.png?icon.2v1ofxrotruka.png",
+   "note": "png"
+  },
+  "poolside": {
+   "f": "ded7e72b67.png",
+   "t": "normal",
+   "src": "https://poolside.ai/favicon/apple-touch-icon.png",
+   "note": "png"
+  },
+  "upstage": {
+   "f": "dab4f4b37a.png",
+   "t": "normal",
+   "src": "https://cdn.prod.website-files.com/6743d5190bb2b52f38e99e37/6761994342af9b1ae6a14b36_upstage%20symbol_social%20profiel(256px).png",
+   "note": "png"
+  },
+  "relace": {
+   "f": "0c7dd5671e.svg",
+   "t": "normal",
+   "src": "https://framerusercontent.com/images/FFActUeE4daoS9F9mpqmKv4y3ZI.svg",
+   "note": "svg"
+  },
+  "morph": {
+   "f": "8de2f5bd36.png",
+   "t": "normal",
+   "src": "https://www.morphllm.com/search.jpg",
+   "note": "jpg"
+  },
+  "moondream": {
+   "f": "d418ae0321.png",
+   "t": "normal",
+   "src": "https://moondream.ai/apple-touch-icon.png",
+   "note": "png"
+  },
+  "inference-net": {
+   "f": "e822a60c05.png",
+   "t": "normal",
+   "src": "https://inference.net/apple-touch-icon.png",
+   "note": "png"
+  },
+  "fireworks": {
+   "f": "6de5630795.png",
+   "t": "normal",
+   "src": "https://fireworks.ai/apple-icon.png?7a21affc7a2d4744",
+   "note": "png"
+  },
+  "scaledown": {
+   "f": "02d0a2ccbe.png",
+   "t": "normal",
+   "src": "https://scaledown.ai/logo_actual.png",
+   "note": "png"
+  },
+  "inception": {
+   "f": "20f97d6f2f.png",
+   "t": "normal",
+   "src": "https://inception42.ai/apple-icon.png?fc6cf620726882c7",
+   "note": "png"
+  },
+  "perceptron": {
+   "f": "2aedf25a38.png",
+   "t": "normal",
+   "src": "https://www.perceptron.inc/icons/apple-touch-icon.png",
+   "note": "png"
+  },
+  "nex-agi": {
+   "f": "14e2a4b45f.png",
+   "t": "normal",
+   "src": "https://nexagi.com/logo255.png",
+   "note": "png"
+  },
+  "dots-studio": {
+   "f": "914d4d8077.svg",
+   "t": "normal",
+   "src": "https://fe-static.xhscdn.com/dots-for-pc/dist/assets/dots-jbIiXUMx.svg",
+   "note": "svg"
+  }
+ }
+}

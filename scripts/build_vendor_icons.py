@@ -30,6 +30,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 MODELS = ROOT / "data" / "models.json"
 FAVICONS = ROOT / "data" / "favicons.json"
+VENDOR_FAVICONS = ROOT / "data" / "vendor_favicons.json"   # fetch_vendor_icons.py 的产出
+ICON_DIR = ROOT / "assets" / "icons"
 OUT = ROOT / "data" / "vendor_icons.json"
 
 # 厂商 slug → 工具集 id。
@@ -82,9 +84,27 @@ def main() -> int:
 
     icons: dict[str, dict] = {}
     missing_tool: list[str] = []
-    for vendor, tool_id in sorted(VENDOR_TO_TOOL.items()):
-        if vendor not in per_vendor:
-            continue                      # 该厂商当前没有模型，不必生成
+    n_own = n_reuse = 0
+
+    # 优先级：厂商官网自抓（data/vendor_favicons.json）> 工具集复用。
+    # 官网图标更贴厂商本身；同一个厂商两边都有时以自抓为准。
+    own: dict = {}
+    if VENDOR_FAVICONS.is_file():
+        try:
+            own = (json.loads(VENDOR_FAVICONS.read_text(encoding="utf-8")) or {}).get("icons", {})
+        except json.JSONDecodeError:
+            own = {}
+
+    for vendor in sorted(per_vendor):
+        vf = own.get(vendor)
+        if vf and vf.get("f") and (ICON_DIR / vf["f"]).is_file():
+            icons[vendor] = {"f": vf["f"], "t": vf.get("t", "normal"), "from": "官网自抓"}
+            n_own += 1
+            continue
+
+        tool_id = VENDOR_TO_TOOL.get(vendor)
+        if not tool_id:
+            continue
         fav = favicons.get(tool_id)
         if not fav or not fav.get("f"):
             missing_tool.append(f"{vendor}({tool_id})")
@@ -92,8 +112,9 @@ def main() -> int:
         icons[vendor] = {
             "f": fav["f"],
             "t": fav.get("t", "normal"),
-            "from": tool_id,              # 留个溯源：图标来自哪个工具
+            "from": tool_id,
         }
+        n_reuse += 1
 
     covered = sum(per_vendor[v] for v in icons)
     uncovered = [(v, n) for v, n in per_vendor.most_common() if v not in icons]
@@ -109,7 +130,8 @@ def main() -> int:
         "icons": icons,
     }
 
-    print(f"厂商 {len(per_vendor)} 个，其中 {len(icons)} 个复用工具集图标")
+    print(f"厂商 {len(per_vendor)} 个，{len(icons)} 个有图标"
+          f"（官网自抓 {n_own} + 工具集复用 {n_reuse}）")
     print(f"模型覆盖 {covered}/{total_models}（{covered / total_models * 100:.0f}%）")
     if missing_tool:
         print(f"\n⚠️ 映射了但工具图标缺失：{', '.join(missing_tool)}")
