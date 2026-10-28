@@ -78,30 +78,71 @@ def read_env_file(path: Path) -> dict[str, str]:
     return out
 
 
+def check_token_shape(tok: str) -> str:
+    """
+    校验 token 形态。返回空串=通过，否则返回人话错误说明。
+
+    为什么要拦：GitHub 对形态不对的 token 只回 401 Bad credentials，
+    日志里看就是一句 "Bad credentials"，根本看不出根因。
+    而最常见的错法恰恰是把文档示例 github_pat_xxx 整个抄进配置
+    —— 这个坑已经真实踩过一次，必须在这里提前拦掉。
+
+    GitHub 凭证的固定形态：
+      ghp_/gho_/ghu_/ghs_/ghr_ + 36 位 ≈ 40 字符（classic / OAuth）
+      github_pat_ + 82 位         ≈ 93 字符（fine-grained）
+    """
+    n = len(tok)
+    if n < 30 or "xxx" in tok.lower() or tok.endswith("..."):
+        return (
+            f"token 形态不对：只有 {n} 个字符（真实 token 至少 40）。\n"
+            f"   基本可以确定是把文档里的占位符（github_pat_xxx）原样抄进了配置。\n"
+            f"   正确做法：GitHub → Settings → Developer settings → Personal access tokens\n"
+            f"   → Fine-grained tokens → 新建，仓库只选 ai-radix，权限只勾 Contents: Read and write\n"
+            f"   生成后完整复制（约 93 字符），不要带引号、不要带 GITHUB_TOKEN= 前缀。"
+        )
+    if tok.startswith("github_pat_") and n < 70:
+        return (
+            f"token 被截断了：github_pat_ 开头但只有 {n} 字符（fine-grained PAT 通常 93 字符）。"
+            f"请重新完整复制。"
+        )
+    return ""
+
+
 def find_token(config_path: Path) -> tuple[str, str]:
-    """返回 (token, 来源说明)。找不到就给空串和引导文案。"""
+    """返回 (token, 来源说明)；找不到或形态不对时返回 ("", 错误说明)。"""
+    found, source = "", ""
+
     for name in ("GITHUB_TOKEN", "GH_TOKEN"):
         v = os.environ.get(name, "").strip()
         if v:
-            return v, f"环境变量 {name}"
+            found, source = v, f"环境变量 {name}"
+            break
 
-    try:
-        cfg = json.loads(config_path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
-        cfg = {}
-    v = str(((cfg.get("github") or {}).get("token")) or "").strip()
-    if v:
-        return v, f"配置 {config_path}"
+    if not found:
+        try:
+            cfg = json.loads(config_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            cfg = {}
+        v = str(((cfg.get("github") or {}).get("token")) or "").strip()
+        if v:
+            found, source = v, f"配置 {config_path}"
 
-    env_file = Path(os.path.expanduser("~/.ai-radix/github.env"))
-    v = read_env_file(env_file).get(TOKEN_ENV_NAME, "").strip()
-    if v:
-        return v, f"env 文件 {env_file}"
+    if not found:
+        env_file = Path(os.path.expanduser("~/.ai-radix/github.env"))
+        v = read_env_file(env_file).get(TOKEN_ENV_NAME, "").strip()
+        if v:
+            found, source = v, f"env 文件 {env_file}"
+
+    if found:
+        err = check_token_shape(found)
+        if err:
+            return "", f"{source} 里的 token 用不了（这一轮不会发布）。\n  {err}"
+        return found, source
 
     return "", (
         f"未找到 GitHub token。三种放法任选其一：\n"
         f"    a) 写进 {config_path} 的 github.token\n"
-        f"    b) 写入 ~/.ai-radix/github.env：{TOKEN_ENV_NAME}=github_pat_xxx\n"
+        f"    b) 写入 ~/.ai-radix/github.env：{TOKEN_ENV_NAME}=<你的真实token>\n"
         f"    c) 环境变量 {TOKEN_ENV_NAME}（cron 里不方便）\n"
         f"  权限只需目标仓库的 Contents: Read and write。"
     )

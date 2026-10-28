@@ -77,8 +77,10 @@ echo "===== ④ 自动发布前置检查（GitHub token）====="
    echo '✅ token 已配置，update.sh 会自动发布 data/ 到 Pages'; \
  else \
    echo '⚠️  未配置 GitHub token —— 抓取和企微推送正常，但数据不会自动上 Pages。'; \
-   echo \"    在服务器上执行：echo 'GITHUB_TOKEN=github_pat_xxx' > /root/.ai-radix/github.env && chmod 600 /root/.ai-radix/github.env\"; \
-   echo '    权限只需 ai-radix 仓库的 Contents: Read and write（fine-grained PAT）'; \
+   echo \"    在服务器上执行（read -s 交互输入，不落 shell 历史）：\" ; \
+   echo \"      read -rsp '粘贴 fine-grained PAT: ' T && echo \\\"GITHUB_TOKEN=\\\$T\\\" > /root/.ai-radix/github.env && unset T && chmod 600 /root/.ai-radix/github.env\" ; \
+   echo '    注意：占位符 github_pat_xxx 只有 14 字符，GitHub 会回 401，别原样抄'; \
+   echo '    权限只需 ai-radix 仓库的 Contents: Read and write（fine-grained PAT，约 93 字符）'; \
  fi"
 
 echo

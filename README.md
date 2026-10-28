@@ -328,9 +328,15 @@ data/models.json   data/meta.json   data/daily.json
 
 ```bash
 # 推荐：env 文件，600 权限，不随代码流转
-echo 'GITHUB_TOKEN=github_pat_xxx' > ~/.ai-radix/github.env
+# read -s 交互输入：既不会把 token 留在 shell 历史里，也不会误把示例当值抄进去
+read -rsp "粘贴你的 fine-grained PAT（约 93 字符）: " T && \
+  echo "GITHUB_TOKEN=$T" > ~/.ai-radix/github.env && unset T
 chmod 600 ~/.ai-radix/github.env
 ```
+
+> ⚠️ 别把示例里的占位符当值抄。`github_pat_xxx` 只有 14 个字符，GitHub 对它会返回
+> `401 Bad credentials`——报错看不出根因，最容易卡在这里。脚本会提前拦：长度 < 30
+> 直接判定为占位符并给出正确做法。
 
 或者写进 `~/.ai-radix/config.json` 的 `github.token`，或者给进程环境变量 `GITHUB_TOKEN`。
 

@@ -12,3 +12,7 @@ __pycache__/
 
 # 本地配置：绝不入库（含 webhook 密钥）
 config.json
+
+# macOS AppleDouble 垃圾文件（tar 解包产生）
+._*
+.DS_Store
