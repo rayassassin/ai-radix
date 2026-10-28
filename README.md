@@ -247,11 +247,12 @@ deepseek/deepseek-v4.1-flash-1017
 折扣**只更新看板、不推送**。云服务器照样每小时抓，页面上的徽章和时段会跟着变；
 企微只在「上新」和「基准价迁移（真实调价）」时发消息。
 
-回归测试：`python3 scripts/selftest_price.py`（18 项，含上面那次误报的完整轨迹）。
-改价格判定逻辑前后都该跑一遍。
+回归测试（改判定或文案前后都该跑一遍）：
 
-回归测试：`python3 scripts/selftest_price.py`（18 项，含上面那次误报的完整轨迹）。
-改价格判定逻辑前后都该跑一遍。
+```bash
+python3 scripts/selftest_price.py     # 价格判定：18 项，含 GLM 那次误报的完整轨迹
+node scripts/selftest_discount.js     # 折扣文案：21 项，含「折数不能打架」「样本不足不写每日」
+```
 
 ### 厂商错峰折扣：为什么 DeepSeek 会天天「调价」
 
