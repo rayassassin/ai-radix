@@ -834,14 +834,19 @@
 
     if (m.discount) {
       const d = m.discount;
+      const peak = m.off_peak || null;
       return {
         ratio: typeof d.ratio === 'number' ? d.ratio : cur / (d.base || 1),
         base: d.base,
         baseOut: d.base_out,
         ratioOut: d.ratio_out,
-        offHours: d.off_hours || [],
+        offHours: d.off_hours || peak?.off_hours || [],
+        // 时段区间与周期只在识别出规律性错峰时才有，单次促销没有
+        offRanges: peak?.off_ranges || [],
+        onRanges: peak?.on_ranges || [],
+        scope: peak?.scope || 'unknown',
         samples: d.samples,
-        peak: m.off_peak || null,
+        peak,
       };
     }
     // 兼容只有 off_peak 的旧数据：用当前价对高峰价现算系数，
@@ -854,6 +859,9 @@
         baseOut: null,
         ratioOut: null,
         offHours: op.off_hours || [],
+        offRanges: op.off_ranges || [],
+        onRanges: op.on_ranges || [],
+        scope: op.scope || 'unknown',
         samples: op.samples,
         peak: op,
       };
@@ -878,20 +886,119 @@
     'free-limited': '限时免费',
   };
 
+  // 徽章图标：月亮=时段型优惠（每天固定时段），标签=非时段型（一次性促销）
+  const DISC_ICON = {
+    moon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>',
+    tag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5V4h4.5L20 16.5 16.5 20 3 8.5Z"/><circle cx="7" cy="8" r="1.4" fill="currentColor" stroke="none"/></svg>',
+  };
+
+  function hhmm(h) {
+    return `${String(((h % 24) + 24) % 24).padStart(2, '0')}:00`;
+  }
+
+  // 连续区间 -> "20:00–次日 08:00"。跨零点合并成一句话，别拆成两段读起来别扭。
+  function rangeText(spans) {
+    if (!Array.isArray(spans) || !spans.length) return '';
+    const list = spans
+      .filter((s) => Array.isArray(s) && s.length === 2)
+      .map((s) => [Number(s[0]), Number(s[1])])
+      .sort((a, b) => a[0] - b[0]);
+    if (!list.length) return '';
+    const head = list[0][0] === 0 ? list.shift() : null;
+    const tail = list.length && list[list.length - 1][1] === 24 ? list.pop() : null;
+    const parts = list.map(([a, b]) => `${hhmm(a)}–${hhmm(b)}`);
+    if (head && tail) parts.unshift(`${hhmm(tail[0])}–次日 ${hhmm(head[1])}`);
+    else {
+      if (tail) parts.push(`${hhmm(tail[0])}–24:00`);
+      if (head) parts.unshift(`00:00–${hhmm(head[1])}`);
+    }
+    return parts.join('、');
+  }
+
+  function scopeText(scope) {
+    switch (scope) {
+      case 'weekday': return '周一至周五';
+      case 'partial': return '部分日期';
+      case 'daily': return '每日';
+      case 'unknown': return '每日';
+      default: return '每日';
+    }
+  }
+
+  // 「周期 + 时段」短文案，用在模型名下面那一行。
+  // 样本只有 1 天时不写「每日」——那是承诺，我们只知道「观察到」。宁可用词保守。
+  function discountCycleText(d) {
+    if (!d) return '';
+    const zhe = discountLabel(d.ratio) || '优惠';
+    const off = rangeText(d.offRanges);
+    const weak = d.scope === 'unknown' || d.peak?.confidence === 'low';
+    if (!off) return `限时 ${zhe}，无固定时段`;
+    if (weak) return `${zhe} ｜ 近 ${d.peak?.days || 1} 天 ${off} 出现低谷（待确认）`;
+    return `${zhe} ｜ ${scopeText(d.scope)} ${off} 低谷`;
+  }
+
+  // 完整句式，用在详情面板：照着「周一至周五 09:00–12:00、14:00–18:00 属高峰原价，
+  // 非高峰期 5 折」这个读法来写。样本不足时退化成「观察到」的说法。
+  function discountRangeSentence(d) {
+    if (!d) return '';
+    const zhe = discountLabel(d.ratio) || '优惠';
+    const off = rangeText(d.offRanges);
+    const on = rangeText(d.onRanges);
+    const weak = d.scope === 'unknown' || d.peak?.confidence === 'low';
+    if (weak) {
+      if (!off) return `限时 ${zhe}，无固定时段`;
+      return `近 ${d.peak?.days || 1} 天观察到 ${off} 为低谷价 ${zhe}（样本不足，规律待确认）`;
+    }
+    const period = scopeText(d.scope);
+    if (on && off) return `${period} ${on} 属高峰原价，其余时段 ${zhe}`;
+    if (off) return `${period} ${off} 为低谷价 ${zhe}`;
+    return `${period}限时 ${zhe}，无固定时段`;
+  }
+
   function discountBadge(m) {
     const d = discountOf(m);
     const kind = discountKindOf(d);
     if (!kind) return '';
     const text = KIND_TEXT[kind];
+    const isFree = kind.startsWith('free');
+    const icon = kind === 'night' || kind === 'free-night' ? DISC_ICON.moon : DISC_ICON.tag;
     const parts = [
-      `${text} ${fmtRatio(d.ratio)}`,
+      text,
+      `现价 ${fmtRatio(d.ratio)}`,
       d.base ? `基准价 ${priceStr(d.base) || '—'}` : '',
-      d.offHours?.length ? `低谷时段 ${hoursLabel(d.offHours)}` : '',
+      discountRangeSentence(d),
       typeof d.samples === 'number' ? `${d.samples} 次采样` : '',
-      d.peak?.confidence === 'low' ? '样本偏少，规律待确认' : '',
+      d.peak?.confidence === 'low' ? '样本偏少，时段规律待确认' : '',
     ].filter(Boolean);
-    return `<span class="badge-disc disc-${kind}" title="${esc(parts.join('｜'))}">` +
-      `${text}<b>${fmtRatio(d.ratio)}</b></span>`;
+    // 徽章里不塞数字：图标 + 类型名，读起来和「夜间折扣」一样干脆；
+    // 系数跟在后面单独一个弱化小标，不抢主信息的注意力。
+    return `<span class="badge-disc disc-${kind}" title="${esc(parts.join('｜'))}">`
+      + `${icon}<span>${text}</span></span>`
+      + (isFree ? '' : `<span class="disc-ratio">${fmtRatio(d.ratio)}</span>`);
+  }
+
+  // 只取「规律」不取「当前价」：模型此刻可能正好在原价，但周期信息依然有价值
+  //（知道几点去买更便宜，本身就是决策信息）。
+  function patternOf(m) {
+    const op = m.off_peak;
+    if (!op || !Array.isArray(op.off_ranges) || !op.off_ranges.length) return null;
+    return {
+      ratio: typeof op.discount === 'number' ? op.discount : null,
+      offRanges: op.off_ranges,
+      onRanges: op.on_ranges || [],
+      scope: op.scope || 'unknown',
+      peak: op,
+    };
+  }
+
+  // 表格里模型名下面那一行「折扣周期」：有规律就显示，哪怕此刻是原价
+  function discountCycleLine(m) {
+    const d = patternOf(m) || discountOf(m);
+    if (!d || typeof d.ratio !== 'number') return '';
+    const t = discountCycleText(d);
+    if (!t) return '';
+    const atBase = discountKindOf(discountOf(m)) === null;
+    return `<span class="model-cycle${atBase ? ' at-base' : ''}">${esc(t)}</span>`;
   }
 
   /** 价格列里附加的折扣注记：原价划线 + 系数。 */
@@ -912,29 +1019,45 @@
     if (!d && !peak) return '';
 
     const kind = discountKindOf(d);
-    const head = d
-      ? `${fmtRatio(d.ratio)}${kind ? ' · ' + KIND_TEXT[kind] : ' · 当前即基准价'}`
-      : (discountLabel(peak.discount) || '有折扣');
+    const zhe = d ? (discountLabel(d.ratio) || fmtRatio(d.ratio)) : (discountLabel(peak.discount) || '有折扣');
+    const rows = [];
 
-    const detail = [];
+    // 第一行先说清「什么周期、哪些时段高峰、哪些时段打折」——
+    // 这是用户最想知道的信息，比系数本身更有决策价值。
     if (d) {
-      detail.push(`基准价 ${priceStr(d.base) || '—'} → 当前 ${priceStr(m.price?.in) || '—'}` +
-        (d.ratioOut != null ? `（输出价 ${fmtRatio(d.ratioOut)}）` : ''));
-      detail.push('基准价取近 3 天采样的众数，即「平时那个价」');
+      rows.push(['折扣周期', scopeText(d.scope) + (d.scope === 'unknown' && peak?.confidence === 'low' ? '（样本待确认）' : '')]);
+      const off = rangeText(d.offRanges);
+      const on = rangeText(d.onRanges);
+      if (off) rows.push(['低谷时段', off]);
+      if (on) rows.push(['高峰原价', on]);
+    } else if (peak?.off_ranges?.length) {
+      rows.push(['折扣周期', scopeText(peak.scope)]);
+      rows.push(['低谷时段', rangeText(peak.off_ranges)]);
+      if (peak.on_ranges?.length) rows.push(['高峰原价', rangeText(peak.on_ranges)]);
     }
-    if (peak?.off_hours?.length) detail.push(`低谷时段：${hoursLabel(peak.off_hours)}（按每日采样推断）`);
-    if (peak?.on_hours?.length) detail.push(`原价时段：${hoursLabel(peak.on_hours)}`);
+
+    if (d) {
+      rows.push(['基准价 → 现价',
+        `${priceStr(d.base) || '—'} → ${priceStr(m.price?.in) || '—'}` +
+        (d.ratioOut != null ? `（输出 ${fmtRatio(d.ratioOut)}）` : '')]);
+    }
     const n = d?.samples ?? peak?.samples;
     if (typeof n === 'number') {
-      detail.push(`依据：${n} 次价格采样${peak?.days ? ` / ${peak.days} 天` : ''}`);
+      rows.push(['判断依据', `${n} 次采样${peak?.days ? ` / ${peak.days} 天` : ''}${peak?.confidence === 'low' ? '，时段规律待确认' : ''}`]);
     }
-    if (peak?.confidence === 'low') detail.push('样本不足 2 天，时段规律待确认');
+
+    const kv = rows.map(([k, v]) => `<div class="disc-row"><span class="k">${esc(k)}</span><span class="v">${esc(v)}</span></div>`).join('');
+    const badge = kind ? discountBadge(m) : '';
 
     return `<div class="section">
       <div class="section-title">折扣</div>
       <div class="offpeak-panel">
-        <div class="offpeak-main"><span class="offpeak-zhe">${head}</span></div>
-        <div class="offpeak-meta">${detail.join('<br>')}</div>
+        <div class="offpeak-main">
+          ${badge || `<span class="offpeak-zhe">${esc(zhe)}</span>`}
+          <span class="offpeak-arrow">${esc(discountRangeSentence(d)) || '当前即基准价'}</span>
+        </div>
+        <div class="disc-kv">${kv}</div>
+        <div class="offpeak-meta">基准价取近 3 天采样的众数，即「平时那个价」；促销结束会自动消失，不必手动维护。</div>
       </div>
     </div>`;
   }
@@ -968,7 +1091,7 @@
         <td class="col-model">
           <div class="model-cell">
             <span class="model-name">${esc(m.name)}${isNewBadge(m)}${aliasBadge(m)}${freeBadge(m)}${discountBadge(m)}</span>
-            <span class="model-id" title="${esc(m.id)}">${esc(m.id)}</span>
+            <span class="model-id" title="${esc(m.id)}">${esc(m.id)}</span>${discountCycleLine(m)}
           </div>
         </td>
         <td>
@@ -1009,6 +1132,7 @@
           <div style="flex:1;min-width:0">
             <div class="card-title">${esc(m.name)}</div>
             <div class="card-id">${esc(m.id)}</div>
+            ${discountCycleLine(m)}
           </div>
           ${isNewBadge(m)}${freeBadge(m)}${discountBadge(m)}
         </div>

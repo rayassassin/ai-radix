@@ -1179,6 +1179,9 @@ def main() -> int:
             f"、回到基准价 {len(back_changes)} 个（促销结束，不播报）"
             f"、高于基准价 {len(above_changes)} 个（待确认）"
             f"、无基准价 {len(no_ref_changes)} 个（走老口径）")
+        if promo_changes and not promo_push:
+            log(f"其中 {len(promo_changes)} 个限时优惠只更新看板、不推送"
+                f"（要推送设 price_promo_push=true）")
 
     # ---------- 调价先记账 ----------
     # 逐小时推调价等于把「最低价路由的抖动」当新闻播。改成记账 + 每日汇总：
@@ -1213,6 +1216,8 @@ def main() -> int:
 
     cooldown_days = int(wcfg.get("price_model_cooldown_days", 7))
     breakout = float(wcfg.get("price_cooldown_breakout", 2.0))
+    # 折扣只刷新看板、不进群。抓取仍然每小时跑，页面上的折扣徽章会跟着变。
+    promo_push = bool(wcfg.get("price_promo_push", False))
     notified = load_notified()
 
     if is_digest:
@@ -1225,11 +1230,15 @@ def main() -> int:
         price_blocks, price_count, price_listed = build_price_blocks(
             pool, rate, threshold, min_abs,
             section="价格变动汇总（净变化）")
-        # 限时优惠单独成块，措辞与「调价」严格区分：
-        # 促销不等于改牌价，混在一起发就是上次引起误会的根源。
-        promo_pool, promo_cooled = filter_cooldown(
-            promo_changes, notified, rate, cooldown_days, breakout)
-        promo_blocks, promo_count, promo_listed = build_promo_blocks(promo_pool, rate)
+        # 限时优惠默认**不推送**：折扣是看板上的信息，不是群里的通知。
+        # 云服务器每小时照常抓、照常刷新页面折扣，但只有「上新」和「真实调价」
+        # 才该打扰人。要恢复推送把 price_promo_push 打开即可。
+        if promo_push:
+            promo_pool, promo_cooled = filter_cooldown(
+                promo_changes, notified, rate, cooldown_days, breakout)
+            promo_blocks, promo_count, promo_listed = build_promo_blocks(promo_pool, rate)
+        else:
+            promo_blocks, promo_count, promo_listed = [], 0, []
     else:
         price_blocks, price_count, price_listed = [], 0, []
         promo_blocks, promo_count, promo_listed = [], 0, []

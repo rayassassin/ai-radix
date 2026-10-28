@@ -522,6 +522,67 @@ def compute_discount(models: list[dict], samples: dict, off_peak: dict,
     return marked
 
 
+def _compress_ranges(hours) -> list[list[int]]:
+    """
+    把小时集合压成连续区间 [[start, end), ...]，end 用 24 表示"到当天结束"。
+
+    [8,9,10,19,20] -> [[8, 11], [19, 21]]
+    前端拿它渲染「08:00–11:00、19:00–21:00」，比逐个列出 8:00 / 9:00 / 10:00 好读得多。
+    """
+    hs = sorted({int(h) for h in hours if 0 <= int(h) <= 23})
+    if not hs:
+        return []
+    spans: list[list[int]] = []
+    start = prev = hs[0]
+    for h in hs[1:]:
+        if h == prev + 1:
+            prev = h
+            continue
+        spans.append([start, prev + 1])
+        start = prev = h
+    spans.append([start, prev + 1])
+    return spans
+
+
+def _off_peak_scope(days: dict, mid: str, low: float) -> str:
+    """
+    折扣的「周期」：每天都折，还是只有工作日折。
+
+    只能从采样日期推断，所以口径保守：
+      daily   —— 有 >=2 天样本，且每天都出现低谷价
+      weekday —— 出现低谷价的日期全是周一~周五，且另有工作日样本没打折
+      unknown —— 只有 1 天样本，无从判断（前端显示「每日」但要标待确认）
+    """
+    dates = []
+    low_on: set[str] = set()
+    for day, hours in (days or {}).items():
+        got_price = False
+        for slot in (hours or {}).values():
+            vals = (slot or {}).get(mid)
+            if isinstance(vals, list) and isinstance(vals[0], (int, float)):
+                got_price = True
+                if vals[0] <= low * 1.05:
+                    low_on.add(day)
+        if got_price:
+            dates.append(day)
+    if len(dates) < 2:
+        return "unknown"
+    if len(low_on) == len(dates):
+        return "daily"
+
+    def wd(d: str) -> int:
+        try:
+            return datetime.strptime(d, "%Y-%m-%d").isoweekday()
+        except (ValueError, TypeError):
+            return 0
+
+    low_wd = [wd(d) for d in low_on]
+    other_wd = [wd(d) for d in dates if d not in low_on]
+    if low_wd and other_wd and all(x <= 5 for x in low_wd) and any(x <= 5 for x in other_wd):
+        return "weekday"
+    return "partial"
+
+
 def detect_off_peak(samples: dict, min_drop: float = OFF_PEAK_MIN_DROP) -> dict:
     """
     从采样表里找出「按时刻稳定分档、并且会回到原价」的模型。
@@ -592,12 +653,18 @@ def detect_off_peak(samples: dict, min_drop: float = OFF_PEAK_MIN_DROP) -> dict:
             continue
 
         hour_price = {h: _median(v) for h, v in by_hour.items()}
+        off_hours = sorted(h for h, p in hour_price.items() if p and p <= low * 1.05)
+        on_hours = sorted(h for h, p in hour_price.items() if p and p >= high * 0.95)
         out[mid] = {
             "low": low,
             "high": high,
             "discount": round(low / high, 3),   # 0.5 = 半价
-            "off_hours": sorted(h for h, p in hour_price.items() if p and p <= low * 1.05),
-            "on_hours": sorted(h for h, p in hour_price.items() if p and p >= high * 0.95),
+            "off_hours": off_hours,
+            "on_hours": on_hours,
+            # 连续区间版，前端直接渲染「20:00–次日08:00」这种文案
+            "off_ranges": _compress_ranges(off_hours),
+            "on_ranges": _compress_ranges(on_hours),
+            "scope": _off_peak_scope(days, mid, low),   # daily / weekday / unknown / partial
             "samples": len(seq),
             "days": len(days),
             "confidence": "high" if len(days) >= 2 else "low",
