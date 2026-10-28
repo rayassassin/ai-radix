@@ -570,6 +570,29 @@ input[type="checkbox"]:checked::after {
   flex: 0 0 auto;
   box-shadow: 0 0 0 2.5px rgba(0, 0, 0, .035);
 }
+
+/* 厂商图标：复用工具集的 favicon。16px 容器里叠一张图和一颗色点，
+   有图时色点藏起来，图坏了就露出来——两种兜底都在同一个盒子里，不会塌。 */
+.vendor-ico {
+  width: 16px; height: 16px;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 4px;
+}
+.vendor-ico > * { grid-area: 1 / 1; }
+.vendor-ico img {
+  width: 16px; height: 16px;
+  border-radius: 4px;
+  object-fit: contain;
+  display: block;
+}
+.vendor-ico.has-img .vendor-dot { display: none; }
+/* 白笔画图标在浅色行上会隐形，给个深色背板（跟工具集同一套判断依据） */
+.vendor-ico.on-dark {
+  background: #23242c;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1);
+}
 .vendor-name { font-size: 12.5px; color: var(--text-2); }
 
 /* 类型 */

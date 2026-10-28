@@ -48,6 +48,15 @@ if ! FETCH_OUT=$("$PY" scripts/fetch_models.py 2>&1); then
 fi
 echo "$FETCH_OUT"
 
+# ---------- 1.5 刷新厂商图标映射 ----------
+# 厂商随模型上下架会增减，映射得跟着重算。纯本地计算，几十毫秒。
+# 失败不打断主流程：前端拿不到映射会自动降级成原来的色点，不影响可读性。
+if VI_OUT=$("$PY" scripts/build_vendor_icons.py 2>&1); then
+  echo "$VI_OUT" | head -2
+else
+  echo "⚠️  厂商图标映射生成失败（页面降级为色点）：$(echo "$VI_OUT" | tail -1)"
+fi
+
 # ---------- 2. 推送 ----------
 "$PY" scripts/push_wecom.py
 PUSH_RC=$?

@@ -41,6 +41,7 @@ tar -czf - \
   --exclude='./data/raw_api.json' \
   --exclude='./data/daily.json' \
   --exclude='./data/price_samples.json' \
+  --exclude='./data/vendor_icons.json' \
   . | ssh -p "$REMOTE_PORT" -i "$KEY" -o StrictHostKeyChecking=no "root@$REMOTE_HOST" \
       "tar -xzf - -C '$REMOTE_DIR'" 2>/dev/null
 

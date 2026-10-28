@@ -53,6 +53,8 @@ PUBLISH_FILES = [
     "data/models.json",
     "data/meta.json",
     "data/daily.json",
+    # 厂商图标映射随厂商增减而变，由 build_vendor_icons.py 在抓取后重算
+    "data/vendor_icons.json",
 ]
 
 TOKEN_ENV_NAME = "GITHUB_TOKEN"

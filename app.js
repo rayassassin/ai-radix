@@ -48,6 +48,7 @@
     ctx: '',
     price: '',
     discount: '',         // 折扣类型筛选：'' | any | night | limited | free
+    vendorIcons: {},      // 厂商 → 工具集 favicon 映射（data/vendor_icons.json）
     sort: 'newest',
     view: 'table',
     currency: 'CNY',
@@ -365,6 +366,11 @@
 
     try {
       // ---- 路径 1：直连 OpenRouter 实时数据 ----
+      // 厂商图标：复用工具集已抓好的 favicon（scripts/build_vendor_icons.py 映射），
+      // 只有 1.7KB，串行等一下不影响体感，胜在渲染时一定已就绪。
+      const vIcons = await fetchJSON('data/vendor_icons.json').catch(() => null);
+      state.vendorIcons = (vIcons && vIcons.icons) || {};
+
       let models = null;
       let meta = null;
       let providers = {};
@@ -933,6 +939,24 @@
     </div>`;
   }
 
+  /**
+   * 厂商图标：有映射就用工具集已抓好的 favicon，没有就退回原来的色点。
+   * 色点预先叠在图标底下（.has-img 时隐藏），图片加载失败就去掉这个类让它露出来，
+   * 所以无论图标在不在，这一格都不会出现破图或空白。
+   */
+  function vendorIcon(m) {
+    const ico = state.vendorIcons?.[m.vendor];
+    const color = esc(m.vendor_color || '#999');
+    if (!ico) return `<span class="vendor-dot" style="background:${color}"></span>`;
+    const dark = ico.t === 'light' ? ' on-dark' : '';
+    return `<span class="vendor-ico has-img${dark}" style="--c:${color}">`
+      + `<span class="vendor-dot" style="background:${color}"></span>`
+      + `<img src="assets/icons/${esc(ico.f)}" alt="" width="16" height="16"`
+      + ` loading="lazy" decoding="async" referrerpolicy="no-referrer"`
+      + ` onerror="this.parentNode.classList.remove('has-img');this.remove()">`
+      + `</span>`;
+  }
+
   function renderTable(rows) {
     const frag = [];
     for (const m of rows) {
@@ -949,7 +973,7 @@
         </td>
         <td>
           <div class="vendor-cell">
-            <span class="vendor-dot" style="background:${esc(m.vendor_color || '#999')}"></span>
+            ${vendorIcon(m)}
             <span class="vendor-name">${esc(m.vendor_cn || m.vendor)}</span>
           </div>
         </td>
@@ -989,7 +1013,7 @@
           ${isNewBadge(m)}${freeBadge(m)}${discountBadge(m)}
         </div>
         <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-          <span class="vendor-cell"><span class="vendor-dot" style="background:${esc(m.vendor_color || '#999')}"></span><span class="vendor-name">${esc(m.vendor_cn || m.vendor)}</span></span>
+          <span class="vendor-cell">${vendorIcon(m)}<span class="vendor-name">${esc(m.vendor_cn || m.vendor)}</span></span>
           <span class="type-tag t-${esc(m.type)}">${esc(m.type)}</span>
           ${aliasBadge(m)}
         </div>
@@ -1092,7 +1116,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <div class="drawer-vendor">
-        <span class="vendor-dot" style="background:${esc(m.vendor_color || '#999')}"></span>
+        ${vendorIcon(m)}
         <span style="font-size:12.5px;color:var(--text-2);font-weight:550">${esc(m.vendor_cn || m.vendor)}</span>
         <span class="type-tag t-${esc(m.type)}">${esc(m.type)}</span>
         ${isNewBadge(m)}${freeBadge(m)}${aliasBadge(m)}
@@ -1289,7 +1313,7 @@
     const head = list.map((m) => `
       <th style="min-width:150px">
         <div class="cmp-head-inner">
-          <span class="vendor-dot" style="background:${esc(m.vendor_color || '#999')}"></span>
+          ${vendorIcon(m)}
           <div>
             <div style="font-size:12.5px;font-weight:650;color:var(--text);text-transform:none;letter-spacing:0">${esc(m.name)}</div>
             <div style="font-family:var(--mono);font-size:9.5px;color:var(--text-3);font-weight:400;text-transform:none;letter-spacing:0">${esc(m.id)}</div>

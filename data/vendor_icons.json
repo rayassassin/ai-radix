@@ -1,0 +1,101 @@
+{
+ "meta": {
+  "generated_at": "2026-10-28 13:13:42",
+  "vendors_total": 59,
+  "vendors_with_icon": 18,
+  "models_total": 464,
+  "models_with_icon": 351
+ },
+ "icons": {
+  "amazon": {
+   "f": "0e048fb00a.png",
+   "t": "normal",
+   "from": "amazon-q-developer"
+  },
+  "anthropic": {
+   "f": "8bb75b3015.png",
+   "t": "normal",
+   "from": "claude"
+  },
+  "bytedance": {
+   "f": "89fb3bf272.png",
+   "t": "normal",
+   "from": "doubao"
+  },
+  "bytedance-seed": {
+   "f": "89fb3bf272.png",
+   "t": "normal",
+   "from": "doubao"
+  },
+  "deepseek": {
+   "f": "7fdc5efd02.png",
+   "t": "normal",
+   "from": "deepseek-chat"
+  },
+  "google": {
+   "f": "48bafc503c.png",
+   "t": "normal",
+   "from": "gemini"
+  },
+  "microsoft": {
+   "f": "d171dfef67.png",
+   "t": "normal",
+   "from": "microsoft-365-copilot"
+  },
+  "minimax": {
+   "f": "8e1f15495b.png",
+   "t": "normal",
+   "from": "海螺ai"
+  },
+  "mistralai": {
+   "f": "f667ecdae0.png",
+   "t": "normal",
+   "from": "le-chat"
+  },
+  "moonshotai": {
+   "f": "aacfa66c7a.png",
+   "t": "normal",
+   "from": "kimi"
+  },
+  "openai": {
+   "f": "4f642e388f.png",
+   "t": "normal",
+   "from": "chatgpt"
+  },
+  "openrouter": {
+   "f": "d8b3be131b.png",
+   "t": "normal",
+   "from": "openrouter"
+  },
+  "perplexity": {
+   "f": "06eaeb413e.png",
+   "t": "normal",
+   "from": "perplexity"
+  },
+  "qwen": {
+   "f": "fa397e8a04.png",
+   "t": "normal",
+   "from": "qwen-chat"
+  },
+  "stepfun": {
+   "f": "15a81f8a39.svg",
+   "t": "light",
+   "from": "stepfun"
+  },
+  "tencent": {
+   "f": "9828211821.png",
+   "t": "normal",
+   "from": "hunyuan"
+  },
+  "x-ai": {
+   "f": "220ac0149c.png",
+   "t": "normal",
+   "from": "grok"
+  },
+  "z-ai": {
+   "f": "1db4d1b84b.png",
+   "t": "normal",
+   "from": "智谱清言"
+  }
+ }
+}
