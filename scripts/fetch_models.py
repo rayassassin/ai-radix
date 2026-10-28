@@ -365,6 +365,7 @@ def build_meta(models: list[dict], prev_meta: dict, new_ids: list[str], cfg: dic
 # 采到的价位一致，而不同小时之间有稳定落差。真实调价不会每天同一时刻反复横跳。
 SAMPLE_KEEP_DAYS = 3      # 采样保留天数，够跨天比对即可，再长只是占体积
 OFF_PEAK_MIN_DROP = 0.2   # 低谷至少比高峰便宜 20% 才算折扣（排除噪声抖动）
+DISCOUNT_MIN_RATIO = 0.98  # 当前价低于基准价 2% 以上才标「有折扣」，之内视为持平
 
 
 def load_samples() -> dict:
@@ -398,6 +399,95 @@ def _median(xs) -> float | None:
         return None
     n = len(vals)
     return vals[n // 2] if n % 2 else (vals[n // 2 - 1] + vals[n // 2]) / 2
+
+
+def _mode_price(vals, rel_tol: float = 0.01) -> tuple[float | None, int]:
+    """
+    价位众数：按相对容差分桶，取样本最多的那一档，返回 (代表价, 该档样本数)。
+
+    为什么不取 max()：错峰折扣的特征是「大部分时间原价、少部分时段低价」，
+    众数天然落回原价；而 max() 会被一次偶发的高报价（或上游路由抖动）钉死，
+    之后所有正常价都会被显示成「打折」。
+    并列时取较高价——折扣宁可算保守，不虚报优惠。
+    """
+    buckets: list[tuple[float, list]] = []
+    for v in sorted(x for x in vals if isinstance(x, (int, float))):
+        for rep, items in buckets:
+            if abs(v - rep) <= max(abs(rep) * rel_tol, 1e-12):
+                items.append(v)
+                break
+        else:
+            buckets.append((v, [v]))
+    if not buckets:
+        return None, 0
+    top = max(len(items) for _, items in buckets)
+    rep = max(rep for rep, items in buckets if len(items) == top)
+    return rep, top
+
+
+def compute_discount(models: list[dict], samples: dict, off_peak: dict,
+                     min_ratio: float = DISCOUNT_MIN_RATIO) -> int:
+    """
+    算每个模型「当前价 / 基准价」的折扣系数，写入 m["discount"]，返回标记条数。
+
+    基准价 = 采样序列的众数（见 _mode_price）。这个口径有个自带的好处：
+    真实降价后新价成为众数，系数自动回到 1.0 —— 
+    不会出现「降过一次价就永久显示在打折」的误标。
+
+    只给「当前价低于基准价 min_ratio 以上」的模型打标，
+    其余留空，前端就不用对 464 条挨个判断。
+
+    字段：
+      ratio      输入价系数（0.11 = 一折一）
+      base       基准输入价（原价）
+      ratio_out  输出价系数，缺数据时为 None
+      base_out   基准输出价
+      off_hours  若该模型被识别为错峰，带上低谷时段，前端据此区分「夜间」与「限时」
+      samples    支撑结论的采样点数
+    """
+    days = samples.get("days") or {}
+    seq: dict[str, list] = {}
+    for day in sorted(days):
+        for hour in sorted(days[day], key=lambda x: int(x)):
+            for mid, vals in (days[day][hour] or {}).items():
+                if isinstance(vals, list) and len(vals) >= 2:
+                    seq.setdefault(mid, []).append(vals)
+
+    marked = 0
+    for m in models:
+        # 先清掉上一轮结论：价格涨回去之后不能残留旧标签
+        m.pop("discount", None)
+        rows = seq.get(m["id"]) or []
+        if len(rows) < 3:            # 样本太少，众数没有统计意义
+            continue
+
+        price = m.get("price") or {}
+        cur_in, cur_out = price.get("in"), price.get("out")
+        if not isinstance(cur_in, (int, float)):
+            continue
+        base_in, _ = _mode_price([r[0] for r in rows])
+        base_out, _ = _mode_price([r[1] for r in rows])
+        if not base_in or base_in <= 0:
+            continue                 # 一直免费/无价：没有「原价」可言
+
+        ratio = cur_in / base_in
+        if ratio > min_ratio:
+            continue
+
+        ratio_out = None
+        if base_out and base_out > 0 and isinstance(cur_out, (int, float)):
+            ratio_out = round(cur_out / base_out, 3)
+
+        m["discount"] = {
+            "ratio": round(ratio, 3),
+            "base": base_in,
+            "base_out": base_out,
+            "ratio_out": ratio_out,
+            "off_hours": (off_peak.get(m["id"]) or {}).get("off_hours") or [],
+            "samples": len(rows),
+        }
+        marked += 1
+    return marked
 
 
 def detect_off_peak(samples: dict, min_drop: float = OFF_PEAK_MIN_DROP) -> dict:
@@ -568,6 +658,14 @@ def main() -> int:
     if off_peak:
         log(f"错峰折扣：识别到 {len(off_peak)} 个模型（采样覆盖 "
             f"{len(samples.get('days', {}))} 天）")
+
+    # 折扣系数：当前价 / 基准价（基准取采样众数，即「平时那个价」）
+    n_discount = compute_discount(models, samples, off_peak)
+    if n_discount:
+        cheapest = min((m for m in models if m.get("discount")),
+                       key=lambda x: x["discount"]["ratio"])
+        log(f"折扣系数：{n_discount} 个模型低于基准价"
+            f"（最低 {cheapest['id']} {cheapest['discount']['ratio']:.2f}x）")
 
     # ---------- 5. 落盘 ----------
     prev_meta = load_json(META_PATH) or {}

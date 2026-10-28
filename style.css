@@ -668,19 +668,46 @@ input[type="checkbox"]:checked::after {
 .price-sub { font-size: 10px; color: var(--text-3); }
 .price-free { color: var(--green); font-weight: 650; font-size: 12.5px; }
 
-/* ---------- 错峰折扣 ---------- */
-.badge-offpeak {
-  font-size: 9px;
-  font-weight: 700;
-  color: var(--brand);
-  background: var(--brand-soft);
-  border: 1px solid #dcdcfb;
-  border-radius: 4px;
-  padding: 0 4px;
-  line-height: 1.5;
+/* ---------- 折扣标识 ---------- */
+/* 胶囊形徽章。绿色=时段型优惠（夜间折扣/夜间免费），紫色=非时段型（限时折扣/限时免费）。
+   颜色只做辅助区分，文字本身已经说清楚了，色盲用户也不受影响。 */
+.badge-disc {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 9.5px;
+  font-weight: 600;
+  line-height: 1.65;
+  padding: 0 6px;
+  border-radius: 999px;
   white-space: nowrap;
   flex: 0 0 auto;
+  vertical-align: 1px;
+  border: 1px solid transparent;
 }
+.badge-disc b {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.2px;
+}
+.badge-disc.disc-night,
+.badge-disc.disc-free-night {
+  color: var(--green);
+  background: var(--green-soft);
+  border-color: #bce7d0;
+}
+.badge-disc.disc-limited,
+.badge-disc.disc-free-limited {
+  color: var(--brand);
+  background: var(--brand-soft);
+  border-color: #dcdcfb;
+}
+/* 免费是白送，加粗一档，扫一眼就能挑出来 */
+.badge-disc.disc-free-night,
+.badge-disc.disc-free-limited {
+  font-weight: 700;
+}
+
 .price-strike {
   font-size: 10.5px;
   color: var(--text-3);
@@ -688,13 +715,16 @@ input[type="checkbox"]:checked::after {
   font-weight: 400;
   margin-left: 1px;
 }
-.price-peak-note {
+.price-disc-note {
   font-size: 10px;
-  color: var(--brand);
-  font-weight: 500;
+  color: var(--text-3);
+  font-weight: 400;
   white-space: nowrap;
 }
-.chip-offpeak { border-style: dashed; }
+
+.chip-disc { border-style: dashed; }
+.chip-disc.on { border-style: solid; }
+
 .offpeak-panel {
   background: linear-gradient(180deg, var(--brand-soft), var(--panel));
   border: 1px solid #dcdcfb;
@@ -702,7 +732,7 @@ input[type="checkbox"]:checked::after {
   padding: 10px 12px;
 }
 .offpeak-main { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
-.offpeak-zhe { font-size: 15px; font-weight: 700; color: var(--brand); }
+.offpeak-zhe { font-size: 15px; font-weight: 700; color: var(--brand); font-variant-numeric: tabular-nums; }
 .offpeak-arrow { font-size: 12px; color: var(--text-2); font-variant-numeric: tabular-nums; }
 .offpeak-meta { margin-top: 6px; font-size: 11px; color: var(--text-3); line-height: 1.7; }
 
