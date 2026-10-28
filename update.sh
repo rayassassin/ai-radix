@@ -9,6 +9,17 @@
 set -uo pipefail
 cd "$(dirname "$0")"
 
+# 并发锁：每小时跑一次时，万一某轮抓取卡住超过 1 小时，下一轮进来会两轮同时写
+# models.json（基线互相覆盖 → 伪调价）并重复推送。抢不到锁就静默退出，这不是失败。
+LOCK_FILE="${TMPDIR:-/tmp}/ai-radix-update.lock"
+if command -v flock >/dev/null 2>&1; then
+  exec 200>"$LOCK_FILE"
+  if ! flock -n 200; then
+    echo "$(date '+%Y-%m-%d %H:%M:%S') 上一轮仍在运行，本轮跳过（锁：$LOCK_FILE）"
+    exit 0
+  fi
+fi
+
 PY="${PYTHON_BIN:-python3}"
 START=$(date +%s)
 
@@ -67,11 +78,30 @@ else
   DAILY_FAIL=1
 fi
 
+# ---------- 4. 发布数据到 GitHub Pages ----------
+# 服务器是数据源头：抓完必须自己发上去，否则线上看板永远停在我手动推的那一版。
+# 只发 data/ 下前端会读的三个 JSON，其余文件沿用远端原件（见 publish_pages.py）。
+# 失败只告警不判失败：抓取与企微推送都已成功，不能因为发布环节回滚整轮。
+PUBLISH_RC=0
+if PUBLISH_OUT=$("$PY" scripts/publish_pages.py 2>&1); then
+  echo "$PUBLISH_OUT" | tail -3
+else
+  PUBLISH_RC=$?
+  echo "⚠️  Pages 发布失败（数据与推送不受影响），详情："
+  echo "$PUBLISH_OUT" | tail -6
+  if [ "$PUBLISH_RC" -eq 2 ]; then
+    echo "    ↑ 未配置 GitHub token —— 按上面提示放好 token 后即可自动发布"
+  fi
+fi
+
 ELAPSED=$(( $(date +%s) - START ))
 echo "════════════════════════════════════════"
 echo "完成，耗时 ${ELAPSED}s"
 if [ "${DAILY_FAIL:-0}" = "1" ]; then
   echo "⚠️  本次 AI 大事记未更新，页面沿用上一版数据"
+fi
+if [ "$PUBLISH_RC" -ne 0 ]; then
+  echo "⚠️  本次数据未发布到 Pages，线上看板仍是上一版"
 fi
 echo "════════════════════════════════════════"
 exit "$PUSH_RC"

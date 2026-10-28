@@ -154,6 +154,8 @@ markdown 上限 20480 字节，基本不用分批；不支持 @所有人。
 | `price_change_min_abs_cny` | 1.0 | 调价的**绝对金额**门槛（¥/百万 tokens）。百分比和金额要同时达标 |
 | `price_digest_hours` | `[8,12,16,20]` | 每天哪几个整点**抓取并推送新增模型**（数组，24 制）。需与 crontab 一致 |
 | `price_summary_hour` | 20 | 每天几点出**调价汇总**（24 制）。不填则取 `price_digest_hours` 的最后一项 |
+| `price_summary_mode` | `daily` | 汇总节奏。`daily` = 每天只在 `price_summary_hour` 汇总一次；`hourly` = 每轮抓取都汇总（测试期用，靠指纹去重 + 冷却防复读） |
+| `notify_when_empty` | false | 空轮也发一条「巡检回执」。测试期打开，能一眼看出通道还在跑；正式放开前关掉 |
 | `price_model_cooldown_days` | 7 | 同一个模型播报后多少天内不再重复播报（0 = 关闭）。兜底用，防厂商错峰折扣反复刷屏 |
 | `price_cooldown_breakout` | 2.0 | 冷却期内的例外：本次幅度达到上次播报幅度的该倍数时，视为新一轮真实调价，照常播报 |
 | `max_bytes_per_message` | 1800 | 单条正文上限，按通道自动适配 |
@@ -270,11 +272,82 @@ chmod 600 ~/.ai-radix/config.json
 cd /opt/ai-radix && python3 scripts/push_wecom.py --test
 
 # 定时（服务器时区为 Asia/Shanghai，直接写北京时间）
+# 每天 4 次：0 8,12,16,20 * * *
+# 每小时 1 次（测试期）：5 * * * *     —— 错开整点，避开限流与整点拥堵
 0 8,12,16,20 * * * cd /opt/ai-radix && ./update.sh >> /opt/ai-radix/logs/cron.log 2>&1
 ```
 
+### 测试期：只推给自己、每小时一次
+
+正式放开前先小范围验证，三处要一起改：
+
+```jsonc
+// ~/.ai-radix/config.json（本地是 ~/.llm-radar/config.json）
+"wecom": {
+  "wxapp": { "touser": "<你的 userid>" },   // 显式写单人，压过部署机 env 里的 @all
+  "price_digest_hours": [0,1,2,...23],      // 铺满全天（与 crontab 对齐）
+  "price_summary_mode": "hourly",           // 每轮都出调价汇总
+  "notify_when_empty": true                 // 空轮也发一条巡检回执
+}
+```
+
+```bash
+5 * * * * cd /opt/ai-radix && ./update.sh >> /opt/ai-radix/logs/cron.log 2>&1
+```
+
+`touser` 的优先级是 **配置文件 > 环境变量 > env 文件默认值**，所以只要在 config 里显式写了
+userid，就一定能压过部署机 `WX_TOUSER` 里的 `@all`——不用改共享 env 文件，也不会影响
+同一台机器上其它项目。
+
+放开时把 `touser` 改回 `@all`、`price_summary_mode` 回 `daily`、
+`notify_when_empty` 回 `false`，crontab 改回 `0 8,12,16,20 * * *` 即可。
+
+上面这套用一条命令就够：
+
+```bash
+./scripts/switch_push_mode.sh me hourly <userid>   # 灰度
+./scripts/switch_push_mode.sh all daily            # 放开
+```
+
+### 自动发布到 GitHub Pages
+
+服务器抓到的数据得自己发上去，否则线上看板永远停在最后一次手动推送的版本。
+`update.sh` 第 4 步调用 `scripts/publish_pages.py`，**只发前端会读的三个文件**：
+
+```
+data/models.json   data/meta.json   data/daily.json
+```
+
+`tools.json` / `providers.json` / `favicons.json` 是本地生成的静态资产，服务器不产出，
+所以远端这些文件原样保留（脚本按远端 tree 的 sha 平铺重建，不会丢）。
+
+和 `push_to_github.py` 的分工：那个依赖 `git ls-files` + `gh` CLI，用于开发机整仓发布；
+服务器上 `/opt/ai-radix` 是 tar 解出来的，**没有 .git 也没装 gh**，所以发布走纯 REST + urllib。
+
+**开自动发布只需要一个 token**，三处任选其一：
+
+```bash
+# 推荐：env 文件，600 权限，不随代码流转
+echo 'GITHUB_TOKEN=github_pat_xxx' > ~/.ai-radix/github.env
+chmod 600 ~/.ai-radix/github.env
+```
+
+或者写进 `~/.ai-radix/config.json` 的 `github.token`，或者给进程环境变量 `GITHUB_TOKEN`。
+
+用 **fine-grained PAT**，范围只勾 `ai-radix` 这一个仓库的 **Contents: Read and write**，
+别用 classic token（权限过大）。没配 token 时这一步只记 WARN 不判失败——抓取和企微推送
+已经成功，不该因为发布环节回滚整轮。
+
+**数据没变就不提交。** 脚本先算本地 git blob sha 与远端同路径比对，三者一致直接退出，
+不造空提交——否则每小时一次 cron 会把提交历史刷成垃圾。
+
+```bash
+python3 scripts/publish_pages.py --dry-run    # 只看会改哪些文件
+python3 scripts/publish_pages.py --force      # 内容无变化也提交（调试）
+```
+
 `update.sh` 退出码约定：`0` 成功或无新增，`1` 抓取失败，`2` 通道未配置（视为未启用），
-`3` 推送失败且告警未送达。
+`3` 推送失败且告警未送达。发布失败不改变退出码，只在日志里留 WARN。
 
 **失败必告警**：抓取或推送任一环节失败，`update.sh` 会回调 `push_wecom.py --alert` 主动推一条
 异常消息，不会静默失败。

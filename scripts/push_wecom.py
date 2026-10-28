@@ -359,6 +359,22 @@ def parse_summary_hour(wcfg: dict, push_hours: list[int]) -> int:
     return h if 0 <= h <= 23 else 20
 
 
+def parse_summary_mode(wcfg: dict) -> str:
+    """
+    价格汇总节奏。
+
+      daily  —— 每天只在 `price_summary_hour` 汇总一次（默认）。
+                台账跨所有抓取点累积，「最早起点 + 最新终点」的净变化去抖最干净。
+      hourly —— 每个抓取点都汇总（测试期 / 调试用）。
+                窗口缩到 1 小时，去抖能力下降，靠价位指纹去重与同模型冷却兜底，
+                保证同一条消息仍然只播一次。
+
+    非法值一律回落 daily —— 宁可少报，也不要因为配置写错把群里刷成流水账。
+    """
+    raw = str(wcfg.get("price_summary_mode") or "daily").strip().lower()
+    return "hourly" if raw in ("hourly", "per_run", "per-run", "every") else "daily"
+
+
 def build_footer(meta: dict, site_url: str, omitted: int = 0, since: str = "",
                  sync_note: str = "") -> str:
     lines = []
@@ -982,11 +998,17 @@ def main() -> int:
     # 抓取点（cron 8/12/16/20）与汇总点必须分开：两者重合时台账刚记账就被消费掉，
     # 净变化去抖零窗口，最低价路由的来回摆动会在相邻两次推送里各报一次（一涨一跌）。
     # 台账跨抓取点累积、每天只在汇总点播报一次，摆动才抵消得掉。
+    summary_mode = parse_summary_mode(wcfg)
     summary_hour = parse_summary_hour(wcfg, push_hours)
     today = f"{now_cn():%Y-%m-%d}"
     last_summary = ledger.get("last_summary_date")
-    # 今天还没汇总过，且（到了汇总点 ｜ 台账里从没汇总过 —— 首次部署不必干等一天）
-    due = (last_summary != today) and (now_cn().hour >= summary_hour or last_summary is None)
+    if summary_mode == "hourly":
+        # 每轮都汇总：测试期用。窗口虽然只有 1 小时，但指纹去重 + 同模型冷却
+        # 仍然保证「同一条变动只播一次」，不会退回到复读老路。
+        due = True
+    else:
+        # 今天还没汇总过，且（到了汇总点 ｜ 台账里从没汇总过 —— 首次部署不必干等一天）
+        due = (last_summary != today) and (now_cn().hour >= summary_hour or last_summary is None)
     is_digest = bool(args.digest) or due
 
     cooldown_days = int(wcfg.get("price_model_cooldown_days", 7))
@@ -1009,15 +1031,44 @@ def main() -> int:
     if not new_models and not price_blocks:
         # 下一个汇总点：今天还没到就写今天，过了就写明天的同一时刻
         now_h = now_cn().hour
-        day = "" if now_h < summary_hour else "明日 "
+        if summary_mode == "hourly":
+            # 23 点的下一轮是 00:00，取模避免出现 24:00 这种非法时刻
+            nxt = f"下一轮整点（{(now_h + 1) % 24:02d}:00）汇总"
+        else:
+            nxt = f"{'' if now_h < summary_hour else '明日 '}{summary_hour:02d}:00 汇总"
         if price_changes:
             log(f"本次无新增；{len(price_changes)} 条变动未达门槛"
                 f"（{threshold:g}% 且 ¥{min_abs:g}/百万 tokens），"
-                f"台账累计 {len(ledger['items'])} 个模型，{day}{summary_hour:02d}:00 汇总")
+                f"台账累计 {len(ledger['items'])} 个模型，{nxt}")
         else:
             log(f"本次无新增模型、无价格变动，不推送"
-                f"（台账 {len(ledger['items'])} 个模型，{day}{summary_hour:02d}:00 汇总）")
-        return 0
+                f"（台账 {len(ledger['items'])} 个模型，{nxt}）")
+
+        # 空轮回执：测试期专用。开着就每小时都有一条到，一眼能看出通道还在跑；
+        # 正式放开前关掉，免得每天 24 条「今天没事」污染群。
+        if not wcfg.get("notify_when_empty", False):
+            return 0
+        heartbeat = "\n".join([
+            f"**{brand} · 巡检回执** 🌶️",
+            f"时间：{now_cn():%Y-%m-%d %H:%M:%S}",
+            f"本轮无新增、无达门槛调价 ｜ 全网：{meta.get('total', '?')} 个"
+            f" / {meta.get('vendors', '?')} 家厂商",
+            f"台账：{len(ledger['items'])} 个模型待汇总",
+            "> 测试期每小时回执，验证通道用，放开前关闭。",
+            f"> [打开全景看板]({site_url})",
+        ])
+        if args.dry_run:
+            print(heartbeat)
+            return 0
+        if not sender:
+            log(f"回执未发送：{send_err}")
+            return 2
+        ok, info = sender(heartbeat)
+        if ok:
+            log("巡检回执已发送")
+            return 0
+        log(f"巡检回执发送失败：{info}")
+        return 1
 
     # 单条消息最多列 20 个，避免刷屏
     MAX_LIST = 20
@@ -1029,8 +1080,9 @@ def main() -> int:
     blocks = build_blocks(listed, meta, rate, site_url) + price_blocks
     footer = build_footer(meta, site_url, omitted,
                           since=ledger.get("since") if (is_digest and price_count) else "",
-                          sync_note=f"每天 {fmt_hours(push_hours)} 同步，"
-                                    f"价格每天 {summary_hour:02d}:00 汇总")
+                          sync_note=("每小时同步，价格每轮汇总" if summary_mode == "hourly"
+                                     else f"每天 {fmt_hours(push_hours)} 同步，"
+                                          f"价格每天 {summary_hour:02d}:00 汇总"))
     messages = pack_messages(header, blocks, footer, max_bytes)
 
     log(f"准备推送：新增 {len(new_models)} 个、汇总调价 {price_count} 个，共 {len(messages)} 条消息")
