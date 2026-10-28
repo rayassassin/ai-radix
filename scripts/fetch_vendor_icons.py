@@ -5,7 +5,7 @@
 
 和 build_vendor_icons.py 的分工：
   本脚本负责「抓」，一次性/偶尔跑，结果作为静态资产提交进仓库；
-  build_vendor_icons.py 负责「映射」，每轮 update.sh 都会跑，只做 JSON 合并。
+  build_vendor_icons.py 负责「映射」，每轮 llm-api-pricing.sh 都会跑，只做 JSON 合并。
   分开的理由：抓外网要数分钟且依赖网络，绝不能挂在每小时 cron 上。
 
 数据来源优先级（与 build_vendor_icons 一致）：

@@ -55,7 +55,7 @@ ai-radix/
 ├── daily.html / daily.js             # AI 大事记（共用 style.css）
 ├── build.sh                 # 生成纯静态发布目录 dist/
 ├── run.sh                   # 本地：抓数据 + 起服务
-├── update.sh                # 定时入口：抓数据 + 推企微（cron 调这个）
+├── llm-api-pricing.sh                # 定时入口：抓数据 + 推企微（cron 调这个）
 ├── server.py                # 零依赖本地服务（仅标准库）
 ├── scripts/
 │   ├── fetch_models.py      # 抓取 OpenRouter → 标准化 → diff 新模型
@@ -350,7 +350,7 @@ cd /opt/ai-radix && python3 scripts/push_wecom.py --test
 # 定时（服务器时区为 Asia/Shanghai，直接写北京时间）
 # 每天 4 次：0 8,12,16,20 * * *
 # 每小时 1 次（测试期）：5 * * * *     —— 错开整点，避开限流与整点拥堵
-0 8,12,16,20 * * * cd /opt/ai-radix && ./update.sh >> /opt/ai-radix/logs/cron.log 2>&1
+0 8,12,16,20 * * * cd /opt/ai-radix && ./llm-api-pricing.sh >> /opt/ai-radix/logs/cron.log 2>&1
 ```
 
 ### 测试期：只推给自己、每小时一次
@@ -368,7 +368,7 @@ cd /opt/ai-radix && python3 scripts/push_wecom.py --test
 ```
 
 ```bash
-5 * * * * cd /opt/ai-radix && ./update.sh >> /opt/ai-radix/logs/cron.log 2>&1
+5 * * * * cd /opt/ai-radix && ./llm-api-pricing.sh >> /opt/ai-radix/logs/cron.log 2>&1
 ```
 
 `touser` 的优先级是 **配置文件 > 环境变量 > env 文件默认值**，所以只要在 config 里显式写了
@@ -388,7 +388,7 @@ userid，就一定能压过部署机 `WX_TOUSER` 里的 `@all`——不用改共
 ### 自动发布到 GitHub Pages
 
 服务器抓到的数据得自己发上去，否则线上看板永远停在最后一次手动推送的版本。
-`update.sh` 第 4 步调用 `scripts/publish_pages.py`，**只发前端会读的三个文件**：
+`llm-api-pricing.sh` 第 4 步调用 `scripts/publish_pages.py`，**只发前端会读的三个文件**：
 
 ```
 data/models.json   data/meta.json   data/daily.json
@@ -428,10 +428,10 @@ python3 scripts/publish_pages.py --dry-run    # 只看会改哪些文件
 python3 scripts/publish_pages.py --force      # 内容无变化也提交（调试）
 ```
 
-`update.sh` 退出码约定：`0` 成功或无新增，`1` 抓取失败，`2` 通道未配置（视为未启用），
+`llm-api-pricing.sh` 退出码约定：`0` 成功或无新增，`1` 抓取失败，`2` 通道未配置（视为未启用），
 `3` 推送失败且告警未送达。发布失败不改变退出码，只在日志里留 WARN。
 
-**失败必告警**：抓取或推送任一环节失败，`update.sh` 会回调 `push_wecom.py --alert` 主动推一条
+**失败必告警**：抓取或推送任一环节失败，`llm-api-pricing.sh` 会回调 `push_wecom.py --alert` 主动推一条
 异常消息，不会静默失败。
 
 ---
@@ -733,7 +733,7 @@ python3 scripts/fetch_daily.py --date 2026-10-27   # 只补某一天
 ```
 
 历史日报内容不会再变，脚本复用本地已有日期，每次只抓新的一期，通常 1–2 个请求。
-`update.sh` 已把它挂在每日例行任务末尾，失败不影响模型数据，但会在 cron.log 里留 WARN。
+`llm-api-pricing.sh` 已把它挂在每日例行任务末尾，失败不影响模型数据，但会在 cron.log 里留 WARN。
 
 页面支持搜索（标题/摘要/来源）、按五类事件筛选、按日期或事件数排序、逐日展开与「全部展开」。
 「今日无大事」的安静日会保留在时间线上（虚线圆点、无展开按钮），否则日期会出现断档。

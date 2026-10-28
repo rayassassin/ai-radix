@@ -119,7 +119,7 @@ def main() -> int:
     uploaded = reused = 0
     for f in files:
         rel = f.relative_to(ROOT).as_posix()
-        # 可执行位要带上，否则 Actions 里 ./update.sh 会报 Permission denied
+        # 可执行位要带上，否则 Actions 里 ./llm-api-pricing.sh 会报 Permission denied
         mode = "100755" if (f.suffix in (".sh", ".py") or rel.startswith("scripts/")) else "100644"
         sha = local_blob_sha(f)
         old = remote.get(rel)

@@ -74,7 +74,7 @@ fi
 echo
 echo "===== ④ 自动发布前置检查（GitHub token）====="
 "${SSH[@]}" "if [ -s /root/.ai-radix/github.env ] || grep -q '\"token\": *\"[^\"]' /root/.ai-radix/config.json 2>/dev/null; then \
-   echo '✅ token 已配置，update.sh 会自动发布 data/ 到 Pages'; \
+   echo '✅ token 已配置，llm-api-pricing.sh 会自动发布 data/ 到 Pages'; \
  else \
    echo '⚠️  未配置 GitHub token —— 抓取和企微推送正常，但数据不会自动上 Pages。'; \
    echo \"    在服务器上执行（read -s 交互输入，不落 shell 历史）：\" ; \

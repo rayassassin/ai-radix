@@ -1058,7 +1058,7 @@ def main() -> int:
         "--alert",
         metavar="原因",
         default="",
-        help="发送一条任务失败告警（由 update.sh 在异常时调用），不读新增数据",
+        help="发送一条任务失败告警（由 llm-api-pricing.sh 在异常时调用），不读新增数据",
     )
     args = ap.parse_args()
 
@@ -1086,7 +1086,7 @@ def main() -> int:
     has_baseline = payload.get("has_baseline", True)
 
     # ---------- 失败告警 ----------
-    # 由 update.sh 在抓取/推送失败时回调。设计原则：告警本身绝不能再抛异常，
+    # 由 llm-api-pricing.sh 在抓取/推送失败时回调。设计原则：告警本身绝不能再抛异常，
     # 否则失败会变成静默 —— 宁可返回非零码让 cron 邮件兜底。
     if args.alert:
         reason = args.alert.strip()[:300]

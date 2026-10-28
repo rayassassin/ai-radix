@@ -100,8 +100,8 @@ RC=$?
 [ "$RC" -ne 0 ] && exit "$RC"
 
 # ---- crontab ----
-CRON_LINE_HOURLY='5 * * * * cd /opt/ai-radix && ./update.sh >> /opt/ai-radix/logs/cron.log 2>&1'
-CRON_LINE_DAILY='0 8,12,16,20 * * * cd /opt/ai-radix && ./update.sh >> /opt/ai-radix/logs/cron.log 2>&1'
+CRON_LINE_HOURLY='5 * * * * cd /opt/ai-radix && ./llm-api-pricing.sh >> /opt/ai-radix/logs/cron.log 2>&1'
+CRON_LINE_DAILY='0 8,12,16,20 * * * cd /opt/ai-radix && ./llm-api-pricing.sh >> /opt/ai-radix/logs/cron.log 2>&1'
 
 if [ "$CADENCE" = "hourly" ]; then
   NEW_CRON="$CRON_LINE_HOURLY"
@@ -117,10 +117,10 @@ if [ "$NO_CRON" = "1" ]; then
 fi
 
 TMP=$(mktemp)
-crontab -l 2>/dev/null | grep -v 'ai-radix.*update.sh' > "$TMP"
+crontab -l 2>/dev/null | grep -v 'ai-radix.*llm-api-pricing.sh' > "$TMP"
 echo "$NEW_CRON" >> "$TMP"
 crontab "$TMP"
 rm -f "$TMP"
 
 echo "✅ crontab 已更新："
-crontab -l | grep 'update.sh'
+crontab -l | grep 'llm-api-pricing.sh'

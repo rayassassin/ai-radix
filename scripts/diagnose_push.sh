@@ -30,7 +30,7 @@ set -u
 cd '$REMOTE_DIR' 2>/dev/null || { echo "❌ 目录不存在：$REMOTE_DIR"; exit 1; }
 
 echo "───── ① crontab ─────"
-crontab -l 2>/dev/null | grep -v '^#' | grep -E 'update.sh|ai-radix' || echo "（没有 ai-radix 的定时任务）"
+crontab -l 2>/dev/null | grep -v '^#' | grep -E 'llm-api-pricing.sh|ai-radix' || echo "（没有 ai-radix 的定时任务）"
 
 echo
 echo "───── ② 服务器配置（收件人打码）─────"
@@ -68,7 +68,7 @@ for f in scripts/publish_pages.py scripts/switch_push_mode.sh scripts/push_wecom
   if [ -f "\$f" ]; then echo "  ✅ \$f  (\$(date -r "\$f" '+%m-%d %H:%M' 2>/dev/null))"; else echo "  ❌ 缺 \$f"; fi
 done
 echo -n "  push_wecom 含 hourly 汇总: "; grep -c 'parse_summary_mode' scripts/push_wecom.py 2>/dev/null | head -1
-echo -n "  update.sh 含自动发布步骤: "; grep -c 'publish_pages' update.sh 2>/dev/null | head -1
+echo -n "  llm-api-pricing.sh 含自动发布步骤: "; grep -c 'publish_pages' llm-api-pricing.sh 2>/dev/null | head -1
 
 echo
 echo "───── ④ cron.log 最近关键行 ─────"
