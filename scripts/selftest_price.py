@@ -106,8 +106,85 @@ def test_wording():
     check("返回实际列出的条目", n == 1 and len(listed) == 1)
 
 
+def test_entry_order():
+    """⑤ 入口函数变量定义顺序（静态检查）
+
+    2026-10-28 线上事故：main() 里 promo_push 在第 1182 行被读、第 1220 行才赋值。
+    逻辑测试全绿 —— 因为只有「本轮恰好有限时优惠」才会走到那行，平时根本触发不到；
+    真触发时就是 UnboundLocalError 崩掉整轮推送，顺带发一条假的「推送失败」告警。
+
+    这类「先读后写」用 AST 就能静态抓出来：扫 main() 的局部变量，
+    任何变量首次读取行号早于首次赋值行号即判失败。通用防同类回归。
+    """
+    print("⑤ 入口变量定义顺序")
+    import ast
+    import builtins
+
+    src = Path(pw.__file__).read_text(encoding="utf-8")
+    tree = ast.parse(src)
+    fn = next((n for n in ast.walk(tree)
+               if isinstance(n, ast.FunctionDef) and n.name == "main"), None)
+    check("找到 main() 函数", fn is not None)
+    if fn is None:
+        return
+
+    params = {a.arg for a in fn.args.args} | {a.arg for a in fn.args.kwonlyargs}
+
+    def scan(node: ast.AST, stores: dict[str, int], loads: dict[str, int],
+             nested: bool = False) -> None:
+        """收集 Name 的读写位置。nested=True 时遇到函数/Lambda 就停（独立作用域）。"""
+        for child in ast.iter_child_nodes(node):
+            if isinstance(child, (ast.FunctionDef, ast.AsyncFunctionDef, ast.Lambda)):
+                if nested:
+                    continue
+                scan_body(child)
+                continue
+            if isinstance(child, ast.Name):
+                ln = child.lineno
+                if isinstance(child.ctx, ast.Store):
+                    stores[child.id] = min(stores.get(child.id, ln), ln)
+                elif isinstance(child.ctx, ast.Load):
+                    loads[child.id] = min(loads.get(child.id, ln), ln)
+            scan(child, stores, loads, nested=True)
+
+    def scan_body(fnnode: ast.AST) -> None:
+        # main() 自己的函数体要扫，但它内部的内嵌函数不扫
+        for child in ast.iter_child_nodes(fnnode):
+            if isinstance(child, (ast.FunctionDef, ast.AsyncFunctionDef, ast.Lambda)):
+                continue
+            scan(child, stores, loads, nested=True)
+
+    stores: dict[str, int] = {}
+    loads: dict[str, int] = {}
+    scan_body(fn)
+
+    # 模块级的名字（导入、顶层常量、函数类名）在 main 里读是合法的，不进检查
+    top_stores: dict[str, int] = {}
+    top_loads: dict[str, int] = {}
+    for child in ast.iter_child_nodes(tree):
+        if isinstance(child, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+            top_stores[child.name] = child.lineno
+            continue
+        if isinstance(child, (ast.Import, ast.ImportFrom)):
+            for a in child.names:
+                top_stores[(a.asname or a.name).split(".")[0]] = child.lineno
+            continue
+        scan(child, top_stores, top_loads)
+
+    bad = []
+    for name, load_ln in sorted(loads.items(), key=lambda kv: kv[1]):
+        if name in params or hasattr(builtins, name) or name in top_stores:
+            continue
+        store_ln = stores.get(name)
+        if store_ln is None:
+            bad.append(f"{name}（{load_ln} 行读，全函数无赋值）")
+        elif load_ln < store_ln:
+            bad.append(f"{name}（{load_ln} 行读 / {store_ln} 行赋值）")
+    check("main() 内无「先读后写 / 从未赋值」的局部变量", not bad, "; ".join(bad))
+
+
 def main() -> int:
-    for fn in (test_split, test_ref_shift, test_ledger, test_wording):
+    for fn in (test_split, test_ref_shift, test_ledger, test_wording, test_entry_order):
         fn()
     print()
     if _failed:

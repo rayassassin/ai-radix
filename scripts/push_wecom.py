@@ -1149,6 +1149,12 @@ def main() -> int:
     min_abs = float(wcfg.get("price_change_min_abs_cny", 1.0))      # 绝对金额门槛（¥/百万 tokens）
     push_hours = parse_push_hours(wcfg)                             # 每天哪几个整点推送
 
+    # 折扣只刷新看板、不进群。抓取仍然每小时跑，页面上的折扣徽章会跟着变。
+    # 定义必须放在分类日志之前：下面 split_by_ref 之后要按它决定「这几条优惠要不要提」，
+    # 之前定义在汇总分支里（1220 行附近），分类日志先引用 → UnboundLocalError，
+    # 整轮推送直接崩，还误触发一次失败告警。变量先定义后使用，别为省一行把它挪到后面。
+    promo_push = bool(wcfg.get("price_promo_push", False))
+
     # 别名路由不是独立模型，价格跟着目标模型走，报出来就是同一条变动的复读
     alias_new = [m for m in new_models if is_alias(m.get("id"))]
     alias_chg = [c for c in price_changes if is_alias(c.get("id"))]
@@ -1216,8 +1222,7 @@ def main() -> int:
 
     cooldown_days = int(wcfg.get("price_model_cooldown_days", 7))
     breakout = float(wcfg.get("price_cooldown_breakout", 2.0))
-    # 折扣只刷新看板、不进群。抓取仍然每小时跑，页面上的折扣徽章会跟着变。
-    promo_push = bool(wcfg.get("price_promo_push", False))
+    # promo_push 已在函数前段定义（分类日志要用），这里不再重复赋值
     notified = load_notified()
 
     if is_digest:
