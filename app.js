@@ -929,30 +929,32 @@
   // 样本只有 1 天时不写「每日」——那是承诺，我们只知道「观察到」。宁可用词保守。
   function discountCycleText(d) {
     if (!d) return '';
-    const zhe = discountLabel(d.ratio) || '优惠';
     const off = rangeText(d.offRanges);
+    const on = rangeText(d.onRanges);
     const weak = d.scope === 'unknown' || d.peak?.confidence === 'low';
-    if (!off) return `限时 ${zhe}，无固定时段`;
-    if (weak) return `${zhe} ｜ 近 ${d.peak?.days || 1} 天 ${off} 出现低谷（待确认）`;
-    return `${zhe} ｜ ${scopeText(d.scope)} ${off} 低谷`;
+    if (!off) return '限时优惠，无固定时段';
+    if (weak) return `近 ${d.peak?.days || 1} 天 ${off} 出现低谷（待确认）`;
+    const period = scopeText(d.scope);
+    return on ? `${period} ${on} 原价，${off} 低谷` : `${period} ${off} 低谷`;
   }
 
   // 完整句式，用在详情面板：照着「周一至周五 09:00–12:00、14:00–18:00 属高峰原价，
   // 非高峰期 5 折」这个读法来写。样本不足时退化成「观察到」的说法。
   function discountRangeSentence(d) {
     if (!d) return '';
-    const zhe = discountLabel(d.ratio) || '优惠';
     const off = rangeText(d.offRanges);
     const on = rangeText(d.onRanges);
-    const weak = d.scope === 'unknown' || d.peak?.confidence === 'low';
-    if (weak) {
-      if (!off) return `限时 ${zhe}，无固定时段`;
-      return `近 ${d.peak?.days || 1} 天观察到 ${off} 为低谷价 ${zhe}（样本不足，规律待确认）`;
+    // 系数可能正好是 1（此刻在原价）——那就只说时段，不硬凑「优惠」两个字
+    const zhe = discountLabel(d.ratio) || '';
+    const low = (prefix) => (zhe ? `${prefix}为低谷，约 ${zhe}` : `${prefix}为低谷时段`);
+    // 没有时段规律就别提「每日」，否则「每日限时…无固定时段」自相矛盾
+    if (!off) return zhe ? `限时 ${zhe}，无固定时段` : '';
+    if (d.scope === 'unknown' || d.peak?.confidence === 'low') {
+      return `近 ${d.peak?.days || 1} 天观察到 ${low(`${off} `)}（样本不足，规律待确认）`;
     }
     const period = scopeText(d.scope);
-    if (on && off) return `${period} ${on} 属高峰原价，其余时段 ${zhe}`;
-    if (off) return `${period} ${off} 为低谷价 ${zhe}`;
-    return `${period}限时 ${zhe}，无固定时段`;
+    if (on) return `${period} ${on} 属高峰原价，其余时段${zhe ? ` ${zhe}` : '更便宜'}`;
+    return `${period} ${low(`${off} `)}`;
   }
 
   function discountBadge(m) {
@@ -961,12 +963,15 @@
     if (!kind) return '';
     const text = KIND_TEXT[kind];
     const isFree = kind.startsWith('free');
+    // 讲时段用「规律」的系数（低谷价到底多低），讲现价用当前系数，两边不混
+    const pat = patternOf(m);
+    const forText = pat && typeof pat.ratio === 'number' ? pat : d;
     const icon = kind === 'night' || kind === 'free-night' ? DISC_ICON.moon : DISC_ICON.tag;
     const parts = [
       text,
       `现价 ${fmtRatio(d.ratio)}`,
       d.base ? `基准价 ${priceStr(d.base) || '—'}` : '',
-      discountRangeSentence(d),
+      discountRangeSentence(forText),
       typeof d.samples === 'number' ? `${d.samples} 次采样` : '',
       d.peak?.confidence === 'low' ? '样本偏少，时段规律待确认' : '',
     ].filter(Boolean);
@@ -1020,6 +1025,8 @@
 
     const kind = discountKindOf(d);
     const zhe = d ? (discountLabel(d.ratio) || fmtRatio(d.ratio)) : (discountLabel(peak.discount) || '有折扣');
+    // 时段句子讲的是「规律的折扣力度」，用规律系数；没有规律才退回当前系数
+    const pat = patternOf(m);
     const rows = [];
 
     // 第一行先说清「什么周期、哪些时段高峰、哪些时段打折」——
@@ -1054,7 +1061,7 @@
       <div class="offpeak-panel">
         <div class="offpeak-main">
           ${badge || `<span class="offpeak-zhe">${esc(zhe)}</span>`}
-          <span class="offpeak-arrow">${esc(discountRangeSentence(d)) || '当前即基准价'}</span>
+          <span class="offpeak-arrow">${esc(discountRangeSentence(pat && typeof pat.ratio === 'number' ? pat : d)) || '当前即基准价'}</span>
         </div>
         <div class="disc-kv">${kv}</div>
         <div class="offpeak-meta">基准价取近 3 天采样的众数，即「平时那个价」；促销结束会自动消失，不必手动维护。</div>
