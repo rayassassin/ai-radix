@@ -27,23 +27,16 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from urllib.parse import urlparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from fetch_favicons import (  # noqa: E402  复用同一套下载/格式嗅探/转 PNG 逻辑
-    HEADERS,
+from fetch_favicons import (  # noqa: E402  探测逻辑只保留一份，见 probe_icon
     ICON_DIR,
     ROOT,
-    declared_icons,
-    fetch,
-    icon_name,
-    sniff,
-    to_png,
+    probe_icon,
 )
 
 DATA = ROOT / "data"
@@ -98,72 +91,36 @@ VENDOR_SITES: dict[str, str] = {
     "elorian": "",
 }
 
-# 有官网但抓不到可用图标的，逐条记录原因（前端降级为色点）。
-# 网络环境改善或站点改版后，删掉对应条目重跑即可。
+# 永久跳过：有官网，但**抓到的图案本身不适合当品牌图标**。
+# 这类即使抓成功也不可用，写进来省得每次重抓一遍。
+# 判据只看图案内容（EDA：是否是可辨识的品牌标识），跟网络无关。
 SKIP: dict[str, str] = {
     "ibm-granite": "ibm.com/favicon.ico 里装的是一只蜜蜂图案，不是 IBM 品牌标识",
     "nousresearch": "官网 favicon 是作者插画（动漫人物），不适合当品牌图标",
     "thinkingmachines": "apple-touch-icon 是纯色底板，64px 下没有任何可辨图案",
     "typesafe": "typesafe.com 跳转到 Akka，抓到的是别家 logo",
-    "meta": "meta.com 连接超时",
-    "meta-llama": "llama.com 连接超时",
-    "writer": "Cloudflare 403",
-    "rekaai": "官网无 favicon（404）",
-    "recursive": "域名无 favicon（404）",
-    "inclusionai": "连接超时",
-    "mancer": "favicon.ico 返回非图片内容",
-    "aion-labs": "域名无 favicon（404）",
-    "xingchen-agi": "连接失败",
 }
+# ⚠️ 曾经写在这里、但**属于网络问题**的（meta/meta-llama/inclusionai 连接超时、
+#    writer Cloudflare 403、rekaai/recursive/aion-labs 官网 404、mancer 非图片、
+#    xingchen-agi 连接失败）已于 2026-10-29 全部移出，交还给探测流程重试。
+#    原因：这类失败随网络环境和「有没有镜像兜底」而变，写死等于永久判死刑；
+#    而 403/本机连不通恰恰是镜像兜底最擅长救的两类场景。
+#    做法原则：**只有「图案不合适」才写进 SKIP，网络失败让它每轮重试。**
 
 
 def grab_vendor(vendor: str, page: str) -> dict:
-    """从官网抓一个图标。返回 {vendor, file, tone, src, note}。"""
-    host = urlparse(page).netloc
-    if not host:
-        return {"vendor": vendor, "file": None, "note": "域名解析失败"}
+    """
+    抓一个厂商图标 —— 探测过程**完全复用** fetch_favicons.probe_icon。
 
-    # id 加前缀是为了让 icon_name 的哈希和工具集图标错开，避免文件名撞车
-    tid = f"vendor:{vendor}"
-    base = f"https://{host}"
-
-    # 域名表里直接写了图标 URL（带扩展名）→ 只试这一路。
-    # 用于首页声明的是通用 CMS 图标、必须直取 favicon.ico 的情况（ibm）。
-    if re.search(r"\.(ico|png|svg|jpe?g|webp)(\?|$)", page, re.I):
-        candidates = [page]
-    else:
-        candidates = list(declared_icons(page))    # 首页 <link rel=icon>，通常质量最好
-        candidates += [
-            f"{base}/favicon.ico",
-            f"{base}/apple-touch-icon.png",
-            f"{base}/apple-touch-icon-precomposed.png",
-            f"{base}/favicon.png",
-            f"{base}/favicon.svg",
-            f"{base}/assets/favicon.ico",          # 部分站点的静态资源前缀
-        ]
-
-    seen: set[str] = set()
-    for url in candidates:
-        if url in seen:
-            continue
-        seen.add(url)
-        raw = fetch(url) or fetch(url)          # 偶发超时，同一路再试一次
-        if not raw:
-            continue
-        fmt = sniff(raw)
-        if not fmt:
-            continue
-        if fmt == "svg":
-            return {"vendor": vendor, "file": f"{icon_name(tid)}.svg", "src": url,
-                    "fmt": "svg", "tone": "normal", "note": "svg", "blob": raw}
-        got = to_png(raw, fmt)
-        if got:
-            png, tone = got
-            return {"vendor": vendor, "file": f"{icon_name(tid)}.png", "src": url,
-                    "fmt": fmt, "tone": tone, "note": fmt, "blob": png}
-
-    return {"vendor": vendor, "file": None, "note": f"{len(seen)} 路均无可用图标"}
-
+    2026-10-29 之前这里自己写了一遍候选列表，漏了「镜像兜底」那一级，
+    于是工具集 217 张图标顺利到手、厂商列却大面积缺图。
+    现在只剩两件事：拼出加前缀的 key，以及把字段换成 vendor 口径。
+    """
+    # key 加前缀是为了让文件名哈希和工具集图标错开，避免撞车
+    r = probe_icon(f"vendor:{vendor}", page)
+    return {"vendor": vendor, "file": r.get("file"), "src": r.get("src", ""),
+            "fmt": r.get("fmt"), "tone": r.get("tone", "normal"),
+            "note": r.get("note", ""), "blob": r.get("blob")}
 
 def main() -> int:
     ap = argparse.ArgumentParser()

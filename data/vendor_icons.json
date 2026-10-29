@@ -1,12 +1,17 @@
 {
  "meta": {
-  "generated_at": "2026-10-29 12:00:05",
-  "vendors_total": 60,
-  "vendors_with_icon": 36,
-  "models_total": 457,
-  "models_with_icon": 400
+  "generated_at": "2026-10-29 23:40:43",
+  "vendors_total": 59,
+  "vendors_with_icon": 40,
+  "models_total": 464,
+  "models_with_icon": 418
  },
  "icons": {
+  "aion-labs": {
+   "f": "3037e3db2d.png",
+   "t": "normal",
+   "from": "官网自抓"
+  },
   "amazon": {
    "f": "0e048fb00a.png",
    "t": "normal",
@@ -64,6 +69,11 @@
   },
   "liquid": {
    "f": "4210ac1dcc.png",
+   "t": "normal",
+   "from": "官网自抓"
+  },
+  "mancer": {
+   "f": "1701d53816.svg",
    "t": "normal",
    "from": "官网自抓"
   },
@@ -141,6 +151,16 @@
    "f": "fa397e8a04.png",
    "t": "normal",
    "from": "qwen-chat"
+  },
+  "recursive": {
+   "f": "ee60b6dadd.png",
+   "t": "normal",
+   "from": "官网自抓"
+  },
+  "rekaai": {
+   "f": "a4ce25c814.png",
+   "t": "normal",
+   "from": "官网自抓"
   },
   "relace": {
    "f": "0c7dd5671e.svg",

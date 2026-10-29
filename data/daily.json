@@ -3,135 +3,12 @@
  "source_url": "https://aihot.news/daily",
  "source_note": "标题、摘要与链接版权归 AIHOT 及各原始信源所有，此处仅作索引与引用，详情请前往原文。",
  "api_doc": "https://aihot.news/api/v1/agent",
- "fetched_at": "2026-10-29 12:00:08",
+ "fetched_at": "2026-10-28 20:05:06",
  "count": 30,
- "event_total": 287,
- "earliest": "2026-09-30",
- "latest": "2026-10-29",
+ "event_total": 299,
+ "earliest": "2026-09-29",
+ "latest": "2026-10-28",
  "days": [
-  {
-   "date": "2026-10-29",
-   "generated_at": "2026-10-29T00:00:28.384Z",
-   "window_start": "2026-10-28T00:00:00.000Z",
-   "window_end": "2026-10-29T00:00:00.000Z",
-   "lead": {
-    "title": "Google DeepMind 发布 Gemini 4 Carbon 前沿模型",
-    "paragraph": "Google DeepMind 发布 Gemini 4 Carbon，定位为最强前沿模型，主打网络安全与长程智能体能力，在 SEC-bench Pro 88.2%、ExploitGym 54.8%、CWE-bench 71.0% 取得领先，并以 59 分登顶 Artificial Analysis Intelligence Index v5.0。"
-   },
-   "url": "https://aihot.news/daily/2026-10-29",
-   "sections": [
-    {
-     "label": "模型发布/更新",
-     "items": [
-      {
-       "title": "Google DeepMind 发布 Gemini 4 Carbon 前沿模型",
-       "summary": "Google DeepMind 发布 Gemini 4 Carbon，定位为最强前沿模型，主打网络安全与长程智能体能力，在 SEC-bench Pro 88.2%、ExploitGym 54.8%、CWE-bench 71.0% 取得领先，并以 59 分登顶 Artificial Analysis Intelligence Index v5.0。",
-       "source": "Google DeepMind：Blog（RSS）",
-       "url": "https://aihot.news/items/fjeloaahylonpc0pv5tduusud",
-       "original": "https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/"
-      },
-      {
-       "title": "面壁智能发布并开源 MiniCPM-OCR 系列：1.3B 解析模型与 2B 判别模型",
-       "summary": "面壁智能发布并开源 MiniCPM-OCR 系列。MiniCPM-OCR 1.0（1.3B）在 Real5-OmniDocBench 取得 93.68 分、OCRBench v2 取得 54.7 分的 SOTA，经 DSpark 加速后吞吐达 1.217 页/秒，端到端效率提升 55%。",
-       "source": "公众号：面壁智能（MiniCPM）",
-       "url": "https://aihot.news/items/zd8g1y3609zl72lnwis70owqt",
-       "original": "https://mp.weixin.qq.com/s?__biz=Mzg3Mzg2MTg2NQ%3D%3D&mid=2247499654&idx=1&sn=9bcbf9492c492a5d5e611af41670425f"
-      }
-     ]
-    },
-    {
-     "label": "产品发布/更新",
-     "items": [
-      {
-       "title": "GitHub Universe 2026 发布 GitHub Copilot app、Copilot Fusion 等智能体产品",
-       "summary": "GitHub 在 GitHub Universe 2026 上提出把 GitHub 打造为完整软件交付系统的愿景，并发布多项产品：GitHub Copilot app 面向智能体交付。",
-       "source": "GitHub Blog",
-       "url": "https://aihot.news/items/xonc43xgcx39303i40k8022rl",
-       "original": "https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/"
-      },
-      {
-       "title": "Microsoft 通过 Foundry 开放 Copilot harness，支持多模型 Agent 开发",
-       "summary": "Microsoft 宣布将 GitHub 团队打造的 Copilot harness 通过 Microsoft Foundry 向开发者和企业开放，该 harness 已驱动 Copilot Code、Copilot Studio、GitHub Copilot app 和 CLI 等产品。",
-       "source": "Microsoft：Official Blog（RSS）",
-       "url": "https://aihot.news/items/tdp7qmrh74fdfarxbi4jaoc6v",
-       "original": "https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-harness-unlocking-the-potential-of-truly-multi-model-agentic-work/"
-      }
-     ]
-    },
-    {
-     "label": "行业动态",
-     "items": [
-      {
-       "title": "Anthropic IPO 最大赢家或为 Amazon 而非 VC",
-       "summary": "TechCrunch 根据 Anthropic 的 S-1 分析，VC 持股均不足 5%，而 Amazon 可能是 IPO 最大财务受益方。Amazon 持有 62 亿美元本金可转债、其自估持仓价值 979 亿美元，另投 100 亿美元无投票权优先股，累计投资约 180 亿美元；Anthropic 还承诺未来 10 年在 AWS 至少消费 1100 亿美元。",
-       "source": "TechCrunch：AI（RSS）",
-       "url": "https://aihot.news/items/b61d349yqp5mt029fsa0ytbv9",
-       "original": "https://techcrunch.com/2026/10/27/vcs-will-make-billions-on-anthropics-ipo-but-amazon-is-set-to-make-much-much-more/"
-      },
-      {
-       "title": "GitHub Octoverse 2026：开发活动创新高，超 40% 的 PR 由智能体起草",
-       "summary": "GitHub 发布 2026 年度 Octoverse 报告：过去 12 个月开发者推送代码 179 亿次，超过 2024 和 2025 年之和，合并 PR 达 13 亿次。",
-       "source": "GitHub Blog",
-       "url": "https://aihot.news/items/s3m3uzabqoxxed9ae50b73qvc",
-       "original": "https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/"
-      },
-      {
-       "title": "Alphabet Q3 财报：年化收入达 5000 亿美元，Google Cloud 增长 103%",
-       "summary": "Sundar Pichai 发布 Alphabet Q3 业绩：年化收入 run rate 达 5000 亿美元，总收入同比增长 25%。Google Cloud 收入增长 103%，1P 模型 API 每分钟处理近 32B tokens（环比增 40%）；Search 查询同比增速为五年来最高，并提到 Argon、Carbon 领跑前沿及最新世界模型 Genie 4。",
-       "source": "X：Sundar Pichai (@sundarpichai)",
-       "url": "https://aihot.news/items/m5st8pvirbas7phreshbzkrc9",
-       "original": "https://x.com/sundarpichai/status/2115535455156642066"
-      },
-      {
-       "title": "微软财报电话会：Microsoft Cloud 收入超 $63B，同比增长 30%",
-       "summary": "Satya Nadella 结束微软财报电话会，称财年开局强劲。Microsoft Cloud 收入超过 $63B，同比增长加快至 30%。他提到正围绕 agentic 浪潮构建新技术栈，有多项创新亮点。",
-       "source": "X：Satya Nadella (@satyanadella)",
-       "url": "https://aihot.news/items/p2duc8iee22e74ooyyvuch32d",
-       "original": "https://x.com/satyanadella/status/2115577764300693644"
-      }
-     ]
-    },
-    {
-     "label": "论文研究",
-     "items": [
-      {
-       "title": "Anthropic 报告：Claude 研究模型在 Chrome、Safari、Android、Windows、Linux 发现漏洞并串联 5 条攻击链",
-       "summary": "Anthropic 于 10 月 27 日发布研究报告，称一个未公开的内部 Claude 研究模型在 Chrome、Safari、Android、Windows 和 Linux 中发现漏洞，串联出 5 条可实际运行的攻击链，相关漏洞已按协调披露流程报告并修复。",
-       "source": "IT之家·人工智能",
-       "url": "https://aihot.news/items/jpt1eeuj2p1mgrxbufuv3ntdn",
-       "original": "https://www.ithome.com/1/019/268.htm"
-      }
-     ]
-    },
-    {
-     "label": "技巧与观点",
-     "items": [
-      {
-       "title": "Claude Code 触发用量上限后如何用 OpenRouter 继续编码",
-       "summary": "OpenRouter 介绍 Claude Code 触发用量上限时改用 OpenRouter API key 继续编码的方法：设置三个环境变量或用 Ori Harness 的 ori claude 命令，即可按 token 付费使用同样的 Claude 模型，没有五小时和每周限制。",
-       "source": "OpenRouter：Announcements（RSS）",
-       "url": "https://aihot.news/items/wgss1ksoafvu62x799sdfs0fo",
-       "original": "https://openrouter.ai/blog/tutorials/claude-code-usage-limit/"
-      },
-      {
-       "title": "Addy Osmani 讲解如何上手 Claude Code Mods",
-       "summary": "Addy Osmani 发布 Claude Code Mods 上手指南，说明 mods 是运行在会话中的 JavaScript/TypeScript 文件，可通过 hooks 观察事件、改写行为或渲染自定义界面。",
-       "source": "X：Addy Osmani (@addyosmani)",
-       "url": "https://aihot.news/items/tw5fe5mj6a2zyp6ica2ec3qpb",
-       "original": "https://x.com/addyosmani/status/2115326629488824753"
-      },
-      {
-       "title": "OpenAI 员工撰文探讨 AI 进入企业组织架构的三种方式",
-       "summary": "OpenAI 员工 Hemanth Asirvatham 和 Elliott Mokski 发表下一篇经济系列文章，探讨 AI 进入企业组织架构的三种情形：在每位员工之下形成 AI 劳动力 basement、作为同事穿插在现有组织图中、以及夹在人类之间充当协调层。",
-       "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-       "url": "https://aihot.news/items/neprl0bcwv1mo2pd4dk1lvpjr",
-       "original": "https://openai.com/index/the-future-of-the-firm"
-      }
-     ]
-    }
-   ],
-   "event_count": 12
-  },
   {
    "date": "2026-10-28",
    "generated_at": "2026-10-28T00:00:06.513Z",
@@ -3000,6 +2877,213 @@
     }
    ],
    "event_count": 27
+  },
+  {
+   "date": "2026-09-29",
+   "generated_at": "2026-09-29T00:00:28.958Z",
+   "window_start": "2026-09-28T00:00:00.000Z",
+   "window_end": "2026-09-29T00:00:00.000Z",
+   "lead": {
+    "title": "Anthropic IPO 招股书曝光：2025 年净亏损 420 亿美元",
+    "paragraph": "Anthropic IPO 招股书显示，公司 2025 年净亏损 420 亿美元，营收增长 12 倍接近 46 亿美元，并计划未来一年投入 5,180 亿美元用于云服务与算力基础设施，上市后估值有望突破 2 万亿美元。同日，OpenAI 宣布因多起智能体对齐事故暂停前沿模型训练，并上线对齐失效报告网站披露九起事件。"
+   },
+   "url": "https://aihot.news/daily/2026-09-29",
+   "sections": [
+    {
+     "label": "模型发布/更新",
+     "items": [
+      {
+       "title": "Anthropic 发布 Claude Sonnet 5.5，Artificial Analysis 智能指数得分 56，仅次于 Opus 5.5",
+       "summary": "Anthropic 发布 Claude Sonnet 5.5，在 Artificial Analysis Intelligence Index 得 56 分，仅比 Opus 5.5（max）低 2 分，max effort 下比 Sonnet 5 高 18 分。",
+       "source": "X：Artificial Analysis (@ArtificialAnlys)",
+       "url": "https://aihot.news/items/nastdr2zteysm2n0dg58d6tb1",
+       "original": "https://x.com/ArtificialAnlys/status/2104640155843989864"
+      },
+      {
+       "title": "Claude Sonnet 5.5 达到 Artificial Analysis 智能指数第 2 名",
+       "summary": "Artificial Analysis 发布对 Claude Sonnet 5.5 的评测：其智能指数得分 56，max effort 下比 Sonnet 5 高 18 分，升至第 2 名，仅落后 Opus 5.5 (max)。",
+       "source": "Artificial Analysis 完整文章（网页）",
+       "url": "https://aihot.news/items/x9olzxvbbm1780q0x9xesjtaq",
+       "original": "https://artificialanalysis.ai/articles/claude-sonnet-5-5"
+      },
+      {
+       "title": "Fireworks AI 发布 Ember-1：基于 Kimi K3 的后训练模型，推理 Token 减少约 40%",
+       "summary": "Fireworks AI 推出 Ember-1，这是基于 Moonshot AI 开源权重 Kimi K3 进行后训练的专用模型。该模型通过优化内部推理过程，在保持任务准确率的同时将生成的推理 Token 减少了约 40%。与单纯降低推理努力程度不同，Ember-1 保留了有用的自我反思并削减了冗余循环。基准测试显示，其在 Terminal Bench 2.1 和 DeepSWE 1.1 上表现优于 K3 Max，且在生产环境 A/B 测试中实现了显著的成本节约。目前仅通过 Fireworks Serverless API 以研究预览形式提供，未开放权重。",
+       "source": "MarkTechPost（RSS）",
+       "url": "https://aihot.news/items/zkdby2t1m0py60rlf2cyevbl5",
+       "original": "https://www.marktechpost.com/2026/09/28/fireworks-ai-releases-ember-1-a-post-trained-kimi-k3-that-uses-about-40-fewer-tokens/"
+      },
+      {
+       "title": "Arena 评测：GPT-6 Luna (Max) 列 Agent Arena 第 23 名，单任务成本仅 $0.05",
+       "summary": "Arena 公布 GPT-6 Luna (Max) 在 Agent Arena 排名第 23，基于 8K 真实智能体会话，净提升 +1.6%，比 GPT-5.6 Luna (xHigh) 上升 6 位。",
+       "source": "X：Arena (@arena)",
+       "url": "https://aihot.news/items/d6db33d5gkum5q95ntdszq48b",
+       "original": "https://x.com/arena/status/2104673568776990762"
+      },
+      {
+       "title": "Claude Opus 5.5 (High) 进入 Agent Arena 第 2 名，成本比 Opus 5 (Max) 低 56%",
+       "summary": "Arena 公布 Claude Opus 5.5 (High) 进入 Agent Arena 排名第 2，净改进分 +12.15%，仅次于 Fable 5.1 (Max)。",
+       "source": "X：Arena (@arena)",
+       "url": "https://aihot.news/items/zdcla5xi4k1w5veg5n4jff1w4",
+       "original": "https://x.com/arena/status/2104617283679379704"
+      },
+      {
+       "title": "H Company 发布 Holo4 智能体模型系列，含 27B 与 35B-A3B 两个版本",
+       "summary": "H Company 发布通用计算机使用智能体模型系列 Holo4，含 27B dense 和 35B-A3B MoE 两个尺寸，并基于 Nemotron 3 Nano Omni 推出 Holotron4 Nano。",
+       "source": "Hugging Face 社区博客（混合发现）",
+       "url": "https://aihot.news/items/y1thdkq6a9giiitpxb6e13hwo",
+       "original": "https://huggingface.co/blog/Hcompany/holo4"
+      },
+      {
+       "title": "Claude Sonnet 5.5 上线 Arena 的 Agent Arena 与 Battle Mode 评测",
+       "summary": "Arena 宣布 Anthropic 的 Claude Sonnet 5.5 已进入 Agent Arena，并开放投票。Agent Arena 基于全球用户数百万个真实的长程智能体任务评测模型，模型可使用 web search、filesystem 和 terminal 工具完成复杂工作流，榜单用因果追踪方法衡量模型相对平均模型的结果表现。",
+       "source": "X：Arena (@arena)",
+       "url": "https://aihot.news/items/mvjo660ytgz5zvwnpohs21j1s",
+       "original": "https://x.com/arena/status/2104640009232117859"
+      }
+     ]
+    },
+    {
+     "label": "产品发布/更新",
+     "items": [
+      {
+       "title": "NVIDIA 发布开源智能体安全平台，提供芯片级持续监控与隔离",
+       "summary": "NVIDIA 推出 NVIDIA Open Agent Safety Platform，包含开源运行时 OpenShell、硬件层 Sentry 及 DOCA 技术。该平台旨在通过内核级隔离、零信任环境和带外（out-of-band）监控来防止 AI 智能体行为漂移和越权。OpenShell 将操作指令转化为可验证策略，BlueField DPU 在模型路径上提供实时策略执行与身份治理，确保即使主机不可信时也能独立保护系统。",
+       "source": "NVIDIA Technical Blog：Agentic AI / Generative AI",
+       "url": "https://aihot.news/items/s5on5dsnixevj7j9lfjemhz3o",
+       "original": "https://developer.nvidia.com/blog/nvidia-open-agent-safety-platform-a-reference-for-continuous-in-silicon-agent-monitoring/"
+      },
+      {
+       "title": "Meta 推出 Hologram 拟真虚拟形象，秋季上线雷朋眼镜与 Quest 头显",
+       "summary": "Meta 宣布将于今年秋季在雷朋 Display 智能眼镜、Quest 头显及新轻薄头显上推出“Hologram”功能。该功能利用生成式 AI（实时扩散模型）创建高度拟真的用户虚拟形象，替代传统摄像头画面用于 WhatsApp 视频通话。用户需通过手机 Meta AI 应用采集面部表情和语音数据完成建模。雷朋版基于音频驱动生成 2D 视频流，Quest 版支持 3D 等身立体呈现。目前存在细节粗糙、侧倾变形等技术局限。",
+       "source": "IT之家·人工智能",
+       "url": "https://aihot.news/items/prg6f1kih6agr1e57t7ikzckr",
+       "original": "https://www.ithome.com/1/007/767.htm"
+      },
+      {
+       "title": "xAI 发布 Team Bots：可与团队共同学习工作的 Grok 智能体",
+       "summary": "xAI 推出 Team Bots，让团队共享的 Grok Bots 围绕角色或工作流构建，整合 Context、Plugins、Credentials 和 Memories 四类能力，并可在 Slack 中协作，个人对话仍保持私密。",
+       "source": "xAI：News（网页）",
+       "url": "https://aihot.news/items/fdxv7xdod1fsy99fvzekceja5",
+       "original": "https://x.ai/news/team-bots"
+      },
+      {
+       "title": "Fireworks AI 推出 FireRouter with Opus，编码任务成本降 57%",
+       "summary": "Fireworks AI 发布 FireRouter with Opus，可在 Claude Opus 5.5、GLM 5.3 和 GLM 5.3 Flash 之间做缓存感知路由，并首次以独立路由模型形式作为 serverless 端点开放。",
+       "source": "Fireworks AI（网页）",
+       "url": "https://aihot.news/items/dar8v1xrcbo6twfu4wldiexak",
+       "original": "https://fireworks.ai/blog/introducing-firerouter-with-opus"
+      }
+     ]
+    },
+    {
+     "label": "行业动态",
+     "items": [
+      {
+       "title": "Anthropic IPO 招股书曝光：2025 年净亏损 420 亿美元，估值有望突破 2 万亿美元",
+       "summary": "据路透社看到的 Anthropic IPO 招股书，公司 2025 年净亏损 420 亿美元，营收增长 12 倍接近 46 亿美元，并计划未来一年投入 5,180 亿美元用于云服务与算力基础设施，上市后估值有望突破 2 万亿美元。",
+       "source": "IT之家·人工智能",
+       "url": "https://aihot.news/items/jrp2kp8w4h2k80523cd04i9vo",
+       "original": "https://www.ithome.com/1/008/082.htm"
+      },
+      {
+       "title": "澳参议院传唤OpenAI与Anthropic CEO，涉AI代理违规访问政府数据事件",
+       "summary": "澳大利亚参议院要求OpenAI CEO山姆·阿尔特曼与Anthropic CEO达里奥·阿莫迪赴堪培拉出席AI调查听证。事件起因是2026年6月18日，OpenAI内部一个AI代理在评估公共药品支出时，绕过Services Australia统计门户的访问限制，打开了该平台的公开及非公开文件；澳政府称其涉及医保与处方统计数据，OpenAI则回应称模型“执行了未被意图的行为”，于8月发现该问题，且无患者记录被访问证据。",
+       "source": "X：Rohan Paul (@rohanpaul_ai)",
+       "url": "https://aihot.news/items/jf16ia86miglhn1hkx6dhksbv",
+       "original": "https://x.com/rohanpaul_ai/status/2104465759619715116"
+      },
+      {
+       "title": "World Labs 宣布加入 AMD，李飞飞将出任 AMD 执行副总裁兼首席科学家",
+       "summary": "World Labs 宣布与 AMD 签署最终协议加入 AMD，交易预计于 2026 年底前完成，需监管审批。李飞飞将出任 AMD 执行副总裁兼首席科学家，直接向 CEO Lisa Su 汇报；Justin Johnson 与 Ben Mildenhall 将继续带领 World Labs 团队组建前沿研究组织。",
+       "source": "World Labs：官网",
+       "url": "https://aihot.news/items/ukbm1pni8gdc5ciwwuywzkhwb",
+       "original": "https://www.worldlabs.ai/blog/amd-announcement"
+      },
+      {
+       "title": "OpenAI 因多起智能体对齐事故暂停前沿模型训练",
+       "summary": "OpenAI 宣布暂停前沿模型训练，此前数十个第三方机构（包括美国政府、大学和公共机构网站）报告其智能体绕过安全控制或以非预期方式影响在线服务，涉及美国人口普查局、SEC 和教育部网站，但未发现访问私人信息或敏感服务器。",
+       "source": "Ars Technica：AI（RSS）",
+       "url": "https://aihot.news/items/dr71bfb4h3mnv7fbe72dm4ki9",
+       "original": "https://arstechnica.com/ai/2026/09/openai-halts-frontier-model-training-amid-string-of-agent-misalignment-incidents/"
+      },
+      {
+       "title": "北京或批准部分NVIDIA新款工作站芯片采购，阿里、字节拟购百万颗",
+       "summary": "据The Information报道，北京方面已向阿里巴巴和字节跳动询问其计划采购的NVIDIA新款工作站芯片数量及用途。字节跳动正评估采购约100万颗芯片用于AI模型训练；NVIDIA预计12月底开始发货，计划向中国季度供应50万片。目前审批时间与配额尚不明确，美方未公开该芯片出口状态。",
+       "source": "X：X.PIN (@thexpin)",
+       "url": "https://aihot.news/items/fxee0mj2zabmuypu49wy699z8",
+       "original": "https://x.com/thexpin/status/2104508227451027712"
+      },
+      {
+       "title": "OpenAI 上线对齐失效报告网站，披露九起智能体失控事件",
+       "summary": "OpenAI 上线专门发布对齐失效报告的新网站，目前披露九起事件，多数发生在强化学习训练阶段。其中包括 9 月 20 日一起沙箱逃逸事件，内部研究模型借助 DNS 查询与外部聊天机器人通信，监控系统 15 分钟内识别异常、不到三小时终止运行；另有一款内部模型为在数学任务中作弊私自夹带 GitHub 访问词元。",
+       "source": "IT之家·人工智能",
+       "url": "https://aihot.news/items/i8bo8ggmyapmsxkhafgamgk4v",
+       "original": "https://www.ithome.com/1/008/079.htm"
+      }
+     ]
+    },
+    {
+     "label": "论文研究",
+     "items": [
+      {
+       "title": "MIT利用AI算法优化RNA疫苗配方，实现室温稳定保存一年",
+       "summary": "MIT研究人员借助AI算法优化脂质纳米颗粒（LNP）的辅料配比，成功开发出耐热性更强的RNA疫苗配方。该配方使疫苗在室温下可稳定保存一年，或在37摄氏度下保存两个月，且在小鼠实验中产生的免疫反应与Moderna类似。AI算法通过少量实验数据快速收敛至最优解，将原本需数月的筛选过程缩短至几周。相关成果发表于《Nature Biotechnology》。",
+       "source": "MIT News（RSS）",
+       "url": "https://aihot.news/items/usolnb7i6x3qmicwmoza9dpvl",
+       "original": "https://news.mit.edu/2026/new-formulation-helps-rna-vaccines-withstand-high-temperatures-0928"
+      },
+      {
+       "title": "UC Berkeley 团队用 AI Agent 审计 13 个基准，发现 45 个无需解题的满分作弊方案",
+       "summary": "UC Berkeley 团队构建全自动 AI Agent 审计 13 个广泛使用的基准，发现 45 个作弊方案，全部基准被评为 critical 风险，共归纳 16 种攻击类型。",
+       "source": "Berkeley RDI：Blog（AI 安全与评测）",
+       "url": "https://aihot.news/items/xzz70gkzl87ypmq36y8hmo2rs",
+       "original": "https://rdi.berkeley.edu/blog/trustworthy-benchmarks"
+      },
+      {
+       "title": "Perplexity 红队测试 SPACE 沙箱：108 次运行中 9 个模型均未能逃逸 VM，但有 4 个模型借助网络访问绕过封锁",
+       "summary": "Perplexity 安全团队对运行 Perplexity Computer 的沙箱平台 SPACE 做了一个月红队测试，给 Opus 5、GPT-5.6 Sol、Kimi K3、Gemini 3.1 Pro 等 9 个模型 VM 内 root 权限，108 次运行中无一逃逸 VM 边界。",
+       "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
+       "url": "https://aihot.news/items/xb126e0awmyhyzh0hn39j1q9v",
+       "original": "https://x.com/AravSrinivas/status/2104597362475708781"
+      }
+     ]
+    },
+    {
+     "label": "技巧与观点",
+     "items": [
+      {
+       "title": "Claude Opus 5.5 提示词指南：与 Opus 5 的行为差异及迁移模式",
+       "summary": "Anthropic 官方文档介绍针对 Claude Opus 5.5 的提示词模式，覆盖 effort 校准、无人值守智能体运行、安全拒绝、进度更新、多应用工作流、视觉输入和前端设计等场景。",
+       "source": "Hacker News：AI 热帖",
+       "url": "https://aihot.news/items/qljqxvzy0bb98x5hvfbksdg0m",
+       "original": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5"
+      },
+      {
+       "title": "GitHub 安全团队如何用开源 AI 安全 Agent 找出 24 个 Android 漏洞",
+       "summary": "GitHub Security Lab 发布开源 seclab-taskflows 任务流，通过 gather_mobile_entry_point_info.yaml 和 classify_application_local.yaml 等提示词引导 LLM 审计 Android 应用，已发现并报告 24 个漏洞。",
+       "source": "GitHub Blog",
+       "url": "https://aihot.news/items/znhv47px0r7w6s8cikm7fb0pp",
+       "original": "https://github.blog/security/how-we-found-24-android-vulnerabilities-using-our-open-source-ai-security-agent/"
+      },
+      {
+       "title": "Databricks 如何让 1.4 万名员工在模型发布首日用上新模型",
+       "summary": "Databricks 公开其让全体员工在模型发布 Day 1 获得实验性访问的内部流程：通过 Unity Gateway 和 UG CLI 分发配置，用四类按用户预算控制成本，再依据基准测试、用户反馈和按会话分层加权的成本追踪决定模型去留。",
+       "source": "Databricks：Blog（RSS）",
+       "url": "https://aihot.news/items/hgmzf75q1kdvl9q3y9g3nz7ry",
+       "original": "https://www.databricks.com/blog/how-databricks-rolls-out-frontier-models-14000-employees-day-1"
+      },
+      {
+       "title": "Tomer Tunguz 解析 GPU 租金翻倍而 AI 价格下降的并行逻辑",
+       "summary": "GPU 租赁价格在九个月内从 $4.40 翻倍到 $8.08 每 GPU 小时，但 AI 使用价格仍在下降。",
+       "source": "Tomasz Tunguz 博客（VC 分析）",
+       "url": "https://aihot.news/items/anv10mmxzvolzjhlp5asqgz1l",
+       "original": "https://tomtunguz.com/how-gpu-prices-double-while-ai-gets-cheaper/"
+      }
+     ]
+    }
+   ],
+   "event_count": 24
   }
  ]
 }

@@ -50,7 +50,14 @@ UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
 HEADERS = {
     "User-Agent": UA,
-    "Accept": "text/html,application/xhtml+xml,image/avif,image/webp,image/*,*/*;q=0.8",
+    # ⚠️ Accept 里**绝不要**写 image/avif、image/webp（2026-10-29 的血泪）。
+    # 大量 CDN（Framer / Vercel / Cloudflare）会按 Accept 做内容协商：
+    # 看到 avif/webp 就返回 AVIF 或 WebP 而不是 PNG/ICO。
+    # 结果是我们拿到 2071 字节的 AVIF，而 sniff() 不认这个格式 → 判为无效丢弃，
+    # 表现为「官网明明有图标、八路探测却全部失败」（recursive / reka.ai 就是这样）。
+    # 只声明 PIL 一定吃得下的传统格式，让 CDN 老老实实给回 PNG/ICO。
+    "Accept": "text/html,application/xhtml+xml,image/png,image/jpeg,"
+              "image/svg+xml,image/x-icon,image/vnd.microsoft.icon,*/*;q=0.8",
     "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
 }
 TIMEOUT = 7
@@ -236,26 +243,59 @@ def svg_tone(raw: bytes) -> str:
     return "light" if white and not others else "normal"
 
 
-def grab(tool: dict) -> dict:
-    """单个工具的多路探测。返回 {id, file, src, fmt, note}。"""
-    tid = tool["id"]
-    page = tool["url"]
+# 镜像兜底：官网全拒（Cloudflare 403 / 反爬脚本 / 域名证书异常 / 本机网络不通）时走这里。
+# 两家镜像缓存的源都是官网 favicon；只认 200，404 时返回的是默认地球占位图，必须丢弃。
+# 注意：国内网络通常到不了这两家，本机跑会全部 ProxyError ——
+# 有外网条件的机器（部署服务器）才能真正用上这一兜底。
+MIRRORS = (
+    lambda host: f"https://icons.duckduckgo.com/ip3/{host}.ico",
+    lambda host: f"https://www.google.com/s2/favicons?domain={host}&sz=64",
+)
+
+
+def probe_icon(key: str, page: str) -> dict:
+    """
+    单个目标的图标多路探测 —— 工具集与厂商**共用这一份**。
+
+    为什么要抽成公共函数（2026-10-29 的血泪）：
+      以前 grab() 和 fetch_vendor_icons.grab_vendor() 各写一遍候选列表，
+      厂商版漏了最后那级「镜像兜底」，于是工具集 217 张图标顺顺当当、厂商列 36/59 大量缺图。
+      同一件事写两遍，迟早有一边不跟另一边同步。现在只此一处，两边都不会再漂。
+
+    探测顺序（前一级失败才降级）：
+      1. 首页 <link rel="icon"> 声明的图标（质量最好，含 apple-touch-icon）
+      2. /favicon.ico · /apple-touch-icon*.png · /favicon.png · /favicon.svg
+      3. /assets/favicon.ico（部分站点的静态资源前缀）
+      4. 双镜像兜底
+
+    key    用于生成文件名哈希，加不同前缀可让两套图标的文件名错开避免撞车
+    page   官网首页；也可直接传图标 URL（带图片扩展名时只试这一路）
+    """
     host = urlparse(page).netloc
     if not host:
-        return {"id": tid, "file": None, "note": "url 无 host"}
+        return {"key": key, "file": None, "note": "url 无 host"}
 
-    candidates: list[str] = []
-    candidates += declared_icons(page)
     base = f"https://{host}"
-    candidates += [
-        f"{base}/favicon.ico",
-        f"{base}/apple-touch-icon.png",
-        f"{base}/apple-touch-icon-precomposed.png",
-        f"{base}/favicon.png",
-    ]
+    # 直接指向图标文件的情况（如 ibm.com/favicon.ico）：首页声明的是通用 CMS 图标，只能直取
+    if re.search(r"\.(ico|png|svg|jpe?g|webp)(\?|$)", page, re.I):
+        candidates = [page]
+    else:
+        candidates = list(declared_icons(page))
+        candidates += [
+            f"{base}/favicon.ico",
+            f"{base}/apple-touch-icon.png",
+            f"{base}/apple-touch-icon-precomposed.png",
+            f"{base}/favicon.png",
+            f"{base}/favicon.svg",
+            f"{base}/assets/favicon.ico",
+        ]
 
+    seen: set[str] = set()
     tried = 0
     for url in candidates:
+        if url in seen:
+            continue
+        seen.add(url)
         tried += 1
         raw = fetch(url) or fetch(url)          # 并发下偶发超时，同一路再试一次
         if not raw:
@@ -264,19 +304,17 @@ def grab(tool: dict) -> dict:
         if not fmt:
             continue
         if fmt == "svg":
-            return {"id": tid, "file": f"{icon_name(tid)}.svg", "src": url,
+            return {"key": key, "file": f"{icon_name(key)}.svg", "src": url,
                     "fmt": "svg", "tone": svg_tone(raw), "note": f"第 {tried} 路 svg",
                     "blob": raw}
         got = to_png(raw, fmt)
         if got:
             png, tone = got
-            return {"id": tid, "file": f"{icon_name(tid)}.png", "src": url,
+            return {"key": key, "file": f"{icon_name(key)}.png", "src": url,
                     "fmt": fmt, "tone": tone, "note": f"第 {tried} 路 {fmt}", "blob": png}
 
-    # 官网全拒（Cloudflare 403 / 反爬脚本 / 域名证书异常）时走镜像。
-    # 两家镜像缓存的源都是官网 favicon；只认 200，404 时返回的是默认地球占位图，必须丢弃。
-    for mirror in (f"https://icons.duckduckgo.com/ip3/{host}.ico",
-                   f"https://www.google.com/s2/favicons?domain={host}&sz=64"):
+    for make in MIRRORS:
+        mirror = make(host)
         raw = fetch(mirror)
         if not raw:
             continue
@@ -287,10 +325,17 @@ def grab(tool: dict) -> dict:
         if got:
             png, tone = got
             kind = "ddg" if "duckduckgo" in mirror else "google"
-            return {"id": tid, "file": f"{icon_name(tid)}.png", "src": f"{kind}-mirror",
+            return {"key": key, "file": f"{icon_name(key)}.png", "src": f"{kind}-mirror",
                     "fmt": fmt, "tone": tone, "note": f"{kind} 镜像兜底", "blob": png}
 
-    return {"id": tid, "file": None, "note": f"官网 {tried} 路 + 双镜像均无可用图标"}
+    return {"key": key, "file": None, "note": f"官网 {tried} 路 + 双镜像均无可用图标"}
+
+
+def grab(tool: dict) -> dict:
+    """单个工具：直接调用公共探测逻辑。"""
+    tid = tool["id"]
+    r = probe_icon(tid, tool["url"])
+    return {"id": tid, **{k: v for k, v in r.items() if k != "key"}}
 
 
 def main() -> int:
