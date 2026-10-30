@@ -75,7 +75,9 @@ VENDOR_SITES: dict[str, str] = {
     "perceptron": "https://www.perceptron.inc",
     "nex-agi": "https://nexagi.com",
     "inclusionai": "https://www.inclusionai.cn",
-    "xingchen-agi": "https://xingchen.iflytek.com",
+    # 星火的子站 xingchen.iflytek.com 在国内连不通（超时），改用讯飞主站：
+    # 星火本来就是讯飞的产品，用集团 logo 比抓不到强，也不算配错品牌。
+    "xingchen-agi": "https://www.iflytek.com",
     "dots-studio": "https://dots.ai",
     "recursive": "https://recursive.com",
     # ---- 社区作者（无官网，留空表示跳过）----
@@ -99,6 +101,8 @@ SKIP: dict[str, str] = {
     "nousresearch": "官网 favicon 是作者插画（动漫人物），不适合当品牌图标",
     "thinkingmachines": "apple-touch-icon 是纯色底板，64px 下没有任何可辨图案",
     "typesafe": "typesafe.com 跳转到 Akka，抓到的是别家 logo",
+    "xingchen-agi": "iflytek.com 在国内只返回 2.9KB 壳页面无图标声明；"
+                    "第三方源给的是个「iX」抽象图案，不是讯飞品牌标识 —— 宁可没图标也不配错",
 }
 # ⚠️ 曾经写在这里、但**属于网络问题**的（meta/meta-llama/inclusionai 连接超时、
 #    writer Cloudflare 403、rekaai/recursive/aion-labs 官网 404、mancer 非图片、

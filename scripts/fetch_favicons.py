@@ -40,7 +40,7 @@ from pathlib import Path
 from urllib.parse import urljoin, urlparse
 
 import requests
-from PIL import Image
+from PIL import Image, ImageStat
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -212,6 +212,13 @@ def to_png(raw: bytes, fmt: str) -> tuple[bytes, str] | None:
     if im.getextrema()[3][1] == 0:
         return None
 
+    # 上面那条只挡得住「颜色数恰好为 1」的极端情况，反锯齿边缘稍微多一点就绕过去了
+    # （writer 抓到过一张纯黑方块：颜色数 > 8 但一眼看去什么都没有）。
+    # 改用灰度标准差衡量信息量 —— 真 logo 明暗有对比，纯色块趋近 0。
+    gray = im.convert("L")
+    if ImageStat.Stat(gray).stddev[0] < 3.0:
+        return None
+
     tone = tone_of(im)
     w, h = im.size
     scale = SIZE / max(w, h)
@@ -250,6 +257,11 @@ def svg_tone(raw: bytes) -> str:
 MIRRORS = (
     lambda host: f"https://icons.duckduckgo.com/ip3/{host}.ico",
     lambda host: f"https://www.google.com/s2/favicons?domain={host}&sz=64",
+    # unavatar 聚合了多家图标源，且**国内网络可达** —— 前两家在国内基本连不上，
+    # 靠它才救回了 meta / meta-llama / writer（2026-10-30）。
+    # fallback=false 很关键：不加的话拿不到真图标时它会返回一张占位图，
+    # 而占位图一旦混进 assets/icons/ 就是「看着有图标、其实是个假图」。
+    lambda host: f"https://unavatar.io/{host}?fallback=false",
 )
 
 
@@ -324,7 +336,14 @@ def probe_icon(key: str, page: str) -> dict:
         got = to_png(raw, fmt)
         if got:
             png, tone = got
-            kind = "ddg" if "duckduckgo" in mirror else "google"
+            # 三家的 kind 必须分开写：原来只判 duckduckgo，unavatar 会被标成
+            # "google 镜像兜底"，日志看着像走了 Google，实际走的是第三家 —— 排查时纯误导。
+            if "duckduckgo" in mirror:
+                kind = "ddg"
+            elif "unavatar" in mirror:
+                kind = "unavatar"
+            else:
+                kind = "google"
             return {"key": key, "file": f"{icon_name(key)}.png", "src": f"{kind}-mirror",
                     "fmt": fmt, "tone": tone, "note": f"{kind} 镜像兜底", "blob": png}
 
