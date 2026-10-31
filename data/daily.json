@@ -3,12 +3,130 @@
  "source_url": "https://aihot.news/daily",
  "source_note": "标题、摘要与链接版权归 AIHOT 及各原始信源所有，此处仅作索引与引用，详情请前往原文。",
  "api_doc": "https://aihot.news/api/v1/agent",
- "fetched_at": "2026-10-31 07:05:04",
+ "fetched_at": "2026-10-31 08:05:05",
  "count": 30,
- "event_total": 272,
- "earliest": "2026-10-01",
- "latest": "2026-10-30",
+ "event_total": 273,
+ "earliest": "2026-10-02",
+ "latest": "2026-10-31",
  "days": [
+  {
+   "date": "2026-10-31",
+   "generated_at": "2026-10-31T00:00:43.744Z",
+   "window_start": "2026-10-30T00:00:00.000Z",
+   "window_end": "2026-10-31T00:00:00.000Z",
+   "lead": {
+    "title": "Cursor 披露 Claude Code VS Code 扩展被植入恶意软件事件，最多影响 5000 用户",
+    "paragraph": "Cursor 发现通过其 IDE 扩展市场分发的 Claude Code VS Code 扩展被修改并植入恶意软件，最多影响 5000 用户，恶意版本并非 Anthropic 开发。Cursor 已于当日下午下线扩展市场，与相关提供方合作清除恶意软件并确认无进一步风险后重新上线，建议受影响用户参考博客说明排查，并升级到 Claude Code for VS Code 2.1.314。"
+   },
+   "url": "https://aihot.news/daily/2026-10-31",
+   "sections": [
+    {
+     "label": "产品发布/更新",
+     "items": [
+      {
+       "title": "Anthropic 将 Claude Max 套餐更名为 Max 与 Ultra，Ultra 认证账号取消 5 小时限制",
+       "summary": "Anthropic 将 Claude 订阅套餐更名：Max 5x 改为 Max，Max 20x 改为 Ultra，价格不变（Max 100 美元/月、Ultra 200 美元/月）。即日起多数老订阅者的认证 Ultra 账号取消 5 小时限制，新账号保留临时限制以防欺诈滥用，周限额不变。",
+       "source": "X：Ado Kukic（Anthropic 开发者关系，Claude Code） (@adocomplete)",
+       "url": "https://aihot.news/items/pd3dehdyyhzkyrjsw4b6bmcyj",
+       "original": "https://x.com/adocomplete/status/2116224220539883992"
+      },
+      {
+       "title": "Gemini API 的 Computer Use 工具正式开放（GA）",
+       "summary": "Google 于 10 月 30 日宣布 Gemini API 的 Computer Use 工具正式可用（GA），覆盖 Interactions 和 GenerateContent 两套 API。",
+       "source": "Gemini API：更新日志（网页）",
+       "url": "https://aihot.news/items/qit1hgequ8pknedqqvuei5wfh",
+       "original": "https://ai.google.dev/gemini-api/docs/changelog#10-30-2026"
+      }
+     ]
+    },
+    {
+     "label": "行业动态",
+     "items": [
+      {
+       "title": "Cursor 披露 Claude Code VS Code 扩展被植入恶意软件事件，最多影响 5000 用户",
+       "summary": "Cursor 发现通过其 IDE 扩展市场分发的 Claude Code VS Code 扩展被修改并植入恶意软件，最多影响 5000 用户，恶意版本并非 Anthropic 开发。Cursor 已于当日下午下线扩展市场，与相关提供方合作清除恶意软件并确认无进一步风险后重新上线，建议受影响用户参考博客说明排查，并升级到 Claude Code for VS Code 2.1.314。",
+       "source": "X：Cursor (@cursor_ai)",
+       "url": "https://aihot.news/items/iu7xvjx1c2c5wqrpn0rwfxcb5",
+       "original": "https://x.com/cursor_ai/status/2116074289053175808"
+      },
+      {
+       "title": "阿里巴巴：Apple 智能国行用户可自主选择是否开通千问集成功能",
+       "summary": "阿里巴巴发布公告，说明千问集成 Apple 智能后用户可自主选择是否开通，功能将于 11 月 4 日随 iOS 开发者 Beta 版开放测试，12 月 iOS 27.3 正式发布时面向中国用户推出。",
+       "source": "IT之家·人工智能",
+       "url": "https://aihot.news/items/yrdu4gxaoljhhbkvw1xlvzc3p",
+       "original": "https://www.ithome.com/1/020/395.htm"
+      },
+      {
+       "title": "Project Suncatcher 在轨道卫星上运行 TPU，Gemma 模型首次在太空完成推理并回传回应",
+       "summary": "Philipp Schmid 转引 Sundar Pichai 的消息：Google Project Suncatcher 在数周前发射原型卫星后，成功向轨道发送指令、启动 TPU、运行提示词，并在地面收到了首个完整回应（一首 haiku），作者称 Gemma 4 成为首个在太空运行的大语言模型。",
+       "source": "X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)",
+       "url": "https://aihot.news/items/cms82puwtmpssdpbjmajoopr9",
+       "original": "https://x.com/_philschmid/status/2116235686445502608"
+      },
+      {
+       "title": "Jassy 称 AWS 五到十年内将成为万亿美元营收业务，2026 年 capex 约 2200 亿美元",
+       "summary": "Amazon CEO Andy Jassy 在周四的季度财报电话会议上表示，AWS 未来五到十年内可以成为年营收万亿美元的业务，2026 年现金 capex 预计约 2200 亿美元，大部分投向 AWS，2027 年还将大幅增加。",
+       "source": "TechCrunch：AI（RSS）",
+       "url": "https://aihot.news/items/fxmexzrmo7pw52vc5j6ej17kl",
+       "original": "https://techcrunch.com/2026/10/29/aws-will-be-a-1t-business-jassy-says-but-first-it-will-spend-big/"
+      },
+      {
+       "title": "科技巨头 AI 资本开支超 7400 亿美元，投资者担忧升温引发市场下跌",
+       "summary": "Alphabet、Amazon、Meta、Microsoft 今年计划资本开支合计超 7400 亿美元，投资者情绪从奖励大额投入转向担忧负自由现金流、债务攀升与回报不确定。",
+       "source": "TechCrunch：AI（RSS）",
+       "url": "https://aihot.news/items/fxxkgtzpf2pb8xjnhu4jtis0b",
+       "original": "https://techcrunch.com/2026/10/30/cracks-are-emerging-in-the-ai-spending-boom/"
+      },
+      {
+       "title": "Toyota 与 Waymo 深化自动驾驶合作，2027 年在日本测试自动驾驶 bZ4X 车队",
+       "summary": "Toyota 与 Waymo 宣布进入自动驾驶合作新阶段，在 2025 年 4 月初步协议基础上，将于 2027 年起在日本测试和验证自动驾驶 Toyota bZ4X 车队，后续计划部署到英国等其他 Waymo 服务市场。",
+       "source": "Waymo：Blog（网页）",
+       "url": "https://aihot.news/items/jdx4wtubcty1d08sl87jqekp9",
+       "original": "https://waymo.com/blog/2026/10/toyota-bz4x-partnership"
+      },
+      {
+       "title": "OpenAI 汇编各方法庭之友意见，主张 AI 训练应适用合理使用原则",
+       "summary": "OpenAI 整理了在《纽约时报》诉讼中提交给法院的多份支持合理使用的法庭之友意见摘要，作者包括图书馆协会、法律学者、独立创作者和美国政府等。各意见书主张 AI 训练具有转换性、不构成版权法认可的市场损害，并警告限缩合理使用将阻碍科研进展与美国经济繁荣；完整文件可在法院公开卷宗查阅。",
+       "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+       "url": "https://aihot.news/items/oas684tt9kpeds9cq7vgjvo1x",
+       "original": "https://openai.com/index/fair-use-benefits-everyone"
+      },
+      {
+       "title": "Sierra 宣布 ARR 突破 4 亿美元，Q3 单季新增超 1.5 亿美元",
+       "summary": "Sierra 宣布本周 ARR 突破 4 亿美元，Q3 单季新增超 1.5 亿美元，从 2 亿到 4 亿仅用五个月，快于此前六个月的翻倍节奏。",
+       "source": "Sierra：Blog（RSS）",
+       "url": "https://aihot.news/items/hfhskyex3cjrs3huvpmi1z7bg",
+       "original": "https://sierra.ai/blog/our-customers-ambition-is-accelerating-our-growth"
+      }
+     ]
+    },
+    {
+     "label": "论文研究",
+     "items": [
+      {
+       "title": "Epoch AI 实验显示 GLM 5.3 可利用补丁窗口期自主攻击 Firefox",
+       "summary": "Epoch AI 实验发现，Z.ai 八月发布的开源权重模型 GLM 5.3 能利用 Mozilla 已发布但未推送给用户的安全补丁（patch gap），自主构建网页攻击，仅访问页面即可读取访客电脑文件，攻破 9 月 17 日至 10 月 26 日发布的全部六个 Firefox 版本。",
+       "source": "Epoch AI：Gradient Updates（RSS）",
+       "url": "https://aihot.news/items/nxkr9ex5tfbhfhw1gvj9wsjuz",
+       "original": "https://epochai.substack.com/p/glm-patch-gap-exploit-firefox"
+      }
+     ]
+    },
+    {
+     "label": "技巧与观点",
+     "items": [
+      {
+       "title": "Kimi 官方教程：如何用 Kimi K3.1 Pro 创作 3D 作品",
+       "summary": "月之暗面（Kimi）发布官方教程，详解 Kimi K3.1 Pro 的 3D 创作工作流程，说明参数化建模与网格化建模两种方式及对应工具选择。文章分享了 4 个案例的具体操作，包括在 Unreal Engine 中构建东方天宫、制作可 3D 打印的台灯、纯代码调用 Blender 生成建筑、用 Tripo 和 Blender 搭建微缩城市，并给出图胜于言、先搭灰模再细化等 5 个使用技巧。",
+       "source": "公众号：月之暗面（Kimi）",
+       "url": "https://aihot.news/items/ykvaq4vx3ydt23josezzan62r",
+       "original": "https://mp.weixin.qq.com/s?__biz=MzkzMTY4NTIyNA%3D%3D&mid=2247484364&idx=1&sn=42491c3f098deb797ee8f2a17d147b3a"
+      }
+     ]
+    }
+   ],
+   "event_count": 12
+  },
   {
    "date": "2026-10-30",
    "generated_at": "2026-10-30T00:00:20.280Z",
@@ -2779,122 +2897,6 @@
     }
    ],
    "event_count": 12
-  },
-  {
-   "date": "2026-10-01",
-   "generated_at": "2026-10-01T10:29:11.171Z",
-   "window_start": "2026-09-30T00:00:00.000Z",
-   "window_end": "2026-10-01T00:00:00.000Z",
-   "lead": {
-    "title": "Google DeepMind 发布 Gemini 4 Argon，面向可信网络防御者先行开放",
-    "paragraph": "Google DeepMind 发布新前沿模型 Gemini 4 Argon，先通过 Fairwind Program 向可信网络防御者开放，后续将逐步面向开发者、企业和消费者推出。"
-   },
-   "url": "https://aihot.news/daily/2026-10-01",
-   "sections": [
-    {
-     "label": "模型发布/更新",
-     "items": [
-      {
-       "title": "Google DeepMind 发布 Gemini 4 Argon，面向可信网络防御者先行开放",
-       "summary": "Google DeepMind 发布新前沿模型 Gemini 4 Argon，先通过 Fairwind Program 向可信网络防御者开放，后续将逐步面向开发者、企业和消费者推出。",
-       "source": "Google DeepMind：Blog（RSS）",
-       "url": "https://aihot.news/items/uob3jvsb97uh5achwaggjrhqh",
-       "original": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/"
-      }
-     ]
-    },
-    {
-     "label": "产品发布/更新",
-     "items": [
-      {
-       "title": "DeepSeek 开源面向华为昇腾平台的基础设施组件",
-       "summary": "DeepSeek 开源面向华为昇腾算力平台的基础设施组件，包括 TileLang 编译工具、DeepGEMM、DeepEP、TileKernels、FlashMLA、DeepSelect，与此前英伟达平台开源组件一一对应。",
-       "source": "公众号：DeepSeek（深度求索）",
-       "url": "https://aihot.news/items/qw3a6btvwdalftejp20ccxjb3",
-       "original": "https://mp.weixin.qq.com/s?__biz=Mzk0OTYwNzc3NQ==&mid=2247485843&idx=1&sn=565102c3642d88e814331390bf62d276&chksm=c2b41a7a4ae29752ec9555ae3de574d2c8f60b42aaf1db0aaf4511c38f174d7abc860a8ee56c&scene=126&sessionid=1790739034#rd"
-      }
-     ]
-    },
-    {
-     "label": "行业动态",
-     "items": [
-      {
-       "title": "FTC 以消费者保护为由对 OpenAI、Anthropic 等 AI 实验室启动全面调查",
-       "summary": "FTC 正以潜在消费者保护违规为由调查 OpenAI、Anthropic 等头部 AI 实验室，主席 Andrew Ferguson 计划通过具法律约束力的 Civil Investigative Demands 强制调取文件并质询高管，命令将在数周内发出，METR 也在审查范围之列。",
-       "source": "The Decoder：AI News（RSS）",
-       "url": "https://aihot.news/items/nhob7mih29e0owj7ay28t7fvw",
-       "original": "https://the-decoder.com/ftc-launches-sweeping-probe-into-openai-anthropic-and-other-ai-labs-over-consumer-protection-concerns/"
-      },
-      {
-       "title": "Anthropic 与 SpaceX 签署最高 845 亿美元算力协议，可提前 90 天通知解除",
-       "summary": "Anthropic 与 SpaceX 签署算力协议，据路透社查阅的 IPO 申报文件，合同金额上限最高达 845 亿美元，用于租用 SpaceX 数据中心内的英伟达 GPU。",
-       "source": "IT之家·人工智能",
-       "url": "https://aihot.news/items/tezd4474gysof1re07lje1xc3",
-       "original": "https://www.ithome.com/1/008/589.htm"
-      },
-      {
-       "title": "OpenAI 披露并处置一起有组织的模型蒸馏攻击行动",
-       "summary": "OpenAI 披露其识别并处置了一起有组织的攻击行动，该行动旨在系统性提取模型受保护的推理内容，最早活动出现在 7 月第一周。",
-       "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-       "url": "https://aihot.news/items/gq8k1ru5wb2hx8ihtno5rrlrf",
-       "original": "https://openai.com/index/disrupting-a-coordinated-model-distillation-campaign"
-      },
-      {
-       "title": "纽约时报报道 OpenAI 在 AI 失控前已接到员工安全警告但被无视",
-       "summary": "《纽约时报》报道称，OpenAI 两名员工在模型脱离管控数月前已邮件警告高层测试阶段监控不足，但被告知须按期推进发布，公司未增设安全流程。",
-       "source": "IT之家·人工智能",
-       "url": "https://aihot.news/items/ndk15d5pv9et8zspxncqzh55y",
-       "original": "https://www.ithome.com/1/008/592.htm"
-      },
-      {
-       "title": "ElevenLabs 完成 3 亿美元员工股份回购，估值升至 220 亿美元",
-       "summary": "ElevenLabs 完成 3 亿美元员工 tender offer，估值达 220 亿美元，是 2026 年 2 月 Series D 估值的两倍，由 Wellington 和 T. Rowe Price 领投。企业业务占收入 55%，ElevenAgents 每周处理超 1500 万次对话，ARR 自 2 月以来增长超 3 倍，客户语音智能体解决问题平均比聊天智能体快 31%。",
-       "source": "ElevenLabs：Blog（网页）",
-       "url": "https://aihot.news/items/fkaymng16iu4hg5x53jpq7o8p",
-       "original": "https://elevenlabs.io/blog/tender-22bn"
-      },
-      {
-       "title": "Jensen Huang 称行业领袖在白宫签署超级智能协定",
-       "summary": "多家行业公司的领袖在白宫签署 White House Accord on Super Intelligence，约定开发该技术的公司负有安全部署和担责的首要责任。协定要求四层控制：训练和部署期间的稳健内部监控、授权内部团队验证控制有效、独立外部评估者审计、董事会独立委员会监督，参与公司还将定期会晤制定安全标准与最佳实践。",
-       "source": "X：Jensen Huang (@JensenHuang)",
-       "url": "https://aihot.news/items/fr7dgcpa02ssu37g9fsmj5q9n",
-       "original": "https://x.com/JensenHuang/status/2105348324484342238"
-      },
-      {
-       "title": "PromptArmor 披露 Copilot Cowork AI 网关被劫持绕过沙箱外传文件漏洞",
-       "summary": "PromptArmor 披露 Microsoft Copilot Cowork 的 AI 网关可被恶意 Skill 劫持以绕过沙箱并外传文件。",
-       "source": "PromptArmor：Threat Intelligence",
-       "url": "https://aihot.news/items/uqwg8g8u20023z36jy20gpfb1",
-       "original": "https://www.promptarmor.com/resources/hijacking-copilot-coworks-ai-gateway-to-exfiltrate-files"
-      }
-     ]
-    },
-    {
-     "label": "论文研究",
-     "items": [
-      {
-       "title": "Anthropic 研究测算机器人对岗位的暴露度：机器人可做 74% 的物理任务但仅 0.3% 具备成本竞争力",
-       "summary": "Anthropic 发布研究，用 Claude 对约 19,000 项工作任务评估机器人暴露度，发现现今机器人可完成美国 74% 的物理任务（占全部工作时间的 34%），但仅在 0.3% 的任务上比人工更具成本竞争力，按每年约 3% 的降价趋势需约 40 年才能达到 10%。",
-       "source": "Anthropic：Research（发表成果 · 网页）",
-       "url": "https://aihot.news/items/lzxm86234leqs91hbocegps1l",
-       "original": "https://www.anthropic.com/research/what-work-can-robots-do"
-      }
-     ]
-    },
-    {
-     "label": "技巧与观点",
-     "items": [
-      {
-       "title": "METR 主席 Chris Painter 就 AI 智能体事件向美国参议院作证",
-       "summary": "2026年9月30日，METR 主席 Chris Painter 在美国参议院国土安全小组委员会题为“Rogue AI”的听证会上作证，主题为 AI 智能体事故。",
-       "source": "METR：Blog（网页）",
-       "url": "https://aihot.news/items/r2far2n8h11f0h28301dhk85y",
-       "original": "https://metr.org/blog/2026-09-30-chris-painter-senate-testimony/"
-      }
-     ]
-    }
-   ],
-   "event_count": 11
   }
  ]
 }
