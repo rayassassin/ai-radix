@@ -1,10 +1,10 @@
 {
  "meta": {
-  "generated_at": "2026-10-31 20:05:05",
-  "vendors_total": 60,
-  "vendors_with_icon": 42,
-  "models_total": 456,
-  "models_with_icon": 425
+  "generated_at": "2026-10-31 21:05:07",
+  "vendors_total": 59,
+  "vendors_with_icon": 41,
+  "models_total": 452,
+  "models_with_icon": 421
  },
  "icons": {
   "aion-labs": {
@@ -151,11 +151,6 @@
    "f": "06eaeb413e.png",
    "t": "normal",
    "from": "perplexity"
-  },
-  "poolside": {
-   "f": "ded7e72b67.png",
-   "t": "normal",
-   "from": "官网自抓"
   },
   "qwen": {
    "f": "fa397e8a04.png",
