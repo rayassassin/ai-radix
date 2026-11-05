@@ -91,15 +91,25 @@ fi
 # 服务器是数据源头：抓完必须自己发上去，否则线上看板永远停在我手动推的那一版。
 # 只发 data/ 下前端会读的三个 JSON，其余文件沿用远端原件（见 publish_pages.py）。
 # 失败只告警不判失败：抓取与企微推送都已成功，不能因为发布环节回滚整轮。
+# 但**必须真的调 alert**：以前这里只 echo 到 cron.log，
+# 等于「失败写在只有自己会看的日志里」—— 宇神红线里的静默失败，2026-11-05 修掉。
+# 退出码 4 = commit 已推送但 Pages 部署失败（GitHub 服务端超时/卡住）。
 PUBLISH_RC=0
 if PUBLISH_OUT=$("$PY" scripts/publish_pages.py 2>&1); then
-  echo "$PUBLISH_OUT" | tail -3
+  echo "$PUBLISH_OUT" | tail -4
 else
   PUBLISH_RC=$?
-  echo "⚠️  Pages 发布失败（数据与推送不受影响），详情："
-  echo "$PUBLISH_OUT" | tail -6
+  echo "⚠️  Pages 发布/部署失败（数据与企微推送不受影响），详情："
+  echo "$PUBLISH_OUT" | tail -8
   if [ "$PUBLISH_RC" -eq 2 ]; then
     echo "    ↑ 未配置 GitHub token —— 按上面提示放好 token 后即可自动发布"
+    alert "Pages 未发布：未配置 GitHub token。抓取与企微推送正常，线上看板仍是上一版"
+  elif [ "$PUBLISH_RC" -eq 4 ]; then
+    alert "Pages 部署失败（GitHub 服务端超时）：commit 已推送、下一轮会自动补上，线上暂时是上一版"
+  elif [ "$PUBLISH_RC" -eq 5 ]; then
+    alert "Pages 上一轮部署失败且本轮重建未确认：已强制提交触发重建，线上可能仍是旧版"
+  else
+    alert "Pages 发布失败（退出码 $PUBLISH_RC）：抓取与企微推送正常，线上看板未刷新"
   fi
 fi
 
