@@ -844,3 +844,14 @@ python3 scripts/fetch_daily.py --date 2026-10-27   # 只补某一天
 服务器缺 GitHub token。放在 `/root/.ai-radix/github.env`，内容 `GITHUB_TOKEN=<fine-grained PAT>`，
 权限 `600`，PAT 只需 `ai-radix` 仓库的 Contents: Read and write。
 服务器 `git`/`ssh` 通道未必可用，`publish_pages.py` 走 REST API 直传 blob，不依赖 git 和 gh。
+
+**收到「pages build and deployment workflow run」失败通知**
+多半是 GitHub 侧 deploy 偶发超时，不是本项目代码的问题。典型日志：
+`Current status: updating_pages` 每 30 秒轮询十分钟，最后 `Timeout reached, aborting!`
+并 `Canceling Pages deployment`。build 本身是成功的，下一轮 cron 推的 commit 会自动补建。
+
+但「推完 commit 就不管」曾经是静默失败：线上停更而服务器毫无感知。
+现在 `llm-api-pricing.sh` 第 5 步会调 `check_pages_status.py` 回查前几轮构建结果，
+发现 `errored` 就自动 `POST /pages/builds` 请求重建，并推一条企微告警。
+排查历史失败可用：`python3 scripts/check_pages_status.py --dry-run --window-hours 24`。
+退出码：`1`=发现部署失败，`2`=检查本身网络故障（只记 WARN，不打扰人）。
