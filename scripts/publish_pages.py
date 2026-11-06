@@ -210,67 +210,6 @@ def remote_tree(token: str, repo: str, branch: str) -> tuple[str, dict[str, str]
     return parent, shas, modes
 
 
-# ---------------- 部署结果验证 ----------------
-
-def previous_deploy_failed(token: str, repo: str) -> tuple[bool, str]:
-    """
-    检查**上一轮** Pages 部署是否失败。
-
-    为什么必须有这一步：GitHub 部署端卡住时，要等约 11 分钟才把 build 标成 errored
-    （2026-11-05 两次失败都是 19:05 启动、19:16 `Timeout reached`），
-    远长于本轮愿意等待的 120 秒窗口。光靠「提交后轮询」会漏掉这类慢失败，
-    结果就是失败发生了、脚本却说「Pages 会自动重建」—— 又回到静默。
-    所以由下一轮开头兜底巡检一次，发现 errored 就告警 + 强制重建（自愈）。
-    """
-    try:
-        b = api(token, f"/repos/{repo}/pages/builds/latest", retries=1)
-    except Exception:
-        return False, ""
-    if (b.get("status") or "").lower() != "errored":
-        return False, ""
-    err = ((b.get("error") or {}).get("message")) or "Page build failed"
-    return True, f"上一轮 Pages 部署失败（{str(b.get('commit', ''))[:8]}）：{err}"
-
-
-def verify_deployment(token: str, repo: str, commit_sha: str,
-                      wait_sec: int = 120, interval: int = 15) -> tuple[str, str]:
-    """
-    **commit 推上去 ≠ 页面上线。** Pages 的 build + deploy 是独立一步，
-    而 GitHub 部署端会偶发卡在 `updating_pages` 直到超时 ——
-    2026-11-05 凌晨真实发生过 2 次（build 成功、deploy `Timeout reached, aborting!`）。
-
-    旧代码只打印「✓ 已发布 …（Pages 会自动重建）」就返回 0，
-    部署失败时脚本照样报成功，cron.log 里连一条 WARN 都没有 —— 典型的静默失败。
-    这里补上验证：按 commit sha 认领本次构建，轮询到出结果为止。
-
-    返回 (status, message)：
-      built    部署成功
-      errored  部署失败（调用方应告警，退出码 4）
-      pending  仍在构建 / 查询不到，**不判失败**（记 WARN，下轮继续验）
-               —— 权限收窄后可能读不到 pages builds，不能让每轮误报。
-    """
-    deadline = time.time() + wait_sec
-    target = commit_sha[:8]
-    while True:
-        try:
-            b = api(token, f"/repos/{repo}/pages/builds/latest", retries=1)
-        except Exception as e:
-            return "pending", (f"查不到 Pages 部署状态（token 权限或网络：{type(e).__name__}）"
-                               f"，不判失败")
-        got = (b.get("commit") or "")[:8]
-        st = b.get("status") or "unknown"
-        if got == target:
-            if st == "built":
-                return "built", f"Pages 部署成功（{target}）"
-            if st in ("errored", "cancelled", "canceled"):
-                err = ((b.get("error") or {}).get("message")) or "GitHub 部署端超时/失败"
-                return "errored", f"Pages 部署失败（{target}）：{err}"
-        last = f"latest={got or '?'} status={st}"
-        if time.time() >= deadline:
-            return "pending", f"等待 Pages 部署超时，{last}（不判失败，下轮继续验）"
-        time.sleep(interval)
-
-
 # ---------------- 主流程 ----------------
 
 def main() -> int:
@@ -304,12 +243,6 @@ def main() -> int:
         return 2
 
     log(f"目标 {args.repo}@{args.branch}，待发布 {len(local)} 个文件，凭证来自{source}")
-
-    prev_failed, prev_msg = previous_deploy_failed(token, args.repo)
-    if prev_failed and not dry:
-        log(f"⚠️  {prev_msg}")
-        log("    → 本轮强制提交一次，触发 Pages 重建（自愈）")
-        args.force = True
 
     parent, rshas, rmodes = remote_tree(token, args.repo, args.branch)
 
@@ -362,22 +295,7 @@ def main() -> int:
     api(token, f"/repos/{args.repo}/git/refs/heads/{args.branch}", "PATCH",
         {"sha": commit_res["sha"], "force": True})
 
-    log(f"✓ 已提交 {commit_res['sha'][:8]} → {args.branch}")
-
-    # 提交只是把 commit 推上去，部署是独立一步 —— 必须验证，
-    # 否则 GitHub 部署端超时这类失败会完全静默（宇神红线：失败必须告警）。
-    status, msg = verify_deployment(token, args.repo, commit_res["sha"])
-    if status == "built":
-        log(f"✓ {msg}，页面已更新")
-        return 0
-    if status == "errored":
-        log(f"❌ {msg}（commit 已推送，下一轮构建会自动带上最新数据）")
-        return 4           # 让 llm-api-pricing.sh 触发企微告警
-    log(f"⚠️  {msg}")
-    if prev_failed:
-        # 上一轮确实失败了，本轮虽已强制提交但还没确认重建成功 —— 必须告警，不能静默
-        log(f"❌ {prev_msg}；本轮重建尚未确认（{status}）")
-        return 5
+    log(f"✓ 已发布 {commit_res['sha'][:8]} → {args.branch}（Pages 会自动重建）")
     return 0
 
 

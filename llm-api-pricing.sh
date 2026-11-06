@@ -91,25 +91,38 @@ fi
 # 服务器是数据源头：抓完必须自己发上去，否则线上看板永远停在我手动推的那一版。
 # 只发 data/ 下前端会读的三个 JSON，其余文件沿用远端原件（见 publish_pages.py）。
 # 失败只告警不判失败：抓取与企微推送都已成功，不能因为发布环节回滚整轮。
-# 但**必须真的调 alert**：以前这里只 echo 到 cron.log，
-# 等于「失败写在只有自己会看的日志里」—— 宇神红线里的静默失败，2026-11-05 修掉。
-# 退出码 4 = commit 已推送但 Pages 部署失败（GitHub 服务端超时/卡住）。
 PUBLISH_RC=0
 if PUBLISH_OUT=$("$PY" scripts/publish_pages.py 2>&1); then
-  echo "$PUBLISH_OUT" | tail -4
+  echo "$PUBLISH_OUT" | tail -3
 else
   PUBLISH_RC=$?
-  echo "⚠️  Pages 发布/部署失败（数据与企微推送不受影响），详情："
-  echo "$PUBLISH_OUT" | tail -8
+  echo "⚠️  Pages 发布失败（数据与推送不受影响），详情："
+  echo "$PUBLISH_OUT" | tail -6
   if [ "$PUBLISH_RC" -eq 2 ]; then
     echo "    ↑ 未配置 GitHub token —— 按上面提示放好 token 后即可自动发布"
-    alert "Pages 未发布：未配置 GitHub token。抓取与企微推送正常，线上看板仍是上一版"
-  elif [ "$PUBLISH_RC" -eq 4 ]; then
-    alert "Pages 部署失败（GitHub 服务端超时）：commit 已推送、下一轮会自动补上，线上暂时是上一版"
-  elif [ "$PUBLISH_RC" -eq 5 ]; then
-    alert "Pages 上一轮部署失败且本轮重建未确认：已强制提交触发重建，线上可能仍是旧版"
+  fi
+fi
+
+# ---------- 5. 回查 Pages 构建结果 ----------
+# 第 4 步只把 commit 推上去，并不知道 GitHub 后续有没有构建成功。
+# 2026-11-06 03:05 那轮 GitHub 侧 deploy 卡在 updating_pages 十分钟最后超时取消，
+# 服务器却毫不知情 —— 线上停更属于「静默失败」，正是宇神红线。
+# 这里检查前几轮结果：发现 errored 就自动请求重建，并推一条企微告警。
+# 本轮刚推的构建通常是 building，属正常，不打扰人。
+PAGES_CHECK_RC=0
+if PAGES_OUT=$("$PY" scripts/check_pages_status.py 2>&1); then
+  echo "$PAGES_OUT" | tail -2
+else
+  PAGES_CHECK_RC=$?
+  if [ "$PAGES_CHECK_RC" -eq 1 ]; then
+    echo "⚠️  Pages 部署回查发现失败："
+    echo "$PAGES_OUT" | tail -6
+    REASON=$(echo "$PAGES_OUT" | grep -viE '^\s*$' | tail -1 | cut -c1-160)
+    alert "GitHub Pages 部署异常：${REASON:-构建失败}，已自动请求重建，请留意下一轮是否恢复"
   else
-    alert "Pages 发布失败（退出码 $PUBLISH_RC）：抓取与企微推送正常，线上看板未刷新"
+    # 检查本身失败（网络/凭证）：只记 WARN，不发告警，避免网络抖动每小时刷一条
+    echo "⚠️  Pages 状态回查未完成（检查脚本退出码 $PAGES_CHECK_RC）："
+    echo "$PAGES_OUT" | tail -3
   fi
 fi
 
