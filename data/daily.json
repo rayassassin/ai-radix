@@ -3,12 +3,135 @@
  "source_url": "https://aihot.news/daily",
  "source_note": "标题、摘要与链接版权归 AIHOT 及各原始信源所有，此处仅作索引与引用，详情请前往原文。",
  "api_doc": "https://aihot.news/api/v1/agent",
- "fetched_at": "2026-11-05 14:05:08",
+ "fetched_at": "2026-11-06 12:00:04",
  "count": 30,
  "event_total": 275,
- "earliest": "2026-10-07",
- "latest": "2026-11-05",
+ "earliest": "2026-10-08",
+ "latest": "2026-11-06",
  "days": [
+  {
+   "date": "2026-11-06",
+   "generated_at": "2026-11-06T00:00:20.634Z",
+   "window_start": "2026-11-05T00:00:00.000Z",
+   "window_end": "2026-11-06T00:00:00.000Z",
+   "lead": {
+    "title": "OpenAI 发布 GPT-6 Cyber 网络安全模型",
+    "paragraph": "OpenAI 发布网络安全模型 GPT-6 Cyber，针对漏洞发现、验证与修复训练，并通过 Daybreak Red/Blue 平台向审核通过的安全团队开放。"
+   },
+   "url": "https://aihot.news/daily/2026-11-06",
+   "sections": [
+    {
+     "label": "模型发布/更新",
+     "items": [
+      {
+       "title": "OpenAI 发布 GPT-6 Cyber 网络安全模型",
+       "summary": "OpenAI 发布网络安全模型 GPT-6 Cyber，针对漏洞发现、验证与修复训练，并通过 Daybreak Red/Blue 平台向审核通过的安全团队开放。",
+       "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+       "url": "https://aihot.news/items/u904yv6dn7sw6lwjgxxedqd3b",
+       "original": "https://openai.com/index/introducing-gpt-6-cyber"
+      },
+      {
+       "title": "Thinking Machines Lab 发布 Inkling 2 Small：594B 参数 MoE 模型，下周开放 Apache 2.0 权重",
+       "summary": "Thinking Machines Lab 发布第二代模型 Inkling 2 Small，为 594B 总参数、17B 激活的 MoE 模型，支持图像输入与 variable effort，Artificial Analysis Intelligence Index 得分 31。",
+       "source": "Thinking Machines Lab：News（网页）",
+       "url": "https://aihot.news/items/bu8612ca3e1uyxjppk56ef1wl",
+       "original": "https://thinkingmachines.ai/news/inkling-2-small/"
+      }
+     ]
+    },
+    {
+     "label": "产品发布/更新",
+     "items": [
+      {
+       "title": "Google 发布 Gemini Omni 1.2 Flash：15 秒视频生成，降价 30% 至 $0.07/秒",
+       "summary": "Google 发布 Gemini Omni 1.2 Flash，在 Gemini API 和 Gemini for business 全面开放。新模型原生支持最长 15 秒视频生成（此前为 10 秒），支持多轮对话编辑和更强的参考图一致性，价格较 1.1 下降 30% 至 720p 视频 $0.07/秒。",
+       "source": "Google Blog：AI（RSS）",
+       "url": "https://aihot.news/items/yjwroxww17lcg4ntcu9ruo105",
+       "original": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/"
+      },
+      {
+       "title": "Cursor 推出应用构建功能，描述需求即可构建、部署并分享在线应用",
+       "summary": "Cursor 推出新功能，用户在 Cursor 中启动云端智能体并描述需求，即可完成应用搭建、Postgres 数据库配置、基于 Cursor SSO 的身份验证和托管部署，并生成可访问的在线链接。",
+       "source": "Cursor：Changelog（网页）",
+       "url": "https://aihot.news/items/m5s02uukcl0id6rn7t08f6ya3",
+       "original": "https://cursor.com/changelog/build-live-apps"
+      },
+      {
+       "title": "Claude 推出 Personal Finance 个人理财功能，Pro、Max、Ultra 美国用户本周起 Beta 试用",
+       "summary": "Anthropic 在 Claude 中推出 Personal Finance 个人理财功能，本周起向美国 Pro、Max、Ultra 计划用户开放 Beta。用户通过 Plaid 以只读方式连接银行和卡账户，可用自然语言查询消费分类、账单提醒和异常扣款，无广告和自营金融产品；理财对话不用于模型训练，功能不提供投资建议。",
+       "source": "Claude：Blog（网页）",
+       "url": "https://aihot.news/items/m70cbaxy1ew2sgmlkernbvi68",
+       "original": "https://claude.com/blog/introducing-personal-finance-in-claude"
+      },
+      {
+       "title": "Perplexity 推出 Teammates 智能体，面向 Max 订阅用户开放",
+       "summary": "Perplexity 推出 Teammates 功能，这些智能体可承接任务，利用 Computer tasks、skills、memory 和工具主动工作。Teammates 之间可相互协作，还能在 Slack 中给同事发消息，目前已向 Max 订阅用户开放网页版。",
+       "source": "X：Perplexity (@perplexity_ai)",
+       "url": "https://aihot.news/items/wkgcal7l9pkj3g7w8ohlp3c45",
+       "original": "https://x.com/perplexity_ai/status/2118389326459670825"
+      }
+     ]
+    },
+    {
+     "label": "行业动态",
+     "items": [
+      {
+       "title": "美国中期选举蓝潮冲击 AI 行业，44 项数据中心暂停提案中 43 项通过",
+       "summary": "美国中期选举民主党拿下参众两院，多场竞选以问责 AI 公司为主题，行业面临监管、数据中心建设放缓等前景。44 项地方数据中心暂停提案中 43 项通过，NBC 民调显示 76% 选民反对在社区建数据中心；专家称共和党禁止州级 AI 限制的尝试可能终结，OpenAI 和 Anthropic 未置评，据华尔街日报报道 CEO 们在私下讨论算力容量受限问题。",
+       "source": "The Verge：AI（RSS）",
+       "url": "https://aihot.news/items/vkfrtci1ufbtbydsqersys6lx",
+       "original": "https://www.theverge.com/ai-artificial-intelligence/1026927/total-repudiation-the-blue-wave-is-about-to-hit-ai"
+      },
+      {
+       "title": "美股单日蒸发 3.2 万亿美元，Nasdaq 创 2025 年 4 月以来最大跌幅",
+       "summary": "11 月 5 日华尔街市值蒸发 3.2 万亿美元，Nasdaq 综合指数跌 5.52%，投资者恐慌民主党掌控国会将放缓高杠杆 AI 支出热潮。Nvidia 跌 9.3% 抹去 2026 年涨幅，费城半导体指数跌 12.3%，SanDisk 跌 22%，Micron、Western Digital 和 AMD 各跌 17%。",
+       "source": "X：Rohan Paul (@rohanpaul_ai)",
+       "url": "https://aihot.news/items/czctc3kqzf5wru8fhsbnhvxt7",
+       "original": "https://x.com/rohanpaul_ai/status/2118461023808323957"
+      },
+      {
+       "title": "Cat Wu 宣布加入 OpenAI 担任核心产品负责人",
+       "summary": "_catwu 宣布加入 OpenAI，负责 Core Products 的产品管理。她表示期待与 @thsottiaux 及 OpenAI 团队一起打造可信赖的智能体产品，并请用户继续反馈。作者 Tibo 转发并对其表示欢迎。",
+       "source": "X：Tibo (@thsottiaux)",
+       "url": "https://aihot.news/items/jsdt72s1n09hnlezc2uqqg1da",
+       "original": "https://x.com/thsottiaux/status/2118138648214585591"
+      }
+     ]
+    },
+    {
+     "label": "论文研究",
+     "items": [
+      {
+       "title": "METR 评审 Anthropic 2026年8月风险报告的自动化 R&D 风险章节",
+       "summary": "METR 发布对 Anthropic 2026年8月风险报告“自动化 R&D 风险”章节的独立评审，同意 7月15日 模型的直接灾难性风险为“低”，但认为其可能已触及 2x Acceleration 早期预警阈值。",
+       "source": "METR：Blog（网页）",
+       "url": "https://aihot.news/items/k53ssxx8ie3n6fzyqmky4izv7",
+       "original": "https://metr.org/blog/2026-11-05-rd-section-anthropic-risk-report-august-2026-review/"
+      },
+      {
+       "title": "OpenAI 发布 GPT-6 Cyber 系统卡：聚焦网络安全能力与对齐表现",
+       "summary": "OpenAI 发布 GPT-6 Cyber 系统卡，说明该模型通过强化学习训练复现崩溃、开发可用 exploit 和搜索代码库漏洞等网络安全能力。在 ExploitGym Honeypot 评估中未加部署安全指令时越权利用率为 0.07%，远低于 GPT-5.6 Sol 的 49.5%；Auto-Review 拒绝遵循率 0% 违规，与 GPT-6 Astra 持平。",
+       "source": "OpenAI：部署安全与系统卡（网页）",
+       "url": "https://aihot.news/items/k4zkvg2szg7wlhh2b8410n1gr",
+       "original": "https://deploymentsafety.openai.com/gpt-6-cyber"
+      }
+     ]
+    },
+    {
+     "label": "技巧与观点",
+     "items": [
+      {
+       "title": "a16z：漏洞利用曾是瓶颈，AI 让攻击成本从数月降到数小时",
+       "summary": "a16z 分析师撰文指出，2026 年 AI 智能体已把从漏洞到可用 exploit 的成本从专业人员的数周压缩到数小时，8 月底一次行动在 4 小时内攻破首个真实受害者，26 秒内攻陷 11 个组织，累计 48 国 395 个机构被攻破，其中一半是学校。",
+       "source": "a16z：News（RSS）",
+       "url": "https://aihot.news/items/t5j6ucy3ao84zrwoz2yf2ovra",
+       "original": "https://www.a16z.news/p/the-exploit-was-the-bottleneck"
+      }
+     ]
+    }
+   ],
+   "event_count": 12
+  },
   {
    "date": "2026-11-05",
    "generated_at": "2026-11-05T00:00:24.297Z",
@@ -2804,129 +2927,6 @@
        "source": "a16z：News（RSS）",
        "url": "https://aihot.news/items/yk3grmalszldrwd1p8bxk0cki",
        "original": "https://www.a16z.news/p/why-texas-is-making-data-centers"
-      }
-     ]
-    }
-   ],
-   "event_count": 12
-  },
-  {
-   "date": "2026-10-07",
-   "generated_at": "2026-10-07T00:00:29.119Z",
-   "window_start": "2026-10-06T00:00:00.000Z",
-   "window_end": "2026-10-07T00:00:00.000Z",
-   "lead": {
-    "title": "Mistral 发布 Mistral Large 4，Artificial Analysis 评测称其为美中之外最智能模型",
-    "paragraph": "Mistral 发布 Mistral Large 4（Research Public Preview），在 Artificial Analysis Intelligence Index 得分 38，与 GPT-6 Luna（max, 38）相当，为美中之外最智能模型，计划 10 月底开源 1T 参数（49B 激活）权重。"
-   },
-   "url": "https://aihot.news/daily/2026-10-07",
-   "sections": [
-    {
-     "label": "模型发布/更新",
-     "items": [
-      {
-       "title": "Mistral 发布 Mistral Large 4，Artificial Analysis 评测称其为美中之外最智能模型",
-       "summary": "Mistral 发布 Mistral Large 4（Research Public Preview），在 Artificial Analysis Intelligence Index 得分 38，与 GPT-6 Luna（max, 38）相当，为美中之外最智能模型，计划 10 月底开源 1T 参数（49B 激活）权重。",
-       "source": "Artificial Analysis 完整文章（网页）",
-       "url": "https://aihot.news/items/rmc5fz5rbcwzsr7cdl5jo1ojk",
-       "original": "https://artificialanalysis.ai/articles/mistral-large-4-france-ai"
-      },
-      {
-       "title": "Gemini Nano Banana 2.1 正式发布，gemini-3.1-flash-image 将于 2026 年 10 月 29 日停用",
-       "summary": "Google 发布 Gemini Nano Banana 2.1（gemini-nano-banana-2.1），定位为高效图像生成与对话式编辑模型，是 Nano Banana 2（gemini-3.1-flash-image）的更新版。",
-       "source": "Gemini API：更新日志（网页）",
-       "url": "https://aihot.news/items/d17jcexm93lo85zkz3iil08c9",
-       "original": "https://ai.google.dev/gemini-api/docs/changelog#10-06-2026"
-      },
-      {
-       "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
-       "summary": "Google DeepMind 发布 EmbeddingGemma 2，基于 Gemma 4 架构，以 Apache 2.0 许可开源，将文本、代码、图像、视频和音频映射到统一嵌入空间。",
-       "source": "Google DeepMind：Blog（RSS）",
-       "url": "https://aihot.news/items/g1k2ragppm8j4apj75qu1k4ug",
-       "original": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model/"
-      }
-     ]
-    },
-    {
-     "label": "产品发布/更新",
-     "items": [
-      {
-       "title": "Claude for Google Workspace 开启 beta，可直接在 Docs、Sheets、Slides 中编辑",
-       "summary": "Claude 宣布推出 Claude for Google Workspace（beta），一次安装即可覆盖 Google Docs、Sheets 和 Slides。",
-       "source": "Claude：YouTube（RSS）",
-       "url": "https://aihot.news/items/sah5vczzr22l9ieb4bxrpoowd",
-       "original": "https://www.youtube.com/watch?v=idJQMJwHtyM"
-      },
-      {
-       "title": "Mistral Large 4 上线 OpenRouter 公测：1T 参数、512K 上下文",
-       "summary": "Mistral Large 4 现已在 OpenRouter 开放公测，规格为 1T 参数（49B 激活）、原生多模态、512K 上下文、最高 256K 输出。前两周五折：每 1M tokens 输入 $0.68、输出 $2.09，缓存 $0.07。",
-       "source": "X：OpenRouter (@OpenRouter)",
-       "url": "https://aihot.news/items/z94jsbcn3hkyiagdyb9wai8sm",
-       "original": "https://x.com/OpenRouter/status/2107471559040635360"
-      },
-      {
-       "title": "Anthropic 扩展 Cyber Verification Program，推出三档网络安全访问层级",
-       "summary": "Anthropic 启动扩展版 Cyber Verification Program（CVP），整合 Project Glasswing 和原 CVP，为合格安全专业人员提供三档访问。",
-       "source": "Anthropic：Newsroom（网页）",
-       "url": "https://aihot.news/items/a96x4zt1tn3um8h49nz2kqgpc",
-       "original": "https://www.anthropic.com/news/cyber-verification-program"
-      }
-     ]
-    },
-    {
-     "label": "行业动态",
-     "items": [
-      {
-       "title": "DeepSeek 据报道接近完成至少 800 亿元融资，腾讯与宁德时代参与",
-       "summary": "据 Bloomberg 援引知情人士报道，DeepSeek 接近完成至少 800 亿元（约 120 亿美元）融资，高于原定约 500 亿元的目标。腾讯和电池厂商宁德时代是本轮最大投资方之一，融资预计很快完成，DeepSeek 还计划 2027 年初 IPO，细节仍可能变化。",
-       "source": "X：X.PIN (@thexpin)",
-       "url": "https://aihot.news/items/wbi0gsddrrfnavs6vvuqb2r7j",
-       "original": "https://x.com/thexpin/status/2107524306058289533"
-      },
-      {
-       "title": "亚利桑那州法院裁定AI生成受害者视频带有不当情感分量，凶手须重新量刑",
-       "summary": "亚利桑那州上诉法院裁定，Gabriel Horcasitas过失杀人案量刑中使用的受害者Christopher Pelkey AI生成视频带有不当情感重量，罪名维持但刑期须重新考虑。",
-       "source": "404 Media（RSS）",
-       "url": "https://aihot.news/items/r5p04sepsb5p5ir85wq1bok58",
-       "original": "https://www.404media.co/her-ai-generated-video-swayed-the-judge-the-court-said-it-carried-undue-emotional-weight/"
-      },
-      {
-       "title": "Anthropic 5180亿美元计算力支出中约4137亿美元无论使用与否都需支付",
-       "summary": "Anthropic 计划未来数年在云计算和计算力上支出 5180 亿美元，其中约 4137 亿美元为不可撤销承诺，即使容量闲置也需支付，平均每年约 410 亿美元。",
-       "source": "X：Rohan Paul (@rohanpaul_ai)",
-       "url": "https://aihot.news/items/nnl0kba78980jig0szh0hkfop",
-       "original": "https://x.com/rohanpaul_ai/status/2107346890648076595"
-      }
-     ]
-    },
-    {
-     "label": "论文研究",
-     "items": [
-      {
-       "title": "OpenAI 发布内部前沿模型产出的数学研究成果",
-       "summary": "OpenAI 发布一批由内部前沿模型产出的新数学成果，成果以 GitHub 仓库形式公开，并附论文修订与引用协议，其中许多证明已用 Lean 形式化以便计算机验证。",
-       "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-       "url": "https://aihot.news/items/zvw2i4tg1gnqq72t596vpqoyl",
-       "original": "https://openai.com/index/sharing-ai-progress-in-mathematics/"
-      }
-     ]
-    },
-    {
-     "label": "技巧与观点",
-     "items": [
-      {
-       "title": "Claude Code 云端会话实战指南：每个任务独占一台 VM，可并行跑任务并以分支收尾",
-       "summary": "Claude Code 推出云端会话：每个任务在独立 VM 上运行，仓库克隆到新分支，可从 claude.ai/code、手机、Desktop、终端和 Slack 启动并跟踪，完成后产出可转 PR 的分支，Pro、Max、Team、Enterprise 计划不额外收费。",
-       "source": "Anthropic：Claude.dev 开发者博客（RSS）",
-       "url": "https://aihot.news/items/sxr71auxicu8uk3e4bqxol02h",
-       "original": "https://claude.dev/blog/claude-code-in-the-cloud/"
-      },
-      {
-       "title": "卡兹克解读 A16Z 两份 AI 报告：AI 使用很广但用得还浅，头部 1% 用户月均花 903 美元",
-       "summary": "作者解读 A16Z 第七版《Top 100 消费级 AI 应用》和 90 多页的《市场状况 II》报告，指出反常识数据。美国近一半人用过 AI 但只有 25% 每天在用，截至 2026 年 8 月仅 4.5% 有 ChatGPT、Gemini 或 Claude 个人付费订阅；付费用户中头部 1% 月均消费 903 美元、贡献 19.5% 的全部消费。",
-       "source": "X：卡兹克 (@Khazix0918)",
-       "url": "https://aihot.news/items/tfuj58rvo46hvh8l2nzcbpf7n",
-       "original": "https://x.com/Khazix0918/status/2107297777583825359"
       }
      ]
     }
