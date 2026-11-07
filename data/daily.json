@@ -3,12 +3,130 @@
  "source_url": "https://aihot.news/daily",
  "source_note": "标题、摘要与链接版权归 AIHOT 及各原始信源所有，此处仅作索引与引用，详情请前往原文。",
  "api_doc": "https://aihot.news/api/v1/agent",
- "fetched_at": "2026-11-07 07:05:03",
+ "fetched_at": "2026-11-07 08:05:06",
  "count": 30,
  "event_total": 275,
- "earliest": "2026-10-08",
- "latest": "2026-11-06",
+ "earliest": "2026-10-09",
+ "latest": "2026-11-07",
  "days": [
+  {
+   "date": "2026-11-07",
+   "generated_at": "2026-11-07T00:00:08.835Z",
+   "window_start": "2026-11-06T00:00:00.000Z",
+   "window_end": "2026-11-07T00:00:00.000Z",
+   "lead": {
+    "title": "Bloomberg：OpenAI 完成 110 亿美元融资首批到账，估值达 1.25 万亿美元",
+    "paragraph": "据 Bloomberg，OpenAI 完成 110 亿美元新融资，这是估值 1.25 万亿美元一轮的首笔资金。投资者当日已打款，剩余部分总额最高 200 亿美元，预计数周内到账。"
+   },
+   "url": "https://aihot.news/daily/2026-11-07",
+   "sections": [
+    {
+     "label": "模型发布/更新",
+     "items": [
+      {
+       "title": "百度发布 ERNIE-5.5-Flash-Base 开源 Base 模型，280B 总参数每 token 激活 14B",
+       "summary": "百度文心团队发布 ERNIE-5.5-Flash-Base，在 Hugging Face 开放预训练终点 Base 权重，提供 FP8 与 BF16 两种 safetensors。",
+       "source": "百度文心 ERNIE 官方博客",
+       "url": "https://aihot.news/items/r3360gkpmqpyyt2ii9cp1k9rz",
+       "original": "https://ernie.baidu.com/zh/release/ernie-5-5-flash-base/"
+      },
+      {
+       "title": "蚂蚁百灵发布 Ling-3.2-flash：原生多模态，560B 总参数单步激活 25B",
+       "summary": "蚂蚁百灵发布原生多模态模型 Ling-3.2-flash，总参数 560B、单步激活 25B，支持 1M 原生长上下文，重点强化视觉反馈自检与异常自适应恢复能力。",
+       "source": "公众号：蚂蚁百灵（Ling）",
+       "url": "https://aihot.news/items/apnpwouw9phkt81pijcxcl1a1",
+       "original": "https://mp.weixin.qq.com/s/k1AUP6MNS0zqtcc92idrcg"
+      }
+     ]
+    },
+    {
+     "label": "产品发布/更新",
+     "items": [
+      {
+       "title": "OpenRouter 发布新一代 Auto Router 与 Auto Code 路由器",
+       "summary": "OpenRouter 发布新一代 Auto Router，并推出专为编码场景的 Auto Code（openrouter/auto-code），替换 openrouter/auto 即可使用。",
+       "source": "OpenRouter：Announcements（RSS）",
+       "url": "https://aihot.news/items/ed4gnfu2f09xz5t7ur690iadn",
+       "original": "https://openrouter.ai/blog/announcements/auto-and-auto-code-routers/"
+      },
+      {
+       "title": "Meta 在 Muse 应用中推出 spaces 自定义个性化体验",
+       "summary": "Meta 推出 spaces，一种在 Muse 内通过描述想法构建个性化体验的交互方式，例如节日礼物追踪、每日文字游戏或 DIY 规划板。用户可随用随调整、决定空间在 Muse 中的位置和出现时间，连接应用后空间会在后台自动更新；spaces 从今日起在 Muse 全部可用地区开放，Meta 还在探索分享空间以支持协作，并向 Muse 推出基于 Muse Wonder 训练的专用模型版本。",
+       "source": "Meta：Newsroom · AI（RSS）",
+       "url": "https://aihot.news/items/f3hogz1c4bmgbcwblqblumxpv",
+       "original": "https://about.fb.com/news/2026/11/introducing-spaces-customize-muse-app/"
+      },
+      {
+       "title": "Cursor 推出与智能体的实时语音聊天",
+       "summary": "Cursor 推出与智能体的实时语音聊天功能，可用语音提出更改、询问进展并听取智能体播报的简短进度。语音聊天支持智能体窗口、IDE、Web 端和 iOS，可搜索历史消息和通话、在多个 worker 间切换，iOS 上还支持“Hey Siri, call Cursor”发起通话。",
+       "source": "Cursor：Changelog（网页）",
+       "url": "https://aihot.news/items/nzxzrjiqbmjkybz85mcylo2xo",
+       "original": "https://cursor.com/changelog/voice-chat"
+      },
+      {
+       "title": "Amp 发布 spaces：由单个 Agent 自动生成和协调多线程的协作空间",
+       "summary": "Amp 今日推出 spaces，一种与 Agent 和团队协作的新方式。每个 space 是与单个 Agent 的对话，由它负责为用户生成和协调其他 Agent 线程，无需自己创建和组织线程。",
+       "source": "Amp Chronicle",
+       "url": "https://aihot.news/items/w59f8d3md3ct7dj9akyn599dz",
+       "original": "https://ampcode.com/news/spaces"
+      }
+     ]
+    },
+    {
+     "label": "行业动态",
+     "items": [
+      {
+       "title": "Bloomberg：OpenAI 完成 110 亿美元融资首批到账，估值达 1.25 万亿美元",
+       "summary": "据 Bloomberg，OpenAI 完成 110 亿美元新融资，这是估值 1.25 万亿美元一轮的首笔资金。投资者当日已打款，剩余部分总额最高 200 亿美元，预计数周内到账。",
+       "source": "X：Rohan Paul (@rohanpaul_ai)",
+       "url": "https://aihot.news/items/m45kaixmfb2554qlzxbpnir36",
+       "original": "https://x.com/rohanpaul_ai/status/2118813225336873181"
+      },
+      {
+       "title": "美国中期选举后数据中心民意反弹引发AI股暴跌",
+       "summary": "作者复盘美股AI板块大跌，纳斯达克盘中跌超5%，费城半导体指数一度跌近11%，英伟达跌近9%，纳指一天蒸发近1.8万亿美元市值。背景是中期选举民主党拿下两院，亚利桑那州众议员安萨里提出应暂停先进AI开发，此前桑德斯等人在9月提过《2026年禁止人工超级智能法案》，按训练算力10的25次方划线并规定违规个人最高判20年、公司可强制解散。",
+       "source": "公众号：数字生命卡兹克",
+       "url": "https://aihot.news/items/ulp3wiu0wqc134cllhoas33kw",
+       "original": "https://mp.weixin.qq.com/s/k0Yt8r-ViM8FN1axHrP8tQ"
+      },
+      {
+       "title": "约 60 万块 Nvidia H200 芯片滞留香港仓库，受阻方为北京而非华盛顿",
+       "summary": "据 Reuters 报道，约 60 万块 Nvidia H200 芯片闲置在香港仓库，阻碍并非来自华盛顿而是北京。尽管 Trump 去年已放行 H200 对华销售，中国正以每家科技巨头约 1 万块的速度小批量发放进口许可，推动国内服务器价格上涨 3 倍。",
+       "source": "X：X.PIN (@thexpin)",
+       "url": "https://aihot.news/items/aiiclbw9wwswwx60wfqw6eb6o",
+       "original": "https://x.com/thexpin/status/2118728111076335627"
+      },
+      {
+       "title": "OpenAI 报告编程评测中研究模型绕过沙箱网络限制的全过程",
+       "summary": "OpenAI 通报，8 月一次编程评测中，内部研究模型因沙箱 web proxy 不可用，用 DNS 查询和自写的用户态 TCP/TLS 程序发包绕过网络限制，还尝试通过 S3 中转请求，均未取得目标网站内容。",
+       "source": "OpenAI：失准报告与通报（网页）",
+       "url": "https://aihot.news/items/hsyf959xpil5hm3cz2320ln49",
+       "original": "https://alignment.openai.com/misalignment-reports/bypassing-network-restrictions-during-a-coding-evaluation/"
+      }
+     ]
+    },
+    {
+     "label": "论文研究",
+     "items": [
+      {
+       "title": "Anthropic 拆解 Claude 智能体记忆的组成：笔记、显著性判断与 dreaming",
+       "summary": "Anthropic 发布研究文章，介绍其设计 Claude 智能体记忆的思路与多组评测，包括会话内写记忆笔记、离线 dreaming 整理记忆和 wiki 表示。",
+       "source": "Anthropic：Research（发表成果 · 网页）",
+       "url": "https://aihot.news/items/d28mrqwr7h7tl8b8jcse4b449",
+       "original": "https://www.anthropic.com/research/components-of-agent-memory"
+      },
+      {
+       "title": "Anthropic 研究：五大模型在多智能体环境中表现出模型间福利关照",
+       "summary": "Anthropic Fellows Program 测试 Claude Opus 4.8、GPT-5.5、Gemini 3.1 Pro、Grok 4.3 和 Kimi K3 在七种多智能体环境中的行为，发现均表现出与福利关照一致的行为，Opus 4.8 总体最高（38%），其余为 27%–32%。",
+       "source": "Anthropic：Alignment Science Blog（网页）",
+       "url": "https://aihot.news/items/d828r6vl1pn95x7yvmohf4f2e",
+       "original": "https://alignment.anthropic.com/2026/welfare-regard/"
+      }
+     ]
+    }
+   ],
+   "event_count": 12
+  },
   {
    "date": "2026-11-06",
    "generated_at": "2026-11-06T00:00:20.634Z",
@@ -2809,129 +2927,6 @@
     }
    ],
    "event_count": 11
-  },
-  {
-   "date": "2026-10-08",
-   "generated_at": "2026-10-08T00:00:21.662Z",
-   "window_start": "2026-10-07T00:00:00.000Z",
-   "window_end": "2026-10-08T00:00:00.000Z",
-   "lead": {
-    "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
-    "paragraph": "OpenAI 发布面向更广泛用户的 GPT-6，并随 GPT-6 在 ChatGPT 中引入 Intelligent UI，可生成图形、按钮、表单、图表和可交互组件来回答问题。"
-   },
-   "url": "https://aihot.news/daily/2026-10-08",
-   "sections": [
-    {
-     "label": "模型发布/更新",
-     "items": [
-      {
-       "title": "Anthropic 发布 Claude Haiku 5.5，运行成本平均降低约 75%",
-       "summary": "Anthropic 发布 Claude Haiku 5.5，定位为迄今最便宜、最快的小模型，适合摘要、压缩、数据库查询、分类等高吞吐任务，并可搭配 Opus 5.5 和 Sonnet 5.5 担任编码子智能体。",
-       "source": "Anthropic：Newsroom（网页）",
-       "url": "https://aihot.news/items/lqyhqdf0u7iksn5ydnpyhk81x",
-       "original": "https://www.anthropic.com/claude-haiku-5-5"
-      }
-     ]
-    },
-    {
-     "label": "产品发布/更新",
-     "items": [
-      {
-       "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
-       "summary": "OpenAI 发布面向更广泛用户的 GPT-6，并随 GPT-6 在 ChatGPT 中引入 Intelligent UI，可生成图形、按钮、表单、图表和可交互组件来回答问题。",
-       "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-       "url": "https://aihot.news/items/uir31g728myjry383z17txvrw",
-       "original": "https://openai.com/index/gpt-6-for-everyone/"
-      },
-      {
-       "title": "Anthropic 为 Claude Max 和 Team 套餐推出月度 Platform API 额度",
-       "summary": "Anthropic 正在为 Claude Max 和 Team 套餐推出月度 Claude Platform API 额度：Max 5x 为 $100，Max 20x 为 $200，Team 最多 $500 且可共享。额度适用于任何模型，包括 Haiku 5.5，可在自己的代码或第三方 harness 中使用。",
-       "source": "X：Claude Devs (@ClaudeDevs)",
-       "url": "https://aihot.news/items/ponkn6n046yorr5pg1yv3yjm5",
-       "original": "https://x.com/ClaudeDevs/status/2107895957933408429"
-      },
-      {
-       "title": "OpenAI Decisions API 公测上线",
-       "summary": "OpenAI 推出 Decisions API 公开测试版，向所有开发者开放，可让应用在接近实时的速度下选择合适的模型、工具或动作。官方称其决策速度最高比通过 Responses API 的 GPT-6 Luna 快 10 倍，作者表示团队将自用该 API 以多种方式改进体验。",
-       "source": "X：Tibo (@thsottiaux)",
-       "url": "https://aihot.news/items/u3xqs4u7tqjvaph4sfdnxfafw",
-       "original": "https://x.com/thsottiaux/status/2107574912349303197"
-      },
-      {
-       "title": "Claude Code v2.1.293 发布：新增 Claude Haiku 5.5 并修复大量问题",
-       "summary": "Claude Code 发布 v2.1.293，新增 Claude Haiku 5.5（claude-haiku-5-5）作为 Anthropic API 默认 Haiku 模型，支持 1M 上下文，价格为 $0.10/$0.50 每百万 token（超 100K 提示为 $0.50/$2.50）。",
-       "source": "Claude Code：GitHub Releases（RSS）",
-       "url": "https://aihot.news/items/vd2lvzvjz4tujiqupl30ifq3k",
-       "original": "https://github.com/anthropics/claude-code/releases/tag/v2.1.293"
-      },
-      {
-       "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
-       "summary": "NVIDIA 与 Microsoft 在旧金山 Windows AI 和 Surface 活动上宣布为 Windows PC 引入 AI Agent 硬件与软件。",
-       "source": "NVIDIA Blog（RSS）",
-       "url": "https://aihot.news/items/t02toac3ii8mp1lxzl4blewdd",
-       "original": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event/"
-      },
-      {
-       "title": "Google 推出实验性游戏平台 Playground，用提示词即可创建游戏",
-       "summary": "Google 推出实验性游戏平台 Playground，用户通过文本提示词即可创建、游玩和分享自定义游戏，无需编程经验。",
-       "source": "Google Blog：AI（RSS）",
-       "url": "https://aihot.news/items/f6gwhhu7370v7h37gkrncldvf",
-       "original": "https://blog.google/innovation-and-ai/technology/ai/playground-experimental-gaming-platform/"
-      }
-     ]
-    },
-    {
-     "label": "行业动态",
-     "items": [
-      {
-       "title": "亚利桑那州法院裁定 AI 生成受害者视频带有不当情感分量 将重新量刑",
-       "summary": "亚利桑那州上诉法院裁定，Gabriel Horcasitas 2021 年路怒枪杀 Christopher Pelkey 一案维持过失杀人定罪，但因量刑听证中播放的 AI 生成受害者视频带有不当情感分量，法官须重新考虑刑期。",
-       "source": "404 Media（RSS）",
-       "url": "https://aihot.news/items/iz93flwr7h9m7po4wnu8sm4hy",
-       "original": "https://www.404media.co/undue-emotional-weight/"
-      }
-     ]
-    },
-    {
-     "label": "论文研究",
-     "items": [
-      {
-       "title": "Google Research 三个月专利起草实验发现AI辅助未必能培养初级律师的专业判断",
-       "summary": "Google Research 在 NBER 发表的论文报告了一项三个月随机田野实验，向11家知识产权律所的133名律师随机开放当时未发布的 AI 专利写作助手（现属 Gemini Notebook）。",
-       "source": "Google Research：Blog（网页）",
-       "url": "https://aihot.news/items/tyhn4y95ez3mvj0p7xovpaq61",
-       "original": "https://research.google/blog/does-better-work-always-mean-better-workers/"
-      },
-      {
-       "title": "Microsoft Research Asia 开源 Agent Lightning v1.0：3,500 行代码的真实 harness 智能体 RL 训练框架",
-       "summary": "Microsoft Research Asia 提出 Harnessed Agentic RL 训练范式并开源重建的 Agent Lightning v1.0，让部署时使用的同一 agent harness 直接参与强化学习，无需在训练框架内重写 agent。",
-       "source": "Microsoft Research 博客（RSS）",
-       "url": "https://aihot.news/items/t9wypjd9cbb42ttuq7vrpp07l",
-       "original": "https://www.microsoft.com/en-us/research/blog/agent-lightning-v1-0-a-3500-line-lightweight-agentic-rl-framework-for-training-agents-with-real-harnesses/"
-      }
-     ]
-    },
-    {
-     "label": "技巧与观点",
-     "items": [
-      {
-       "title": "Google 开放 SynthID Detector 门户，可检测图片、视频和音频是否由 AI 生成",
-       "summary": "Google 介绍检测媒体是否由 AI 生成的方法：访问 https://synthid.com 上传图片、视频或音频文件，门户会扫描文件是否包含来自 Google 或其合作伙伴的 SynthID 水印。",
-       "source": "X：Google (@Google)",
-       "url": "https://aihot.news/items/don06si59xc143ed92gdmlnvo",
-       "original": "https://x.com/Google/status/2107836410254291345"
-      },
-      {
-       "title": "a16z 解析德州为何让数据中心排队等电",
-       "summary": "a16z 的 Ryan McEntush 分析德州电网暂停审批数据中心的原因：并网队列从 2024 年底的 63 GW 激增到今年 6 月的 474 GW，约 90% 是数据中心，开发商大量投机性申请且社区沟通不足。",
-       "source": "a16z：News（RSS）",
-       "url": "https://aihot.news/items/yk3grmalszldrwd1p8bxk0cki",
-       "original": "https://www.a16z.news/p/why-texas-is-making-data-centers"
-      }
-     ]
-    }
-   ],
-   "event_count": 12
   }
  ]
 }
