@@ -1,28 +1,35 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-回查 GitHub Pages 构建结果 —— 部署失败主动告警 + 自动重新构建。
+回查 GitHub Pages 构建结果 —— 部署失败主动告警（只告警，不自动重建）。
 
 为什么需要这个脚本（2026-11-06 的真实事故）：
   publish_pages.py 把 commit 推上去就收工了，完全不知道后续 Pages 构建成功没有。
   11-06 03:05 那轮 GitHub 侧 deploy 卡在 `updating_pages` 状态轮询 10 分钟，
   最后 `Timeout reached, aborting!` 取消部署，而服务器毫无感知 —— 线上数据停更，
-  属于典型的「静默失败」。下一轮恰好成功才自动补上，纯属运气。
-  本脚本补上结果回查：发现 errored 就自动请求重新构建，并让主流程发企微告警。
+  属于典型的「静默失败」。本脚本补上结果回查，让主流程能主动告警。
+
+⚠️ 2026-11-07 的教训：绝不能自动 POST /pages/builds 重建。
+  本项目每小时推一个新 commit，GitHub 自己就会触发构建、天然具备自愈能力。
+  手动 POST 会和自动构建抢并发：GitHub 取消先到的那次，把它记成 errored/cancelled，
+  后到的成功记为 built —— 于是同一 commit 3 秒内「先 errored 后 built」成对出现。
+  下一轮回查又看到这个新 errored，再 POST，再造一个 errored …… 自激循环，
+  每小时稳定产生一条「部署异常」误报告警。真凶是重试动作本身，不是 GitHub。
 
 检查口径：
-  拉取最近 N 次 builds，只看过去 WINDOW_HOURS 小时内 status=errored 的。
-  用状态文件按 created_at 去重，同一个失败只告警一次，避免每小时重复打扰。
+  拉取最近 N 次 builds，只看过去 WINDOW_HOURS 小时内 status=errored 的，
+  且该失败之后**没有任何一次成功构建**（有 = 已自愈，跳过）。
+  用状态文件按 created_at 去重，同一个失败只告警一次。
   正在 queued/building 属正常（本轮刚推上去，构建还没跑完），不告警。
 
 退出码（llm-api-pricing.sh 据此决定是否告警）：
-  0  正常（含 built / building / queued）
-  1  发现新的部署失败 → 主流程推企微告警
+  0  正常（含 built / building / queued，以及已被后续成功覆盖的历史 errored）
+  1  发现尚未恢复的部署失败 → 主流程推企微告警
   2  检查本身失败（网络/凭证），只记 WARN 不发告警，避免网络抖动造成噪音
 
 用法:
   python3 scripts/check_pages_status.py
-  python3 scripts/check_pages_status.py --dry-run    # 只打印，不重试、不写状态文件
+  python3 scripts/check_pages_status.py --dry-run    # 只打印，不写状态文件
 """
 
 from __future__ import annotations
@@ -106,12 +113,27 @@ def main() -> int:
     state = load_state()
     alerted = set(state.get("alerted") or [])
 
-    fresh_failures = []
+    # API 返回倒序，这里统一按时间正序处理，方便判断「之后有没有成功」。
+    stamped: list[tuple[datetime, dict]] = []
     for b in builds:
-        if not isinstance(b, dict) or b.get("status") != "errored":
+        if not isinstance(b, dict):
             continue
         ts = parse_ts(b.get("created_at") or "")
-        if ts is None or ts < cutoff:
+        if ts is not None:
+            stamped.append((ts, b))
+    stamped.sort(key=lambda x: x[0])
+    success_times = [ts for ts, b in stamped if b.get("status") == "built"]
+
+    fresh_failures = []
+    recovered = 0
+    for ts, b in stamped:
+        if b.get("status") != "errored" or ts < cutoff:
+            continue
+        # 关键闸门：之后只要有过一次成功构建，就说明服务已自愈。
+        # GitHub 并发构建被取消产生的 errored，紧接着 2-3 秒就有同 commit 的 built，
+        # 全都会在这里被滤掉 —— 2026-11-07 每小时误报就是漏了这一层。
+        if any(s > ts for s in success_times):
+            recovered += 1
             continue
         key = b.get("created_at") or "unknown"
         if key in alerted:
@@ -120,23 +142,15 @@ def main() -> int:
 
     latest = builds[0] if builds else {}
     log(f"Pages 最近构建 {len(builds)} 次，最新状态：{latest.get('status', '未知')}"
-        f"（{(latest.get('commit') or '')[:7]}）｜近 {window:g}h 新失败 {len(fresh_failures)} 次"
-        f"｜凭证来自 {source}")
+        f"（{(latest.get('commit') or '')[:7]}）｜近 {window:g}h 未恢复失败 "
+        f"{len(fresh_failures)} 次 / 已自愈 {recovered} 次｜凭证来自 {source}")
 
     if not fresh_failures:
         return 0
 
-    # 发现失败 → 请求一次新的 Pages 构建（GitHub 官方 API，不依赖新 commit）。
-    # 失败也不影响告警：重试是尽力而为，告警才是硬要求。
-    retried = False
-    if not args.dry_run:
-        try:
-            api(token, f"/repos/{DEFAULT_REPO}/pages/builds", method="POST", body={})
-            retried = True
-            log("  ↻ 已请求重新构建 Pages（POST /pages/builds）")
-        except Exception as e:
-            log(f"  ⚠️ 自动重试构建失败（仍会告警）：{type(e).__name__}: {e}")
-
+    # 刻意不自动 POST /pages/builds：每小时的新 commit 本身就是重建触发器，
+    # 手动重建只会和 GitHub 自动构建撞车，反过来制造新的 errored（详见文件头注释）。
+    # 这里只负责如实告警，自愈交给下一轮正常发布。
     for key, b in fresh_failures:
         err = ((b.get("error") or {}).get("message") or "").strip()
         log(f"  ❌ 部署失败 {key}  commit={(b.get('commit') or '')[:7]}"
@@ -148,9 +162,8 @@ def main() -> int:
         keep = [k for k in alerted if (parse_ts(k) or now) > now - timedelta(days=3)]
         save_state({"alerted": sorted(keep), "updated_at": now.isoformat()})
 
-    suffix = "，已自动请求重新构建" if retried else ""
-    print(f"GitHub Pages 部署失败 {len(fresh_failures)} 次（近 {window:g}h）"
-          f"{suffix}；线上页面可能停更，请留意下一轮是否恢复")
+    print(f"GitHub Pages 部署失败 {len(fresh_failures)} 次（近 {window:g}h）且尚未恢复；"
+          f"下一轮新 commit 会自动触发重建，请留意是否恢复")
     return 1
 
 

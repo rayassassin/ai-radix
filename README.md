@@ -852,6 +852,13 @@ python3 scripts/fetch_daily.py --date 2026-10-27   # 只补某一天
 
 但「推完 commit 就不管」曾经是静默失败：线上停更而服务器毫无感知。
 现在 `llm-api-pricing.sh` 第 5 步会调 `check_pages_status.py` 回查前几轮构建结果，
-发现 `errored` 就自动 `POST /pages/builds` 请求重建，并推一条企微告警。
-排查历史失败可用：`python3 scripts/check_pages_status.py --dry-run --window-hours 24`。
-退出码：`1`=发现部署失败，`2`=检查本身网络故障（只记 WARN，不打扰人）。
+只对**之后没有任何成功构建**的 `errored` 告警。排查历史失败可用：
+`python3 scripts/check_pages_status.py --dry-run --window-hours 24`。
+退出码：`1`=发现未恢复的部署失败，`2`=检查本身网络故障（只记 WARN，不打扰人）。
+
+> ⚠️ **不要给这个回查脚本加自动 `POST /pages/builds` 重建。**
+> 2026-11-07 踩过：本项目每小时推一个新 commit，GitHub 自己就会触发构建、天然自愈。
+> 手动 POST 会和自动构建抢并发，GitHub 把先到的那次取消并记成 `errored` / `cancelled`，
+> 后到的成功记成 `built`，于是同一 commit 3 秒内「先 errored 后 built」成对出现；
+> 下一轮又看到这个新 errored，再 POST，再造一个 …… 自激循环，每小时一条误报告警。
+> 判据上还必须按「之后有没有成功」过滤：日志里的 `已自愈 N 次` 就是这层闸门的计数。

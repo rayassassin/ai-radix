@@ -107,7 +107,9 @@ fi
 # 第 4 步只把 commit 推上去，并不知道 GitHub 后续有没有构建成功。
 # 2026-11-06 03:05 那轮 GitHub 侧 deploy 卡在 updating_pages 十分钟最后超时取消，
 # 服务器却毫不知情 —— 线上停更属于「静默失败」，正是宇神红线。
-# 这里检查前几轮结果：发现 errored 就自动请求重建，并推一条企微告警。
+# 这里检查前几轮结果：只对「之后没有成功构建」的失败告警。
+# 刻意不自动请求重建 —— 每小时的新 commit 本身就是重建触发器，手动 POST 会和
+# GitHub 自动构建抢并发，反而每小时造一个假失败（2026-11-07 的误报教训）。
 # 本轮刚推的构建通常是 building，属正常，不打扰人。
 PAGES_CHECK_RC=0
 if PAGES_OUT=$("$PY" scripts/check_pages_status.py 2>&1); then
@@ -118,7 +120,7 @@ else
     echo "⚠️  Pages 部署回查发现失败："
     echo "$PAGES_OUT" | tail -6
     REASON=$(echo "$PAGES_OUT" | grep -viE '^\s*$' | tail -1 | cut -c1-160)
-    alert "GitHub Pages 部署异常：${REASON:-构建失败}，已自动请求重建，请留意下一轮是否恢复"
+    alert "GitHub Pages 部署异常：${REASON:-构建失败}，下一轮新 commit 会自动补建，请留意是否恢复"
   else
     # 检查本身失败（网络/凭证）：只记 WARN，不发告警，避免网络抖动每小时刷一条
     echo "⚠️  Pages 状态回查未完成（检查脚本退出码 $PAGES_CHECK_RC）："
