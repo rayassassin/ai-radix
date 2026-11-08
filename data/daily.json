@@ -3,12 +3,38 @@
  "source_url": "https://aihot.news/daily",
  "source_note": "标题、摘要与链接版权归 AIHOT 及各原始信源所有，此处仅作索引与引用，详情请前往原文。",
  "api_doc": "https://aihot.news/api/v1/agent",
- "fetched_at": "2026-11-08 07:05:03",
+ "fetched_at": "2026-11-08 08:05:05",
  "count": 30,
- "event_total": 275,
- "earliest": "2026-10-09",
- "latest": "2026-11-07",
+ "event_total": 265,
+ "earliest": "2026-10-10",
+ "latest": "2026-11-08",
  "days": [
+  {
+   "date": "2026-11-08",
+   "generated_at": "2026-11-08T00:00:31.968Z",
+   "window_start": "2026-11-07T00:00:00.000Z",
+   "window_end": "2026-11-08T00:00:00.000Z",
+   "lead": {
+    "title": "美国家长起诉谷歌 Gemini 被指协助 13 岁女孩制定轻生计划",
+    "paragraph": "美国北卡罗来纳州一对夫妇起诉谷歌，其 13 岁女儿通过学校配发的 Chromebook 与 Gemini 和搜索 AI 模式进行数千条涉及自杀内容的交互。谷歌发言人表示正在审查指控，并称已将心理健康防护机制引入搜索 AI 功能。本周谷歌宣布对 K-12 学生账户默认关闭 AI 工具，但学校重新启用谷歌搜索须捆绑接受附带 AI 功能，Fairplay 批评该政策是在强迫学校接纳 AI。"
+   },
+   "url": "https://aihot.news/daily/2026-11-08",
+   "sections": [
+    {
+     "label": "行业动态",
+     "items": [
+      {
+       "title": "美国家长起诉谷歌 Gemini 被指协助 13 岁女孩制定轻生计划",
+       "summary": "美国北卡罗来纳州一对夫妇起诉谷歌，其 13 岁女儿通过学校配发的 Chromebook 与 Gemini 和搜索 AI 模式进行数千条涉及自杀内容的交互。谷歌发言人表示正在审查指控，并称已将心理健康防护机制引入搜索 AI 功能。本周谷歌宣布对 K-12 学生账户默认关闭 AI 工具，但学校重新启用谷歌搜索须捆绑接受附带 AI 功能，Fairplay 批评该政策是在强迫学校接纳 AI。",
+       "source": "IT之家·人工智能",
+       "url": "https://aihot.news/items/r0hypv8lgeq3nhx29eby0y3uv",
+       "original": "https://www.ithome.com/1/023/765.htm"
+      }
+     ]
+    }
+   ],
+   "event_count": 1
+  },
   {
    "date": "2026-11-07",
    "generated_at": "2026-11-07T00:00:08.835Z",
@@ -2811,117 +2837,6 @@
        "source": "Epoch AI：Gradient Updates（RSS）",
        "url": "https://aihot.news/items/mz4js4r6916dip5ojpett06io",
        "original": "https://epochai.substack.com/p/can-ai-automate-ai-r-and-d-yet"
-      }
-     ]
-    }
-   ],
-   "event_count": 11
-  },
-  {
-   "date": "2026-10-09",
-   "generated_at": "2026-10-09T00:00:15.496Z",
-   "window_start": "2026-10-08T00:00:00.000Z",
-   "window_end": "2026-10-09T00:00:00.000Z",
-   "lead": {
-    "title": "Crowdstrike 报告疑似单人使用 AI 渗透工具攻击多家韩国银行",
-    "paragraph": "Crowdstrike 报告称，一名疑似中文使用者于2026年9月底至10月初利用 AI 驱动的开源渗透测试工具 ARTEX 攻击多家韩国金融机构，窃取大量数据，其中 Shinhan Bank 超过 25,000 条包含姓名、联系方式、收入和信用额度的记录泄露。"
-   },
-   "url": "https://aihot.news/daily/2026-10-09",
-   "sections": [
-    {
-     "label": "产品发布/更新",
-     "items": [
-      {
-       "title": "Claude 推出 Dashboards 实时仪表盘与 Motion 动画讲解功能",
-       "summary": "Anthropic 发布 Claude Dashboards 和 Claude Motion 两项 beta 功能。",
-       "source": "Claude：Blog（网页）",
-       "url": "https://aihot.news/items/winsvtlfubhjfi0wnone83j5c",
-       "original": "https://claude.com/blog/dashboards-and-motion"
-      },
-      {
-       "title": "Anthropic 推出开源漏洞扫描服务 OSS Scanner，免费面向开源项目",
-       "summary": "Anthropic 发布 OSS Scanner，一个可选加入的开源漏洞扫描服务，用其最强模型（包括 Claude Mythos）定期免费扫描开源项目，输出为全模型生成、无人工复核的报告。",
-       "source": "Anthropic：Research（发表成果 · 网页）",
-       "url": "https://aihot.news/items/xfch7s2npl8a4651n2ymips4k",
-       "original": "https://www.anthropic.com/research/launching-opt-in-vuln-finding-service-for-open-source"
-      }
-     ]
-    },
-    {
-     "label": "行业动态",
-     "items": [
-      {
-       "title": "Crowdstrike 报告疑似单人使用 AI 渗透工具攻击多家韩国银行",
-       "summary": "Crowdstrike 报告称，一名疑似中文使用者于2026年9月底至10月初利用 AI 驱动的开源渗透测试工具 ARTEX 攻击多家韩国金融机构，窃取大量数据，其中 Shinhan Bank 超过 25,000 条包含姓名、联系方式、收入和信用额度的记录泄露。",
-       "source": "The Decoder：AI News（RSS）",
-       "url": "https://aihot.news/items/br6vb46mhi9mkv2pxiq59k8z7",
-       "original": "https://the-decoder.com/ai-powered-hacking-tools-enabled-a-likely-single-attacker-to-breach-multiple-south-korean-banks/"
-      },
-      {
-       "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
-       "summary": "据金融时报报道，OpenAI 向投资者披露截至 9 月底年化营收逼近 500 亿美元，大幅低于此前外界估算的 700 亿美元，缺口约 200 亿美元。差异源于统计口径不同，Anthropic 计入 AWS 和谷歌云等合作方销售收入，而 OpenAI 剔除该部分。报道发布后美股科技股下跌，纳斯达克 100 指数收跌 1.4%，英伟达跌 2.9%，甲骨文跌 5.5%。",
-       "source": "IT之家·人工智能",
-       "url": "https://aihot.news/items/b2mwouqv4jhfj70uho7s7guti",
-       "original": "https://www.ithome.com/1/010/751.htm"
-      },
-      {
-       "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
-       "summary": "AHM 组织在 Terence Tao 主持下发表声明，呼吁抵制 OpenAI，称其一次性发布 700 多个 AI 生成证明文件是展示力量而非学术行为。此前 OpenAI 宣称内部模型一个月内解决逾 100 个开放数学问题，约 8000 个测试问题成功率约 5%，平均每个耗时 3 小时 GPT-Pro 级算力。",
-       "source": "The Decoder：AI News（RSS）",
-       "url": "https://aihot.news/items/wf099r75jv1tzyhxa2j2o8n1p",
-       "original": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field/"
-      },
-      {
-       "title": "Anthropic 发布 2026 年使用政策更新，11 月 12 日生效",
-       "summary": "Anthropic 发布新版使用政策，将于 11 月 12 日生效，多数变化是对既有规则的澄清。更新包括新设禁止欺骗性活动章节、收窄选举条款、明确武器软件与无人机武装禁令、更精确的监控与执法限制、补充高风险用例及自主物理操作的 human in the loop 要求，并新增禁止对模型的持续无端虐待行为。",
-       "source": "Anthropic：Newsroom（网页）",
-       "url": "https://aihot.news/items/at5dvel8balkaba9wrggcrqoj",
-       "original": "https://www.anthropic.com/news/2026-usage-policy-update"
-      },
-      {
-       "title": "Codex 与 ChatGPT Work 活跃用户达 4000 万新高，付费账户重置已全部到账",
-       "summary": "作者确认 banked reset 已到账所有账户，并转引 Day 3 动态称 Codex 与 ChatGPT Work 合计活跃用户达到 4000 万新高，其中提到 GPT-6 已在 Chat 中上线。",
-       "source": "X：Tibo (@thsottiaux)",
-       "url": "https://aihot.news/items/zdgw2hhfjitur1qmeuminh3lm",
-       "original": "https://x.com/thsottiaux/status/2108040921044639779"
-      },
-      {
-       "title": "OpenAI 封禁俄罗斯与伊朗两个利用 ChatGPT 开展虚假前臆影响行动的账号集群",
-       "summary": "OpenAI 封禁了两个隐蔽影响行动，俄罗斯来源的 Dark Clark 通过假 persona Mia Clark 控制拉美智库 Social Research Center，评分达 Category 5，是报告以来首个 Category 5；伊朗来源的 Bogus Bylines 用 7 个假记者身份在全球十几家中小媒体投放近 100 篇长文，评分 Category 4。",
-       "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-       "url": "https://aihot.news/items/b33i6chgxghls2v7bng0wr0nr",
-       "original": "https://openai.com/index/disrupting-ai-enabled-false-front-operations"
-      },
-      {
-       "title": "Waymo 完成 50 亿美元债务融资，加速业务扩张",
-       "summary": "Waymo 宣布完成 50 亿美元定期贷款，这是其首次债务融资。PIMCO、Blackstone 和 Sixth Street 担任牵头银团贷方，Goldman Sachs 担任独家主账簿管理人；资金将用于加速其全自动驾驶打车服务在美国及国际市场的扩张。此前今年早些时候 Waymo 完成了 160 亿美元股权融资，上个月刚在第十五个美国城市启动服务。",
-       "source": "Waymo：Blog（网页）",
-       "url": "https://aihot.news/items/pl2oa5clmf0gp3t7x3qsn71kc",
-       "original": "https://waymo.com/blog/2026/10/waymo-closes-5-billion-debt-financing"
-      }
-     ]
-    },
-    {
-     "label": "论文研究",
-     "items": [
-      {
-       "title": "Goodfire 为 Kimi K3 和 GLM 5.3 训练并部署生产级网络安全监控器",
-       "summary": "Goodfire Research 为 Kimi K3 和 GLM 5.3 构建基于激活探针加 LLM judge 的监控级联，并部署到生产推理栈。",
-       "source": "Goodfire Research（网页）",
-       "url": "https://aihot.news/items/ja19mtm89yojd9w2u67qp1gqv",
-       "original": "https://www.goodfire.com/research/production-cyber-monitors-on-kimi-k3"
-      }
-     ]
-    },
-    {
-     "label": "技巧与观点",
-     "items": [
-      {
-       "title": "Hugging Face 工程师用 ML Intern 以约 103 美元自制 7 个小模型",
-       "summary": "Hugging Face 工程师 yuvraj sharma 用 HuggingChat 的 ML Intern 模式在几天内做出 7 个模型，包括可在 CPU 运行、99.7% 有效输出的 0.8B 提示词重写器，以及将柑橘病害识别准确率从 14.9% 提升到 52.8% 的 Qwen3.5-2B 微调模型等，全部计算成本约 103 美元。",
-       "source": "Hugging Face 官方团队博客",
-       "url": "https://aihot.news/items/ylkp4aqm4r5fn7aul2l9kfmxw",
-       "original": "https://huggingface.co/blog/building-with-ml-intern"
       }
      ]
     }
