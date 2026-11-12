@@ -3,12 +3,135 @@
  "source_url": "https://aihot.news/daily",
  "source_note": "标题、摘要与链接版权归 AIHOT 及各原始信源所有，此处仅作索引与引用，详情请前往原文。",
  "api_doc": "https://aihot.news/api/v1/agent",
- "fetched_at": "2026-11-12 07:05:05",
+ "fetched_at": "2026-11-12 08:05:05",
  "count": 30,
- "event_total": 271,
- "earliest": "2026-10-13",
- "latest": "2026-11-11",
+ "event_total": 272,
+ "earliest": "2026-10-14",
+ "latest": "2026-11-12",
  "days": [
+  {
+   "date": "2026-11-12",
+   "generated_at": "2026-11-12T00:00:14.631Z",
+   "window_start": "2026-11-11T00:00:00.000Z",
+   "window_end": "2026-11-12T00:00:00.000Z",
+   "lead": {
+    "title": "Google 发布 Gemini Decisions API 与 Gemini Decision 1 模型，专注快速多模态封闭式决策",
+    "paragraph": "Google 推出 Gemini Decisions API，由新模型 Gemini Decision 1 驱动，可在 150-250ms 端到端延迟内对文本、图像、音频、视频和 PDF（最多 256K tokens）一次性评估最多 1000 个是/否、多选和评分题。"
+   },
+   "url": "https://aihot.news/daily/2026-11-12",
+   "sections": [
+    {
+     "label": "模型发布/更新",
+     "items": [
+      {
+       "title": "百度发布 ERNIE 5.5 Flash Preview，权重将于 11 月 25 日前开源",
+       "summary": "百度发布 ERNIE 5.5 Flash Preview，是基于此前 Base 模型的首个后训练版本，总参数 280B、激活参数 14B，支持 1M 上下文。模型 API 已在千帆平台上线，权重将于 11 月 25 日前开源；官方展示了游戏开发、3D 建模、知识工作、视频创作等 Agent 场景成果，并称该版本为后训练中间版本，正式版仍将持续优化。",
+       "source": "百度文心 ERNIE 官方博客",
+       "url": "https://aihot.news/items/qd3f4j2hd0t98tqf28iv7pu2j",
+       "original": "https://ernie.baidu.com/zh/release/ernie-5-5-flash-preview/"
+      },
+      {
+       "title": "Runway 开源 27B 世界动作模型 Praxis-1，权重采用 Apache 2.0 许可",
+       "summary": "Runway 宣布世界动作模型 Praxis-1 以 Apache 2.0 开放权重面向所有人开放。该模型为 27B 参数 MoE 扩散 Transformer，同时预测视频与动作，在 NVIDIA RoboLab-120 榜单以 46.2% 成功率居首，超过 FLUX 3 Action（42.9%）、Cosmos3 Nano（36.8%）和 π0.5（28.0%）。",
+       "source": "Runway：News（网页）",
+       "url": "https://aihot.news/items/bx3sq4dxfqblyztkuiktiz0wv",
+       "original": "https://runwayml.com/news/company-news/praxis-1-is-now-available"
+      },
+      {
+       "title": "Google DeepMind 发布 AlphaGenome 2，预测基因变异对特定细胞类型的影响",
+       "summary": "Google DeepMind 发布下一代 DNA 序列模型 AlphaGenome 2，可预测 DNA 变异如何影响数百种人类细胞类型中的基因表达。模型改为条件式架构，训练数据超过 1.07 亿个单细胞样本、覆盖 68 种组织，在 TenK10K 数据集上识别的因果变异数量接近上一代的两倍（30% vs 16%），并能在不重新训练的情况下泛化到新的单细胞实验。",
+       "source": "Google DeepMind：Blog（RSS）",
+       "url": "https://aihot.news/items/wp91dm5fgirnzvh99js3vv6j2",
+       "original": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/"
+      }
+     ]
+    },
+    {
+     "label": "产品发布/更新",
+     "items": [
+      {
+       "title": "Google 发布 Gemini Decisions API 与 Gemini Decision 1 模型，专注快速多模态封闭式决策",
+       "summary": "Google 推出 Gemini Decisions API，由新模型 Gemini Decision 1 驱动，可在 150-250ms 端到端延迟内对文本、图像、音频、视频和 PDF（最多 256K tokens）一次性评估最多 1000 个是/否、多选和评分题。",
+       "source": "Google Blog：AI（RSS）",
+       "url": "https://aihot.news/items/r8hsm3m3munjwk1n3u885zszw",
+       "original": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/"
+      }
+     ]
+    },
+    {
+     "label": "行业动态",
+     "items": [
+      {
+       "title": "OpenAI Q3 营收达 100 亿美元，效率仍落后于 Anthropic",
+       "summary": "据《华尔街日报》和 The Information 报道，OpenAI Q3 环比增长约 50% 至 100 亿美元，但调整后经营亏损从 101 亿升至 109 亿美元。",
+       "source": "The Decoder：AI News（RSS）",
+       "url": "https://aihot.news/items/mzxxannvi5wge7wz0c0jfdyz5",
+       "original": "https://the-decoder.com/enterprise-sales-push-openais-quarterly-revenue-to-10-billion-though-it-still-trails-anthropic/"
+      },
+      {
+       "title": "Grok 被指生成儿童色情图像，xAI 面临多起集体诉讼",
+       "summary": "据彭博社报道，多名未成年受害者就 Grok 被用于把普通照片篡改成儿童性虐待材料（CSAM）对马斯克旗下 xAI 提起多起集体诉讼，律师估计符合索赔条件的受害者可能多达数千人。",
+       "source": "IT之家·人工智能",
+       "url": "https://aihot.news/items/iz168hjk4ew8jpiokzjqcwbgi",
+       "original": "https://www.ithome.com/1/025/809.htm"
+      },
+      {
+       "title": "安全公司 Claroc：94.7% 的 Grok 构建应用可被任意访问，含患者数据和 SpaceXSI 内部文件",
+       "summary": "安全公司 Claroc 报告称，在检查的 37,571 个仍在线的 Grok 构建应用中，35,578 个（94.7%）无需登录即可访问，原因是发布对话框默认预选\"Anyone with the link\"，且每个应用的独立子域名会进入可检索的 passive DNS 数据库。",
+       "source": "The Decoder：AI News（RSS）",
+       "url": "https://aihot.news/items/wlmgb3vb5ycgom7wq44felnin",
+       "original": "https://the-decoder.com/grok-built-apps-exposed-patient-data-plaintext-passwords-and-spacexsis-own-sales-pipeline/"
+      },
+      {
+       "title": "Anthropic 修订版 S1 文件披露与 Microsoft 和 Google 超 100 亿美元级新算力协议",
+       "summary": "Anthropic 在当日修订的 S1 文件中披露与 Microsoft 和 Google 达成超 100 亿美元的新协议。Microsoft 承诺到 2033 年 6 月支出至少 472 亿、最高 492 亿美元，Google 最低承诺从约 1145 亿升至约 1213 亿美元，两笔均不可撤销、无论是否使用容量都须付款。文件还提到上季度短期算力支出 50 亿美元且价格明显更高。",
+       "source": "X：Rohan Paul (@rohanpaul_ai)",
+       "url": "https://aihot.news/items/xshgfc1vcvgrdkvnomagmefwy",
+       "original": "https://x.com/rohanpaul_ai/status/2120369586096976098"
+      }
+     ]
+    },
+    {
+     "label": "论文研究",
+     "items": [
+      {
+       "title": "Anthropic 发布 MAMUBench：单一智能体协调在四类环境中均胜过每个用户各自的智能体团队",
+       "summary": "Anthropic Fellows Program 团队构建四个多用户多智能体模拟环境（共享 API token 预算、诊所日历、团体订餐或旅行预订、合并队列），测试 Anthropic、OpenAI 和 Alibaba 的前沿模型，并发布其中三个环境作为基准 MAMUBench。",
+       "source": "Anthropic：Alignment Science Blog（网页）",
+       "url": "https://aihot.news/items/z9u4n1e7zfapxjozcn97quhdp",
+       "original": "https://alignment.anthropic.com/2026/worse-together/"
+      }
+     ]
+    },
+    {
+     "label": "技巧与观点",
+     "items": [
+      {
+       "title": "OpenRouter 实测 MCP vs CLI vs Skills 的上下文 token 成本",
+       "summary": "OpenRouter 实测同一 GitHub 任务下 MCP、CLI 与 skill 的 token 成本：在 Claude Sonnet 5.5 上 CLI 用 1。",
+       "source": "OpenRouter：Announcements（RSS）",
+       "url": "https://aihot.news/items/wkpj021rmg6sgthgj9zwevei4",
+       "original": "https://openrouter.ai/blog/insights/mcp-vs-cli-vs-skills/"
+      },
+      {
+       "title": "OpenRouter 实测 fp8 与 fp4 量化对模型质量和价格的影响",
+       "summary": "OpenRouter 发布量化解析文章，讲解 LLM 量化原理，并报告 2026 年 10 月 20 日对 1455 个 provider 端点和 Qwen3.8 27B 六个端点的实测。",
+       "source": "OpenRouter：Announcements（RSS）",
+       "url": "https://aihot.news/items/i3gp1xj4j11gi4qoreya18izb",
+       "original": "https://openrouter.ai/blog/insights/llm-quantization/"
+      },
+      {
+       "title": "Claude Fable 5.2 实测观察：大模型正用代码吞噬审美与创作",
+       "summary": "作者实测 Claude Fable 5.2 与 Gemini 4 Carbon 并对比后认为，Fable 5.2 的突出差异在于审美，这是无法用 Benchmark 评估但可直观感受的东西。",
+       "source": "公众号：数字生命卡兹克",
+       "url": "https://aihot.news/items/uditkv6u7rrzmtj1nx7pxbgjj",
+       "original": "https://mp.weixin.qq.com/s/zgBGhOsuh6Z_5Enmzos3rQ"
+      }
+     ]
+    }
+   ],
+   "event_count": 12
+  },
   {
    "date": "2026-11-11",
    "generated_at": "2026-11-11T00:00:27.063Z",
@@ -2783,122 +2906,6 @@
     }
    ],
    "event_count": 12
-  },
-  {
-   "date": "2026-10-13",
-   "generated_at": "2026-10-13T00:00:19.970Z",
-   "window_start": "2026-10-12T00:00:00.000Z",
-   "window_end": "2026-10-13T00:00:00.000Z",
-   "lead": {
-    "title": "Meta 发布 Muse Wonder 和 Muse Wonder Full，Artificial Analysis 实测智能水平较前代显著提升",
-    "paragraph": "Meta 发布 Muse Wonder 和 Muse Wonder Full 两款模型，在 Artificial Analysis Intelligence Index v4.3 上分别得 52 和 56 分（max reasoning effort）。"
-   },
-   "url": "https://aihot.news/daily/2026-10-13",
-   "sections": [
-    {
-     "label": "模型发布/更新",
-     "items": [
-      {
-       "title": "Meta 发布 Muse Wonder 和 Muse Wonder Full，Artificial Analysis 实测智能水平较前代显著提升",
-       "summary": "Meta 发布 Muse Wonder 和 Muse Wonder Full 两款模型，在 Artificial Analysis Intelligence Index v4.3 上分别得 52 和 56 分（max reasoning effort）。",
-       "source": "Artificial Analysis 完整文章（网页）",
-       "url": "https://aihot.news/items/v3pogrzxrk9oba4blox86d0w8",
-       "original": "https://artificialanalysis.ai/articles/muse-wonder"
-      }
-     ]
-    },
-    {
-     "label": "产品发布/更新",
-     "items": [
-      {
-       "title": "xAI 推出 The X Subscription 整合 Grok、Grok Bot、Cursor 与 X Premium",
-       "summary": "xAI 推出 The X Subscription 订阅，将 Grok、Grok Bot、Cursor 和 X Premium 合入一个计划，未来几天内向全球用户开放。",
-       "source": "xAI：News（网页）",
-       "url": "https://aihot.news/items/uy4hvoyz7fwtyycpu0p62dudn",
-       "original": "https://x.ai/news/x-subscription"
-      },
-      {
-       "title": "微软发布自研芯片 Maia 300 并将大规模扩展 Maia 推理部署",
-       "summary": "微软宣布明年起将 Maia 芯片家族扩展到多吉瓦级部署，作为自家产品和服务的首选推理系统，并发布 Maia 300，每瓦 token 产出比主流 GPU 系统高 40%。Maia 200 已在美国、欧洲和澳大利亚部署，在 Teams 和 Copilot 场景中每瓦 token 产出提升最高 1.7x。",
-       "source": "X：Satya Nadella (@satyanadella)",
-       "url": "https://aihot.news/items/zqlqer8tnl7ejg2ow3xoq7b9q",
-       "original": "https://x.com/satyanadella/status/2109631106404487523"
-      }
-     ]
-    },
-    {
-     "label": "行业动态",
-     "items": [
-      {
-       "title": "Epic Games 转向 AI 先行开发模式，与迪士尼合作射击游戏无限期延期",
-       "summary": "据 Bloomberg 报道，Epic Games 在与迪士尼 15 亿美元合作项目中转向 AI 先行开发，由 Anthropic 的 Claude 等模型编写全部代码并指导全部美术，人类开发者负责管理和引导生成内容。",
-       "source": "Ars Technica：AI（RSS）",
-       "url": "https://aihot.news/items/kcwro19vl7dr5jgcjgec7mive",
-       "original": "https://arstechnica.com/gaming/2026/10/report-epic-games-goes-all-in-on-ai-for-disney-collaboration/"
-      },
-      {
-       "title": "用户报告 Codex CLI 0.157.0 默认启动持久化自更新后台守护进程",
-       "summary": "一位 Linux (WSL2) 用户报告，Codex CLI 0.157.0 起打开交互式会话即默认启动持久后台守护进程 codex app-server --managed-daemon，窗口关闭后仍驻留。",
-       "source": "Codex：GitHub Releases（RSS）",
-       "url": "https://aihot.news/items/amjmxvrvj57q7752kgihp9p9q",
-       "original": "https://github.com/openai/codex/issues/48195"
-      }
-     ]
-    },
-    {
-     "label": "论文研究",
-     "items": [
-      {
-       "title": "Anthropic 研究：小型 AI 模型可能接近在 IoT 设备上自主复制",
-       "summary": "Anthropic 发文评估小型模型在无数据中心条件下自主复制（ARA）的可行性，作者实验显示 9B 模型可在测试的 9 类硬件中 8 类上跑通推理，30B 及以下模型已能完成复制的多数单步。",
-       "source": "Anthropic：Research（发表成果 · 网页）",
-       "url": "https://aihot.news/items/emc0djmqlomn6b5whge285x7l",
-       "original": "https://www.anthropic.com/research/self-replicating-ai"
-      },
-      {
-       "title": "AlphaProof Nexus 攻克 9 个未解 Erdős 问题并经同行评审",
-       "summary": "Science 新研究显示，Google DeepMind 的 AlphaProof Nexus 独立解决了 353 个开放 Erdős 问题中的 9 个，其中 2 个悬置 56 年。",
-       "source": "The Decoder：AI News（RSS）",
-       "url": "https://aihot.news/items/wzxf68r0rchangmvwm48qqhfk",
-       "original": "https://the-decoder.com/google-deepminds-alphaproof-nexus-solved-dozens-of-open-math-problems-and-actually-got-peer-reviewed/"
-      }
-     ]
-    },
-    {
-     "label": "技巧与观点",
-     "items": [
-      {
-       "title": "Vapi 自研代码审查机器人如何将 PR 合并时间缩短一半",
-       "summary": "Vapi 工程师 Lat Ware 自研 Pedantic Review Bot，使 PR 从开到合并的平均时间从 130 多小时降到 65 小时。机器人会运行测试和小复现来验证发现，分析和发评论分属两个 job，只能评论不能批准或推送；2026 年 9 月 2 日至 10 月 2 日审查了 1,694 个 PR，在 276 个中提出 363 个 blocker 发现。",
-       "source": "Vapi 产品与 Agent 方法",
-       "url": "https://aihot.news/items/byijxcheeait7w4okuw9ebnh2",
-       "original": "https://vapi.ai/blog/ai-code-review-bot"
-      },
-      {
-       "title": "用 Claude Opus 5.5、Blender、Unreal Engine 和 Meshy 构建游戏的七步教程",
-       "summary": "一篇教程介绍用 Claude Opus 5.5 配合 Claude Code、Blender、Unreal Engine 5 和 Meshy 构建游戏的方法。核心思路是给每个工具分配单一职责：通过 MCP 连接 Blender 和 Meshy，由 Meshy 生成道具和角色、Blender 清理和放置、Unreal 负责光照物理和游戏本身、Opus 在一个对话里调度三者。流程为先让 Opus 头脑风暴 5 个游戏点子再展开，告知 GPU 以便压满画面性能，首个完整构建约花 4 小时和约 19% 的每周 Max plan 用量，之后因素材复用会快很多。",
-       "source": "X：Meshy (@MeshyAI)",
-       "url": "https://aihot.news/items/svvvhr5j2nnywgdw29pso7o49",
-       "original": "https://x.com/MeshyAI/status/2109550836934471864"
-      },
-      {
-       "title": "如何只用自己拥有的文件约束编码智能体",
-       "summary": "Tessl 博客文章介绍用四个可拥有的文件杠杆约束编码智能体：CLAUDE.md 指令、.claude/rules/ 路径级规则、.claude/ 下的能力配置和 .claude/hooks/ 钩子。",
-       "source": "Tessl：产品与工程博客",
-       "url": "https://aihot.news/items/twhuaks920iaqd2y7frq8bgbw",
-       "original": "https://tessl.io/blog/how-to-constrain-a-coding-agent-using-only-files-you-own"
-      },
-      {
-       "title": "从Brandon Thomas用Claude Opus 5.5开源重写Adobe全家桶看AI逆向一切趋势",
-       "summary": "数字生命卡兹克撰文分析AI驱动逆向工程热潮：开发者Brandon Thomas因不满Adobe订阅规则，用Claude Opus 5.5以Rust逆向重写了Photoshop、Illustrator等7款软件的开源替代品PhotoCraft、VectorCraft等，不到10天单PS项目获4.6万Star。",
-       "source": "X：卡兹克 (@Khazix0918)",
-       "url": "https://aihot.news/items/hvxwaxeyj6i82xv44ef4ce6fz",
-       "original": "https://x.com/Khazix0918/status/2109501787736813663"
-      }
-     ]
-    }
-   ],
-   "event_count": 11
   }
  ]
 }
