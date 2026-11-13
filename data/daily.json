@@ -3,12 +3,130 @@
  "source_url": "https://aihot.news/daily",
  "source_note": "标题、摘要与链接版权归 AIHOT 及各原始信源所有，此处仅作索引与引用，详情请前往原文。",
  "api_doc": "https://aihot.news/api/v1/agent",
- "fetched_at": "2026-11-13 07:05:04",
+ "fetched_at": "2026-11-13 08:05:05",
  "count": 30,
  "event_total": 272,
- "earliest": "2026-10-14",
- "latest": "2026-11-12",
+ "earliest": "2026-10-15",
+ "latest": "2026-11-13",
  "days": [
+  {
+   "date": "2026-11-13",
+   "generated_at": "2026-11-13T00:00:48.174Z",
+   "window_start": "2026-11-12T00:00:00.000Z",
+   "window_end": "2026-11-13T00:00:00.000Z",
+   "lead": {
+    "title": "NVIDIA 宣布 CEO 变动：Jensen Huang 辞任，CFO Colette Kress 出任临时 CEO",
+    "paragraph": "NVIDIA 董事会宣布 Jensen Huang 即刻辞去总裁、CEO 及董事职务，CFO Colette Kress 被任命为临时 CEO，直至选定永久继任者，董事会已启动内外部人选遴选。"
+   },
+   "url": "https://aihot.news/daily/2026-11-13",
+   "sections": [
+    {
+     "label": "模型发布/更新",
+     "items": [
+      {
+       "title": "Google DeepMind 发布 Gemini 4 Hydrogen",
+       "summary": "Google DeepMind 发布 Gemini 4 Hydrogen，定位快速执行日常编码与智能体工作流，面向 Gemini API、AI Studio、Gemini 应用、Google Search 等全层级开放。",
+       "source": "Google DeepMind：Blog（RSS）",
+       "url": "https://aihot.news/items/uy1ayrrlqx1snqsv4lub7whsa",
+       "original": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/"
+      }
+     ]
+    },
+    {
+     "label": "产品发布/更新",
+     "items": [
+      {
+       "title": "Anthropic 推出 Claude Meetings，Claude 以参会者身份加入视频会议",
+       "summary": "Anthropic 推出 Claude Meetings beta，Claude 可作为可见参会者加入视频通话，在会中回答提问、协作创建文档和白板，并生成笔记和行动项。",
+       "source": "Claude：Blog（网页）",
+       "url": "https://aihot.news/items/l36ne5q2gsdx6thyia7fi10kn",
+       "original": "https://claude.com/blog/claude-meetings"
+      },
+      {
+       "title": "Anthropic 建议把 Claude Opus 5.5 作为知识工作的日常主力模型",
+       "summary": "Anthropic 宣布 Claude Opus 5.5 成为 Pro、Max、Ultra 和 Team 套餐的默认模型，并推荐将其作为研究、分析和写作等知识工作的日常主力。",
+       "source": "Claude：Blog（网页）",
+       "url": "https://aihot.news/items/t5pucqx6ac58z0ed1b0875ci0",
+       "original": "https://claude.com/blog/using-claude-opus-5-5-as-your-daily-driver-for-knowledge-work"
+      },
+      {
+       "title": "Google 智能眼镜开放预购，12 月 10 日发货",
+       "summary": "Josh Woodward 宣布 Google 智能眼镜开启预购，用户可在 https://glasses.google 下单，12 月 10 日发货。首批用户可到部分 Warby Parker、Gentle Monster 和 Google 门店试戴体验。",
+       "source": "X：Josh Woodward (@joshwoodward, Google Labs VP)",
+       "url": "https://aihot.news/items/hjhcsj440ym8b7ynttcx4433j",
+       "original": "https://x.com/joshwoodward/status/2120990821902397885"
+      },
+      {
+       "title": "Replit Agent 新增代购能力和 Google Ads 投放功能",
+       "summary": "Replit 给 Replit Agent 新增两项能力：通过 Stripe Link 和 Visa 为企业代购物资，以及在 Replit 内直接创建和投放 Google Ads 覆盖 Search、YouTube 等渠道。",
+       "source": "Replit：Blog（RSS）",
+       "url": "https://aihot.news/items/k7sfjumcmtq0zswb5yj5kmju1",
+       "original": "https://replit.com/blog/replit-agent-ads-commerce"
+      }
+     ]
+    },
+    {
+     "label": "行业动态",
+     "items": [
+      {
+       "title": "NVIDIA 宣布 CEO 变动：Jensen Huang 辞任，CFO Colette Kress 出任临时 CEO",
+       "summary": "NVIDIA 董事会宣布 Jensen Huang 即刻辞去总裁、CEO 及董事职务，CFO Colette Kress 被任命为临时 CEO，直至选定永久继任者，董事会已启动内外部人选遴选。",
+       "source": "NVIDIA：Newsroom（RSS）",
+       "url": "https://aihot.news/items/qsbjbz754aodhcijq56puh6va",
+       "original": "https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition"
+      },
+      {
+       "title": "Anthropic 官宣首次公开募股（IPO）",
+       "summary": "Anthropic 官方宣布启动首次公开募股（IPO），并公布入口 ipo.anthropic.com。Anthropic 已向 SEC 提交注册声明及招股说明书，证券在注册声明生效前不得出售，初步招股说明书可经高盛与摩根士丹利获取。",
+       "source": "X：Anthropic (@AnthropicAI)",
+       "url": "https://aihot.news/items/k99zjo9hbtous9r6vmmz7pxyh",
+       "original": "https://x.com/AnthropicAI/status/2120841731302154708"
+      },
+      {
+       "title": "Jensen Huang 辞任 Nvidia CEO 后对 AI 经济的五点影响分析",
+       "summary": "Tomasz Tunguz 分析 Jensen Huang 即日辞任 Nvidia 总裁、CEO 及董事后对 AI 行业的影响，CFO Colette Kress 出任临时 CEO。",
+       "source": "Tomasz Tunguz 博客（VC 分析）",
+       "url": "https://aihot.news/items/ivpl9ziip8mpoa90avi3ke9pj",
+       "original": "https://tomtunguz.com/the-impact-of-jensens-resignation/"
+      },
+      {
+       "title": "民主党对 Nvidia 对华芯片销售启动调查，致函质疑黄仁勋与特朗普的安排",
+       "summary": "民主党议员 Rep. Richard Neal 和 Sen. Ron Wyden 就特朗普政府处理 Nvidia 对华芯片销售一事开启调查，并致函商务部长 Howard Lutnick 要求保存相关记录。",
+       "source": "TechCrunch：AI（RSS）",
+       "url": "https://aihot.news/items/cfh0nazzl7eedgttz8n99fza4",
+       "original": "https://techcrunch.com/2026/11/12/democrats-launch-nvidia-investigation-write-scathing-letter-on-huangs-scheme-with-trump/"
+      },
+      {
+       "title": "Rohan Paul 类比乔布斯被逐，评 NVIDIA 放走黄仁勋",
+       "summary": "Lex Fridman 发文称 NVIDIA 让黄仁勋离开对美国和人类都是巨大错误，堪比 Apple 当年解雇 Steve Jobs 但影响更大，并为其品格辩护、回应间谍传闻。Rohan Paul 转引并列举 Atari 1978（Nolan Bushnell）、Apple 1985（Steve Jobs）、Uber 2017（Travis Kalanick）、OpenAI 2023（Sam Altman），称每隔几年董事会就会重新认识到创始人本身就是战略。",
+       "source": "X：Rohan Paul (@rohanpaul_ai)",
+       "url": "https://aihot.news/items/k1kga19xtdab67lhplor8he8n",
+       "original": "https://x.com/rohanpaul_ai/status/2120994977421705296"
+      }
+     ]
+    },
+    {
+     "label": "技巧与观点",
+     "items": [
+      {
+       "title": "OpenRouter 详解自纠错网站本地化流水线：GPT-6.1 Sol 翻译 7 种语言全站约 $460",
+       "summary": "OpenRouter 上线简体中文、日语等 7 种语言 Beta 本地化，并详解配套的自纠错翻译流水线：GPT-6.1 Sol 翻译 16,918 条字符串，经代码检查、同模型校验和每日 AI 审查重试，最坏情况每条约 20 次模型调用。全站重译 7 种语言约 $460，约为 Smartling 机器翻译牌价的 6%，错误报告会转化为术语规则、风格注释或评测用例。",
+       "source": "OpenRouter：Announcements（RSS）",
+       "url": "https://aihot.news/items/cve017k4le2q7l8x1bfr2xdjx",
+       "original": "https://openrouter.ai/blog/announcements/openrouter-in-8-languages/"
+      },
+      {
+       "title": "OpenRouter 实测六模型并给出四层防护，解决 AI Agent 无限循环烧钱问题",
+       "summary": "OpenRouter 发布教程，讲解 AI Agent 因工具反复失败而陷入无限循环的成因，并给出四层防护：doom-loop 检测、loopKey 参数归一化、stopWhen 步数与成本上限、API key 信用额度。",
+       "source": "OpenRouter：Announcements（RSS）",
+       "url": "https://aihot.news/items/vq9nwgwhtm31cgoliyb7ydyde",
+       "original": "https://openrouter.ai/blog/tutorials/ai-agent-infinite-loop/"
+      }
+     ]
+    }
+   ],
+   "event_count": 12
+  },
   {
    "date": "2026-11-12",
    "generated_at": "2026-11-12T00:00:14.631Z",
@@ -2778,129 +2896,6 @@
        "source": "LangChain：Blog（RSS）",
        "url": "https://aihot.news/items/za03v9avbq4fpb2y5b1ql1t27",
        "original": "https://www.langchain.com/blog/context-engineering-deep-agents-remember"
-      }
-     ]
-    }
-   ],
-   "event_count": 12
-  },
-  {
-   "date": "2026-10-14",
-   "generated_at": "2026-10-14T00:00:27.127Z",
-   "window_start": "2026-10-13T00:00:00.000Z",
-   "window_end": "2026-10-14T00:00:00.000Z",
-   "lead": {
-    "title": "Google 发布 Gemini 4 Argon：面向复杂工程与科研任务的前沿模型",
-    "paragraph": "Google 发布 Gemini 4 Argon，面向开发者、企业、科学家和消费者全球开放，可经 Gemini API、AI Studio、Google Antigravity。"
-   },
-   "url": "https://aihot.news/daily/2026-10-14",
-   "sections": [
-    {
-     "label": "模型发布/更新",
-     "items": [
-      {
-       "title": "Google 发布 Gemini 4 Argon：面向复杂工程与科研任务的前沿模型",
-       "summary": "Google 发布 Gemini 4 Argon，面向开发者、企业、科学家和消费者全球开放，可经 Gemini API、AI Studio、Google Antigravity。",
-       "source": "Google Blog：AI（RSS）",
-       "url": "https://aihot.news/items/smxxtw5ca2c9jscojk4ppe5hf",
-       "original": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/"
-      },
-      {
-       "title": "面壁智能开源 MiniCPM-V 4.7，35B-A3B MoE 模型 3GB 内存端侧流畅运行",
-       "summary": "面壁智能联合 OpenBMB 社区于10月13日发布并开源 MiniCPM-V 4.7，包含 35B-A3B 和 1B 两个版本，称其为全球首个可在端侧无损流畅运行的开源 MoE 多模态大模型。",
-       "source": "公众号：面壁智能（MiniCPM）",
-       "url": "https://aihot.news/items/fidy0y9chlgs0puyn96qkmj1b",
-       "original": "https://mp.weixin.qq.com/s?__biz=Mzg3Mzg2MTg2NQ%3D%3D&mid=2247499456&idx=1&sn=03da7aed4dabbd4fca5c89ce88d4a90a"
-      },
-      {
-       "title": "Liquid AI 发布 LFM2.5-24B-A2B 端侧推理模型",
-       "summary": "Liquid AI 发布开源权重模型 LFM2.5-24B-A2B，总参数 24B、每 token 激活 2B，定位端侧快速智能体。",
-       "source": "Liquid AI 模型与工程博客（网页）",
-       "url": "https://aihot.news/items/j0hjfg7ioz2gs0s8msqnafpjj",
-       "original": "https://www.liquid.ai/blog/lfm2-5-24b-a2b"
-      }
-     ]
-    },
-    {
-     "label": "产品发布/更新",
-     "items": [
-      {
-       "title": "Google DeepMind 的 Gemini 4 Argon 上线 OpenRouter",
-       "summary": "Gemini 4 Argon 已上线 OpenRouter，可通过 Google AI Studio 和 Google Cloud 调用。该模型在 AutomationBench 拿到 51.3%、LVBench 拿到 91.7%，并以 68% 并列 CWE-bench v1 第一； introductory 定价为输入 $2/M、输出 $10/M。试用入口：https://openrouter.ai/google/gemini-4-argon",
-       "source": "X：OpenRouter (@OpenRouter)",
-       "url": "https://aihot.news/items/d4oyzg3qte4pt0ywsonolctwf",
-       "original": "https://x.com/OpenRouter/status/2110044453977403412"
-      },
-      {
-       "title": "Apple 发布 7 英寸智能音箱 HomeView，售价 299 美元并搭载 Siri AI",
-       "summary": "Apple 发布配备 7 英寸 Liquid Retina 显示屏的 HomeView，集娱乐、FaceTime、家庭监控和语音自动化于一体，标准版与壁挂版均定价 299 美元，11 月 13 日起在美英加澳等市场发售。",
-       "source": "Apple：Newsroom（RSS）",
-       "url": "https://aihot.news/items/kjcq4dywmvs5xijl4emac5o40",
-       "original": "https://www.apple.com/newsroom/2026/10/meet-apple-homeview-a-new-way-to-enjoy-entertainment-and-manage-the-home/"
-      },
-      {
-       "title": "NVIDIA 官宣 RTX Spark 软件生态就绪，10 月 16 日笔记本上市",
-       "summary": "NVIDIA 介绍 RTX Spark 平台生态就绪情况，RTX Spark 笔记本将于 10 月 16 日（周五）上市，搭载最高 128GB 统一内存和 1 petaflop AI 算力。",
-       "source": "NVIDIA Blog（RSS）",
-       "url": "https://aihot.news/items/ug7g6psicfobnnft0ebgpyl10",
-       "original": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-laptops-software-updates/"
-      },
-      {
-       "title": "千问发布AI眼镜N1/N1 Pro及首款AI耳夹式耳机并现货开售",
-       "summary": "千问发布三款硬件新品：AI眼镜N1、N1 Pro和AI耳夹式耳机，今日在淘宝、天猫、京东、抖音等平台现货开售，眼镜到手价2218元起，耳机1099元起。",
-       "source": "公众号：千问APP（阿里）",
-       "url": "https://aihot.news/items/bnwd1psqg66c268n4i1mal2pi",
-       "original": "https://mp.weixin.qq.com/s?__biz=MzYzNDE5MDEwMQ%3D%3D&mid=2247489149&idx=1&sn=26d7fefe24bfb18efa4582467313b1eb"
-      }
-     ]
-    },
-    {
-     "label": "行业动态",
-     "items": [
-      {
-       "title": "Character.AI 成立五年后申请 Chapter 11 破产，部分资产以 2000 万美元出售给 Disney",
-       "summary": "Character.AI 已申请 Chapter 11 破产，法院文件显示其资产和负债在 5000 万至 1 亿美元之间，并同意以 2000 万美元向 Disney 出售部分资产及技术非独占永久许可。出售过程预计 11 月底或 12 月初完成，期间平台继续运营，但尚无竞购方，若无买家平台将关停；此前公司因未成年用户诉讼、德州调查等困境，曾尝试 AI 视频生成、社交信息流和微短剧等转型未果。",
-       "source": "TechCrunch：AI（RSS）",
-       "url": "https://aihot.news/items/vwu0li2nl5hztqeztnq8b5udc",
-       "original": "https://techcrunch.com/2026/10/13/just-5-years-in-interactive-chatbot-platform-character-ai-files-for-bankruptcy/"
-      },
-      {
-       "title": "OpenAI 办公室发现窃密录音装置，涉事员工被捕",
-       "summary": "OpenAI 宣布在办公室内发现一个隐蔽的录音装置，利用自家模型分析该设备及其来源，确认是一名员工几天前安放。OpenAI 已将此事移交 FBI，FBI 已迅速逮捕相关人员，调查仍在进行中。OpenAI 表示目前没有迹象显示该员工不当访问或外泄模型权重、源代码或客户数据，该员工已被解雇，并将此案视为 AI 协助应对复杂安全威胁的实例。",
-       "source": "X：OpenAI Newsroom (@OpenAINewsroom)",
-       "url": "https://aihot.news/items/fgxi5gwvctlssc05odpcyf6ov",
-       "original": "https://x.com/OpenAINewsroom/status/2110095403198849132"
-      },
-      {
-       "title": "XBOW 团队借助 OpenAI GPT-5.6 Sol 获 Google Chrome 25 万美元全链漏洞赏金",
-       "summary": "XBOW 团队使用 OpenAI 的 GPT-5.6 Sol 辅助，在 6 天内以 4 万美元算力构建出 Chrome 全链漏洞，获得 Google 25 万美元赏金，这是 Google 第二次就 Chrome 全链漏洞发放赏金，也是 2026 年新规则下的首次。受影响范围为 Windows 上的 Chrome，作者称过去类似漏洞需约 6 个月构建，并提醒用户在出现 Update 按钮时及时重启 Chrome。",
-       "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
-       "url": "https://aihot.news/items/ekphiltd4fdsskdlueleul8qa",
-       "original": "https://x.com/reach_vb/status/2110086935733833893"
-      }
-     ]
-    },
-    {
-     "label": "论文研究",
-     "items": [
-      {
-       "title": "Anthropic 强化针对蒸馏攻击的防御， reasoning token 提取量下降 10 到 100 倍",
-       "summary": "Anthropic 发布博客，介绍其针对 Claude 蒸馏攻击的新防御方法，早期证据显示这些方法使蒸馏者获取的数据减少约 90% 到 99%。",
-       "source": "Anthropic：Research（发表成果 · 网页）",
-       "url": "https://aihot.news/items/lwchujhujmc1tdor61dn39irl",
-       "original": "https://www.anthropic.com/research/distillation-defenses"
-      }
-     ]
-    },
-    {
-     "label": "技巧与观点",
-     "items": [
-      {
-       "title": "Anthropic 自研版本控制系统 Scion，五个月完成 monorepo 从 git 迁移",
-       "summary": "Anthropic 发布工程复盘，因 Claude 使日均合并代码量从 2026 年 5 月约 2,500 增至 9 月超 30,000，五个月内自研版本控制系统 Scion 并完全替代 git，同时推出代码评审工具 Antique。",
-       "source": "Anthropic：Engineering（事故复盘 + 工程实践 · 网页）",
-       "url": "https://aihot.news/items/fpyjwv3o9zwxc9zs7j1bmnw8i",
-       "original": "https://www.anthropic.com/engineering/redesigning-source-control"
       }
      ]
     }
