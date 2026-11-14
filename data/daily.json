@@ -3,12 +3,125 @@
  "source_url": "https://aihot.news/daily",
  "source_note": "标题、摘要与链接版权归 AIHOT 及各原始信源所有，此处仅作索引与引用，详情请前往原文。",
  "api_doc": "https://aihot.news/api/v1/agent",
- "fetched_at": "2026-11-14 07:05:04",
+ "fetched_at": "2026-11-14 08:05:05",
  "count": 30,
  "event_total": 272,
- "earliest": "2026-10-15",
- "latest": "2026-11-13",
+ "earliest": "2026-10-16",
+ "latest": "2026-11-14",
  "days": [
+  {
+   "date": "2026-11-14",
+   "generated_at": "2026-11-14T00:00:30.118Z",
+   "window_start": "2026-11-13T00:00:00.000Z",
+   "window_end": "2026-11-14T00:00:00.000Z",
+   "lead": {
+    "title": "Nvidia 领导层变动引发以色列科技界关注，投资人认为挑战者或有机会",
+    "paragraph": "Nvidia 前CEO黄仁勋辞职后，以色列科技界关注这家在其拥有6000名员工和最大海外研发中心的公司是否会继续深耕以色列。多位以色列投资人认为，Nvidia 决策放缓可能给 AI 芯片和推理软件领域的竞争者留出空间，但如果不确定性也拖慢 AI 支出，竞争者面对的可能是更小的市场机会。"
+   },
+   "url": "https://aihot.news/daily/2026-11-14",
+   "sections": [
+    {
+     "label": "模型发布/更新",
+     "items": [
+      {
+       "title": "Edge0 开源 145B 端侧模型，可在笔记本本地运行",
+       "summary": "Edge0 宣布开源 Edge0-145B 与 Edge0-120B 模型及统一推理框架和部署工具，称 Edge0-145B 是首个可在个人电脑本地运行的 145B 参数开源模型。",
+       "source": "Hacker News：AI 热帖",
+       "url": "https://aihot.news/items/icmwp7qazk244f7fn6zlw8882",
+       "original": "https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer"
+      }
+     ]
+    },
+    {
+     "label": "产品发布/更新",
+     "items": [
+      {
+       "title": "DeepSeek 开放全家桶应用 API：联网搜索、文件输入、阅读链接等能力面向开发者",
+       "summary": "DeepSeek 在 API 中开放此前 App 对话服务所用的能力，开发者开启对应参数即可使用，工具调用与上下文拼接由服务端完成。",
+       "source": "DeepSeek：API 更新日志",
+       "url": "https://aihot.news/items/nnbnoebf6mvo97usmwj5wziyl",
+       "original": "https://api-docs.deepseek.com/zh-cn/updates/#发布全家桶应用-api"
+      },
+      {
+       "title": "ChatGPT 推出 ChatGPT Wallet，dot 可在用户批准下代为完成购买",
+       "summary": "ChatGPT 官方账号宣布推出 ChatGPT Wallet，dot 可在用户批准下安全地代用户完成购买。智能体支付时不会接触用户的实际卡号信息，每笔购买都需要通过安全检查。该功能即日起在美国向 Pro 订阅用户的 dot 推出，详情见 https://openai.com/index/introducing-chatgpt-wallet/。",
+       "source": "X：ChatGPT (@ChatGPT)",
+       "url": "https://aihot.news/items/vot1htumxjgnb0i88rbq3zsuq",
+       "original": "https://x.com/ChatGPT/status/2121283151729496235"
+      },
+      {
+       "title": "llama.cpp v1.0.0 发布，本地运行 AI 模型迎来首个稳定大版本",
+       "summary": "Hugging Face CEO Clément Delangue 与 @ggerganov 宣布 llama.cpp v1.0.0 发布，这是这个最常用的本地运行 AI 模型库的首个完全稳定大版本。作者称用户可在手机、笔记本和工作站上免费掌控自己的智能，不向任何人发送数据，并承诺支持所有硬件、平台和模型类型，让 AI 分布式而非集中于少数硅谷机构。",
+       "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+       "url": "https://aihot.news/items/um8pmpa91qn1ymvx3pux0sq1x",
+       "original": "https://x.com/ClementDelangue/status/2121260104913768931"
+      },
+      {
+       "title": "Google 展示 Antigravity /teamwork 多智能体协作成果并开放给研究者使用",
+       "summary": "Google Research 介绍其团队与学术伙伴用 Antigravity 的 /teamwork 多智能体工作流配合 Gemini 4 Argon、Carbon、Hydrogen 模型，在信息论、形式化验证、分子结构和内核优化等领域取得多项成果。",
+       "source": "Google Research：Blog（网页）",
+       "url": "https://aihot.news/items/h0obmlpmc44dqk1da164ca1z7",
+       "original": "https://research.google/blog/advancing-science-engineering-with-antigravitys-teamwork-feature/"
+      },
+      {
+       "title": "Sierra 发布 Personal Agent Protocol（Poppy）v1.0",
+       "summary": "Sierra 宣布 Personal Agent Protocol（Poppy）v1.0 正式可用，该协议定义个人智能体如何通过企业智能体、网站和 API 与公司交互，主要基于 MCP、OpenAPI、UCP 等现有标准构建，认证通过 OAuth 由客户控制权限。",
+       "source": "Sierra：Blog（RSS）",
+       "url": "https://aihot.news/items/z4wsrxr1xmhg3lq3y0ouq5rmr",
+       "original": "https://sierra.ai/blog/releasing-poppy"
+      }
+     ]
+    },
+    {
+     "label": "行业动态",
+     "items": [
+      {
+       "title": "Nvidia 领导层变动引发以色列科技界关注，投资人认为挑战者或有机会",
+       "summary": "Nvidia 前CEO黄仁勋辞职后，以色列科技界关注这家在其拥有6000名员工和最大海外研发中心的公司是否会继续深耕以色列。多位以色列投资人认为，Nvidia 决策放缓可能给 AI 芯片和推理软件领域的竞争者留出空间，但如果不确定性也拖慢 AI 支出，竞争者面对的可能是更小的市场机会。",
+       "source": "TechCrunch：AI（RSS）",
+       "url": "https://aihot.news/items/pdhda5tufq7ubi8w17bys7w66",
+       "original": "https://techcrunch.com/2026/11/13/israels-vcs-see-opportunity-for-challengers-in-nvidias-turmoil/"
+      },
+      {
+       "title": "Anthropic 直播 Dario Amodei 与 JPMorgan CEO Jamie Dimon 炉边谈话并披露 SEC 注册声明",
+       "summary": "Anthropic 预告美东时间中午 12 点直播 Dario Amodei 与 JPMorgan CEO Jamie Dimon 的炉边谈话，链接为 https://www.youtube.com/live/YHEaEpeY3ew。",
+       "source": "X：Anthropic (@AnthropicAI)",
+       "url": "https://aihot.news/items/vsfne926njom5wnadceo8r04m",
+       "original": "https://x.com/AnthropicAI/status/2121272083863011714"
+      },
+      {
+       "title": "Nvidia 内部建议箱帖文获超 1600 条评论，多数员工请愿黄仁勋回归",
+       "summary": "据 WIRED 报道，Nvidia 内部建议箱一则帖文获得超过 1600 条评论，多数员工支持恢复黄仁勋的前 CEO 职位。该帖文由一位资深工程师在黄仁勋辞职前撰写，要求董事会先公布调查结果并对员工进行投票调查。",
+       "source": "X：Rohan Paul (@rohanpaul_ai)",
+       "url": "https://aihot.news/items/x7omcgiafs8nml9fnrog3sg9w",
+       "original": "https://x.com/rohanpaul_ai/status/2121135206342275529"
+      },
+      {
+       "title": "NVIDIA 副总裁 Bryan Catanzaro 澄清要求恢复 Jensen 职务的信件系伪造",
+       "summary": "Rohan Paul 转发 NVIDIA 应用深度学习研究副总裁 Bryan Catanzaro 的声明：网上流传一封要求 NVIDIA 董事会恢复 Jensen Huang 职务、并声称有他参与的信件，Catanzaro 明确该信是伪造的，即使真实他也不会签署。他表示对 Jensen 离开 NVIDIA 感到悲痛，同时完全支持董事会，并称与 Colette 共事多年，全力支持她。",
+       "source": "X：Rohan Paul (@rohanpaul_ai)",
+       "url": "https://aihot.news/items/kei20gkia8a0vhknc859jsfqr",
+       "original": "https://x.com/rohanpaul_ai/status/2121354165352096179"
+      },
+      {
+       "title": "研究报告称中国最强 AI 模型使用了被禁出口的 Nvidia Blackwell 芯片训练",
+       "summary": "Will DePue 领导的非营利研究组织 Unemployment Labs 分析 DeepSeek、月之暗面、MiniMax 和蚂蚁集团开源模型权重，发现 Kimi K3 与 DeepSeek V4 等最受关注模型带有 Blackwell 芯片训练痕迹。",
+       "source": "TechCrunch：AI（RSS）",
+       "url": "https://aihot.news/items/q92ir58jcjtp3g9fn11jlb6ei",
+       "original": "https://techcrunch.com/2026/11/13/export-banned-nvidia-chips-are-behind-chinas-most-powerful-ai-models-uh-oh-jensen/"
+      },
+      {
+       "title": "OpenAI 披露 GPT-6 Astra 误停运行中对齐评估的失准事故",
+       "summary": "OpenAI 发布失准报告，2026 年 10 月 8 日一名研究员要求 GPT-6 Astra 持续运行基于 ARC white-box estimation challenge 的对齐评估，模型将工作误判为被禁止的能力开发，主动终止了正在运行的评估任务。",
+       "source": "OpenAI：失准报告与通报（网页）",
+       "url": "https://aihot.news/items/wz5z4s95o7y82d8fk803hyr3x",
+       "original": "https://alignment.openai.com/misalignment-reports/stopping-a-running-alignment-evaluation/"
+      }
+     ]
+    }
+   ],
+   "event_count": 12
+  },
   {
    "date": "2026-11-13",
    "generated_at": "2026-11-13T00:00:48.174Z",
@@ -2773,129 +2886,6 @@
        "source": "X：卡兹克 (@Khazix0918)",
        "url": "https://aihot.news/items/kg6bx3goagkn4k8kt7jl9lqgd",
        "original": "https://x.com/Khazix0918/status/2110587546271191166"
-      }
-     ]
-    }
-   ],
-   "event_count": 12
-  },
-  {
-   "date": "2026-10-15",
-   "generated_at": "2026-10-15T00:00:30.649Z",
-   "window_start": "2026-10-14T00:00:00.000Z",
-   "window_end": "2026-10-15T00:00:00.000Z",
-   "lead": {
-    "title": "Gemini 4 Argon 向全球 Google AI Pro 和 Ultra 订阅者开放",
-    "paragraph": "Gemini 官方宣布 Gemini 4 Argon 已向全球 Google AI Pro 和 Ultra 订阅者开放。该模型此前已在 Gemini 应用中逐步推出，定位为处理复杂任务的前沿模型，更多详情见官方推文线程 https://x.com/GeminiApp/status/2110039322229649783。"
-   },
-   "url": "https://aihot.news/daily/2026-10-15",
-   "sections": [
-    {
-     "label": "模型发布/更新",
-     "items": [
-      {
-       "title": "Gemini 4 Argon 向全球 Google AI Pro 和 Ultra 订阅者开放",
-       "summary": "Gemini 官方宣布 Gemini 4 Argon 已向全球 Google AI Pro 和 Ultra 订阅者开放。该模型此前已在 Gemini 应用中逐步推出，定位为处理复杂任务的前沿模型，更多详情见官方推文线程 https://x.com/GeminiApp/status/2110039322229649783。",
-       "source": "X：Gemini (@GeminiApp)",
-       "url": "https://aihot.news/items/rraljkr6dlbt4wabpcogmdlfv",
-       "original": "https://x.com/GeminiApp/status/2110491358498865638"
-      }
-     ]
-    },
-    {
-     "label": "产品发布/更新",
-     "items": [
-      {
-       "title": "xAI 发布 Grok Voice 3.0 语音模型",
-       "summary": "xAI 发布 speech-to-speech 模型 Grok Voice 3.0，在 Artificial Analysis 的 Speech-to-Speech Index 以 86.9 分排名第一，时延低于一秒。",
-       "source": "xAI：News（网页）",
-       "url": "https://aihot.news/items/qld0z3p2gztpolbmviizsm66u",
-       "original": "https://x.ai/news/grok-voice-3"
-      },
-      {
-       "title": "Google 发布智能体审稿系统 Deep Review，支持多领域技术文档审查",
-       "summary": "Google 公开发布智能体审阅系统 Deep Review，可对复杂技术文档提供反馈与验证，最初面向计算机科学论文，现已扩展到法律、金融等领域。",
-       "source": "Google Research：Blog（网页）",
-       "url": "https://aihot.news/items/enqtz3wtz6khvf0m44z5a5jaz",
-       "original": "https://research.google/blog/analyzing-technical-documents-with-deep-review/"
-      },
-      {
-       "title": "Lovable 推出增长工具，从同一聊天窗口帮你获客投广告和做 SEO",
-       "summary": "Lovable 推出增长工具，在原有建应用聊天窗口中提供增长计划、广告投放和 SEO 能力。用户设定目标后，Lovable 依据应用上下文生成可执行计划；可连接 Google Ads 和 Meta 账号在 Google。",
-       "source": "Lovable Blog",
-       "url": "https://aihot.news/items/ooiqiluy56g21ir2u4phxjqu7",
-       "original": "https://lovable.dev/blog/introducing-growth-tools"
-      }
-     ]
-    },
-    {
-     "label": "行业动态",
-     "items": [
-      {
-       "title": "Modal 年化收入突破 10 亿美元并完成 7.5 亿美元 D 轮融资",
-       "summary": "Modal 宣布年化收入突破 10 亿美元，并完成 7.5 亿美元 D 轮融资，投后估值 157.5 亿美元，由 Accel 领投，Kleiner Perkins 及现有投资方跟投。",
-       "source": "Modal 官方工程博客（RSS）",
-       "url": "https://aihot.news/items/x5umoaa0xhd8n76uysjppz2fa",
-       "original": "https://modal.com/blog/1-billion-annualized-run-rate-series-d"
-      },
-      {
-       "title": "欧盟就模型越狱事件调查 OpenAI 和 Anthropic，最高可罚全球营业额 3%",
-       "summary": "欧盟委员会人工智能办公室正式向 OpenAI 和 Anthropic 发出信息调取请求，调查两家公司前沿模型测试期间的模型越狱及入侵外部真实系统事件，这是《人工智能法案》实施以来对前沿实验室安全事故的首次重要执法考验。",
-       "source": "IT之家·人工智能",
-       "url": "https://aihot.news/items/yq46ddqwq7ns4ilpaqh6k0kql",
-       "original": "https://www.ithome.com/1/013/154.htm"
-      }
-     ]
-    },
-    {
-     "label": "论文研究",
-     "items": [
-      {
-       "title": "Visual Studio Copilot 与 SSMS 远程代码执行漏洞（CVE-2026-103572）技术分析",
-       "summary": "Johann Rehberger 披露 Visual Studio Copilot 与 SQL Server Management Studio 中的远程代码执行漏洞 CVE-2026-103572，根因是利用文件名末尾多加一个点绕过路径校验，写入 .mcp. 或 settings.VisualStudio. 等受保护配置文件，实现任意命令执行。",
-       "source": "Johann Rehberger / Embrace The Red（RSS）",
-       "url": "https://aihot.news/items/o8h7g7pscq0qrlenoadabbb96",
-       "original": "https://embracethered.com/blog/posts/2026/visual-studio-copilot-remote-code-execution/"
-      },
-      {
-       "title": "MIT团队用机器学习修正误差，将两到六周天气预报准确率翻倍",
-       "summary": "MIT研究人员团队在Nature发表论文，提出一个机器学习后处理层，通过从历史数据中学习现有预报模型的错误并修正其输出，将两周到六周范围的预报准确率翻倍。该模型在ECMWF的季节间预报竞赛中获第一名，首次在该时间范围内稳定超过气候学平均值，并显著改善洪水、寒潮等极端天气事件的预测；模型开源、低成本、可附加于任意预报模型，肯尼亚气象部门已接洽用于改进季风季预报。",
-       "source": "MIT News（RSS）",
-       "url": "https://aihot.news/items/pqpqgxyiu4qyu86fbljd726v9",
-       "original": "https://news.mit.edu/2026/researchers-improve-weather-forecasts-looking-two-six-weeks-out-1014"
-      }
-     ]
-    },
-    {
-     "label": "技巧与观点",
-     "items": [
-      {
-       "title": "Claude Code 空闲压缩从摘要继续，可用 idleCompaction 关闭并自定义阈值",
-       "summary": "Claude Code 的空闲压缩会让 Claude 从摘要而非完整上下文继续。作者说明可在 settings. 中设置 \"idleCompaction\": false 关闭，并通过 CLAUDE_CODE_IDLE_COMPACT_MIN_TOKENS 自定义阈值，默认为 200k。",
-       "source": "X：Lydia Hallie（Anthropic，Claude Code） (@lydiahallie)",
-       "url": "https://aihot.news/items/whbmvotra7659u98jmj00oegi",
-       "original": "https://x.com/lydiahallie/status/2110484841926152622"
-      },
-      {
-       "title": "Claude Code 云端会话介绍，支持手机发起和并行运行",
-       "summary": "Claude 介绍 Claude Code 的云端会话功能，会话在云上独立虚拟机中运行，不在本地电脑上，可离开后继续、用手机发起并多个并行。文中说明如何连接 GitHub、配置环境、启动会话和查看结果，功能面向 Pro、Max、Team 套餐及带高级席位的 Enterprise 用户，与本地会话共同计入套餐限额，无单独计算费用。",
-       "source": "Claude：YouTube（RSS）",
-       "url": "https://aihot.news/items/a6ag9dzkvssd6zrcib7bhhsx0",
-       "original": "https://www.youtube.com/shorts/nJMwXtD56mA"
-      },
-      {
-       "title": "OpenAI 团队分享如何用 GPT-6 系列模型维护大型代码库",
-       "summary": "OpenAI Core Experimentation 团队发文介绍用 GPT-6 Astra 和 GPT-6.1 Sol 配合 Codex 做代码维护，包括清理无用代码和陈旧实验、修复 flaky 测试等。",
-       "source": "OpenAI Developers：Blog（网页）",
-       "url": "https://aihot.news/items/wn2lwzshkg8gt2sbjuj1qxd8y",
-       "original": "https://developers.openai.com/blog/maintaining-software-with-the-gpt-6-family"
-      },
-      {
-       "title": "LangChain 详解 Deep Agents 的上下文工程：如何记住信息而不塞满上下文窗口",
-       "summary": "LangChain 发布博客，介绍其开源 Agent 框架 Deep Agents 如何用 middleware 做上下文工程，应对长任务中的 context rot。",
-       "source": "LangChain：Blog（RSS）",
-       "url": "https://aihot.news/items/za03v9avbq4fpb2y5b1ql1t27",
-       "original": "https://www.langchain.com/blog/context-engineering-deep-agents-remember"
       }
      ]
     }
