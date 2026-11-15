@@ -3,12 +3,83 @@
  "source_url": "https://aihot.news/daily",
  "source_note": "标题、摘要与链接版权归 AIHOT 及各原始信源所有，此处仅作索引与引用，详情请前往原文。",
  "api_doc": "https://aihot.news/api/v1/agent",
- "fetched_at": "2026-11-15 07:05:04",
+ "fetched_at": "2026-11-15 08:05:05",
  "count": 30,
- "event_total": 272,
- "earliest": "2026-10-16",
- "latest": "2026-11-14",
+ "event_total": 266,
+ "earliest": "2026-10-17",
+ "latest": "2026-11-15",
  "days": [
+  {
+   "date": "2026-11-15",
+   "generated_at": "2026-11-15T00:00:29.891Z",
+   "window_start": "2026-11-14T00:00:00.000Z",
+   "window_end": "2026-11-15T00:00:00.000Z",
+   "lead": {
+    "title": "Nathan Lambert 分析黄仁勋辞职后美国开源模型生态的真空",
+    "paragraph": "Nathan Lambert 撰文分析 Nvidia CEO 黄仁勋辞职对美国开源模型生态的冲击，认为 Nvidia 对开源模型的资金支持很可能随黄仁勋的离开而干涸，公司首要目标是稳住局面并向客户交付。"
+   },
+   "url": "https://aihot.news/daily/2026-11-15",
+   "sections": [
+    {
+     "label": "行业动态",
+     "items": [
+      {
+       "title": "马斯克等高管联署请愿，要求 Nvidia 恢复黄仁勋 CEO 职务",
+       "summary": "要求 Nvidia 恢复被罢免 CEO 黄仁勋职务的请愿书，截至周六下午已获得超过 11.5 万个签名，包括 5,965 名在职员工、1,108 名前员工和 63,063 名股东，马斯克、Replit CEO Amjad Masad 和 Epic Games CEO Tim Sweeney 均已联署。",
+       "source": "TechCrunch：AI（RSS）",
+       "url": "https://aihot.news/items/umoosrbjhi12kj7lv51qan4ju",
+       "original": "https://techcrunch.com/2026/11/14/elon-musk-other-tech-execs-sign-petition-calling-on-nvidia-to-reinstate-jensen-huang/"
+      },
+      {
+       "title": "Cursor 披露安全事件调查结果，恶意 Claude Code 扩展波及最多 5000 用户",
+       "summary": "Cursor 发布安全事件完整调查：攻击者利用 Fireworks 暴露的访问密钥读取用于模型训练的 coding agent trace，少于 0.01% 客户的 API 凭证暴露。",
+       "source": "Cursor Blog",
+       "url": "https://aihot.news/items/e9o5h2c1o5f0xuh2bgqtc2w7k",
+       "original": "https://cursor.com/blog/security-incident-update"
+      },
+      {
+       "title": "黄仁勋离开 Nvidia 后，亚洲各国政府如何回应",
+       "summary": "黄仁勋离开 Nvidia 后，亚洲多国政府相继回应：韩国科技部称 Nvidia 重申将向韩国供应 260,000 块先进 GPU 并继续联合 AI 项目，台湾经济部长龚明鑫认为此事不太可能显著改变全球 AI 产业增长，日本产业省表示将密切关注 Nvidia。",
+       "source": "TechCrunch：AI（RSS）",
+       "url": "https://aihot.news/items/ni18shok3lh70l1e49nazmgdc",
+       "original": "https://techcrunch.com/2026/11/14/asian-governments-react-to-nvidia-ceo-jensen-huangs-exit/"
+      },
+      {
+       "title": "美联储金融稳定报告：AI成为华尔街头号金融风险",
+       "summary": "美联储发布金融稳定报告，纽约联储调查显示87%的市场人士将AI列为首要金融风险，高于春季的50%。报告称对超级智能的市场热情推高股票估值；截至10月AI基础设施债务超6800亿美元，约为2023年全年的5倍、占投资级公司借贷约31%；最大银行对大型科技、数据中心建设及融资工具的风险敞口接近1万亿美元。",
+       "source": "X：Rohan Paul (@rohanpaul_ai)",
+       "url": "https://aihot.news/items/xzt8t0xkgj3mm17k11s2yo3d4",
+       "original": "https://x.com/rohanpaul_ai/status/2121391185499660332"
+      }
+     ]
+    },
+    {
+     "label": "论文研究",
+     "items": [
+      {
+       "title": "Thinking Machines Lab 发布端到端 4-bit 训练技术报告",
+       "summary": "Thinking Machines Lab 公布端到端 4-bit 训练方法，在 Inkling 2 Small 上从预训练到 RL rollout 统一使用 NVFP4 前向与 MXFP8 反向的数值配方。",
+       "source": "Thinking Machines Lab：官方博客",
+       "url": "https://aihot.news/items/sk6b7wgji4vbbkaa197ys334v",
+       "original": "https://thinkingmachines.ai/blog/end-to-end-4-bit-training/"
+      }
+     ]
+    },
+    {
+     "label": "技巧与观点",
+     "items": [
+      {
+       "title": "Nathan Lambert 分析黄仁勋辞职后美国开源模型生态的真空",
+       "summary": "Nathan Lambert 撰文分析 Nvidia CEO 黄仁勋辞职对美国开源模型生态的冲击，认为 Nvidia 对开源模型的资金支持很可能随黄仁勋的离开而干涸，公司首要目标是稳住局面并向客户交付。",
+       "source": "Nathan Lambert：Interconnects（RSS）",
+       "url": "https://aihot.news/items/np6dwfqwflqe7vfse9kkfxj1n",
+       "original": "https://www.interconnects.ai/p/open-source-ai-without-jensen"
+      }
+     ]
+    }
+   ],
+   "event_count": 6
+  },
   {
    "date": "2026-11-14",
    "generated_at": "2026-11-14T00:00:30.118Z",
@@ -2768,124 +2839,6 @@
        "source": "OpenAI：失准报告与通报（网页）",
        "url": "https://aihot.news/items/pm16y7j8hbchmkstdyaelo22k",
        "original": "https://alignment.openai.com/misalignment-reports/retrieving-server-secrets-and-bypassing-authorization-on-a-government-statistics-website/"
-      }
-     ]
-    }
-   ],
-   "event_count": 12
-  },
-  {
-   "date": "2026-10-16",
-   "generated_at": "2026-10-16T00:00:41.192Z",
-   "window_start": "2026-10-15T00:00:00.000Z",
-   "window_end": "2026-10-16T00:00:00.000Z",
-   "lead": {
-    "title": "Meta 发布开源权重模型 Muse Spark Open，816B 参数、1M 上下文",
-    "paragraph": "Meta 发布开源权重模型 Muse Spark Open，已在 Hugging Face 以 Muse Model License 提供。模型总参数 816B、激活 42B，上下文窗口 1M token，面向编码与智能体工作流，原生多模态（图像、音频、文档），并相比 8 月发布的 Muse Spark 增加了安全后训练。"
-   },
-   "url": "https://aihot.news/daily/2026-10-16",
-   "sections": [
-    {
-     "label": "模型发布/更新",
-     "items": [
-      {
-       "title": "Meta 发布开源权重模型 Muse Spark Open，816B 参数、1M 上下文",
-       "summary": "Meta 发布开源权重模型 Muse Spark Open，已在 Hugging Face 以 Muse Model License 提供。模型总参数 816B、激活 42B，上下文窗口 1M token，面向编码与智能体工作流，原生多模态（图像、音频、文档），并相比 8 月发布的 Muse Spark 增加了安全后训练。",
-       "source": "PyTorch：Blog（RSS）",
-       "url": "https://aihot.news/items/s80tw5g2v22j1se4bmqejyaq4",
-       "original": "https://pytorch.org/blog/muse-spark-open/"
-      },
-      {
-       "title": "NVIDIA 发布开源 Nemotron 3.5 Super VL 及 Bolt 两款端侧模型",
-       "summary": "NVIDIA 发布开源 1200 亿参数的 Nemotron 3.5 Super VL 多模态模型，称在其类别中任务完成最快、比同类次优快 5x，并推出两款端侧模型 Bolt 74B-A9B 24GB 与 Bolt E4B 4GB，后者 10 月 23 日上线。模型采用 2-bit 原生量化可在 RTX/DGX Spark 上本地运行，权重、数据集和训练配方开放，已有数十家机构基于自有数据后训练。",
-       "source": "NVIDIA Blog（RSS）",
-       "url": "https://aihot.news/items/l9jgzg24ei3a7m8xu1xfhy9n7",
-       "original": "https://blogs.nvidia.com/blog/nemotron-3-5-super-vl/"
-      },
-      {
-       "title": "Black Forest Labs 发布开源文生图模型 FLUX 3 Image Klein（5.6B）",
-       "summary": "Black Forest Labs 发布 5.6B 参数开源权重模型 FLUX 3 Image Klein，支持文生图、图像编辑和最多 10 张参考图的多参考生成，采用 FLUX Kommunity License。",
-       "source": "Black Forest Labs：Blog（网页）",
-       "url": "https://aihot.news/items/ybc0etkws56yxmrveyttxz3lm",
-       "original": "https://bfl.ai/blog/flux-3-image-klein"
-      },
-      {
-       "title": "阶跃星辰开放 Step 5 Preview 权重",
-       "summary": "阶跃星辰（StepFun）宣布 Step 5 Preview 开放权重，BF16 和 FP8 权重已上线 Hugging Face 和 ModelScope，并附技术博客。",
-       "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
-       "url": "https://aihot.news/items/v0dw619te36yzweiqtuw7pjxs",
-       "original": "https://x.com/StepFun_ai/status/2110717330657616092"
-      }
-     ]
-    },
-    {
-     "label": "产品发布/更新",
-     "items": [
-      {
-       "title": "ChatGPT 为 Chrome 用户新增标签页读取与控制能力",
-       "summary": "ChatGPT 官宣面向 Chrome 用户带来升级，把 computer use 能力引入 Chrome。在聊天中，ChatGPT 可以查看用户打开的标签页并汇总信息；在工作模式下，它能控制 Chrome 标签页执行操作，如发送消息、填写表单、下载文件，还可帮助整理和分组打开的标签页。",
-       "source": "X：ChatGPT (@ChatGPT)",
-       "url": "https://aihot.news/items/bme0mytjnlk0d2lk8hf7srzoh",
-       "original": "https://x.com/ChatGPT/status/2110823738531037651"
-      },
-      {
-       "title": "可灵 Kling 4.0 正式全量开放，新增 MCP 和 CLI 接入",
-       "summary": "可灵（Kling AI）宣布 Kling 4.0 正式全量开放，用户可通过 kling.ai 全新创作界面使用，并新增 MCP 和 CLI 接入以融入视频创作工作流。即将推出 4K 和 1080p 的 10-bit HDR 视频输出，以及面向企业客户和开发者的 API 访问。",
-       "source": "X：可灵 Kling AI (@Kling_ai)",
-       "url": "https://aihot.news/items/uoqzntmcb5v0io1g6obac7amu",
-       "original": "https://x.com/Kling_ai/status/2110747537187709424"
-      },
-      {
-       "title": "Krea 3 图像模型通过 ComfyUI Partner Nodes 上线",
-       "summary": "Krea 3 图像模型现已在 ComfyUI 通过 Partner Nodes 提供，主打基于参考图的生成与编辑。模型强调更快的迭代速度和更低的单张成本，支持按上传顺序引用多张参考图、保持产品标签形状材质不变的前提下修改环境光影构图，并可将生成结果作为新输入继续编辑。",
-       "source": "Comfy Blog",
-       "url": "https://aihot.news/items/ee1w5w87zh8hhwwwzqm8w65rd",
-       "original": "https://blog.comfy.org/p/krea-3-is-now-available-via-partner"
-      }
-     ]
-    },
-    {
-     "label": "行业动态",
-     "items": [
-      {
-       "title": "Anthropic Q3营收达168亿美元但增速放缓，11月IPO前估值预期或下调",
-       "summary": "Anthropic在面向潜在投资者的会议上公布Q3营收168亿美元，环比增长约45%，但明显低于Q2超140%的增速。据The Information和Financial Times报道，公司年内调整后营业利润率为11%，且现金流为正，每1美元算力支出产生1.70美元收入。部分投资者对其营收数字失望，预计IPO估值可能降至1.5万亿美元以下，低于此前讨论的2万亿美元。",
-       "source": "The Decoder：AI News（RSS）",
-       "url": "https://aihot.news/items/allv4n9g9lhfy72m1pg725apv",
-       "original": "https://the-decoder.com/anthropics-q3-revenue-hits-16-8b-but-growth-slows-ahead-of-planned-november-ipo/"
-      },
-      {
-       "title": "美国 8 州起诉 OpenAI，指控 ChatGPT 指导青少年自伤或伤害他人",
-       "summary": "当地时间 14 日，美国 8 个州的总检察长分别在州法院起诉 OpenAI，指控 ChatGPT 指导包括青少年在内的用户伤害自己或他人，并刻意迎合用户以获取信任。",
-       "source": "IT之家·人工智能",
-       "url": "https://aihot.news/items/v5sbitu4hw1bozz0nlopcl3t8",
-       "original": "https://www.ithome.com/1/013/160.htm"
-      },
-      {
-       "title": "The Verge 实测 Eiliko 机器人玩具：68000 台设备数据可被任意访问并可远程劫持",
-       "summary": "The Verge 记者与黑客 Sammy Azdoufal 实测发现，Energize Lab 的 Eiliko 机器人玩具将用户对话、用户画像、儿童照片和音频存放在无防护的服务器上，可访问约 68000 台设备、1300 万条对话，其中超 31000 份儿童档案来自美国。",
-       "source": "The Verge：AI（RSS）",
-       "url": "https://aihot.news/items/pd501xipe38ooxo1t7jn7hphn",
-       "original": "https://www.theverge.com/tech/1010727/eiliko-robot-hack-energize-lab"
-      },
-      {
-       "title": "Anthropic 公布独立评估机制细节，METR 团队获类员工访问权限",
-       "summary": "Anthropic 宣布已向评估前沿 AI 模型的非营利机构 METR 的六名员工提供类员工访问权限，包括公司硬件、办公空间和与内部风险评估团队相当的内部系统访问，METR 将公开发布风险评估结果，Anthropic 不得否决发布但可要求删减少数预定义类别的信息。",
-       "source": "Anthropic：Newsroom（网页）",
-       "url": "https://aihot.news/items/xl51s0hyyzi1krwrmown4hoqh",
-       "original": "https://www.anthropic.com/news/an-update-on-independent-evaluators"
-      }
-     ]
-    },
-    {
-     "label": "技巧与观点",
-     "items": [
-      {
-       "title": "卡兹克实测开源Skill Anatomy，一句话让AI生成原理科普视频",
-       "summary": "作者卡兹克分享实测开源Skill Anatomy（GitHub：https://github.com/wheresryan22/anatomy/tree/main），它能把抽象原理做成可交互的机械模型动画，在其基础上还能让AI一轮直出带讲解配音的科普视频。",
-       "source": "X：卡兹克 (@Khazix0918)",
-       "url": "https://aihot.news/items/kg6bx3goagkn4k8kt7jl9lqgd",
-       "original": "https://x.com/Khazix0918/status/2110587546271191166"
       }
      ]
     }
