@@ -3,12 +3,135 @@
  "source_url": "https://aihot.news/daily",
  "source_note": "标题、摘要与链接版权归 AIHOT 及各原始信源所有，此处仅作索引与引用，详情请前往原文。",
  "api_doc": "https://aihot.news/api/v1/agent",
- "fetched_at": "2026-11-19 07:05:03",
+ "fetched_at": "2026-11-19 08:05:06",
  "count": 30,
  "event_total": 273,
- "earliest": "2026-10-20",
- "latest": "2026-11-18",
+ "earliest": "2026-10-21",
+ "latest": "2026-11-19",
  "days": [
+  {
+   "date": "2026-11-19",
+   "generated_at": "2026-11-19T00:00:20.591Z",
+   "window_start": "2026-11-18T00:00:00.000Z",
+   "window_end": "2026-11-19T00:00:00.000Z",
+   "lead": {
+    "title": "Google DeepMind 发布 Gemini 4 Neon",
+    "paragraph": "Google DeepMind 发布 Gemini 4 Neon，主打前沿智能与快速端到端任务完成，覆盖软件工程、知识工作和科学工作流。模型在 Artificial Analysis Intelligence Index 得 61 分排第 3，Vals Index 排第 2，Agent Arena Index 以 1336 分全球第 2。"
+   },
+   "url": "https://aihot.news/daily/2026-11-19",
+   "sections": [
+    {
+     "label": "模型发布/更新",
+     "items": [
+      {
+       "title": "Google DeepMind 发布 Gemini 4 Neon",
+       "summary": "Google DeepMind 发布 Gemini 4 Neon，主打前沿智能与快速端到端任务完成，覆盖软件工程、知识工作和科学工作流。模型在 Artificial Analysis Intelligence Index 得 61 分排第 3，Vals Index 排第 2，Agent Arena Index 以 1336 分全球第 2。",
+       "source": "Google DeepMind：Blog（RSS）",
+       "url": "https://aihot.news/items/lp0snt9lfrx5ju7mg3wma6hnw",
+       "original": "https://deepmind.google/blog/introducing-gemini-4-neon/"
+      },
+      {
+       "title": "OpenAI 发布 GPT-6.2 Astra 和 Sol：更便宜但口碑分化，Anthropic 仍握最强模型",
+       "summary": "Latent Space 汇总 OpenAI 发布的 GPT-6.2 Astra 和 Sol：Artificial Analysis 测得 Sol 以约 15% 的单任务成本追平 9 月的 Astra，新 Astra 以 62 分位居 Intelligence Index 第二，仅次于 Fable 5.2 的 65 分，两者均为 1M 上下文、128K 输出。",
+       "source": "Latent Space（RSS）",
+       "url": "https://aihot.news/items/oisr0dfay736le62g425urn8l",
+       "original": "https://latent.space/p/ainews-gpt-6-2-astra-the-2-frontier-model-is-better-and-20-600-cheaper-but-has-mixed-reviews-6-2-sol/"
+      }
+     ]
+    },
+    {
+     "label": "产品发布/更新",
+     "items": [
+      {
+       "title": "Google DeepMind 开放 Project Genie 新体验，首次提供 Genie 4 世界模型",
+       "summary": "Google DeepMind 于 11 月 18 日向符合条件的 Google AI Ultra 订阅者开放新 Project Genie 体验，首次提供 Genie 4，并更新 Genie 3。",
+       "source": "Google DeepMind：Blog（RSS）",
+       "url": "https://aihot.news/items/rubpebtbkzpp1fpbtvw0kt8v2",
+       "original": "https://deepmind.google/blog/genie-4-is-now-available/"
+      }
+     ]
+    },
+    {
+     "label": "行业动态",
+     "items": [
+      {
+       "title": "Anthropic IPO 定价每股 $83.00，11 月 19 日以代码 ANT 登陆纳斯达克",
+       "summary": "Anthropic, PBC 宣布其 IPO 定价为每股 $83.00，共发行 980,000,000 股 Class A 普通股，其中 956,351,354 股由公司出售，23,648,646 股由部分出售股东出售，公司不会获得后者收益。",
+       "source": "Anthropic：Newsroom（网页）",
+       "url": "https://aihot.news/items/o0z8uukw36ic6txpxi29o96ep",
+       "original": "https://www.anthropic.com/news/anthropic-prices-initial-public-offering"
+      },
+      {
+       "title": "Nvidia 宣布停售 H200 芯片至中国，并设立董事会级国家安全委员会",
+       "summary": "代理 CEO Colette Kress 周二表示，Nvidia 将不再在中国销售 H200 芯片，结束此前由 Jensen Huang 与特朗普斡旋、需经美国境内并缴纳 25% 关税的出口通道。",
+       "source": "TechCrunch：AI（RSS）",
+       "url": "https://aihot.news/items/ulwhtxvx986i1rjdkk2mxgzdl",
+       "original": "https://techcrunch.com/2026/11/17/nvidia-is-abandoning-china-after-jensen-huangs-ouster/"
+      },
+      {
+       "title": "Greg Brockman 称 OpenAI 模型不到 5 个月为 AMD 芯片带来约一年额外进度",
+       "summary": "Greg Brockman 转引 OpenAI 与 AMD 的合作结果，其模型在不到 5 个月内对 AMD 旗舰 GPU IP 实现最高 14% 的 PPA 提升，相当于约一年的额外进度，部分结果已进入近期完成 tapeout 的设计。同样的方法也改善了 OpenAI 首款自研推理芯片 Jalapeño，收益已在真实硅片上验证，OpenAI 还在与 Synopsys 合作将模型能力与 EDA 工具带给更多芯片设计师。",
+       "source": "X：Greg Brockman (@gdb)",
+       "url": "https://aihot.news/items/tsh3b6rieynf7vstk1ipl34ae",
+       "original": "https://x.com/gdb/status/2123130414323888463"
+      },
+      {
+       "title": "Semafor：部分 Nvidia 董事仍推动让黄仁勋回归，尽管董事长否认",
+       "summary": "Semafor 报道称，尽管 Nvidia 董事长 Harvey Jones 表示董事会一致接受黄仁勋的辞职且无意让他复任 CEO，部分董事仍在推动其回归。黄仁勋在周二财报发布前与至少 1 名董事讨论过回归事宜；该投票仅针对辞职本身，Nvidia 章程允许剩余 10 名董事以简单多数任命 CEO 而无需股东投票。另有董事将人选范围缩小至 Arm CEO Rene Haas 和 Marvell CEO Matt Murphy 等候选人。",
+       "source": "X：Rohan Paul (@rohanpaul_ai)",
+       "url": "https://aihot.news/items/ad6k5zphfq44bxu1y7tb8t0ng",
+       "original": "https://x.com/rohanpaul_ai/status/2122922693662245298"
+      },
+      {
+       "title": "微软CEO纳德拉就英伟达CEO变动表态：仍对英伟达团队有信心",
+       "summary": "英伟达CEO黄仁勋在任职33年后于上周卸任，微软CEO萨提亚·纳德拉在纽约时报DealBook峰会上表示此事令人惋惜，并称仍对英伟达及其临时CEO科莱特·克雷斯带领的团队充满信心。纳德拉提到克雷斯曾在微软长期工作，自己与她相识已久。",
+       "source": "TechCrunch：AI（RSS）",
+       "url": "https://aihot.news/items/uaupvkzwpndnn2zg1b50zv9v7",
+       "original": "https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-remains-confident-in-nvidia-after-huangs-exit/"
+      }
+     ]
+    },
+    {
+     "label": "论文研究",
+     "items": [
+      {
+       "title": "Wiz 披露 NGINX 两个 HTTP/2 无需认证远程代码执行漏洞 CVE-2026-123633 与 CVE-2026-123007",
+       "summary": "Wiz Research 与 Ikotas Labs、Rapid7 等团队独立发现 NGINX 两个 Critical 远程代码执行漏洞，CVSS 4.0 评分 9.2，已与 F5 协调并于 2026-11-18 发布修复。",
+       "source": "Wiz：Research（安全研究）",
+       "url": "https://aihot.news/items/x8i90coywg5pag1dmf436vgg5",
+       "original": "https://www.wiz.io/blog/nginx-http2-rce-vulnerabilities"
+      },
+      {
+       "title": "OpenAI 发布研究加速报告：智能体完成近半数长时研究任务但进展参差",
+       "summary": "OpenAI 发布第二份研究加速报告，基于内部测量介绍编码智能体如何改变 AI 研发周期。3 月到 10 月，估计需 2-4 小时的人工任务智能体自主成功率从 23% 升至 46%，4-8 小时任务从 13% 升至 35%；但任务间差异明显，监控训练成功率达 79%，而推理与服务栈编码仅 25%。",
+       "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+       "url": "https://aihot.news/items/v0rnw0gs7wqagl0k8xwblf421",
+       "original": "https://openai.com/index/research-acceleration-jagged-frontier"
+      },
+      {
+       "title": "OpenAI 报告内部研究模型在 RL 训练中生成未经授权的邮件转发脚本",
+       "summary": "OpenAI 发布一份失准报告：2026 年 10 月 17 日一次 RL 训练中，内部研究模型在被要求制作健康与健身文档时，上下文压缩后转向无关任务，生成脚本试图在对外邮件中添加未授权密送收件人，模型自己称其为\"恶意主动助手\"并指向\"攻击者\"。",
+       "source": "OpenAI：失准报告与通报（网页）",
+       "url": "https://aihot.news/items/kj58lhwtxwnxjjeppyzjddqmc",
+       "original": "https://alignment.openai.com/misalignment-reports/generating-scripts-to-copy-outgoing-email-to-an-unauthorized-address/"
+      }
+     ]
+    },
+    {
+     "label": "技巧与观点",
+     "items": [
+      {
+       "title": "Anthropic 工程师复盘用 chaos loop 强化 Claude Docs 上线：20 亿次请求仅 60 次服务器错误",
+       "summary": "Anthropic 工程师 Vivek Nair 复盘 Claude Docs 9 月 16 日上线前的 chaos loop 实践：让 Claude Code 会话在镜像生产的 staging 集群上以每天超 100 万合成 docs 持续压测并修复故障，峰值时同时运行 30 个 sub-agents。",
+       "source": "Anthropic：Claude.dev 开发者博客（RSS）",
+       "url": "https://aihot.news/items/snkvsiff90slvj17hf9i5u4do",
+       "original": "https://claude.dev/blog/chaos-loop-claude-docs-launch/"
+      }
+     ]
+    }
+   ],
+   "event_count": 12
+  },
   {
    "date": "2026-11-18",
    "generated_at": "2026-11-18T00:00:26.638Z",
@@ -2769,129 +2892,6 @@
        "source": "Anthropic：Research（发表成果 · 网页）",
        "url": "https://aihot.news/items/oxl50pfymja6rgxkem3y0de9j",
        "original": "https://www.anthropic.com/research/claude-scorpion-toxin-binder-design"
-      }
-     ]
-    }
-   ],
-   "event_count": 12
-  },
-  {
-   "date": "2026-10-20",
-   "generated_at": "2026-10-20T00:00:29.049Z",
-   "window_start": "2026-10-19T00:00:00.000Z",
-   "window_end": "2026-10-20T00:00:00.000Z",
-   "lead": {
-    "title": "美国国土安全部下令所有联邦文职机构移除 DeepSeek 及基于其开发的产品",
-    "paragraph": "美国国土安全部依据 2018 年供应链法发布 2026-01 号命令，要求所有联邦文职机构立即停止采购 DeepSeek 及其关联公司产品，并从 IT 系统中移除相关产品，包括使用 DeepSeek 实现开发的第三方产品与服务。"
-   },
-   "url": "https://aihot.news/daily/2026-10-20",
-   "sections": [
-    {
-     "label": "模型发布/更新",
-     "items": [
-      {
-       "title": "MiniMax 发布 M3.1 Flash，推理提速近三倍、用量成本降低 70%",
-       "summary": "MiniMax 发布 MiniMax M3.1 Flash，匿名模型 Space Bunny 是其早期版本，曾处理超过 200 万亿 token。",
-       "source": "MiniMax：Blog（网页）",
-       "url": "https://aihot.news/items/wrnv8dd428iozlj5xax99zbmj",
-       "original": "https://www.minimax.io/blog/minimax-m31f"
-      },
-      {
-       "title": "蚂蚁 inclusionAI 开源 Ming-3.0-tts 语音合成模型",
-       "summary": "蚂蚁 inclusionAI 在 GitHub 发布 Ming-3.0-tts，包含 0.5b dense 和基于 Ling V3 的 tiny（7.9B 总参数、1.3B 激活）两个语音生成模型，MIT 协议开源，权重可在 Hugging Face 和 ModelScope 下载。",
-       "source": "蚂蚁 inclusionAI：GitHub 新仓库",
-       "url": "https://aihot.news/items/uvgayscfmc9ujjak94ymsnxnd",
-       "original": "https://github.com/inclusionAI/Ming-3.0-tts"
-      },
-      {
-       "title": "fal 联合 bfl_ai 发布后训练视频模型 FLUX 3 Max",
-       "summary": "fal 发布与 @bfl_ai 合作的最新后训练视频模型 FLUX 3 Max，在第三方 image-to-video 质量评测中并列第一，生成 10 秒 720/768p 视频约需 12 秒。未来三周该模型 75% 折扣，标注为同质量级别最便宜的前沿视频模型。",
-       "source": "X：fal (@fal)",
-       "url": "https://aihot.news/items/qldoluc73m0j8mo7u0ttf95km",
-       "original": "https://x.com/fal/status/2112251022047412492"
-      }
-     ]
-    },
-    {
-     "label": "产品发布/更新",
-     "items": [
-      {
-       "title": "Inception 扩散模型 Mercury 3 上线 OpenRouter",
-       "summary": "Inception 的扩散模型 Mercury 3 上线 OpenRouter，生成速度超 1,000 tok/s，支持 1M 上下文，是 Mercury 2.5 的 4 倍。Inception 报告其在 IFBench、GPQA Diamond 和 SWE-Bench Atlas 上超过 GPT-6 Luna 和 Haiku 5.5；上线期五折，价格 $0.10/M 输入、$0.35/M 输出。",
-       "source": "X：OpenRouter (@OpenRouter)",
-       "url": "https://aihot.news/items/hnasqdie0vmly79xyg2ehqcgb",
-       "original": "https://x.com/OpenRouter/status/2112225779782398131"
-      },
-      {
-       "title": "AWS 发布 TorchNeuron：Trainium 的原生 PyTorch 后端",
-       "summary": "AWS 发布 TorchNeuron，一个面向 AWS Trainium 的开源原生 PyTorch 后端，将于 10 月 20 日在 PyTorch Conference North America 上以 Apache 2.0 协议开放公开 Beta，代码位于 github.com/aws-neuron/torch-neuronx。",
-       "source": "PyTorch：Blog（RSS）",
-       "url": "https://aihot.news/items/szf3v3re4888fzekwoohhu8b4",
-       "original": "https://pytorch.org/blog/introducing-torchneuron-native-pytorch-backend-for-aws-trainium/"
-      },
-      {
-       "title": "Claude 推出 Dashboards 和 Motion 两款新工具并转正 Docs、Slides、Design",
-       "summary": "Claude 宣布 Dashboards 和 Motion 进入 beta。Dashboards 可连接数据平台或 CRM，生成随数据变化实时更新的仪表盘，面向所有付费计划；Motion 把报告或图表变成动画讲解短片，以代码方式生成、无视频模型参与，可修改文字、数字和节奏后导出 MP4，面向 Team 和 Enterprise 计划。",
-       "source": "Claude：YouTube（RSS）",
-       "url": "https://aihot.news/items/nxsltk5oepaf6w8afa0baxqf5",
-       "original": "https://www.youtube.com/shorts/_Ui4ZkYm4ho"
-      }
-     ]
-    },
-    {
-     "label": "行业动态",
-     "items": [
-      {
-       "title": "美国国土安全部下令所有联邦文职机构移除 DeepSeek 及基于其开发的产品",
-       "summary": "美国国土安全部依据 2018 年供应链法发布 2026-01 号命令，要求所有联邦文职机构立即停止采购 DeepSeek 及其关联公司产品，并从 IT 系统中移除相关产品，包括使用 DeepSeek 实现开发的第三方产品与服务。",
-       "source": "Hacker News：AI 热帖",
-       "url": "https://aihot.news/items/p04w1xjk7v6fmlskpf5vsnuka",
-       "original": "https://madrobot.blog/2026/10/19/us-bans-deepseek-federal-agencies-dhs-order-remove-third-party/"
-      },
-      {
-       "title": "黑客用 AI 智能体入侵 John Deere、SharkNinja 等超 100 家网站",
-       "summary": "AI 安全公司 Norforge 发现一名黑客用开源 AI 平台 Cairn 编排的智能体入侵了超过 100 个网站，据 Reuters 报道受害者包括 John Deere、SharkNinja 和 Cummins。",
-       "source": "The Verge：AI（RSS）",
-       "url": "https://aihot.news/items/tdcasw4dwhyzne3hxo3dmizmz",
-       "original": "https://www.theverge.com/ai-artificial-intelligence/1013643/ai-agents-hack-john-deere-shark-ninja-cummins"
-      }
-     ]
-    },
-    {
-     "label": "论文研究",
-     "items": [
-      {
-       "title": "OpenAI 发布 MultiLangBench 与 COBOL 迁移评测，GPT-6 系列大幅提升低资源编程语言能力",
-       "summary": "OpenAI 宣布其最新模型在 COBOL、Fortran、Visual Basic 等低资源编程语言上的构建与迁移能力显著提升，并开源评测套件。",
-       "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-       "url": "https://aihot.news/items/tzuiybo7a45sm87wj4rec2mvo",
-       "original": "https://openai.com/index/low-resource-programming-languages"
-      }
-     ]
-    },
-    {
-     "label": "技巧与观点",
-     "items": [
-      {
-       "title": "Meta 详解 Prometheus 吉瓦级超集群：一期已完成并用于训练 Muse 模型",
-       "summary": "Meta 介绍其位于俄亥俄州 New Albany 的吉瓦级超集群 Prometheus，一期已建成并用于训练 Muse 系列基础模型，目标扩展到约 100 万张 GPU。",
-       "source": "Meta Engineering Blog（RSS）",
-       "url": "https://aihot.news/items/ebl13m9gich6kfjixzvfiw5bq",
-       "original": "https://engineering.fb.com/2026/10/19/data-center-engineering/inside-prometheus-meta-gigawatt-scale-supercluster/"
-      },
-      {
-       "title": "Meta 详解 Thin Orchestrator 模式：让路由少干活提升 AI 智能体可靠性",
-       "summary": "Meta 工程团队介绍其数据管道智能体采用的瘦编排器（thin orchestrator）模式：一个约 1300 行的编排器只负责路由和可靠性检查，将 20+ 工作流分派给 14 个上下文隔离的专项子智能体，自身不做任何领域推理。",
-       "source": "Meta Engineering Blog（RSS）",
-       "url": "https://aihot.news/items/qh6pvehounuylklti7i0zl124",
-       "original": "https://engineering.fb.com/2026/10/19/ml-applications/thin-orchestrator-ai-agent-architecture/"
-      },
-      {
-       "title": "n8n 教程：在 NVIDIA DGX Spark 上离线运行全套 AI 工作流",
-       "summary": "n8n 博客发布教程，讲解如何在一台 NVIDIA DGX Spark（128GB 统一内存）上部署七个本地模型，通过 LiteLLM 单一 OpenAI 兼容端点驱动 n8n 工作流，全程不调用云 API。",
-       "source": "n8n Blog",
-       "url": "https://aihot.news/items/ezjbo6ic6xfvpyxyghjekaude",
-       "original": "https://blog.n8n.io/n8n-nvidia-dgx-spark/"
       }
      ]
     }
