@@ -183,8 +183,66 @@ def test_entry_order():
     check("main() 内无「先读后写 / 从未赋值」的局部变量", not bad, "; ".join(bad))
 
 
+def test_schedule() -> None:
+    """⑥ 推送节奏：每天 10/14/17 三个点各汇总一次，且不被 daily 的日期戳挡住。"""
+    from datetime import datetime
+
+    hours = [10, 14, 17]
+    check("scheduled 模式可被识别",
+          pw.parse_summary_mode({"price_summary_mode": "scheduled"}) == "scheduled")
+    check("scheduled 别名 multi/points 可识别",
+          pw.parse_summary_mode({"price_summary_mode": "multi"}) == "scheduled"
+          and pw.parse_summary_mode({"price_summary_mode": "points"}) == "scheduled")
+    check("非法模式回落 daily",
+          pw.parse_summary_mode({"price_summary_mode": "wat"}) == "daily")
+    check("漏配小时时兜底 10/14/17",
+          pw.parse_push_hours({}, [10, 14, 17]) == hours)
+    check("显式配置的小时优先",
+          pw.parse_push_hours({"price_digest_hours": [8, 20]}, hours) == [8, 20])
+    check("非法小时被丢弃（0-23 之外）",
+          pw.parse_push_hours({"price_digest_hours": [10, 99, "x"]}, hours) == [10])
+    check("点位文案", pw.fmt_hours(hours) == "10:00 / 14:00 / 17:00")
+
+    d = lambda h: datetime(2026, 11, 20, h, 5)          # noqa: E731  cron 在每小时第 5 分跑
+    due = lambda h, led: pw.summary_due("scheduled", hours, 17, d(h), led)[0]  # noqa: E731
+    slot = lambda h: pw.summary_due("scheduled", hours, 17, d(h), {})[1]      # noqa: E731
+
+    check("9 点不汇总（未到点）", due(9, {}) is False)
+    check("10 点汇总", due(10, {}) is True)
+    check("11 点不汇总（点外）", due(11, {}) is False)
+    check("14 点汇总", due(14, {}) is True)
+    check("17 点汇总", due(17, {}) is True)
+    check("18 点不汇总（当天点已过完）", due(18, {}) is False)
+    check("同一小时内重复跑不重发",
+          due(10, {"last_summary_slot": slot(10)}) is False)
+    # 关键回归：drop_notified 会写 last_summary_date=today，
+    # 早期若用日期戳去重，14/17 点会被 10 点那次汇总挡掉 —— 一天三点必须按点位去重。
+    check("10 点已发过，14/17 点仍照常汇总",
+          due(14, {"last_summary_date": "2026-11-20",
+                   "last_summary_slot": slot(10)}) is True
+          and due(17, {"last_summary_date": "2026-11-20",
+                       "last_summary_slot": slot(14)}) is True)
+    check("跨天同一点位重新生效",
+          pw.summary_due("scheduled", hours, 17, datetime(2026, 11, 21, 10, 5),
+                         {"last_summary_slot": "2026-11-20 17"})[0] is True)
+    check("hourly 每轮都汇总",
+          pw.summary_due("hourly", hours, 17, d(3), {})[0] is True)
+    # daily 对「从未汇总过」的空台账有首次部署立即汇总的设计，
+    # 所以判「未到点不推」必须给一个昨天已汇总过的台账，不能传空字典。
+    yesterday = {"last_summary_date": "2026-11-19"}
+    check("daily 未到汇总点不推、到点推",
+          pw.summary_due("daily", hours, 17, d(9), yesterday)[0] is False
+          and pw.summary_due("daily", hours, 17, d(17), yesterday)[0] is True)
+    check("daily 当天已汇总则不重复",
+          pw.summary_due("daily", hours, 17, d(17),
+                         {"last_summary_date": "2026-11-20"})[0] is False)
+    check("daily 首次部署不必干等一天",
+          pw.summary_due("daily", hours, 17, d(9), {})[0] is True)
+
+
 def main() -> int:
-    for fn in (test_split, test_ref_shift, test_ledger, test_wording, test_entry_order):
+    for fn in (test_split, test_ref_shift, test_ledger, test_wording,
+               test_entry_order, test_schedule):
         fn()
     print()
     if _failed:

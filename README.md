@@ -155,19 +155,21 @@ markdown 上限 20480 字节，基本不用分批；不支持 @所有人。
 | `push_on_first_run` | false | 首次建基线是否也推，否则开局刷 467 条 |
 | `price_change_threshold` | 10 | 调价的**百分比**门槛（%） |
 | `price_change_min_abs_cny` | 1.0 | 调价的**绝对金额**门槛（¥/百万 tokens）。百分比和金额要同时达标 |
-| `price_digest_hours` | `[8,12,16,20]` | 每天哪几个整点**抓取并推送新增模型**（数组，24 制）。需与 crontab 一致 |
-| `price_summary_hour` | 20 | 每天几点出**调价汇总**（24 制）。不填则取 `price_digest_hours` 的最后一项 |
-| `price_summary_mode` | `daily` | 汇总节奏。`daily` = 每天只在 `price_summary_hour` 汇总一次；`hourly` = 每轮抓取都汇总（测试期用，靠指纹去重 + 冷却防复读） |
+| `price_digest_hours` | `[10,14,17]` | `scheduled` 模式下每天哪几个整点出**调价汇总**（数组，24 制）。抓取仍每小时跑，这个只管推送点位；漏配时代码兜底 `[10,14,17]` |
+| `price_summary_hour` | 20 | `daily` 模式下每天几点出调价汇总；不填取 `price_digest_hours` 最后一项。`scheduled` 下不生效 |
+| `price_summary_mode` | `daily` | `scheduled` = 每天在 `price_digest_hours` 各汇总一次（**正式推荐 10/14/17**）；`daily` = 每天一次；`hourly` = 每轮抓取都汇总（测试期，靠指纹去重 + 冷却防复读） |
 | `notify_when_empty` | false | 空轮也发一条「巡检回执」。测试期打开，能一眼看出通道还在跑；正式放开前关掉 |
 | `price_model_cooldown_days` | 7 | 同一个模型播报后多少天内不再重复播报（0 = 关闭）。兜底用，防厂商错峰折扣反复刷屏 |
 | `price_cooldown_breakout` | 2.0 | 冷却期内的例外：本次幅度达到上次播报幅度的该倍数时，视为新一轮真实调价，照常播报 |
 | `price_promo_push` | false | 是否把「限时优惠」也推到群里。默认关闭：折扣只刷新看板，群里只收**上新**和**真实调价**两类消息 |
 | `max_bytes_per_message` | 1800 | 单条正文上限，按通道自动适配 |
 
-> ⚠️ **两个时刻必须分开，不能配成一样。**
-> 抓取点同时是汇总点时，台账刚记账就被消费掉，净变化去抖的窗口为 0，
-> 相邻两次推送会把同一次摆动一涨一跌各报一次（表现为「重复推送」）。
-> 新增模型仍按抓取点及时推，只有调价攒到汇总点出一次。
+> ⚠️ **汇总点之间必须留足间隔，别把 24 小时铺满。**
+> 抓取每小时跑（页面折扣要实时），价格变动只记进台账，到 10/14/17 才播报。
+> 台账跨抓取点累积「最早起点 + 最新终点」，来回摆动自动抵消；若铺满全天
+> （`hourly` 模式），窗口缩到 1 小时、去抖能力下降，还要靠指纹去重与冷却兜底，
+> 群里也容易被刷成流水账。
+> 上新速报不受点位限制，检测到就即时推；失败告警（`--alert`）同样直发，不受影响。
 
 ### 为什么调价要双门槛 + 按批次汇总
 
@@ -181,9 +183,10 @@ OpenRouter 的 `models` 接口返回的价格是**几十个路由里的最低价
 - **按批次汇总而非逐小时推**：中间过程记进台账（`logs/.price_ledger.json`），
   只保留每个模型的**最早起点 + 最新终点**，来回摆动自然抵消，只报净变化
 
-台账的关键约束：**跨抓取点累积，每天只在汇总点消费一次**。抓取时刻（8/12/16/20）
-照常跑，但只有汇总点（默认 20 点）才播报调价；播报出去的条目从台账移除，
-被截断或没达标的留着继续累积。这样既不会漏报，也不会把同一次摆动报两遍。
+台账的关键约束：**跨抓取点累积，每个汇总点消费一次**。抓取每小时照常跑，
+但只有 `scheduled` 配置的点（10:00 / 14:00 / 17:00）才播报调价；播报出去的条目从台账移除，
+被截断或没达标的留着继续累积，整轮推送失败则整本留到下一个点补报。
+这样既不会漏报，也不会把同一次摆动报两遍。
 
 ### 比价的锚点是「基准价」，不是「上一次抓取值」
 
@@ -348,9 +351,9 @@ chmod 600 ~/.ai-radix/config.json
 cd /opt/ai-radix && python3 scripts/push_wecom.py --test
 
 # 定时（服务器时区为 Asia/Shanghai，直接写北京时间）
-# 每天 4 次：0 8,12,16,20 * * *
-# 每小时 1 次（测试期）：5 * * * *     —— 错开整点，避开限流与整点拥堵
-0 8,12,16,20 * * * cd /opt/ai-radix && ./llm-api-pricing.sh >> /opt/ai-radix/logs/cron.log 2>&1
+# 抓取每小时一次（第 5 分，错开整点避开限流），页面折扣才不会停更。
+# 推送频率由 config 的 price_summary_mode 控制：scheduled = 每天 10/14/17 三次。
+5 * * * * cd /opt/ai-radix && ./llm-api-pricing.sh >> /opt/ai-radix/logs/pricing.log 2>&1
 ```
 
 ### 测试期：只推给自己、每小时一次
@@ -368,21 +371,39 @@ cd /opt/ai-radix && python3 scripts/push_wecom.py --test
 ```
 
 ```bash
-5 * * * * cd /opt/ai-radix && ./llm-api-pricing.sh >> /opt/ai-radix/logs/cron.log 2>&1
+5 * * * * cd /opt/ai-radix && ./llm-api-pricing.sh >> /opt/ai-radix/logs/pricing.log 2>&1
 ```
 
 `touser` 的优先级是 **配置文件 > 环境变量 > env 文件默认值**，所以只要在 config 里显式写了
 userid，就一定能压过部署机 `WX_TOUSER` 里的 `@all`——不用改共享 env 文件，也不会影响
 同一台机器上其它项目。
 
-放开时把 `touser` 改回 `@all`、`price_summary_mode` 回 `daily`、
-`notify_when_empty` 回 `false`，crontab 改回 `0 8,12,16,20 * * *` 即可。
+### 正式配置：抓取每小时、价格每天 10 / 14 / 17 三次
 
-上面这套用一条命令就够：
+```jsonc
+// ~/.ai-radix/config.json
+"wecom": {
+  "wxapp": { "touser": "<你的 userid>" },
+  "price_digest_hours": [10, 14, 17],
+  "price_summary_mode": "scheduled",     // 每天三个点各汇总一次
+  "notify_when_empty": false             // 空轮静默，不打扰
+}
+```
+
+**crontab 保持 `5 * * * *` 不变**——限流靠代码里的点位闸门，不能为了少推消息把抓取
+也砍成一天三次，否则页面上的折扣徽章就不实时了。上新速报仍即时推，不受点位限制；
+故障告警（`--alert`）也直发，永远不受频率配置影响。
+
+`scheduled` 用 `last_summary_slot`（日期+小时）去重，而不是 `daily` 的 `last_summary_date`。
+后者一旦被写上「今天已汇总」，会把当天 14/17 两个点全挡掉。推送失败不写 slot，
+台账留到下一个点继续补报。
+
+一条命令切换（含 crontab 与配置一致性）：
 
 ```bash
-./scripts/switch_push_mode.sh me hourly <userid>   # 灰度
-./scripts/switch_push_mode.sh all daily            # 放开
+./scripts/switch_push_mode.sh me hourly <userid>      # 灰度：每小时
+./scripts/switch_push_mode.sh me scheduled <userid>   # 正式：每天 10/14/17
+./scripts/switch_push_mode.sh all daily               # 全员 + 每天一次汇总
 ```
 
 ### 自动发布到 GitHub Pages

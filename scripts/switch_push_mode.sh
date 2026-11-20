@@ -2,8 +2,9 @@
 # AIRadix · LLM Radar · 推送投放范围 / 频率一键切换
 #
 # 用法：
-#   ./scripts/switch_push_mode.sh me hourly <userid>   # 只推给我 + 每小时（灰度测试）
-#   ./scripts/switch_push_mode.sh all daily            # 全员 + 每天 4 次（正式放开）
+#   ./scripts/switch_push_mode.sh me hourly <userid>     # 只推给我 + 每小时（灰度测试）
+#   ./scripts/switch_push_mode.sh me scheduled <userid>  # 只推给我 + 每天 10/14/17 三次（正式）
+#   ./scripts/switch_push_mode.sh all daily              # 全员 + 每天一次汇总
 #
 # 改三处，保证配置一致，不会出现「cron 每小时却没配 hourly」这种半套状态：
 #   1. config.json 的 wecom.wxapp.touser  收件人
@@ -43,19 +44,21 @@ done
 
 usage() {
   cat <<'EOF'
-用法: switch_push_mode.sh <me|all> <hourly|daily> [userid]
+用法: switch_push_mode.sh <me|all> <hourly|daily|scheduled> [userid]
 
   me   只推给指定成员（需带 userid，或沿用 config 里已有的值）
   all  推给应用可见范围内全部成员（touser=@all）
 
-  hourly  每小时跑一次，每轮都出调价汇总，空轮也发巡检回执（测试期）
-  daily   每天 4 次（8/12/16/20），每天 20 点汇总一次，空轮不发（正式）
+  hourly     每小时跑一次，每轮都出调价汇总，空轮也发巡检回执（测试期）
+  daily      每天一次汇总（默认 20 点），空轮不发
+  scheduled  抓取仍每小时跑，但价格只在每天 10:00 / 14:00 / 17:00 汇总推送，
+             空轮不发；上新仍即时推，不受点位限制（正式推荐）
 EOF
   exit 1
 }
 
 case "$SCOPE" in me|all) ;; *) usage ;; esac
-case "$CADENCE" in hourly|daily) ;; *) usage ;; esac
+case "$CADENCE" in hourly|daily|scheduled) ;; *) usage ;; esac
 [ -f "$CONFIG" ] || { echo "❌ 找不到配置：$CONFIG"; exit 1; }
 
 python3 - "$CONFIG" "$SCOPE" "$CADENCE" "$USERID" <<'PY'
@@ -81,6 +84,13 @@ if cadence == "hourly":
     w["price_digest_hours"] = list(range(24))
     w["price_summary_mode"] = "hourly"
     w["notify_when_empty"] = True
+elif cadence == "scheduled":
+    # 抓取仍是每小时一次（crontab 不动），这里只控制「哪几个整点出价格汇总」。
+    # price_summary_hour 是 daily 专用的单汇总点，留着会让人误以为 20 点还会再推一次。
+    w["price_digest_hours"] = [10, 14, 17]
+    w["price_summary_mode"] = "scheduled"
+    w.pop("price_summary_hour", None)
+    w["notify_when_empty"] = False
 else:
     w["price_digest_hours"] = [8, 12, 16, 20]
     w["price_summary_mode"] = "daily"
@@ -100,14 +110,17 @@ RC=$?
 [ "$RC" -ne 0 ] && exit "$RC"
 
 # ---- crontab ----
-CRON_LINE_HOURLY='5 * * * * cd /opt/ai-radix && ./llm-api-pricing.sh >> /opt/ai-radix/logs/cron.log 2>&1'
-CRON_LINE_DAILY='0 8,12,16,20 * * * cd /opt/ai-radix && ./llm-api-pricing.sh >> /opt/ai-radix/logs/cron.log 2>&1'
+# 主流程日志实际落在 logs/pricing.log（改名 llm-api-pricing.sh 后换的），
+# 别再写回已停更的 cron.log。
+CRON_LINE_HOURLY='5 * * * * cd /opt/ai-radix && ./llm-api-pricing.sh >> /opt/ai-radix/logs/pricing.log 2>&1'
+CRON_LINE_DAILY='0 8,12,16,20 * * * cd /opt/ai-radix && ./llm-api-pricing.sh >> /opt/ai-radix/logs/pricing.log 2>&1'
 
-if [ "$CADENCE" = "hourly" ]; then
-  NEW_CRON="$CRON_LINE_HOURLY"
-else
-  NEW_CRON="$CRON_LINE_DAILY"
-fi
+# scheduled 靠 push_wecom.py 里的点位闸门限流，抓取仍每小时跑（页面折扣才不会停更），
+# 所以 crontab 与 hourly 相同，不能改成一天三次。
+case "$CADENCE" in
+  hourly|scheduled) NEW_CRON="$CRON_LINE_HOURLY" ;;
+  *)                NEW_CRON="$CRON_LINE_DAILY" ;;
+esac
 
 # --no-cron 或演练模式：只改配置不动定时任务（别把开发机的 crontab 改了）
 if [ "$NO_CRON" = "1" ]; then

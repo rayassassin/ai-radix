@@ -315,21 +315,25 @@ def build_header(meta: dict, new_count: int, price_count: int, digest: bool = Fa
     ])
 
 
-def parse_push_hours(wcfg: dict) -> list[int]:
+def parse_push_hours(wcfg: dict, default: list[int] | None = None) -> list[int]:
     """
     推送/汇总时刻（本地时区的小时，24 制）。
 
-    优先读 `price_digest_hours`（数组，如 [8,12,16,20]）；
-    兼容旧的单值写法 `price_digest_hour`；都没有则回退 12 点。
+    优先读 `price_digest_hours`（数组，如 [10,14,17]）；
+    兼容旧的单值写法 `price_digest_hour`；都没有则回退 default（默认 12 点）。
+    scheduled 模式会传入 [10,14,17]，这样部署机只改模式、漏配小时也能按预期跑。
     非法值静默丢弃，宁可少推一次也不要因为配置写错整天不推。
     """
+    fallback = sorted(set(default)) if default else [12]
     raw = wcfg.get("price_digest_hours")
     if raw is None:
-        raw = wcfg.get("price_digest_hour", 12)
+        raw = wcfg.get("price_digest_hour")
+    if raw is None:
+        return fallback
     if isinstance(raw, (int, str)):
         raw = [raw]
     if not isinstance(raw, (list, tuple)):
-        return [12]
+        return fallback
 
     hours = set()
     for item in raw:
@@ -339,7 +343,7 @@ def parse_push_hours(wcfg: dict) -> list[int]:
             continue
         if 0 <= h <= 23:
             hours.add(h)
-    return sorted(hours) or [12]
+    return sorted(hours) or fallback
 
 
 def fmt_hours(hours: list[int]) -> str:
@@ -368,16 +372,50 @@ def parse_summary_mode(wcfg: dict) -> str:
     """
     价格汇总节奏。
 
-      daily  —— 每天只在 `price_summary_hour` 汇总一次（默认）。
-                台账跨所有抓取点累积，「最早起点 + 最新终点」的净变化去抖最干净。
-      hourly —— 每个抓取点都汇总（测试期 / 调试用）。
-                窗口缩到 1 小时，去抖能力下降，靠价位指纹去重与同模型冷却兜底，
-                保证同一条消息仍然只播一次。
+      daily     —— 每天只在 `price_summary_hour` 汇总一次（默认）。
+                   台账跨所有抓取点累积，「最早起点 + 最新终点」的净变化去抖最干净。
+      hourly    —— 每个抓取点都汇总（测试期 / 调试用）。
+                   窗口缩到 1 小时，去抖能力下降，靠价位指纹去重与同模型冷却兜底。
+      scheduled —— 每天在 `price_digest_hours` 列出的每个整点各汇总一次
+                   （默认 10/14/17）。抓取仍每小时跑，台账跨点累积，到点才播报，
+                   每个点当天只报一次。介于「每小时刷屏」和「一天只见一次」之间。
 
     非法值一律回落 daily —— 宁可少报，也不要因为配置写错把群里刷成流水账。
     """
     raw = str(wcfg.get("price_summary_mode") or "daily").strip().lower()
-    return "hourly" if raw in ("hourly", "per_run", "per-run", "every") else "daily"
+    if raw in ("hourly", "per_run", "per-run", "every"):
+        return "hourly"
+    if raw in ("scheduled", "multi", "points", "slots"):
+        return "scheduled"
+    return "daily"
+
+
+def summary_due(summary_mode: str, push_hours: list[int], summary_hour: int,
+                now, ledger: dict) -> tuple[bool, str]:
+    """
+    判断本轮是否该出价格汇总，返回 (是否到点, 本轮点位标记)。
+
+    抽成独立函数是为了能单测：三种模式的边界全靠时钟和台账状态，
+    内联在 main 里只能靠手动改系统时间验证，太容易漏。
+
+    scheduled 的要点：
+      - 只在配置列出的整点汇总，其它小时一律不推（抓取照常跑、台账照常记）；
+      - 用 `last_summary_slot`（日期+小时）去重，而不是 `last_summary_date`。
+        后者是 daily 专用的「今天已汇总」标记，一旦被 drop_notified 写上，
+        会把当天后面的点位全挡掉 —— 一天三点必须用点位级标记；
+      - 漏跑/推送失败时不写 slot，台账留到下一个点继续补报，不丢信息。
+    """
+    today = f"{now:%Y-%m-%d}"
+    slot = f"{today} {now.hour:02d}"
+    last_summary = ledger.get("last_summary_date")
+
+    if summary_mode == "hourly":
+        due = True
+    elif summary_mode == "scheduled":
+        due = now.hour in push_hours and ledger.get("last_summary_slot") != slot
+    else:
+        due = (last_summary != today) and (now.hour >= summary_hour or last_summary is None)
+    return due, slot
 
 
 def build_footer(meta: dict, site_url: str, omitted: int = 0, since: str = "",
@@ -1147,7 +1185,10 @@ def main() -> int:
     price_changes = payload.get("price_changes") or []
     threshold = float(wcfg.get("price_change_threshold", 10))       # 百分比门槛
     min_abs = float(wcfg.get("price_change_min_abs_cny", 1.0))      # 绝对金额门槛（¥/百万 tokens）
-    push_hours = parse_push_hours(wcfg)                             # 每天哪几个整点推送
+    summary_mode = parse_summary_mode(wcfg)                         # 汇总节奏（提前算，选默认点位要用）
+    # scheduled 漏配 price_digest_hours 时兜底 10/14/17，避免静默退化成只按 12 点跑
+    push_hours = parse_push_hours(
+        wcfg, [10, 14, 17] if summary_mode == "scheduled" else [12])
 
     # 折扣只刷新看板、不进群。抓取仍然每小时跑，页面上的折扣徽章会跟着变。
     # 定义必须放在分类日志之前：下面 split_by_ref 之后要按它决定「这几条优惠要不要提」，
@@ -1207,17 +1248,11 @@ def main() -> int:
     # 抓取点（cron 8/12/16/20）与汇总点必须分开：两者重合时台账刚记账就被消费掉，
     # 净变化去抖零窗口，最低价路由的来回摆动会在相邻两次推送里各报一次（一涨一跌）。
     # 台账跨抓取点累积、每天只在汇总点播报一次，摆动才抵消得掉。
-    summary_mode = parse_summary_mode(wcfg)
     summary_hour = parse_summary_hour(wcfg, push_hours)
-    today = f"{now_cn():%Y-%m-%d}"
-    last_summary = ledger.get("last_summary_date")
-    if summary_mode == "hourly":
-        # 每轮都汇总：测试期用。窗口虽然只有 1 小时，但指纹去重 + 同模型冷却
-        # 仍然保证「同一条变动只播一次」，不会退回到复读老路。
-        due = True
-    else:
-        # 今天还没汇总过，且（到了汇总点 ｜ 台账里从没汇总过 —— 首次部署不必干等一天）
-        due = (last_summary != today) and (now_cn().hour >= summary_hour or last_summary is None)
+    now_h = now_cn().hour
+    due, current_slot = summary_due(summary_mode, push_hours, summary_hour, now_cn(), ledger)
+    # hourly = 每轮都汇总（测试期）；scheduled = 只在 10/14/17 这类配置点各汇总一次；
+    # daily = 每天一次。--digest 可强制出一份汇总用于手动验证，不受点位限制。
     is_digest = bool(args.digest) or due
 
     cooldown_days = int(wcfg.get("price_model_cooldown_days", 7))
@@ -1250,10 +1285,13 @@ def main() -> int:
 
     if not new_models and not price_blocks and not promo_blocks:
         # 下一个汇总点：今天还没到就写今天，过了就写明天的同一时刻
-        now_h = now_cn().hour
         if summary_mode == "hourly":
             # 23 点的下一轮是 00:00，取模避免出现 24:00 这种非法时刻
             nxt = f"下一轮整点（{(now_h + 1) % 24:02d}:00）汇总"
+        elif summary_mode == "scheduled":
+            later = [h for h in push_hours if h > now_h]
+            nxt = (f"今日 {later[0]:02d}:00 汇总" if later
+                   else f"明日 {push_hours[0]:02d}:00 汇总")
         else:
             nxt = f"{'' if now_h < summary_hour else '明日 '}{summary_hour:02d}:00 汇总"
         if price_changes:
@@ -1282,7 +1320,10 @@ def main() -> int:
             f"本轮无新增、无达门槛调价 ｜ 全网：{meta.get('total', '?')} 个"
             f" / {meta.get('vendors', '?')} 家厂商",
             f"台账：{len(ledger['items'])} 个模型待汇总",
-            "> 测试期每小时回执，验证通道用，放开前关闭。",
+            ("> 测试期每小时回执，验证通道用，放开前关闭。" if summary_mode == "hourly"
+             else (f"> 每小时抓取，价格变动每天 {fmt_hours(push_hours)} 汇总。"
+                   if summary_mode == "scheduled"
+                   else f"> 每小时抓取，价格每天 {summary_hour:02d}:00 汇总。")),
             f"> [打开全景看板]({site_url})",
         ])
         if args.dry_run:
@@ -1303,14 +1344,20 @@ def main() -> int:
     listed = new_models[:MAX_LIST]
     omitted = max(0, len(new_models) - MAX_LIST)
 
+    if summary_mode == "hourly":
+        sync_note = "每小时同步，价格每轮汇总"
+    elif summary_mode == "scheduled":
+        sync_note = f"每小时抓取，价格每天 {fmt_hours(push_hours)} 汇总"
+    else:
+        sync_note = (f"每天 {fmt_hours(push_hours)} 同步，"
+                     f"价格每天 {summary_hour:02d}:00 汇总")
+
     header = build_header(meta, len(new_models), price_count, digest=is_digest,
                           site_title=brand, promo_count=promo_count)
     blocks = build_blocks(listed, meta, rate, site_url) + price_blocks + promo_blocks
     footer = build_footer(meta, site_url, omitted,
                           since=ledger.get("since") if (is_digest and price_count) else "",
-                          sync_note=("每小时同步，价格每轮汇总" if summary_mode == "hourly"
-                                     else f"每天 {fmt_hours(push_hours)} 同步，"
-                                          f"价格每天 {summary_hour:02d}:00 汇总"))
+                          sync_note=sync_note)
     messages = pack_messages(header, blocks, footer, max_bytes)
 
     log(f"准备推送：新增 {len(new_models)} 个、汇总调价 {price_count} 个"
@@ -1352,6 +1399,13 @@ def main() -> int:
     if failed:
         log(f"推送完成但有 {failed} 条失败 —— 请检查 webhook 是否有效、是否触发频率限制")
         return 1
+
+    # scheduled：只有整轮消息全部送达，才把「这个点已汇总」记进台账。
+    # 发送失败就不写，台账留到下一个点继续补报；--digest 手动汇总（due=False）
+    # 也不写，否则会把当天正式的 10/14/17 点位挡掉。
+    if is_digest and due and summary_mode == "scheduled":
+        ledger["last_summary_slot"] = current_slot
+        save_ledger(ledger)
 
     # 汇总已成功送达才消费台账；发送失败就整本留着，下次汇总继续带上，不丢信息
     if is_digest and price_count:
