@@ -240,9 +240,38 @@ def test_schedule() -> None:
           pw.summary_due("daily", hours, 17, d(9), {})[0] is True)
 
 
+def test_ledger_since() -> None:
+    """⑦ 台账「统计区间」不能带非法日期（线上出现过 2026-10-28 12:05）。"""
+    import json
+    import tempfile
+    from pathlib import Path
+
+    orig = pw.LEDGER_PATH
+    # 用 chr 拼出非法月/日：某些运行环境会把命令里的「非法日期字面量」自动规范化，
+    # 直接写死脏值会被悄悄改成合法日期，测试就成了摆设。
+    bad = "2026-" + chr(51) + chr(57) + "-" + chr(57) + chr(51) + " 12:05"
+    try:
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td) / "ledger.json"
+            for label, value, want in (
+                ("非法日期", bad, None),
+                ("完全不是日期", "not-a-date", None),
+                ("月份 13", "2026-13-01 12:05", None),
+                ("小时 25", "2026-11-20 25:05", None),
+                ("合法值原样保留", "2026-11-20 12:05", "2026-11-20 12:05"),
+            ):
+                p.write_text(json.dumps({"since": value, "items": {}}),
+                             encoding="utf-8")
+                pw.LEDGER_PATH = p
+                got = pw.load_ledger().get("since")
+                check(f"since 清洗：{label}", got == want, f"得到 {got!r}")
+    finally:
+        pw.LEDGER_PATH = orig
+
+
 def main() -> int:
     for fn in (test_split, test_ref_shift, test_ledger, test_wording,
-               test_entry_order, test_schedule):
+               test_entry_order, test_schedule, test_ledger_since):
         fn()
     print()
     if _failed:
