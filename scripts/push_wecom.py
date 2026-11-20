@@ -593,12 +593,12 @@ def load_ledger() -> dict:
     d = load_json(LEDGER_PATH, {}) or {}
     if not isinstance(d, dict) or not isinstance(d.get("items"), dict):
         d = {"since": None, "items": {}}
-    # 历史台账里出现过非法日期（实测 2026-10-28 12:05），会被原样印进推送的
-    # 「统计区间」文案。since 只在台账清空时才重置，脏值能挂很久，读入时校验一次：
-    # 不合法就丢掉，下次有新变动时重新起算，比带着一个假日期强。
+    # since 会原样印进推送的「统计区间」文案，读入时校验一次格式：非
+    # YYYY-MM-DD HH:MM 或月/日/时/分越界就丢弃，下次有新变动时重新起算。
+    # 纯防御性校验 —— 台账可能被手工编辑或从旧备份恢复，不必假定它一定干净。
     #
-    # 别用 datetime.strptime 校验：本机实测它会把 "2026-10-28 12:05" 宽松解析成
-    # 2026-10-28（%m 只吃 1 位、越界也不报错），等于没校验。纯正则 + 数值范围最稳。
+    # 别用 datetime.strptime：它对宽松输入会误判（%m 只吃 1 位、越界不报错），
+    # 纯正则 + 字符串范围比较更可靠。
     since = d.get("since")
     if since:
         m = re.fullmatch(r"(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})", str(since))

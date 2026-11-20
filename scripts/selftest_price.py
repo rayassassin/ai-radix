@@ -241,14 +241,14 @@ def test_schedule() -> None:
 
 
 def test_ledger_since() -> None:
-    """⑦ 台账「统计区间」不能带非法日期（线上出现过 2026-10-28 12:05）。"""
+    """⑦ 台账「统计区间」格式校验（防御手工编辑 / 旧备份里的脏值）。"""
     import json
     import tempfile
     from pathlib import Path
 
     orig = pw.LEDGER_PATH
-    # 用 chr 拼出非法月/日：某些运行环境会把命令里的「非法日期字面量」自动规范化，
-    # 直接写死脏值会被悄悄改成合法日期，测试就成了摆设。
+    # 用 chr 拼出非法月/日，避免测试里的字面量被运行环境做日期规范化，
+    # 导致「脏值」其实变成合法日期、测试成了摆设。
     bad = "2026-" + chr(51) + chr(57) + "-" + chr(57) + chr(51) + " 12:05"
     try:
         with tempfile.TemporaryDirectory() as td:
