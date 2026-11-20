@@ -3,12 +3,130 @@
  "source_url": "https://aihot.news/daily",
  "source_note": "标题、摘要与链接版权归 AIHOT 及各原始信源所有，此处仅作索引与引用，详情请前往原文。",
  "api_doc": "https://aihot.news/api/v1/agent",
- "fetched_at": "2026-11-20 07:05:04",
+ "fetched_at": "2026-11-20 08:05:05",
  "count": 30,
  "event_total": 273,
- "earliest": "2026-10-21",
- "latest": "2026-11-19",
+ "earliest": "2026-10-22",
+ "latest": "2026-11-20",
  "days": [
+  {
+   "date": "2026-11-20",
+   "generated_at": "2026-11-20T00:00:39.442Z",
+   "window_start": "2026-11-19T00:00:00.000Z",
+   "window_end": "2026-11-20T00:00:00.000Z",
+   "lead": {
+    "title": "Anthropic 登陆纳斯达克，开盘价 111 美元较发行价高出 33%",
+    "paragraph": "Anthropic 在纳斯达克完成 IPO，开盘几分钟内股价达 111.50 美元，较 83 美元发行价高出 33%，发行价已超过公司此前 70 至 78 美元的预期区间。本次发行募资超过 810 亿美元，叠加同期私募融资后公司现金储备预计达 2200 亿美元；按开盘价计算市值超过 2 万亿美元，CEO Dario Amodei 在开盘致辞中强调公司对安全的承诺。"
+   },
+   "url": "https://aihot.news/daily/2026-11-20",
+   "sections": [
+    {
+     "label": "产品发布/更新",
+     "items": [
+      {
+       "title": "Mac 版 Gemini 应用上线计算机操作功能，可代用户执行跨应用任务",
+       "summary": "Google Labs VP Josh Woodward 宣布 Mac 版 Gemini 应用新增 computer use 功能，可跨文件夹、应用和网页代用户执行任务，屏幕和光标控制权仍归用户。官方演示显示 Gemini 能在后台窗口中点击、滚动和输入，把草图变成 Blender 里的绑定的 3D 模型。",
+       "source": "X：Josh Woodward (@joshwoodward, Google Labs VP)",
+       "url": "https://aihot.news/items/h5xjk79bhcu8vgnbrynj208uj",
+       "original": "https://x.com/joshwoodward/status/2123534862569324703"
+      },
+      {
+       "title": "Google 在 Gemini API 推出 Tool Retrieval 预览",
+       "summary": "Google 在 Gemini API 的 Interactions API 中以预览形式推出 Tool Retrieval，让智能体按需加载工具参数 schema，而不是每次请求都发送完整工具库，以减少输入 token 并在工具数量扩大时保持选择准确。",
+       "source": "Google Blog：AI（RSS）",
+       "url": "https://aihot.news/items/n3npoqbr48wu58cke5p3ox18l",
+       "original": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/"
+      }
+     ]
+    },
+    {
+     "label": "行业动态",
+     "items": [
+      {
+       "title": "Anthropic 登陆纳斯达克，开盘价 111 美元较发行价高出 33%",
+       "summary": "Anthropic 在纳斯达克完成 IPO，开盘几分钟内股价达 111.50 美元，较 83 美元发行价高出 33%，发行价已超过公司此前 70 至 78 美元的预期区间。本次发行募资超过 810 亿美元，叠加同期私募融资后公司现金储备预计达 2200 亿美元；按开盘价计算市值超过 2 万亿美元，CEO Dario Amodei 在开盘致辞中强调公司对安全的承诺。",
+       "source": "TechCrunch：AI（RSS）",
+       "url": "https://aihot.news/items/gklqioeodqeuqgz3lttg83ztv",
+       "original": "https://techcrunch.com/2026/11/19/anthropic-hits-nasdaq-exchanges-at-110-27-above-ipo-price/"
+      },
+      {
+       "title": "Nadella 解释向 6 万员工提供买断的原因：转型为 AI 优先的组织而非裁员",
+       "summary": "Microsoft CEO Satya Nadella 在 DealBook Summit 上解释，10 月向 6 万名员工提供买断是为了让员工在转型中拥有选择权，而非用 AI 取代员工，目标是让所有人都用 AI 工作、转向管理 AI 智能体。",
+       "source": "TechCrunch：AI（RSS）",
+       "url": "https://aihot.news/items/g47lsydtqfsi16e0z920ghe2y",
+       "original": "https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/"
+      },
+      {
+       "title": "芯片停运叠加海外云通道关闭，中国科技公司面临双重冲击",
+       "summary": "美国商务部收紧AI芯片出口管制并关闭第三方国家云算力通道后，亚洲多笔大型AI数据中心交易开始瓦解。Moonshot AI取消了与印尼云服务商的1.5亿美元合同，原计划租用Nvidia Blackwell Ultra B300集群训练Kimi K4，此前已预付约50%而非行业标准的15%。台积电和三星暂停向中国客户交付部分处理器，需申请许可；字节跳动、百度昆仑等客户受影响，非AI芯片豁免取消也波及小米、Oppo、vivo等智能手机处理器。",
+       "source": "The Decoder：AI News（RSS）",
+       "url": "https://aihot.news/items/h4bvsjw4ri6to1inm87srlf42",
+       "original": "https://the-decoder.com/chinese-tech-firms-face-a-double-hit-as-chip-shipments-stop-and-overseas-cloud-access-disappears/"
+      },
+      {
+       "title": "Nvidia 股价近期波动复盘：财报强劲但股价较 10 月高点跌近 40%",
+       "summary": "The Verge 梳理 Nvidia 近期股价波动：第三季度营收同比翻倍至 1158 亿美元，数据中心业务增长 110%，Vera Rubin 平台贡献近 200 亿美元收入；但受芯片股整体抛售、前 CEO 黄仁勋辞职及公司治理调查等因素影响，股价一度报约 150 美元，较 10 月 6 日历史高点跌近 40%，周四收于 145.98 美元，创 52 周新低。",
+       "source": "The Verge：AI（RSS）",
+       "url": "https://aihot.news/items/w1q2gyqsel49b4vbqeodf0qmc",
+       "original": "https://www.theverge.com/ai-artificial-intelligence/1038063/nvidia-stock-market-price-earnings"
+      },
+      {
+       "title": "彭博社：黄仁勋离任英伟达 CEO 后日本 AI 股首当其冲",
+       "summary": "彭博社 11 月 19 日报道称，英伟达管理层变动及黄仁勋离任引发全球 AI 概念股新一轮抛售，日本相关股票首当其冲，市场风向从“AI 溢价”转向“AI 折价”。",
+       "source": "IT之家·人工智能",
+       "url": "https://aihot.news/items/gpufpm2kxcsxrewhivsjviz3a",
+       "original": "https://www.ithome.com/1/029/265.htm"
+      },
+      {
+       "title": "Perplexity CEO Aravind Srinivas 祝贺 Anthropic IPO，称 Opus 5.5 仍是业界最佳模型",
+       "summary": "Perplexity CEO Aravind Srinivas 发推祝贺 Anthropic 当日 IPO，称其展示了专注、高信念、品味驱动的团队能在短时间内达成的成果。他表示 Opus 5.5 以明显优势仍是业界最佳模型，并称 Perplexity 作为 Anthropic 客户为其高兴。",
+       "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
+       "url": "https://aihot.news/items/w8zhbr5smu0072gyuzmmay1eo",
+       "original": "https://x.com/AravSrinivas/status/2123480966459174920"
+      },
+      {
+       "title": "Karina Nguyen 发文祝贺投资人 Sol 庆祝 Anthropic IPO",
+       "summary": "Karina Nguyen 发文感谢投资人 Sol，回忆早期在办公室一起讨论模型评测和后训练难题的经历，并称赞他是唯一理解 scaling laws 的 VC。引用内容为 Sol 祝贺 Anthropic IPO 的推文，感谢 LP 及 GM 养老金、ICONIQ、Coatue、Lightspeed 等合作伙伴在增长投资最差时期押注 Anthropic。",
+       "source": "X：Karina Nguyen（@karinanguyen）",
+       "url": "https://aihot.news/items/lc38ozrwfur9ympu1l3meqcuq",
+       "original": "https://x.com/karinanguyen/status/2123509936475001310"
+      },
+      {
+       "title": "黄仁勋相关传闻核查：美商务部与司法部就Megaspeed发联合声明，未认定违规芯片销售",
+       "summary": "围绕英伟达前高管黄仁勋及AI芯片转运传闻，美国商务部与司法部就Megaspeed发布联合声明，未认定存在违规芯片销售，也未将该公司列入实体清单；英伟达此前已主动切断对Megaspeed的供应。相关声明未提及间谍行为，新加坡内政部亦表示未就间谍问题调查该公司负责人。",
+       "source": "X：X.PIN (@thexpin)",
+       "url": "https://aihot.news/items/abxhv94f3gcq1qb9mzdf7yma3",
+       "original": "https://x.com/thexpin/status/2123199944903581803"
+      }
+     ]
+    },
+    {
+     "label": "论文研究",
+     "items": [
+      {
+       "title": "Stanford RegLab 发布 PhantomDocket 基准，追踪美国州法院诉讼文书中的 AI 辅助写作",
+       "summary": "Stanford HAI 与 RegLab 研究者发布论文 Detection Objection 和 PhantomDocket 基准，基于 Damien Charlotin 的 AI 幻觉案例数据库校准 AI 检测器，追踪四个州法院的 AI 辅助写作。",
+       "source": "Stanford HAI News（网页）",
+       "url": "https://aihot.news/items/wi5cfyezztfdcojsokxto4q0d",
+       "original": "https://hai.stanford.edu/news/ai-might-be-flooding-state-court-houses-but-proving-it-is-another-matter"
+      }
+     ]
+    },
+    {
+     "label": "技巧与观点",
+     "items": [
+      {
+       "title": "OpenAI 详解 Codex 驱动的 Performance Factory 如何自动保持 ChatGPT 高性能",
+       "summary": "OpenAI 官方详解其 Performance Factory 系统，用 Codex 智能体在云端自动排查并修复 ChatGPT 的性能回归。其中 Regression Workflow 在三个多月内跟踪超过 1700 次调查、定位超过 600 个根因，相当于每天约 17 次自动调查。",
+       "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+       "url": "https://aihot.news/items/alwgjr29158n454prl9tjmmw1",
+       "original": "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast"
+      }
+     ]
+    }
+   ],
+   "event_count": 12
+  },
   {
    "date": "2026-11-19",
    "generated_at": "2026-11-19T00:00:20.591Z",
@@ -2774,124 +2892,6 @@
        "source": "Tessl：产品与工程博客",
        "url": "https://aihot.news/items/wz8yuzgpztob6gtdo8pxuip2j",
        "original": "https://tessl.io/blog/there-arent-enough-chaperones-for-all-your-coding-agents"
-      }
-     ]
-    }
-   ],
-   "event_count": 12
-  },
-  {
-   "date": "2026-10-21",
-   "generated_at": "2026-10-21T00:00:33.717Z",
-   "window_start": "2026-10-20T00:00:00.000Z",
-   "window_end": "2026-10-21T00:00:00.000Z",
-   "lead": {
-    "title": "DeepSeek 全面开源内部推理框架 DeepInfer",
-    "paragraph": "DeepSeek 宣布将内部推理框架 DeepInfer 全面开源，并同步开源生产级 Token 编解码组件 deepseek-recipe。"
-   },
-   "url": "https://aihot.news/daily/2026-10-21",
-   "sections": [
-    {
-     "label": "模型发布/更新",
-     "items": [
-      {
-       "title": "Inception Labs 发布扩散大语言模型 Mercury 3，速度达 1068 tokens/秒",
-       "summary": "Inception Labs 发布扩散式大语言模型 Mercury 3，称其在多项基准上超过 GPT-6 Luna 和 Claude Haiku 5.5，速度达 1068 tokens/秒，参数量较 Mercury 1 扩大 40 倍以上。",
-       "source": "Inception Labs：Blog（网页）",
-       "url": "https://aihot.news/items/osk3jj5jltogwr6zpo09w80j8",
-       "original": "https://www.inceptionlabs.ai/blog/introducing-mercury-3"
-      }
-     ]
-    },
-    {
-     "label": "产品发布/更新",
-     "items": [
-      {
-       "title": "DeepSeek 全面开源内部推理框架 DeepInfer",
-       "summary": "DeepSeek 宣布将内部推理框架 DeepInfer 全面开源，并同步开源生产级 Token 编解码组件 deepseek-recipe。",
-       "source": "公众号：DeepSeek（深度求索）",
-       "url": "https://aihot.news/items/ckykonvith99q6hvd0utjdwfn",
-       "original": "https://mp.weixin.qq.com/s?__biz=Mzk0OTYwNzc3NQ%3D%3D&mid=2247485884&idx=1&sn=d457981abe7db1f1b5d600fc109dc836"
-      },
-      {
-       "title": "Google 与 Meta 发布 TorchTPU：PyTorch 原生 TPU 后端",
-       "summary": "Google 与 Meta 发布开源项目 TorchTPU，为 Google TPU 提供原生 PyTorch 后端，模型迁移只需把 .to(\"cuda\") 改为 .to(\"tpu\")。",
-       "source": "PyTorch：Blog（RSS）",
-       "url": "https://aihot.news/items/lh8vm7yp332xoffhqoscusss4",
-       "original": "https://pytorch.org/blog/introducing-torchtpu/"
-      },
-      {
-       "title": "ChatGPT 推出 Locked Chats，可用 PIN 或生物识别锁定敏感对话",
-       "summary": "ChatGPT 推出 Locked Chats 功能，把敏感对话从常规历史记录和搜索中移入受保护空间。用户在网页端和桌面端可用 PIN 解锁，支持的移动设备上可用 PIN、Face ID、Touch ID 或设备解锁；锁定会话中的新消息不会更新常规对话使用的记忆。该功能即日起向 Free、Go、Plus、Pro、Business、Enterprise 和 Edu 套餐推出。",
-       "source": "X：ChatGPT (@ChatGPT)",
-       "url": "https://aihot.news/items/asyalmeuxw45l5wj2tar3tda5",
-       "original": "https://x.com/ChatGPT/status/2112597766333673624"
-      },
-      {
-       "title": "Google 发布 vLLM 与 SGLang 的 TorchTPU 原生推理引擎",
-       "summary": "Google 在 PyTorch 相关公告中推出基于 TorchTPU 的 vLLM 和 SGLang 原生 PyTorch 推理引擎，分别与 Inferact、RadixArk 合作开发，让开发者用熟悉的 PyTorch 工具在 TPU 上部署模型。",
-       "source": "Google Developers Blog（RSS）",
-       "url": "https://aihot.news/items/mlusnw9gi199uld4ixj58m2cz",
-       "original": "https://developers.googleblog.com/announcing-new-vllm-and-sglang-inference-engines-on-tpu/"
-      }
-     ]
-    },
-    {
-     "label": "行业动态",
-     "items": [
-      {
-       "title": "路透：OpenAI 拟在 Anthropic 上市前加速融资约 300 亿美元，估值超 1.4 万亿美元",
-       "summary": "据 Reuters 报道，OpenAI 正赶在 Anthropic 上市前洽谈融资约 300 亿美元，估值超 1.4 万亿美元，比 3 月的 8520 亿美元至少高 64%。",
-       "source": "X：Rohan Paul (@rohanpaul_ai)",
-       "url": "https://aihot.news/items/srgsfi8edabzrwgg6vjtgw3ya",
-       "original": "https://x.com/rohanpaul_ai/status/2112455383356989598"
-      },
-      {
-       "title": "SpaceX 财报显示 AI 业务超预期，占收入 52%",
-       "summary": "SpaceX 发布第三季度监管文件，披露营收 146 亿美元、净利润 44 亿美元，扭转去年同期 10 亿美元亏损。其更名的“Super Intelligence”业务线（含 Cursor、Grok 和 neocloud 算力业务）表现好于投资者预期，AI 目前占公司收入 52%，算力规模达 1.7 GW。",
-       "source": "TechCrunch：AI（RSS）",
-       "url": "https://aihot.news/items/ov4nfafvbhe7d8mj1uirkgsxb",
-       "original": "https://techcrunch.com/2026/10/20/spacexs-ai-business-is-beating-expectations/"
-      },
-      {
-       "title": "美国陆军网络司令部 ECHOTRIBBLE 项目拟将 AI 智能体变成自主扩散的网络武器",
-       "summary": "据 The Intercept 获取的文件，美国陆军网络司令部（ARCYBER）正在开发代号 ECHOTRIBBLE 的平台，让 AI 智能体自主在网络间移动、识别并清除威胁目标，之后自毁，且须在极少人工监督下运行。",
-       "source": "The Decoder：AI News（RSS）",
-       "url": "https://aihot.news/items/u6kqfrgiqrhbpxn012nlisd66",
-       "original": "https://the-decoder.com/army-cyber-commands-echotribble-would-turn-ai-agents-into-self-spreading-cyberweapons/"
-      },
-      {
-       "title": "Redact 调查：WhatsApp 帮助页面隐藏 LLM 指令，让 AI 不推荐监管机构、不提 GDPR",
-       "summary": "Redact 发现 WhatsApp 帮助中心页面向 LLM 发送用户看不到的隐藏指令，指示其支持聊天机器人不推荐数据保护监管机构，并在用户提到律师或法律行动后不引用 GDPR、LGPD 或 CCPA。",
-       "source": "Hacker News：AI 热帖",
-       "url": "https://aihot.news/items/apaky0ybxpb9uwt12jrwj954p",
-       "original": "https://redact.dev/blog/whatsapp-help-pages-hidden-ai-instructions"
-      },
-      {
-       "title": "OpenAI 收购药物研发平台 Orchestra Bio 并入 Rosalind 生命科学体系",
-       "summary": "OpenAI 宣布收购 Orchestra Bio，一个帮助生物制药团队协调药物研发复杂流程的平台，其团队和技术将与 Rosalind 整合。Orchestra 的智能体可帮助团队追踪研究和项目进展，分析如生产批次失败对临床试验时间线的影响并提出应对方案。文中还提到与 Novo Nordisk 和 Moderna 的合作，以及新药研发平均需要 10 到 15 年的背景。",
-       "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-       "url": "https://aihot.news/items/u9skklgkszb3pcf3cvvc1nefk",
-       "original": "https://openai.com/index/openai-to-acquire-orchestra-bio"
-      },
-      {
-       "title": "Anthropic 云合作生变：AWS、Google、微软视其为竞争者",
-       "summary": "据泄露给华尔街日报的 S-1 文件，Anthropic 难以从 AWS、Google 和 Microsoft 获得足够云算力，这些厂商日益将其视为竞争者而非客户。",
-       "source": "TechCrunch：AI（RSS）",
-       "url": "https://aihot.news/items/cbzvuf1atk51l7i5c2dpgboao",
-       "original": "https://techcrunch.com/2026/10/20/anthropics-cloud-partnerships-are-getting-messy/"
-      }
-     ]
-    },
-    {
-     "label": "论文研究",
-     "items": [
-      {
-       "title": "Anthropic 用 Claude 设计出针对蝎子神经毒素的蛋白质迷你结合剂",
-       "summary": "Anthropic 让内部研究模型在 Claude Science 中主要自主运行 64 小时，设计针对五种蝎子神经毒素的蛋白质迷你结合剂，共生成 318,484 个设计、筛选出 180 个。",
-       "source": "Anthropic：Research（发表成果 · 网页）",
-       "url": "https://aihot.news/items/oxl50pfymja6rgxkem3y0de9j",
-       "original": "https://www.anthropic.com/research/claude-scorpion-toxin-binder-design"
       }
      ]
     }
