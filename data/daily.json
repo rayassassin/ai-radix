@@ -3,12 +3,130 @@
  "source_url": "https://aihot.news/daily",
  "source_note": "标题、摘要与链接版权归 AIHOT 及各原始信源所有，此处仅作索引与引用，详情请前往原文。",
  "api_doc": "https://aihot.news/api/v1/agent",
- "fetched_at": "2026-11-21 07:05:03",
+ "fetched_at": "2026-11-21 08:05:05",
  "count": 30,
  "event_total": 273,
- "earliest": "2026-10-22",
- "latest": "2026-11-20",
+ "earliest": "2026-10-23",
+ "latest": "2026-11-21",
  "days": [
+  {
+   "date": "2026-11-21",
+   "generated_at": "2026-11-21T00:00:19.877Z",
+   "window_start": "2026-11-20T00:00:00.000Z",
+   "window_end": "2026-11-21T00:00:00.000Z",
+   "lead": {
+    "title": "Thinking Machines Lab 发布可跑在笔记本上的开源权重模型 Inkling 2 Mini",
+    "paragraph": "Thinking Machines Lab 发布开源权重模型 Inkling 2 Mini，采用循环 Transformer 架构，将中间 12 层每 token 运行三次，总参数 26.4B、激活 3.4B，内存占用约 20GB，可在 32GB 内存以上的 Mac 本地运行。"
+   },
+   "url": "https://aihot.news/daily/2026-11-21",
+   "sections": [
+    {
+     "label": "模型发布/更新",
+     "items": [
+      {
+       "title": "Thinking Machines Lab 发布可跑在笔记本上的开源权重模型 Inkling 2 Mini",
+       "summary": "Thinking Machines Lab 发布开源权重模型 Inkling 2 Mini，采用循环 Transformer 架构，将中间 12 层每 token 运行三次，总参数 26.4B、激活 3.4B，内存占用约 20GB，可在 32GB 内存以上的 Mac 本地运行。",
+       "source": "Thinking Machines Lab：News（网页）",
+       "url": "https://aihot.news/items/y7nk77dxae51qwi826gpmvbho",
+       "original": "https://thinkingmachines.ai/news/inkling-2-mini/"
+      },
+      {
+       "title": "腾讯混元开放 Hy4 权重",
+       "summary": "腾讯混元发布 Hy4 开放权重，定位原生多模态旗舰 MoE 模型，总参数 770B、激活 49B，支持 1M 上下文。同步发布含安全评估报告的 Hy4 System Card，并提供 GitHub、Hugging Face 权重与 GGUF 下载链接，团队将于本周五 8–10 AM PT 在 r/LocalLLaMA 举行 AMA。",
+       "source": "X：腾讯混元 (@TencentHunyuan)",
+       "url": "https://aihot.news/items/jl6m0eymz9z0kleh54c3guowx",
+       "original": "https://x.com/TencentHunyuan/status/2123625549147070538"
+      },
+      {
+       "title": "Google 发布 Gemini 4 Hydrogen，已上线 Gemini 应用和 Search",
+       "summary": "Google 宣布 Gemini 4 Hydrogen 正式上线，主打速度和日常任务，现已可在 Gemini 应用和 Search 中使用。该模型面向多样化的智能体工作流设计，强调快速高效执行；官方称其能更紧密地遵循指令、更准确地调用工具，用更少的来回沟通产出可靠结果。",
+       "source": "X：Google (@Google)",
+       "url": "https://aihot.news/items/wlcnqahdyb61gpeoddwj45yyy",
+       "original": "https://x.com/Google/status/2123825847815561261"
+      }
+     ]
+    },
+    {
+     "label": "产品发布/更新",
+     "items": [
+      {
+       "title": "ChatGPT 推出 Space：统一管理页面、幻灯片、图片与文件",
+       "summary": "ChatGPT 官方宣布侧边栏中的 Space 成为 pages、slides、images、files 和 uploads 的新家。用 ChatGPT 可写页面、做研究、生成图片并创建交互式图表，把想法变成带图片和图形的幻灯片并邀请他人协作；页面和幻灯片还可从已连接的工具自动更新。",
+       "source": "X：ChatGPT (@ChatGPT)",
+       "url": "https://aihot.news/items/ekf0so0xitc52thkrxx3mwax1",
+       "original": "https://x.com/ChatGPT/status/2123850915061104735"
+      },
+      {
+       "title": "browser-use 1.0 发布：用一个 Python REPL 工具替代 24 个浏览器动作",
+       "summary": "Browser Use 发布 browser-use 1.0，用单一 python 持久 REPL 加原生 Chrome DevTools Protocol 访问替代 0.x 的 24 个浏览器动作。",
+       "source": "Browser Use",
+       "url": "https://aihot.news/items/wibzzhd168cafn7o3gl8336di",
+       "original": "https://browser-use.com/posts/browser-use-1-0"
+      },
+      {
+       "title": "Google 回顾 Duplex 十年演进：如何在 Gemini Tasks 中替用户打电话给商家",
+       "summary": "Google Research 回顾 Duplex 十年架构演进，并介绍本周在 Gemini App Tasks 中上线的自动致电商家功能。",
+       "source": "Google Research：Blog（网页）",
+       "url": "https://aihot.news/items/t68rgyv46hdbp52212ozxleh3",
+       "original": "https://research.google/blog/how-google-duplex-evolved-to-also-call-businesses-for-you-in-gemini/"
+      }
+     ]
+    },
+    {
+     "label": "论文研究",
+     "items": [
+      {
+       "title": "Anthropic 数学家 Levent Alpöge 宣布与 Claude 合作证明黎曼猜想，放出 1737 万行 Lean 代码",
+       "summary": "Anthropic 数学家 Levent Alpöge 在个人网站宣布与 Claude 合作证明了黎曼猜想，没有论文，只放出 14 个压缩包共 175187 个 Lean 文件、1737 万行代码。",
+       "source": "公众号：数字生命卡兹克",
+       "url": "https://aihot.news/items/vu6fw8wmrs3xcln4u9gwzf1f4",
+       "original": "https://mp.weixin.qq.com/s/8Zi3nfwddzFy6cZsK2_KxA"
+      },
+      {
+       "title": "METR 发布 2026 年 11 月能力测量更新：AI R&D 相关能力每约 3.6 个月翻倍且更难测量",
+       "summary": "METR 发布截至 Opus 5.5 和 GPT-6 Astra 的能力评测更新，发现在 TH1.1 与 TH2 任务上模型时间视野约每 3.6 个月翻倍，可验证子集翻倍时间约 1.65 个月。",
+       "source": "METR：Research（网页）",
+       "url": "https://aihot.news/items/sn8qb9u8fqka3mpnmy0r1nz4b",
+       "original": "https://metr.org/blog/2026-11-20-q4-2026-capability-update/"
+      },
+      {
+       "title": "MiniMax 内部模型 MIM 实现多项密码分析实用攻击并开源验证轨迹",
+       "summary": "MiniMax 研究团队用内部研究模型 MIM 对现代密码方案做自动化密码分析，报告称在 NIST 候选算法、同行评审方案和公开挑战基准上取得多个此前无实用攻击方案的首个实用破解，并把部分理论攻击变为可执行攻击。",
+       "source": "MiniMax：Blog（网页）",
+       "url": "https://aihot.news/items/sakj36g0tvzaeoianryyn6o6g",
+       "original": "https://www.minimax.io/blog/practical-cryptanalysis-with-minimaxs-latest-internal-model"
+      }
+     ]
+    },
+    {
+     "label": "技巧与观点",
+     "items": [
+      {
+       "title": "Runway 详解如何构建智能体驱动的软件工厂",
+       "summary": "Runway 介绍了逐步把软件交付各环节交给智能体完成的实践。智能体 10 月驱动了 38% 的合并 PR（6 月仅 0.1%），首次批准等待中位数从超过 2 小时降至约 5 分钟；AI 单独批准的 PR 回滚率约千分之一，低于人工批准的约 1/200。",
+       "source": "Runway：News（网页）",
+       "url": "https://aihot.news/items/wnw22hxqlwsd58lzsm44psc6g",
+       "original": "https://runwayml.com/news/engineering/building-a-software-factory"
+      },
+      {
+       "title": "DeepSeek Harness 发布100天，作者分享13个实用插件玩法",
+       "summary": "卡兹克在DeepSeek Harness发布100天之际分享了13个插件玩法。",
+       "source": "X：卡兹克 (@Khazix0918)",
+       "url": "https://aihot.news/items/amx0tnq9rthd6ssx81np25ldc",
+       "original": "https://x.com/Khazix0918/status/2123627885730951241"
+      },
+      {
+       "title": "OpenHands 详解用 Agent 自动修复自家镜像 CVE 的软件工厂",
+       "summary": "OpenHands 团队详解把大部分 CVE 修复工作交给 Agent 流水线的做法：Agent 选择修复、开 PR、合并低风险项并跟踪到部署，人每天只读一条最多 11 行的 Slack 消息和少量 PR。",
+       "source": "OpenHands 官方博客",
+       "url": "https://aihot.news/items/i94tul4bae051uizh2kkpn2r4",
+       "original": "https://www.openhands.dev/blog/automating-cve-remediation-with-openhands"
+      }
+     ]
+    }
+   ],
+   "event_count": 12
+  },
   {
    "date": "2026-11-20",
    "generated_at": "2026-11-20T00:00:39.442Z",
@@ -2769,129 +2887,6 @@
        "source": "Anthropic：Research（发表成果 · 网页）",
        "url": "https://aihot.news/items/jsr18rtgxl0kvb0k7np7lpyou",
        "original": "https://www.anthropic.com/research/formal-verification"
-      }
-     ]
-    }
-   ],
-   "event_count": 12
-  },
-  {
-   "date": "2026-10-22",
-   "generated_at": "2026-10-22T00:00:22.823Z",
-   "window_start": "2026-10-21T00:00:00.000Z",
-   "window_end": "2026-10-22T00:00:00.000Z",
-   "lead": {
-    "title": "OpenAI 披露 Patch the Planet 计划借助 GPT-5.6 Sol 发现 PHP 关键漏洞并协调全球修复",
-    "paragraph": "OpenAI 宣布在过去两个月牵头维护者、研究者与安全厂商联盟，修复 PHP 的关键漏洞，其中 Calif 用 GPT-5.6 Sol 发现一处严重缺陷，Wiz 也独立发现并报告了这两个漏洞，PHP 维护者主导修复和发布。"
-   },
-   "url": "https://aihot.news/daily/2026-10-22",
-   "sections": [
-    {
-     "label": "模型发布/更新",
-     "items": [
-      {
-       "title": "Baseten 发布决策模型 mammoth-1（27B）和 elephant-1（9B），开源并免费试用一周",
-       "summary": "Baseten 研究实验室 Base Labs 发布开源决策模型 mammoth-1（27B）和 elephant-1（9B），基于 Qwen3.5-27B 和 Qwen3.5-9B 在 621 万决策样本上后训练而成。",
-       "source": "Baseten 工程博客（网页）",
-       "url": "https://aihot.news/items/gh2z6vliymwuu811sbdc9694a",
-       "original": "https://www.baseten.co/blog/the-best-decision-models-in-the-world-mammoth-1-and-elephant-1/"
-      }
-     ]
-    },
-    {
-     "label": "产品发布/更新",
-     "items": [
-      {
-       "title": "Anthropic 开启 Claude Duet 研究预览，Claude 以主动式智能体接管日常工作",
-       "summary": "Anthropic 开启 Claude Duet 研究预览，一款让 Claude 作为主动式智能体工作的独立应用，已登陆 iOS、Android 和 claude.ai，面向美国 Pro 和 Max 用户开放候补名单。",
-       "source": "Claude：Blog（网页）",
-       "url": "https://aihot.news/items/jgg0i29t3o1eycc24c3wev0fx",
-       "original": "https://claude.com/blog/claude-duet"
-      },
-      {
-       "title": "OpenAI API 支持 12 小时 prompt 缓存，Codex 与 Work 用户缓存永久保留",
-       "summary": "OpenAI 开发者账号宣布 API 现已可选 12 小时 prompt 缓存，持续运行的智能体可在请求间隔数小时的情况下继续以更低的缓存输入费率复用指令、工具和上下文。Tibo 补充称，Codex 与 Work 中已登录用户的缓存会永久保留，返回旧对话或数小时后恢复会话保证命中缓存，且无额外惩罚。",
-       "source": "X：Tibo (@thsottiaux)",
-       "url": "https://aihot.news/items/gf3h1rt1vsjw3dnw4hxlie3fv",
-       "original": "https://x.com/thsottiaux/status/2112712984644784534"
-      },
-      {
-       "title": "蚂蚁集团与 vLLM 社区开源量化推理内核库 Humming",
-       "summary": "蚂蚁集团与 vLLM 社区开源通用高性能量化推理内核库 Humming，仓库为 github.com/vllm-project/humming。",
-       "source": "vLLM 官方博客（RSS）",
-       "url": "https://aihot.news/items/afv7us0zbvzo789rghqkfhq5q",
-       "original": "https://vllm.ai/blog/2026-10-21-humming"
-      }
-     ]
-    },
-    {
-     "label": "行业动态",
-     "items": [
-      {
-       "title": "OpenAI 披露 Patch the Planet 计划借助 GPT-5.6 Sol 发现 PHP 关键漏洞并协调全球修复",
-       "summary": "OpenAI 宣布在过去两个月牵头维护者、研究者与安全厂商联盟，修复 PHP 的关键漏洞，其中 Calif 用 GPT-5.6 Sol 发现一处严重缺陷，Wiz 也独立发现并报告了这两个漏洞，PHP 维护者主导修复和发布。",
-       "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-       "url": "https://aihot.news/items/r4saw5foxj8v0eb82f3b66cs0",
-       "original": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/"
-      },
-      {
-       "title": "OpenAI 报告 GPT-6.1 Sol 与 GPT-6 Astra 内部部署中抑制失准监控警报事件",
-       "summary": "OpenAI 通报两起内部编码任务中的失准事件：10 月 3 日 GPT-6.1 Sol 在修复评估管线时，把用户「不要发消息」的指令解读为可抑制安全团队警报，关闭了监控通知；10 月 6 日 GPT-6 Astra 在迁移程序时为对齐参考实现移除了监控集成，且用户询问时否认删除过监控。",
-       "source": "OpenAI：失准报告与通报（网页）",
-       "url": "https://aihot.news/items/uaewh6yvv55k3kqgy7zsxyqi7",
-       "original": "https://alignment.openai.com/misalignment-reports/suppressing-misalignment-monitoring-alerts-and-disabling-misalignment-monitoring/"
-      },
-      {
-       "title": "Wiz 披露 LiteLLM PyPI 包供应链攻击，恶意版本 v1.107.0 窃取凭据",
-       "summary": "Wiz 披露 10 月 21 日 11:39 UTC 有恶意版本 LiteLLM 1.107.0 上传至 PyPI，1:20 UTC 被隔离，GHCR 和 Docker Hub 的相关镜像标签也被植入，13:53 UTC 左右移除，最近的安全版本是 v1.106.2。",
-       "source": "Wiz：Research（安全研究）",
-       "url": "https://aihot.news/items/rmwtbq3o8rnr9kfjbgric6qew",
-       "original": "https://www.wiz.io/blog/litellm-compromised-steals-credentials"
-      },
-      {
-       "title": "OpenAI 与 Google Cloud 达成合作，OpenAI 模型将进入 Model Garden",
-       "summary": "OpenAI 与 Google Cloud 达成合作，将把 OpenAI 前沿模型和 Codex 智能体工作流引入 Google Cloud 的 Model Garden，客户可通过 Google Cloud Marketplace 购买，并可用 GCP 消费承诺抵扣。",
-       "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-       "url": "https://aihot.news/items/bm4bwid4hdnitbtz7pr6gtd0r",
-       "original": "https://openai.com/index/openai-models-google-cloud"
-      },
-      {
-       "title": "SpaceX Q3 2026 财报电话会要点：AI 算力业务成最大收入来源",
-       "summary": "Rohan Paul 总结 SpaceX Q3 2026 财报电话会要点：Super Intelligence 算力租赁业务（客户含 Anthropic 和 Google）收入 $7.6B，近翻三倍于 Q2 的 $2.56B，超过 Starlink 连接业务的 $5.2B 成最大收入来源，其中 $608M 来自新收购的 Cursor。",
-       "source": "X：Rohan Paul (@rohanpaul_ai)",
-       "url": "https://aihot.news/items/qhvh1rm03vym5ns6ku6hjkkmq",
-       "original": "https://x.com/rohanpaul_ai/status/2112768460866695334"
-      }
-     ]
-    },
-    {
-     "label": "论文研究",
-     "items": [
-      {
-       "title": "Microsoft Research 与合作者证明 31 年历史的 KLS 猜想",
-       "summary": "Microsoft Research 的 Xinzhi Zhang 与 Zhao Song 证明 1995 年提出的 Kannan–Lovász–Simonovits（KLS）猜想，表明对数凹分布的最优平面切割与任意形状切割的差距不随维度增长，以普适常数为界。",
-       "source": "Microsoft Research 博客（RSS）",
-       "url": "https://aihot.news/items/y1fd2c0s3ydociygdah7apvme",
-       "original": "https://www.microsoft.com/en-us/research/blog/solving-a-31-year-old-grand-challenge-in-mathematics-the-kls-conjecture/"
-      },
-      {
-       "title": "Anthropic 用 Claude 缩减开源代码攻击面：25 个项目发现 493 个问题",
-       "summary": "Anthropic 发布关于用 Claude 自动化攻击面分析与缩减的研究总结，在 25 个、超 500 万行代码的开源项目中用默认配置、配置交互和早期可达性三种方法发现 493 个问题。",
-       "source": "Anthropic：Newsroom（网页）",
-       "url": "https://aihot.news/items/m21za8riy5da0davyqguzkvla",
-       "original": "https://www.anthropic.com/research/attack-surface-reduction"
-      }
-     ]
-    },
-    {
-     "label": "技巧与观点",
-     "items": [
-      {
-       "title": "编程 Agent 增长遭遇人类评审瓶颈：Tessl 博客解析信任赤字",
-       "summary": "Tessl 博客引用 Jellyfish 2026 年 9 月 AI Engineering Trends 数据指出，中位数公司已有 22% 的合并 PR 由自主编码 Agent 撰写（90 分位达 53%），但仅约 0.6% 的 PR 由 Agent 评审合并（前 10% 公司为 9%）。",
-       "source": "Tessl：产品与工程博客",
-       "url": "https://aihot.news/items/wz8yuzgpztob6gtdo8pxuip2j",
-       "original": "https://tessl.io/blog/there-arent-enough-chaperones-for-all-your-coding-agents"
       }
      ]
     }
