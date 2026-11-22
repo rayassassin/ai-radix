@@ -3,12 +3,83 @@
  "source_url": "https://aihot.news/daily",
  "source_note": "标题、摘要与链接版权归 AIHOT 及各原始信源所有，此处仅作索引与引用，详情请前往原文。",
  "api_doc": "https://aihot.news/api/v1/agent",
- "fetched_at": "2026-11-22 07:05:04",
+ "fetched_at": "2026-11-22 08:05:04",
  "count": 30,
- "event_total": 273,
- "earliest": "2026-10-23",
- "latest": "2026-11-21",
+ "event_total": 267,
+ "earliest": "2026-10-24",
+ "latest": "2026-11-22",
  "days": [
+  {
+   "date": "2026-11-22",
+   "generated_at": "2026-11-22T00:00:32.553Z",
+   "window_start": "2026-11-21T00:00:00.000Z",
+   "window_end": "2026-11-22T00:00:00.000Z",
+   "lead": {
+    "title": "Anthropic 数学家称与 Claude 完成黎曼猜想证明，斯坦福数小时后发布纯人类竞争草稿",
+    "paragraph": "Anthropic 数学家 Levent Alpöge 周五宣布与 Claude 合作得到黎曼猜想及广义黎曼猜想的证明，证明以 Lean 语言分 14 个数据包发布，打印将超 25 万页。"
+   },
+   "url": "https://aihot.news/daily/2026-11-22",
+   "sections": [
+    {
+     "label": "产品发布/更新",
+     "items": [
+      {
+       "title": "Qwen4 Max 上线 Together AI，单次调用修复 Tornado 整仓 bug",
+       "summary": "Together AI 宣布阿里旗舰模型 Qwen4 Max 上线其 Serverless 推理平台（模型串 Qwen/Qwen4-Max），1M token 上下文，截至 2026 年 11 月 22 日 7 折。",
+       "source": "Together AI 研究与产品博客（RSS）",
+       "url": "https://aihot.news/items/rlj39tzyujneo0u35iyrfb4uc",
+       "original": "https://www.together.ai/blog/qwen4-max"
+      }
+     ]
+    },
+    {
+     "label": "行业动态",
+     "items": [
+      {
+       "title": "Together AI 通报 2026 年 6-7 月 serverless 推理服务提示词泄露事件",
+       "summary": "Together AI 通报一起安全事件：因 AI 编码 agent 在公开 GitHub 仓库 xorl 中提交了私有 Hugging Face 仓库凭证，未授权方下载了 2026 年 6-7 月提交给 MiniMax M3、GLM-5.2、Kimi K2.6 等 serverless 推理服务的存储提示词样本，并搜索其中其他服务凭证。",
+       "source": "Together AI 研究与产品博客（RSS）",
+       "url": "https://aihot.news/items/xqe6lbb5zsjp9xbsc1o912cs0",
+       "original": "https://www.together.ai/blog/security-event-prompt-leakage-for-requests-in-june-and-july-of-2026"
+      }
+     ]
+    },
+    {
+     "label": "论文研究",
+     "items": [
+      {
+       "title": "Anthropic 数学家称与 Claude 完成黎曼猜想证明，斯坦福数小时后发布纯人类竞争草稿",
+       "summary": "Anthropic 数学家 Levent Alpöge 周五宣布与 Claude 合作得到黎曼猜想及广义黎曼猜想的证明，证明以 Lean 语言分 14 个数据包发布，打印将超 25 万页。",
+       "source": "The Decoder：AI News（RSS）",
+       "url": "https://aihot.news/items/tje8i8y21ttk7jjmqet5bpxuq",
+       "original": "https://the-decoder.com/hours-after-anthropic-claims-a-claude-proof-of-the-riemann-hypothesis-stanford-releases-an-all-human-competing-draft/"
+      },
+      {
+       "title": "研究者向 AI 供应链埋入 200 万个金丝雀，揭露敏感数据泄露",
+       "summary": "研究者在经过 OpenRouter 等 AI 路由的请求中埋入 200 万个金丝雀链接，测试敏感信息是否会沿 AI 服务链泄露，结果显示这些数据像筛子一样大量外泄。",
+       "source": "Ars Technica：AI（RSS）",
+       "url": "https://aihot.news/items/agm7klro03kcu9weuix1bt4su",
+       "original": "https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/"
+      },
+      {
+       "title": "Columbia 与 MIT 论文展示 Claude 发现的算法突破 3SUM 与 APSP 长期速度上限",
+       "summary": "Columbia 和 MIT 的论文展示 Claude 发现的算法在 3SUM 和全对最短路径（APSP）上取得多项式改进，3SUM 达到 O(n^1.9992)、APSP 达到 O(n^2.9995)，推翻了 3SUM 和 APSP 假设。",
+       "source": "X：Rohan Paul (@rohanpaul_ai)",
+       "url": "https://aihot.news/items/d32df9vzpliz9m348fug74inq",
+       "original": "https://x.com/rohanpaul_ai/status/2124213113583174076"
+      },
+      {
+       "title": "OpenAI 发布 MedChemBench：评估 AI 模型解读分子结构与实验数据的能力",
+       "summary": "OpenAI 推出 MedChemBench，用 99 道源自已发表研究的题目评估 AI 模型解读分子结构、解释实验证据并预测化合物性质的能力。在 xhigh 推理设置下，GPT‑6.2 Astra 获得 84.5% 的可用分数，GPT‑6 Astra 为 83.3%，GPT‑6.1 Sol 为 82.0%，GPT‑5.6 Sol 为 58.2%。",
+       "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+       "url": "https://aihot.news/items/p52mxe56big96tb6cx9qr1rij",
+       "original": "https://openai.com/index/introducing-medchembench"
+      }
+     ]
+    }
+   ],
+   "event_count": 6
+  },
   {
    "date": "2026-11-21",
    "generated_at": "2026-11-21T00:00:19.877Z",
@@ -2774,119 +2845,6 @@
        "source": "X：Alex Heath (@alexeheath)",
        "url": "https://aihot.news/items/ryf4bbjezfib8jx05ng0889zf",
        "original": "https://x.com/alexeheath/status/2113706585348600220"
-      }
-     ]
-    }
-   ],
-   "event_count": 12
-  },
-  {
-   "date": "2026-10-23",
-   "generated_at": "2026-10-23T00:00:18.193Z",
-   "window_start": "2026-10-22T00:00:00.000Z",
-   "window_end": "2026-10-23T00:00:00.000Z",
-   "lead": {
-    "title": "AI 挖出潜伏十几年的 PHP 底层漏洞，PHP2Shell 事件全景复盘",
-    "paragraph": "作者复盘 PHP2Shell 事件：两个 CVSS 满分定为 9.2 分的 PHP 远程代码执行漏洞（CVE-2026-109618 和 CVE-2026-109619）在补丁发布前泄露，攻击演示视频外流，多国政府网站预防性下线，OpenAI 认领漏洞由 GPT-5.6 Sol 辅助发现。"
-   },
-   "url": "https://aihot.news/daily/2026-10-23",
-   "sections": [
-    {
-     "label": "产品发布/更新",
-     "items": [
-      {
-       "title": "OpenAI 正式发布 Decisions API，面向低延迟低成本小决策",
-       "summary": "OpenAI 宣布基于 GPT-6 Luna 的 Decisions API 正式可用，用于分类、路由、评分等有界答案问题，速度最高比通过 Responses API 使用 GPT-6 Luna 快 10x。",
-       "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-       "url": "https://aihot.news/items/xffhf8h0e0r145getmi9k1zgs",
-       "original": "https://openai.com/index/decisions-api"
-      },
-      {
-       "title": "Claude 网页、桌面和移动端将默认启用 auto mode",
-       "summary": "Claude 官方宣布，下周起 Pro、Max 和 Team 套餐在 Claude 网页、桌面和移动端应用中的会话将默认以 auto mode 运行。auto mode 不再逐步请求用户批准，而是由自动检查拦截高风险操作，用户可随时切回手动模式。其引用的 Claude Code 更新提到 auto mode 用独立分类器审查 shell 命令，测试中拦截了 89% 的危险命令，手动批准为 14%。",
-       "source": "X：Claude (@claudeai)",
-       "url": "https://aihot.news/items/ybo2q5ug2e71tfuab9m1t128o",
-       "original": "https://x.com/claudeai/status/2113360845409583307"
-      },
-      {
-       "title": "Replit 发布 Monitoring Agent，为应用提供可自动修复并部署的值班智能体",
-       "summary": "Replit 发布 Monitoring Agent，为应用提供相当于自主值班工程师的监控智能体。它可以读取生产日志和指标调查错误、变慢和部署失败，在启用 autofix 后验证修复并邮件汇报，启用 auto-publish 后可自动部署修复。该能力建立在早前上线的 App Monitoring 之上，用户可在应用的 Publishing 设置中开启。",
-       "source": "Replit：Blog（RSS）",
-       "url": "https://aihot.news/items/h1d0qu9nsy86fmfqns5f3pkjb",
-       "original": "https://replit.com/blog/replit-monitoring-agent"
-      }
-     ]
-    },
-    {
-     "label": "行业动态",
-     "items": [
-      {
-       "title": "AI 挖出潜伏十几年的 PHP 底层漏洞，PHP2Shell 事件全景复盘",
-       "summary": "作者复盘 PHP2Shell 事件：两个 CVSS 满分定为 9.2 分的 PHP 远程代码执行漏洞（CVE-2026-109618 和 CVE-2026-109619）在补丁发布前泄露，攻击演示视频外流，多国政府网站预防性下线，OpenAI 认领漏洞由 GPT-5.6 Sol 辅助发现。",
-       "source": "X：卡兹克 (@Khazix0918)",
-       "url": "https://aihot.news/items/h1v8wxdkljwpiyadhmy7miw4x",
-       "original": "https://x.com/Khazix0918/status/2113096414469464281"
-      },
-      {
-       "title": "Bloomberg 报道 DeepSeek 新一轮融资约 150 亿美元",
-       "summary": "据 Bloomberg，DeepSeek 最新一轮融资约 150 亿美元，为中国最大规模私募融资之一。谈判期间融资目标至少两次上调，从约 75 亿美元提高到 120 亿美元；CATL 和腾讯是最大投资方之一，CATL 据报出资约 15 亿美元。投前估值约 748 亿美元，加上 6 月完成的首轮超 75 亿美元，DeepSeek 约 6 个月内共募资约 225 亿美元。",
-       "source": "X：Rohan Paul (@rohanpaul_ai)",
-       "url": "https://aihot.news/items/eud25k8zsrrwc63xp39ptvfah",
-       "original": "https://x.com/rohanpaul_ai/status/2113106318659928525"
-      },
-      {
-       "title": "WSJ：马斯克希望以 AI 为核心推动 SpaceX 与 Tesla 合并",
-       "summary": "WSJ 报道，马斯克希望以 AI 为核心将估值约 $2T 的 SpaceX 与约 $1.5T 的 Tesla 合并。SpaceX 的 AI 业务已成其最大业务，Q3 营收 $7.56B（一年前仅 $813M），季度 $19.6B 资本开支中超过 $16.4B 投向 AI，推动 SpaceX 实现季度利润 $4.4B（上年同期亏损 $1.05B）。",
-       "source": "X：Rohan Paul (@rohanpaul_ai)",
-       "url": "https://aihot.news/items/nag5wgod0havrmodeo75pwnge",
-       "original": "https://x.com/rohanpaul_ai/status/2113107154219741231"
-      },
-      {
-       "title": "Anthropic 将 Agent Skills 开放标准捐赠给 Linux Foundation 旗下 Agentic AI Foundation",
-       "summary": "Anthropic 宣布把 Agent Skills 开放标准捐赠给 Linux Foundation 旗下的 Agentic AI Foundation（AAIF），此前已向其捐赠 MCP。",
-       "source": "Anthropic：Newsroom（网页）",
-       "url": "https://aihot.news/items/p74ybrpplgjfi3d8ql7fz0z6k",
-       "original": "https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation"
-      },
-      {
-       "title": "Anthropic 股权表内幕：风投迟到多年，如今无人持股超 2%",
-       "summary": "Newcomer 长文复盘 Anthropic 从 OpenAI 出走团队到即将 IPO 的股权演变。据投资人文件和多位知情人士，多年来风投因公司治理结构和安全优先路线而观望，目前没有任何风投机构持股超过 2%，Anthropic 曾向投资人明确将单一投资人持股控制在该水平以避免话语权集中。",
-       "source": "Newcomer 新闻长文（RSS）",
-       "url": "https://aihot.news/items/shd9gpw42uwoxqtenpzhy1je4",
-       "original": "https://www.newcomer.co/p/the-story-of-anthropics-cap-table"
-      },
-      {
-       "title": "Wiz 披露 ARTEX 智能体被 Storm-0940 用于攻击 IT 和软件厂商",
-       "summary": "Wiz 披露 2026 年 10 月有攻击者使用开源自主渗透测试框架 ARTEX 针对多家 IT 和软件厂商，活动与微软报告的中国国家级关联组织 Storm-0940 重叠，并已扩展到其他软件领域的供应链攻击尝试。",
-       "source": "Wiz：Research（安全研究）",
-       "url": "https://aihot.news/items/n6afjfxhq6vadobu4p0lm6tzm",
-       "original": "https://www.wiz.io/blog/artex-in-the-wild-storm-0940-expands-targeting-of-it-and-software-vendors"
-      }
-     ]
-    },
-    {
-     "label": "论文研究",
-     "items": [
-      {
-       "title": "Microsoft AI 发布 SDBench 基准与 MAI-DxO 诊断系统，登 Science",
-       "summary": "Microsoft AI 发布 Sequential Diagnosis Benchmark（SDBench）和 AI 诊断系统 MAI-DxO，论文发表于 Science。",
-       "source": "Microsoft AI：官方博客（网页）",
-       "url": "https://aihot.news/items/r7uwz6n0sd6jr2r0tb1fu3o0u",
-       "original": "https://microsoft.ai/news/building-medical-superintelligence/"
-      },
-      {
-       "title": "METR 与 Redwood Research 红队测试 OpenAI 内部智能体监控系统，发现多个漏洞",
-       "summary": "METR 与 Redwood Research 各派一名员工，于 7 月 21 日至 8 月 11 日对 OpenAI 内部失准监测系统开展三周高权限试点压力测试，产出 61 页内部报告。",
-       "source": "Redwood Research：Blog（RSS）",
-       "url": "https://aihot.news/items/fcw2s1pdclkgm5kmg2qwginp7",
-       "original": "https://blog.redwoodresearch.org/p/red-teaming-openais-internal-agent"
-      },
-      {
-       "title": "Anthropic 用 Claude 对 123 个开源库完成汇编级形式化安全证明",
-       "summary": "Anthropic 与 Theorem 合作，用 Claude 将 OSS-Fuzz 模糊测试转化为规格，对 123 个开源库的 239 个入口点证明了任意 64 MB 以下输入不崩溃，生成约 1.8 亿行 Rocq 证明。",
-       "source": "Anthropic：Research（发表成果 · 网页）",
-       "url": "https://aihot.news/items/jsr18rtgxl0kvb0k7np7lpyou",
-       "original": "https://www.anthropic.com/research/formal-verification"
       }
      ]
     }
