@@ -134,6 +134,17 @@ def find_token(config_path: Path) -> tuple[str, str]:
         v = read_env_file(env_file).get(TOKEN_ENV_NAME, "").strip()
         if v:
             found, source = v, f"env 文件 {env_file}"
+        else:
+            # 也接受「裸 token 文件」：文件里只有一串 token，没有 KEY= 前缀。
+            # 服务器上多个项目共用同一枚 PAT 时，真源放 /root/.github/token，
+            # 各自的凭证文件软链过去，只需维护一处；软链读出来就是裸 token，
+            # 所以这里必须认这种格式，否则软链过来会解析失败。
+            try:
+                raw = env_file.read_text(encoding="utf-8").strip()
+            except OSError:
+                raw = ""
+            if raw and "=" not in raw and len(raw.splitlines()) == 1:
+                found, source = raw, f"env 文件 {env_file}（裸 token，软链共享）"
 
     if found:
         err = check_token_shape(found)
@@ -145,6 +156,7 @@ def find_token(config_path: Path) -> tuple[str, str]:
         f"未找到 GitHub token。三种放法任选其一：\n"
         f"    a) 写进 {config_path} 的 github.token\n"
         f"    b) 写入 ~/.ai-radix/github.env：{TOKEN_ENV_NAME}=<你的真实token>\n"
+        f"       也支持「裸 token 文件」（文件里只有一串 token），便于多项目软链共享\n"
         f"    c) 环境变量 {TOKEN_ENV_NAME}（cron 里不方便）\n"
         f"  权限只需目标仓库的 Contents: Read and write。"
     )
