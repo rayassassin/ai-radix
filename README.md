@@ -872,10 +872,16 @@ python3 scripts/fetch_daily.py --date 2026-10-27   # 只补某一天
 并 `Canceling Pages deployment`。build 本身是成功的，下一轮 cron 推的 commit 会自动补建。
 
 但「推完 commit 就不管」曾经是静默失败：线上停更而服务器毫无感知。
-现在 `llm-api-pricing.sh` 第 5 步会调 `check_pages_status.py` 回查前几轮构建结果，
-只对**之后没有任何成功构建**的 `errored` 告警。排查历史失败可用：
+现在 `llm-api-pricing.sh` 第 5 步会调 `check_pages_status.py` 回查前几轮结果，**两路取并集**：
+`pages/builds` 接口的 `errored` + Actions 工作流的 `conclusion=failure`，
+只对**之后没有任何成功**的失败告警。排查历史失败可用：
 `python3 scripts/check_pages_status.py --dry-run --window-hours 24`。
 退出码：`1`=发现未恢复的部署失败，`2`=检查本身网络故障（只记 WARN，不打扰人）。
+
+> 为什么要查两路：2026-11-26 00:05 那轮 `deploy` 步骤撞上 Pages 部署接口 500
+> （`Failed to create deployment (status: 500)`），Pages builds 侧**当时还没落库**
+> （事后再查才补上 `errored`），只查 builds 会把整轮漏掉 ——
+> GitHub 发了失败邮件，我们的巡检却报「0 次」。工作流结论那一路覆盖了这个盲区。
 
 > ⚠️ **不要给这个回查脚本加自动 `POST /pages/builds` 重建。**
 > 2026-11-07 踩过：本项目每小时推一个新 commit，GitHub 自己就会触发构建、天然自愈。

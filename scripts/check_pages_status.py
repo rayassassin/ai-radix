@@ -16,14 +16,17 @@
   下一轮回查又看到这个新 errored，再 POST，再造一个 errored …… 自激循环，
   每小时稳定产生一条「部署异常」误报告警。真凶是重试动作本身，不是 GitHub。
 
-检查口径：
-  拉取最近 N 次 builds，只看过去 WINDOW_HOURS 小时内 status=errored 的，
-  且该失败之后**没有任何一次成功构建**（有 = 已自愈，跳过）。
-  用状态文件按 created_at 去重，同一个失败只告警一次。
+检查口径（两路取并集）：
+  ① Pages builds 接口：过去 WINDOW_HOURS 小时内 status=errored，且之后没有任何成功构建；
+  ② Actions 工作流结论：同名工作流 conclusion=failure 的运行，且之后没有成功的运行。
+     必须两路都查 —— 2026-11-26 00:05 那轮 deploy 接口直接返回 500，
+     Pages builds 侧**当时还没落库**（事后才看到 errored），只查 builds 会整轮漏报：
+     GitHub 给宇神发了失败邮件，而我们的巡检报「0 次失败」。
+  有「之后成功」的一律算已自愈，跳过。用状态文件去重，同一个失败只告警一次。
   正在 queued/building 属正常（本轮刚推上去，构建还没跑完），不告警。
 
 退出码（llm-api-pricing.sh 据此决定是否告警）：
-  0  正常（含 built / building / queued，以及已被后续成功覆盖的历史 errored）
+  0  正常（含 built / building / queued，以及已被后续成功覆盖的历史失败）
   1  发现尚未恢复的部署失败 → 主流程推企微告警
   2  检查本身失败（网络/凭证），只记 WARN 不发告警，避免网络抖动造成噪音
 
@@ -52,6 +55,8 @@ CONFIG_PATH = Path(os.path.expanduser("~/.ai-radix/config.json"))
 
 WINDOW_HOURS = 3        # 只看最近 3 小时（覆盖 3 轮 cron，避免漏报）
 LOOKBACK = 15           # 拉取最近 15 次（每小时一轮，留足余量，别卡在窗口边界漏掉）
+RUNS_LOOKBACK = 30      # 工作流运行记录，多拉一些（含并发触发的额外运行）
+WORKFLOW_NAME = "pages build and deployment"
 
 
 def log(msg: str) -> None:
@@ -83,6 +88,60 @@ def save_state(state: dict) -> None:
         tmp.replace(STATE_PATH)
     except OSError as e:
         log(f"状态文件写入失败（不影响本轮判断）：{e}")
+
+
+def collect_run_failures(token: str, cutoff: datetime,
+                         fresh: list[tuple[str, dict]],
+                         alerted: set[str]) -> tuple[int, int]:
+    """第二路：Actions 工作流结论。返回 (新增未恢复数, 已自愈数)。
+
+    为什么不只看 Pages builds：deploy 步骤撞上 5xx 时，Pages builds 接口
+    **当时可能还没有这条记录**，事后再查才补上 errored（2026-11-26 00:05 就是这样）。
+    只查 builds 会把「GitHub 已经发邮件、线上确实没更新」的那一轮整个漏掉。
+    两路取并集，同一 commit 只算一次。
+    """
+    try:
+        d = api(token, f"/repos/{DEFAULT_REPO}/actions/runs?per_page={RUNS_LOOKBACK}")
+    except Exception as e:
+        log(f"⚠️  工作流状态回查失败（不影响 builds 判断）：{type(e).__name__}: {e}")
+        return 0, 0
+    runs = d.get("workflow_runs") if isinstance(d, dict) else None
+    if not isinstance(runs, list):
+        log("⚠️  工作流状态返回格式异常（不是对象）")
+        return 0, 0
+
+    stamped: list[tuple[datetime, dict]] = []
+    for r in runs:
+        if not isinstance(r, dict) or r.get("name") != WORKFLOW_NAME:
+            continue
+        ts = parse_ts(r.get("created_at") or "")
+        if ts is not None:
+            stamped.append((ts, r))
+    stamped.sort(key=lambda x: x[0])
+    ok_times = [ts for ts, r in stamped if r.get("conclusion") == "success"]
+
+    seen_sha = {(b.get("commit") or "")[:7] for _, b in fresh if b.get("commit")}
+    added = recovered = 0
+    for ts, r in stamped:
+        if r.get("conclusion") != "failure" or ts < cutoff:
+            continue
+        # 之后只要有过一次成功运行，就算已自愈
+        if any(s > ts for s in ok_times):
+            recovered += 1
+            continue
+        key = f"run:{r.get('id')}"
+        sha = (r.get("head_sha") or "")[:7]
+        if key in alerted or (sha and sha in seen_sha):
+            continue
+        # 伪造成与 builds 一致的结构，复用后面的打印逻辑
+        fresh.append((key, {
+            "commit": r.get("head_sha"),
+            "error": {"message": "工作流 deploy 步骤失败（Pages 部署接口报错，详见 run 日志）"},
+        }))
+        if sha:
+            seen_sha.add(sha)
+        added += 1
+    return added, recovered
 
 
 def main() -> int:
@@ -140,10 +199,14 @@ def main() -> int:
             continue
         fresh_failures.append((key, b))
 
+    # 第二路：Actions 工作流结论（补 builds 接口的漏报，见 collect_run_failures 注释）
+    run_added, run_recovered = collect_run_failures(token, cutoff, fresh_failures, alerted)
+
     latest = builds[0] if builds else {}
     log(f"Pages 最近构建 {len(builds)} 次，最新状态：{latest.get('status', '未知')}"
         f"（{(latest.get('commit') or '')[:7]}）｜近 {window:g}h 未恢复失败 "
-        f"{len(fresh_failures)} 次 / 已自愈 {recovered} 次｜凭证来自 {source}")
+        f"{len(fresh_failures)} 次（其中工作流 {run_added} 次）"
+        f" / 已自愈 {recovered + run_recovered} 次｜凭证来自 {source}")
 
     if not fresh_failures:
         return 0
@@ -158,8 +221,17 @@ def main() -> int:
         alerted.add(key)
 
     if not args.dry_run:
-        # 只保留最近 3 天的记录，状态文件别无限长
-        keep = [k for k in alerted if (parse_ts(k) or now) > now - timedelta(days=3)]
+        # 状态文件别无限长：builds 的 key 是时间戳，留最近 3 天；
+        # 工作流的 key 是 run:<id>、本身不带时间，按 id 数值保留最近 50 个。
+        keep: list[str] = []
+        run_keys: list[str] = []
+        for k in alerted:
+            if k.startswith("run:"):
+                run_keys.append(k)
+            elif (parse_ts(k) or now) > now - timedelta(days=3):
+                keep.append(k)
+        run_keys.sort(key=lambda k: int(k.split(":", 1)[1] or 0), reverse=True)
+        keep.extend(run_keys[:50])
         save_state({"alerted": sorted(keep), "updated_at": now.isoformat()})
 
     print(f"GitHub Pages 部署失败 {len(fresh_failures)} 次（近 {window:g}h）且尚未恢复；"
